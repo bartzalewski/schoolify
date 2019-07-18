@@ -11,8 +11,6 @@ import Notification from './pages/Notification.js';
 import Profile from './pages/Profile.js';
 import Lessons from './pages/Lessons.js';
 import Contact from './pages/Contact.js';
-import SignIn from './components/auth/SignIn';
-import SignUp from './components/auth/SignUp';
 
 const StyledWrapper = styled.div`
 	display: flex;
@@ -45,8 +43,6 @@ function App() {
 						<Route path="/profile" component={Profile} />
 						<Route path="/lessons" component={Lessons} />
 						<Route path="/contact" component={Contact} />
-						<Route path="/signin" component={SignIn} />
-						<Route path="/signup" component={SignUp} />
 					</Switch>
 				</StyledHome>
 				<StyledRightSide>
