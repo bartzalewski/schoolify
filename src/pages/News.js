@@ -43,9 +43,6 @@ const StyledNews = styled.section`
 		background-color: white;
 		border-radius: 15px;
 		border: 1px solid #d2d2d2;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 	}
 
 	.container {
@@ -79,6 +76,9 @@ const StyledNews = styled.section`
 	.box-add {
 		text-align: center;
 		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.add-title {
