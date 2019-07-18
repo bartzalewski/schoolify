@@ -10,6 +10,9 @@ const StyledNavbar = styled.nav`
 	width: 100vw;
 	height: 100px;
 	border-bottom: 1px solid #d2d2d2;
+	position: fixed;
+	background: #fff;
+	z-index: 3;
 
 	.left,
 	.center,
