@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Add } from '../images/add.svg';
-import zszbg from '../images/zsz.jpg';
-import zszlogo from '../images/zszlogo.gif';
-import lobg from '../images/lo.jpg';
-import lologo from '../images/lologo.jpg';
-import sp3bg from '../images/sp3.jpg';
-import sp3logo from '../images/sp3logo.jpg';
-import p4bg from '../images/p4.jpg';
-import p4logo from '../images/p4logo.jpg';
-import zszfeed from '../images/zszfeed.jpg';
+import zszbg from '../images/schools/backgrounds/zsz-zabk-bg.jpg';
+import zszlogo from '../images/schools/logos/zsz-zabk-logo.gif';
+import lobg from '../images/schools/backgrounds/lo-zabk-bg.jpg';
+import lologo from '../images/schools/logos/lo-zabk-logo.jpg';
+import sp3bg from '../images/schools/backgrounds/sp3-zabk-bg.jpg';
+import sp3logo from '../images/schools/logos/sp3-zabk-logo.jpg';
+import p4bg from '../images/schools/backgrounds/p4-zabk-bg.jpg';
+import p4logo from '../images/schools/logos/p4-zabk-logo.jpg';
 import { ReactComponent as User } from '../images/user.svg';
+import PostList from '../components/posts/PostList';
+import { connect } from 'react-redux';
 
 const StyledNews = styled.section`
 	width: 50vw;
-	height: 300vh;
+	height: fit-content;
 	background: #ececf0;
 
 	.school-title {
@@ -153,68 +154,60 @@ const StyledNews = styled.section`
 	}
 `;
 
-const News = () => {
-	return (
-		<StyledNews>
-			<div className="home-wrapper">
-				<h1 className="school-title">Browse schools</h1>
-				<h2 className="school-list">See All</h2>
-			</div>
-			<div className="container">
-				<div className="box">
-					<img className="school-logo" src={zszlogo} alt="zsz logo" />
-					<img className="school-bg" src={zszbg} alt="zsz background" />
+class News extends Component {
+	render() {
+		const { posts } = this.props;
+		return (
+			<StyledNews>
+				<div className="home-wrapper">
+					<h1 className="school-title">Browse schools</h1>
+					<h2 className="school-list">See All</h2>
 				</div>
-				<div className="box">
-					<img className="school-logo" src={lologo} alt="lo logo" />
-					<img className="school-bg" src={lobg} alt="lo background" />
-				</div>
-				<div className="box">
-					<img className="school-logo" src={sp3logo} alt="sp3 logo" />
-					<img className="school-bg" src={sp3bg} alt="sp3 background" />
-				</div>
-				<div className="box">
-					<img className="school-logo" src={p4logo} alt="p4 logo" />
-					<img className="school-bg" src={p4bg} alt="p4 background" />
-				</div>
-				<div className="box box-add">
-					<div className="box-wrapper">
-						<h1 className="add-title">Add your school!</h1>
-						<Add className="add" />
+				<div className="container">
+					<div className="box">
+						<img className="school-logo" src={zszlogo} alt="zsz logo" />
+						<img className="school-bg" src={zszbg} alt="zsz background" />
+					</div>
+					<div className="box">
+						<img className="school-logo" src={lologo} alt="lo logo" />
+						<img className="school-bg" src={lobg} alt="lo background" />
+					</div>
+					<div className="box">
+						<img className="school-logo" src={sp3logo} alt="sp3 logo" />
+						<img className="school-bg" src={sp3bg} alt="sp3 background" />
+					</div>
+					<div className="box">
+						<img className="school-logo" src={p4logo} alt="p4 logo" />
+						<img className="school-bg" src={p4bg} alt="p4 background" />
+					</div>
+					<div className="box box-add">
+						<div className="box-wrapper">
+							<h1 className="add-title">Add your school!</h1>
+							<Add className="add" />
+						</div>
 					</div>
 				</div>
-			</div>
-			<div className="wrapper">
-				<div className="add-post">
-					<User />
-					<input className="posts-input" type="text" placeholder="Add a post" />
-					<User />
-				</div>
-			</div>
-			<div className="wrapper posts-wrapper">
-				<div className="posts-list">
-					<div className="flex">
-						<img
-							className="school-logo posts-logo"
-							src={zszlogo}
-							alt="zsz logo"
+				<div className="wrapper">
+					<div className="add-post">
+						<User />
+						<input
+							className="posts-input"
+							type="text"
+							placeholder="Add a post"
 						/>
-						<h5 className="posts-title">
-							ZSZ im. Stanisława Staszica w Ząbkowicach Śląskich
-						</h5>
-						<p className="posts-time">5 mins</p>
+						<User />
 					</div>
-					<p className="posts-desc">
-						19 czerwca 2019 r. o godz. 8.15 w naszej szkole rozpoczął się
-						uroczysty apel z okazji zakończenia roku szkolnego 2018/2019.
-						Uroczystość uświetnili przybyli goście: Przewodniczący Komisji
-						Oświaty i Kultury Pan Stanisław...
-					</p>
-					<img className="posts-img" src={zszfeed} alt="zsz feed" />
 				</div>
-			</div>
-		</StyledNews>
-	);
+				<PostList posts={posts} />
+			</StyledNews>
+		);
+	}
+}
+
+const mapStateToProps = state => {
+	return {
+		posts: state.post.posts
+	};
 };
 
-export default News;
+export default connect(mapStateToProps)(News);

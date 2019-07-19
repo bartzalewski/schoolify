@@ -84,83 +84,83 @@ const Lessons = () => {
 		<StyledLessons>
 			<div className="container">
 				<h1>Lessons</h1>
-				<table class="tg">
+				<table className="tg">
 					<tr>
-						<th class="tg-baqh" colspan="7">
+						<th className="tg-baqh" colspan="7">
 							1A
 						</th>
 					</tr>
 					<tr>
-						<td class="tg-phtq">No</td>
-						<td class="tg-phtq">Hour</td>
-						<td class="tg-phtq">Monday</td>
-						<td class="tg-phtq">Tuesday</td>
-						<td class="tg-phtq">Wednesday</td>
-						<td class="tg-phtq">Thursday</td>
-						<td class="tg-hmp3">Friday</td>
+						<td className="tg-phtq">No</td>
+						<td className="tg-phtq">Hour</td>
+						<td className="tg-phtq">Monday</td>
+						<td className="tg-phtq">Tuesday</td>
+						<td className="tg-phtq">Wednesday</td>
+						<td className="tg-phtq">Thursday</td>
+						<td className="tg-hmp3">Friday</td>
 					</tr>
 					<tr>
-						<td class="tg-0pky">1</td>
-						<td class="tg-0pky">8:00-8:45</td>
-						<td class="tg-0pky">bio</td>
-						<td class="tg-0pky">geo</td>
-						<td class="tg-0pky">ger</td>
-						<td class="tg-0pky">his</td>
-						<td class="tg-0lax">rel</td>
+						<td className="tg-0pky">1</td>
+						<td className="tg-0pky">8:00-8:45</td>
+						<td className="tg-0pky">bio</td>
+						<td className="tg-0pky">geo</td>
+						<td className="tg-0pky">ger</td>
+						<td className="tg-0pky">his</td>
+						<td className="tg-0lax">rel</td>
 					</tr>
 					<tr>
-						<td class="tg-phtq">2</td>
-						<td class="tg-phtq">8:50-9:35</td>
-						<td class="tg-phtq">math</td>
-						<td class="tg-phtq">eco</td>
-						<td class="tg-phtq">chem</td>
-						<td class="tg-phtq">it</td>
-						<td class="tg-hmp3">ger</td>
+						<td className="tg-phtq">2</td>
+						<td className="tg-phtq">8:50-9:35</td>
+						<td className="tg-phtq">math</td>
+						<td className="tg-phtq">eco</td>
+						<td className="tg-phtq">chem</td>
+						<td className="tg-phtq">it</td>
+						<td className="tg-hmp3">ger</td>
 					</tr>
 					<tr>
-						<td class="tg-0pky">3</td>
-						<td class="tg-0pky">9:40-10:25</td>
-						<td class="tg-0pky">eng</td>
-						<td class="tg-0pky">chem</td>
-						<td class="tg-0pky">pe</td>
-						<td class="tg-0pky">eng</td>
-						<td class="tg-0lax">math</td>
+						<td className="tg-0pky">3</td>
+						<td className="tg-0pky">9:40-10:25</td>
+						<td className="tg-0pky">eng</td>
+						<td className="tg-0pky">chem</td>
+						<td className="tg-0pky">pe</td>
+						<td className="tg-0pky">eng</td>
+						<td className="tg-0lax">math</td>
 					</tr>
 					<tr>
-						<td class="tg-phtq">4</td>
-						<td class="tg-phtq">10:45-11:30</td>
-						<td class="tg-phtq">it</td>
-						<td class="tg-phtq">rel</td>
-						<td class="tg-phtq">math</td>
-						<td class="tg-phtq">eng</td>
-						<td class="tg-hmp3">math</td>
+						<td className="tg-phtq">4</td>
+						<td className="tg-phtq">10:45-11:30</td>
+						<td className="tg-phtq">it</td>
+						<td className="tg-phtq">rel</td>
+						<td className="tg-phtq">math</td>
+						<td className="tg-phtq">eng</td>
+						<td className="tg-hmp3">math</td>
 					</tr>
 					<tr>
-						<td class="tg-0pky">5</td>
-						<td class="tg-0pky">11:35-12:20</td>
-						<td class="tg-0pky">pe</td>
-						<td class="tg-0pky">esp</td>
-						<td class="tg-0pky">math</td>
-						<td class="tg-0pky">pe</td>
-						<td class="tg-0lax">eco</td>
+						<td className="tg-0pky">5</td>
+						<td className="tg-0pky">11:35-12:20</td>
+						<td className="tg-0pky">pe</td>
+						<td className="tg-0pky">esp</td>
+						<td className="tg-0pky">math</td>
+						<td className="tg-0pky">pe</td>
+						<td className="tg-0lax">eco</td>
 					</tr>
 					<tr>
-						<td class="tg-l5at">6</td>
-						<td class="tg-phtq">12:25-13:10</td>
-						<td class="tg-phtq">pe</td>
-						<td class="tg-phtq">eng</td>
-						<td class="tg-phtq">it</td>
-						<td class="tg-phtq" />
-						<td class="tg-hmp3">esp</td>
+						<td className="tg-l5at">6</td>
+						<td className="tg-phtq">12:25-13:10</td>
+						<td className="tg-phtq">pe</td>
+						<td className="tg-phtq">eng</td>
+						<td className="tg-phtq">it</td>
+						<td className="tg-phtq" />
+						<td className="tg-hmp3">esp</td>
 					</tr>
 					<tr>
-						<td class="tg-0lax">7</td>
-						<td class="tg-0lax">13:15-14:00</td>
-						<td class="tg-0lax">chem</td>
-						<td class="tg-0lax" />
-						<td class="tg-0lax" />
-						<td class="tg-0lax" />
-						<td class="tg-0lax" />
+						<td className="tg-0lax">7</td>
+						<td className="tg-0lax">13:15-14:00</td>
+						<td className="tg-0lax">chem</td>
+						<td className="tg-0lax" />
+						<td className="tg-0lax" />
+						<td className="tg-0lax" />
+						<td className="tg-0lax" />
 					</tr>
 				</table>
 			</div>

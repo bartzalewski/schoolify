@@ -21,7 +21,7 @@ export default class AddHomework extends Component {
 			<div>
 				<form onSubmit={this.handleSubmit}>
 					<input
-						class="input-homework"
+						className="input-homework"
 						placeholder="Add a homework"
 						type="text"
 						onChange={this.handleChange}
