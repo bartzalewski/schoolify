@@ -21,7 +21,11 @@ export default function PostSummary({ post }) {
 					<p className="posts-time">5 mins</p>
 				</div>
 				<p className="posts-desc">{post.content}</p>
-				<img className="posts-img" src={post.postBackground} alt="zsz feed" />
+				<img
+					className="posts-img"
+					src={post.postBackground}
+					alt="school feed"
+				/>
 			</div>
 		</StyledPostSummary>
 	);

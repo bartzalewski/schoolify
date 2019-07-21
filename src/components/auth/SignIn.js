@@ -1,4 +1,25 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { signIn } from '../../store/actions/authActions';
+
+const StyledSignIn = styled.section`
+	.signin-title {
+		font-size: 24px;
+		font-weight: 600;
+		background: -webkit-linear-gradient(top, #fe843f, #fc5a37);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.signin-form {
+		position: absolute;
+		bottom: 0;
+		left: 350px;
+		padding-bottom: 100px;
+	}
+`;
 
 class SignIn extends Component {
 	state = {
@@ -12,28 +33,55 @@ class SignIn extends Component {
 	};
 	handleSubmit = e => {
 		e.preventDefault();
-		console.log(this.state);
+		this.props.signIn(this.state);
 	};
 	render() {
+		const { authError } = this.props;
 		return (
-			<div className="container">
-				<form className="white" onSubmit={this.handleSubmit}>
-					<h5 className="grey-text text-darken-3">Sign In</h5>
+			<StyledSignIn>
+				<form className="signin-form" onSubmit={this.handleSubmit}>
+					<h1 className="signin-title">sign in</h1>
 					<div className="input-field">
-						<label htmlFor="email">Email</label>
-						<input type="email" id="email" onChange={this.handleChange} />
+						<label htmlFor="email" />
+						<input
+							type="email"
+							id="email"
+							onChange={this.handleChange}
+							placeholder="test@test.com"
+						/>
 					</div>
 					<div className="input-field">
-						<label htmlFor="password">Password</label>
-						<input type="password" id="password" onChange={this.handleChange} />
+						<label htmlFor="password" />
+						<input
+							type="password"
+							id="password"
+							onChange={this.handleChange}
+							placeholder="test123"
+						/>
 					</div>
 					<div className="input-field">
-						<button className="btn pink lighten-1 z-depth-0">Login</button>
+						<button className="btn">Login</button>
+						<div>{authError ? <p>{authError}</p> : null}</div>
 					</div>
 				</form>
-			</div>
+			</StyledSignIn>
 		);
 	}
 }
 
-export default SignIn;
+const mapStateToProps = state => {
+	return {
+		authError: state.auth.authError
+	};
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+		signIn: creds => dispatch(signIn(creds))
+	};
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(SignIn);

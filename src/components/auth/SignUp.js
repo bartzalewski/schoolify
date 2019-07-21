@@ -1,4 +1,24 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+import { signUp } from '../../store/actions/authActions';
+import { connect } from 'react-redux';
+
+const StyledSignUp = styled.div`
+	.signup-title {
+		font-size: 24px;
+		font-weight: 600;
+		background: -webkit-linear-gradient(top, #fe843f, #fc5a37);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.signup-form {
+		position: absolute;
+		bottom: 0;
+		padding-bottom: 100px;
+	}
+`;
 
 class SignUp extends Component {
 	state = {
@@ -14,36 +34,65 @@ class SignUp extends Component {
 	};
 	handleSubmit = e => {
 		e.preventDefault();
-		console.log(this.state);
+		this.props.signUp(this.state);
 	};
 	render() {
 		return (
-			<div className="container">
-				<form className="white" onSubmit={this.handleSubmit}>
-					<h5 className="title">Sign Up</h5>
+			<StyledSignUp>
+				<form className="signup-form" onSubmit={this.handleSubmit}>
+					<h1 className="signup-title">sign up</h1>
 					<div className="input-field">
-						<label htmlFor="email">Email</label>
-						<input type="email" id="email" onChange={this.handleChange} />
+						<label htmlFor="firstName" />
+						<input
+							type="text"
+							id="firstName"
+							onChange={this.handleChange}
+							placeholder="First Name"
+						/>
 					</div>
 					<div className="input-field">
-						<label htmlFor="password">Password</label>
-						<input type="password" id="password" onChange={this.handleChange} />
+						<label htmlFor="lastName" />
+						<input
+							type="text"
+							id="lastName"
+							onChange={this.handleChange}
+							placeholder="Last Name"
+						/>
 					</div>
 					<div className="input-field">
-						<label htmlFor="firstName">First Name</label>
-						<input type="text" id="firstName" onChange={this.handleChange} />
+						<label htmlFor="email" />
+						<input
+							type="email"
+							id="email"
+							onChange={this.handleChange}
+							placeholder="E-mail"
+						/>
 					</div>
 					<div className="input-field">
-						<label htmlFor="lastName">Last Name</label>
-						<input type="text" id="lastName" onChange={this.handleChange} />
+						<label htmlFor="password" />
+						<input
+							type="password"
+							id="password"
+							onChange={this.handleChange}
+							placeholder="Password"
+						/>
 					</div>
 					<div className="input-field">
-						<button className="btn pink lighten-1 z-depth-0">Sign Up</button>
+						<button className="btn">Sign Up</button>
 					</div>
 				</form>
-			</div>
+			</StyledSignUp>
 		);
 	}
 }
 
-export default SignUp;
+const mapDispatchToProps = dispatch => {
+	return {
+		signUp: newUser => dispatch(signUp(newUser))
+	};
+};
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(SignUp);

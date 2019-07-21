@@ -13,7 +13,8 @@ const StyledProfile = styled.section`
 	}
 `;
 
-const Profile = () => {
+const Profile = props => {
+	console.log(props);
 	return (
 		<StyledProfile>
 			<h1>Profile</h1>

@@ -12,6 +12,10 @@ import p4logo from '../images/schools/logos/p4-zabk-logo.jpg';
 import { ReactComponent as User } from '../images/user.svg';
 import PostList from '../components/posts/PostList';
 import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const StyledNews = styled.section`
 	width: 50vw;
@@ -106,15 +110,19 @@ const StyledNews = styled.section`
 		margin-top: 3rem;
 	}
 
-	.posts-input {
+	.posts-btn {
 		background: #f3f3f5;
 		border: 1px solid #d2d2d2;
 		border-radius: 15px;
 		margin: 0;
 		height: 40px;
 		width: 70%;
-		text-align: center;
 		font-size: 18px;
+		text-decoration: none;
+		color: inherit;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.posts-wrapper {
@@ -156,7 +164,8 @@ const StyledNews = styled.section`
 
 class News extends Component {
 	render() {
-		const { posts } = this.props;
+		const { posts, auth } = this.props;
+		if (!auth.uid) return <Redirect to="/" />;
 		return (
 			<StyledNews>
 				<div className="home-wrapper">
@@ -190,11 +199,9 @@ class News extends Component {
 				<div className="wrapper">
 					<div className="add-post">
 						<User />
-						<input
-							className="posts-input"
-							type="text"
-							placeholder="Add a post"
-						/>
+						<Link to="/create" className="posts-btn">
+							Add a post
+						</Link>
 						<User />
 					</div>
 				</div>
@@ -206,8 +213,12 @@ class News extends Component {
 
 const mapStateToProps = state => {
 	return {
-		posts: state.post.posts
+		posts: state.firestore.ordered.posts,
+		auth: state.firebase.auth
 	};
 };
 
-export default connect(mapStateToProps)(News);
+export default compose(
+	connect(mapStateToProps),
+	firestoreConnect([{ collection: 'posts' }])
+)(News);
