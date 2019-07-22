@@ -22,6 +22,26 @@ const StyledHomework = styled.aside`
 		display: flex;
 		justify-content: space-between;
 	}
+
+	.homework-list {
+		background: #4caf50;
+		border-radius: 10px;
+		position: relative;
+		margin-top: 2rem;
+	}
+
+	.homework-list::before {
+		content: 'TOMORROW';
+		width: fit-content;
+		height: fit-content;
+		background: #4caf50;
+		position: absolute;
+		color: #fff;
+		border-radius: 10px;
+		top: -18px;
+		left: 125px;
+		padding: 0 5px;
+	}
 `;
 
 class Homework extends Component {

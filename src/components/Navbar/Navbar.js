@@ -62,13 +62,16 @@ const StyledNavbar = styled.nav`
 	svg:hover {
 		fill: #fe843f;
 	}
+	.schoolify-logo {
+		min-width: 50px;
+	}
 `;
 
 const Navbar = () => {
 	return (
 		<StyledNavbar>
 			<div className="left">
-				<Logo />
+				<Logo className="schoolify-logo" />
 				<p className="title">schoolify</p>
 			</div>
 			<div className="center">

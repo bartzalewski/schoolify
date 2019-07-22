@@ -24,7 +24,7 @@ const StyledGrades = styled.aside`
 	background: #fff;
 
 	.title {
-		font-size: 32px;
+		font-size: 2rem;
 		font-weight: 600;
 	}
 

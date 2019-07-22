@@ -13,6 +13,7 @@ import Lessons from '../../pages/Lessons.js';
 import Contact from '../../pages/Contact.js';
 import CreatePost from '../../components/posts/CreatePost';
 import Settings from '../../pages/Settings';
+import Error from '../../pages/Error';
 
 const StyledWrapper = styled.div`
 	display: flex;
@@ -49,6 +50,7 @@ const SignedIn = props => {
 						<Route path="/contact" component={Contact} />
 						<Route path="/create" component={CreatePost} />
 						<Route path="/settings" component={Settings} />
+						<Route component={Error} />
 					</Switch>
 				</StyledHome>
 				<StyledRightSide>

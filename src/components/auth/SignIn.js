@@ -5,7 +5,7 @@ import { signIn } from '../../store/actions/authActions';
 
 const StyledSignIn = styled.section`
 	.signin-title {
-		font-size: 24px;
+		font-size: 1.5rem;
 		font-weight: 600;
 		background: -webkit-linear-gradient(top, #fe843f, #fc5a37);
 		-webkit-background-clip: text;
@@ -18,6 +18,19 @@ const StyledSignIn = styled.section`
 		bottom: 0;
 		left: 350px;
 		padding-bottom: 100px;
+	}
+
+	input#email,
+	input#password {
+		width: 100%;
+		height: 50px;
+		font-size: 1.125rem;
+		border: 1px solid #d2d2d2;
+		border-radius: 10px;
+	}
+
+	input {
+		margin-top: 10px;
 	}
 `;
 

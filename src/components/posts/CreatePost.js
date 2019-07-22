@@ -17,6 +17,19 @@ const StyledCreatePost = styled.section`
 	.container {
 		padding: 40px;
 	}
+
+	.btn {
+		border-radius: 10px;
+		background: -webkit-linear-gradient(left, #fe843f, #fc5a37);
+		color: #fff;
+		font-weight: 600;
+		border: none;
+		height: 50px;
+		font-size: 1.125rem;
+		cursor: pointer;
+		padding: 10px 25px;
+		margin-top: 20px;
+	}
 `;
 
 class CreatePost extends Component {
@@ -39,8 +52,8 @@ class CreatePost extends Component {
 		return (
 			<StyledCreatePost>
 				<div className="container">
-					<form className="white" onSubmit={this.handleSubmit}>
-						<h1 className="grey-text text-darken-3">Create new post</h1>
+					<form onSubmit={this.handleSubmit}>
+						<h1>Create new post</h1>
 						<div className="input-field">
 							<label htmlFor="title">Title</label>
 							<input type="text" id="title" onChange={this.handleChange} />
@@ -50,7 +63,7 @@ class CreatePost extends Component {
 							<textarea id="content" onChange={this.handleChange} />
 						</div>
 						<div className="input-field">
-							<button className="btn pink lighten-1 z-depth-0">Create</button>
+							<button className="btn">Create</button>
 						</div>
 					</form>
 				</div>

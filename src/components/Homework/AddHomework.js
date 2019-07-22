@@ -1,4 +1,14 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
+const StyledAddHomework = styled.div`
+	.input-homework {
+		border-radius: 15px;
+		border: 1px solid #d2d2d2;
+		width: 135px;
+		padding: 5px 10px;
+	}
+`;
 
 export default class AddHomework extends Component {
 	state = {
@@ -18,7 +28,7 @@ export default class AddHomework extends Component {
 	};
 	render() {
 		return (
-			<div>
+			<StyledAddHomework>
 				<form onSubmit={this.handleSubmit}>
 					<input
 						className="input-homework"
@@ -28,7 +38,7 @@ export default class AddHomework extends Component {
 						value={this.state.content}
 					/>
 				</form>
-			</div>
+			</StyledAddHomework>
 		);
 	}
 }

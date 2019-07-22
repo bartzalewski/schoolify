@@ -1,3 +1,5 @@
+import Profile from '../../pages/Profile';
+
 export const createPost = post => {
 	return (dispatch, getState, { getFirebase, getFirestore }) => {
 		const firestore = getFirestore();

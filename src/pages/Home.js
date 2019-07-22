@@ -59,6 +59,8 @@ const StyledHome = styled.div`
 		height: 50px;
 		font-size: 18px;
 		cursor: pointer;
+		padding: 10px 25px;
+		margin-top: 20px;
 	}
 `;
 

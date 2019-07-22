@@ -1,4 +1,14 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
+const StyledAddTests = styled.div`
+	.input-tests {
+		border-radius: 15px;
+		border: 1px solid #d2d2d2;
+		width: 90px;
+		padding: 5px 10px !important;
+	}
+`;
 
 export default class AddTests extends Component {
 	state = {
@@ -18,7 +28,7 @@ export default class AddTests extends Component {
 	};
 	render() {
 		return (
-			<div>
+			<StyledAddTests>
 				<form onSubmit={this.handleSubmit}>
 					<input
 						placeholder="Add a test"
@@ -28,7 +38,7 @@ export default class AddTests extends Component {
 						value={this.state.content}
 					/>
 				</form>
-			</div>
+			</StyledAddTests>
 		);
 	}
 }
