@@ -8,6 +8,14 @@ const StyledRemindersList = styled.div`
 	padding: 5px 15px;
 	margin-top: 5px;
 	width: fit-content;
+
+	@media (max-width: 1359px) {
+		padding: 2.5px 10px;
+	}
+
+	@media (max-width: 1124px) {
+		margin: 5px auto;
+	}
 `;
 
 const RemindersList = ({ todos, deleteTodo }) => {

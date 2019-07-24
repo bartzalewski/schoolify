@@ -22,6 +22,30 @@ const StyledTests = styled.aside`
 		justify-content: space-between;
 		align-items: center;
 	}
+
+	@media (max-width: 1359px) {
+		padding: 12.5px;
+
+		.title {
+			font-size: 1.5rem;
+		}
+	}
+
+	@media (max-width: 1124px) {
+		position: static;
+		top: 0px;
+		width: 80%;
+		border: none;
+		border-bottom: 1px solid #d2d2d2;
+
+		.container {
+			flex-direction: column;
+		}
+	}
+
+	@media (max-width: 813px) {
+		width: 100%;
+	}
 `;
 
 class Tests extends Component {

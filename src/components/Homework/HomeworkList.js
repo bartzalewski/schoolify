@@ -5,6 +5,10 @@ const StyledHomeworkList = styled.div`
 	color: #fff;
 	border-radius: 10px;
 	padding: 5px 15px;
+
+	@media (max-width: 1359px) {
+		padding: 2.5px 10px;
+	}
 `;
 
 const HomeworkList = ({ todos, deleteTodo }) => {

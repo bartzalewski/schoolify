@@ -29,6 +29,11 @@ const StyledHomework = styled.aside`
 		border-radius: 10px;
 		position: relative;
 		margin-top: 2rem;
+
+		@media (max-width: 1124px) {
+			width: 50%;
+			margin: 2rem auto;
+		}
 	}
 
 	.homework-list::before {
@@ -44,6 +49,31 @@ const StyledHomework = styled.aside`
 		right: 0;
 		top: -17px;
 		margin: auto;
+	}
+
+	@media (max-width: 1359px) {
+		padding: 12.5px;
+
+		.title {
+			font-size: 1.5rem;
+		}
+	}
+
+	@media (max-width: 1124px) {
+		position: static;
+		top: 0px;
+		width: 80%;
+		border: none;
+		text-align: center;
+		border-bottom: 1px solid #d2d2d2;
+
+		.container {
+			flex-direction: column;
+		}
+	}
+
+	@media (max-width: 813px) {
+		width: 100%;
 	}
 `;
 

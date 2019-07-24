@@ -19,6 +19,10 @@ const StyledLessons = styled.section`
 		border-spacing: 0;
 		border-color: #aabcfe;
 		width: 100%;
+
+		@media (max-width: 813px) {
+			display: none;
+		}
 	}
 	.tg td {
 		font-family: Arial, sans-serif;

@@ -20,6 +20,10 @@ const StyledNavbar = styled.nav`
 		display: flex;
 		align-items: center;
 		margin: 25px;
+
+		@media (max-width: 1359px) {
+			margin: 12.5px;
+		}
 	}
 
 	.left,
@@ -31,6 +35,10 @@ const StyledNavbar = styled.nav`
 		width: 50vw;
 		justify-content: space-between;
 		margin: 95px;
+
+		@media (max-width: 1124px) {
+			margin: 0;
+		}
 	}
 
 	.right {
@@ -45,10 +53,23 @@ const StyledNavbar = styled.nav`
 		-webkit-background-clip: text;
 		background-clip: text;
 		-webkit-text-fill-color: transparent;
+
+		@media (max-width: 1359px) {
+			font-size: 2rem;
+			margin: 12.5px;
+		}
+
+		@media (max-width: 1124px) {
+			display: none;
+		}
 	}
 	.box {
 		width: 40px;
 		height: 40px;
+		@media (max-width: 1359px) {
+			width: 30px;
+			height: 30px;
+		}
 	}
 	.box:hover::before {
 		content: '';
@@ -58,12 +79,33 @@ const StyledNavbar = styled.nav`
 		position: absolute;
 		margin-left: -30px;
 		margin-top: 66px;
+
+		@media (max-width: 1359px) {
+			display: none;
+		}
+	}
+	svg {
+		@media (max-width: 1359px) {
+			width: 30px;
+			height: 30px;
+		}
 	}
 	svg:hover {
 		fill: #fe843f;
 	}
 	.schoolify-logo {
 		min-width: 50px;
+	}
+
+	@media (max-width: 1124px) {
+		.left,
+		.right {
+			width: 10vw;
+		}
+		.center {
+			width: 80vw;
+			justify-content: space-evenly;
+		}
 	}
 `;
 

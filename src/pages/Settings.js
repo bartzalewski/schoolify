@@ -16,6 +16,26 @@ const StyledSettings = styled.section`
 	.container {
 		padding: 40px;
 	}
+
+	.btn-logout {
+		border-radius: 10px;
+		background: -webkit-linear-gradient(left, #fe843f, #fc5a37);
+		color: #fff;
+		font-weight: 600;
+		border: none;
+		height: 50px;
+		width: fit-content;
+		font-size: 1.125rem;
+		cursor: pointer;
+		padding: 10px 25px;
+		margin-top: 20px;
+		position: absolute;
+	}
+
+	/* same as <Link> */
+	a {
+		text-decoration: none;
+	}
 `;
 
 const Settings = props => {
@@ -24,7 +44,9 @@ const Settings = props => {
 			<div className="container">
 				<h1>Settings</h1>
 				<Link to="/">
-					<p onClick={props.signOut}>Log Out</p>
+					<span onClick={props.signOut} className="btn-logout">
+						Log Out
+					</span>
 				</Link>
 			</div>
 		</StyledSettings>

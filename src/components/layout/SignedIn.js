@@ -33,16 +33,18 @@ const StyledRightSide = styled.div`
 `;
 
 const StyledDesktop = styled.div`
-	/* @media (max-width: 1124px) {
+	@media (max-width: 1124px) {
 		display: none;
-	} */
+	}
 `;
 const StyledMobile = styled.div`
 	display: none;
 
-	/* @media (max-width: 1124px) {
-		display: block;
-	} */
+	@media (max-width: 1124px) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 `;
 
 const SignedIn = props => {
@@ -78,6 +80,8 @@ const SignedIn = props => {
 			<StyledMobile>
 				<Navbar />
 				<Reminders />
+				<Homework />
+				<Tests />
 				<Grades />
 				<Switch>
 					<Route exact path="/" component={News} />
@@ -89,8 +93,6 @@ const SignedIn = props => {
 					<Route path="/settings" component={Settings} />
 					<Route component={Error} />
 				</Switch>
-				<Homework />
-				<Tests />
 			</StyledMobile>
 		</>
 	);

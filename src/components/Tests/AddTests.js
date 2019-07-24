@@ -3,10 +3,16 @@ import styled from 'styled-components';
 
 const StyledAddTests = styled.div`
 	.input-tests {
-		border-radius: 15px;
+		border-radius: 10px;
 		border: 1px solid #d2d2d2;
 		width: 90px;
-		padding: 5px 10px !important;
+		padding: 5px 10px;
+		text-align: center;
+
+		@media (max-width: 1359px) {
+			padding: 2.5px 5px;
+			font-size: 0.8rem;
+		}
 	}
 `;
 

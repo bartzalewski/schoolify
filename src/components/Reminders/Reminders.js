@@ -23,6 +23,34 @@ const StyledReminders = styled.aside`
 		justify-content: space-between;
 		align-items: center;
 	}
+
+	@media (max-width: 1359px) {
+		padding: 12.5px;
+
+		.title {
+			font-size: 1.5rem;
+		}
+	}
+
+	@media (max-width: 1124px) {
+		position: static;
+		top: 0px;
+		width: 80%;
+		border: none;
+		margin: 100px 1rem 0px 1rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		border-bottom: 1px solid #d2d2d2;
+
+		.container {
+			flex-direction: column;
+		}
+	}
+
+	@media (max-width: 813px) {
+		width: 100%;
+	}
 `;
 
 class Reminders extends Component {

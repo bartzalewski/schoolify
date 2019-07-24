@@ -160,6 +160,80 @@ const StyledNews = styled.section`
 	.posts-img {
 		width: 100%;
 	}
+
+	@media (max-width: 1359px) {
+		padding: 12.5px;
+
+		.school-title {
+			padding-left: 20px;
+			padding-top: 20px;
+		}
+
+		.school-list {
+			padding-right: 20px;
+			padding-top: 20px;
+		}
+
+		.container {
+			padding: 20px;
+		}
+
+		.wrapper {
+			padding: 20px;
+		}
+	}
+
+	@media (max-width: 1124px) {
+		width: 80%;
+	}
+
+	@media (max-width: 813px) {
+		width: 100%;
+
+		.school-title {
+			padding-left: 10px;
+			padding-top: 10px;
+		}
+
+		.school-list {
+			padding-right: 10px;
+			padding-top: 10px;
+		}
+
+		.container {
+			padding: 10px;
+		}
+
+		.wrapper {
+			padding: 10px;
+		}
+
+		.add-post {
+			width: 100%;
+			margin-top: 2rem;
+			margin-bottom: 1rem;
+		}
+
+		.posts-list {
+			width: 100%;
+			margin-top: 1rem;
+		}
+
+		.add {
+			width: 40px;
+			height: 40px;
+		}
+
+		.school-logo {
+			width: 40px;
+			height: 40px;
+		}
+
+		.user-logo {
+			width: 30px;
+			height: 30px;
+		}
+	}
 `;
 
 class News extends Component {
@@ -198,11 +272,11 @@ class News extends Component {
 				</div>
 				<div className="wrapper">
 					<div className="add-post">
-						<User />
+						<User className="user-logo" />
 						<Link to="/create" className="posts-btn">
 							Add a post
 						</Link>
-						<User />
+						<User className="user-logo" />
 					</div>
 				</div>
 				<PostList posts={posts} />

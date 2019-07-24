@@ -38,6 +38,30 @@ const StyledGrades = styled.aside`
 		margin-left: -10px;
 		width: 104%;
 	}
+
+	@media (max-width: 1359px) {
+		padding: 12.5px;
+
+		.title {
+			font-size: 1.5rem;
+		}
+
+		img {
+			height: 30px;
+		}
+	}
+
+	@media (max-width: 1124px) {
+		position: static;
+		top: 0px;
+		width: 80%;
+		border: none;
+		text-align: center;
+	}
+
+	@media (max-width: 813px) {
+		width: 100%;
+	}
 `;
 
 const Grades = () => {
