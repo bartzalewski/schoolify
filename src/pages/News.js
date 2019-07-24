@@ -30,7 +30,7 @@ const StyledNews = styled.section`
 	}
 
 	.school-list {
-		font-size: 23px;
+		font-size: 1.4375rem;
 		color: #fe843f;
 		font-weight: 400;
 		padding-right: 40px;
@@ -87,7 +87,7 @@ const StyledNews = styled.section`
 	}
 
 	.add-title {
-		font-size: 18px;
+		font-size: 1.125rem;
 		font-weight: 600;
 	}
 
@@ -117,7 +117,7 @@ const StyledNews = styled.section`
 		margin: 0;
 		height: 40px;
 		width: 70%;
-		font-size: 18px;
+		font-size: 1.125rem;
 		text-decoration: none;
 		color: inherit;
 		display: flex;
@@ -141,13 +141,13 @@ const StyledNews = styled.section`
 
 	.posts-title {
 		margin-left: 3.5rem;
-		font-size: 19px;
+		font-size: 1.1875rem;
 	}
 
 	.posts-time {
 		position: absolute;
 		margin-left: 3.5rem;
-		font-size: 17px;
+		font-size: 1.0625rem;
 		color: #9b9b9b;
 	}
 

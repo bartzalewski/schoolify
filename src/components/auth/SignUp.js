@@ -4,6 +4,9 @@ import { signUp } from '../../store/actions/authActions';
 import { connect } from 'react-redux';
 
 const StyledSignUp = styled.div`
+	width: 49%;
+	height: fit-content;
+
 	.signup-title {
 		font-size: 1.5rem;
 		font-weight: 600;
@@ -14,9 +17,7 @@ const StyledSignUp = styled.div`
 	}
 
 	.signup-form {
-		position: absolute;
-		bottom: 0;
-		padding-bottom: 100px;
+		width: 100%;
 	}
 
 	input#email,
@@ -28,10 +29,18 @@ const StyledSignUp = styled.div`
 		font-size: 1.125rem;
 		border: 1px solid #d2d2d2;
 		border-radius: 10px;
+
+		@media (max-width: 1600px) {
+			height: 40px;
+		}
 	}
 
 	input {
 		margin-top: 10px;
+	}
+
+	@media (max-width: 600px) {
+		width: 100%;
 	}
 `;
 

@@ -5,7 +5,7 @@ import AddHomework from './AddHomework';
 
 const StyledHomework = styled.aside`
 	width: 25vw;
-	height: 44.6vh;
+	height: calc(50% - 50px);
 	padding: 25px;
 	border-left: 1px solid #d2d2d2;
 	border-bottom: 1px solid #d2d2d2;
@@ -21,6 +21,7 @@ const StyledHomework = styled.aside`
 	.container {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 	}
 
 	.homework-list {
@@ -38,9 +39,11 @@ const StyledHomework = styled.aside`
 		position: absolute;
 		color: #fff;
 		border-radius: 10px;
-		top: -18px;
-		left: 125px;
 		padding: 0 5px;
+		left: 0;
+		right: 0;
+		top: -17px;
+		margin: auto;
 	}
 `;
 

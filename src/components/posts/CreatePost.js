@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { createPost } from '../../store/actions/postActions';
 import { Redirect } from 'react-router-dom';
+import FeedUpload from '../upload/FeedUpload';
 
 const StyledCreatePost = styled.section`
 	width: 50vw;
-	height: 89.2vh;
 	background: #ececf0;
 
 	h1 {
@@ -61,6 +61,9 @@ class CreatePost extends Component {
 						<div className="input-field">
 							<label htmlFor="content">Post Content</label>
 							<textarea id="content" onChange={this.handleChange} />
+						</div>
+						<div className="input-field">
+							<FeedUpload />
 						</div>
 						<div className="input-field">
 							<button className="btn">Create</button>

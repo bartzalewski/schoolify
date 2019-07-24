@@ -5,7 +5,7 @@ import AddReminder from './AddReminders';
 
 const StyledReminders = styled.aside`
 	width: 25vw;
-	height: 44.6vh;
+	height: calc(50% - 50px);
 	padding: 25px;
 	border-bottom: 1px solid #d2d2d2;
 	border-right: 1px solid #d2d2d2;
@@ -21,6 +21,7 @@ const StyledReminders = styled.aside`
 	.container {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 	}
 `;
 

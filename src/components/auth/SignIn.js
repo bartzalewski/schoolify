@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authActions';
 
 const StyledSignIn = styled.section`
+	width: 49%;
+	height: fit-content;
+
 	.signin-title {
 		font-size: 1.5rem;
 		font-weight: 600;
@@ -13,13 +16,6 @@ const StyledSignIn = styled.section`
 		-webkit-text-fill-color: transparent;
 	}
 
-	.signin-form {
-		position: absolute;
-		bottom: 0;
-		left: 350px;
-		padding-bottom: 100px;
-	}
-
 	input#email,
 	input#password {
 		width: 100%;
@@ -27,10 +23,18 @@ const StyledSignIn = styled.section`
 		font-size: 1.125rem;
 		border: 1px solid #d2d2d2;
 		border-radius: 10px;
+
+		@media (max-width: 1600px) {
+			height: 40px;
+		}
 	}
 
 	input {
 		margin-top: 10px;
+	}
+
+	@media (max-width: 600px) {
+		width: 100%;
 	}
 `;
 

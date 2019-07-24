@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const StyledError = styled.section`
 	width: 50vw;
-	height: 89.2vh;
 	background: #ececf0;
 
 	h1 {

@@ -6,7 +6,6 @@ import { signOut } from '../store/actions/authActions';
 
 const StyledSettings = styled.section`
 	width: 50vw;
-	height: 89.2vh;
 	background: #ececf0;
 
 	h1 {

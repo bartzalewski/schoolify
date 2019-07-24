@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const StyledLessons = styled.section`
 	width: 50vw;
-	height: 89.2vh;
 	background: #ececf0;
 
 	h1 {
@@ -23,7 +22,7 @@ const StyledLessons = styled.section`
 	}
 	.tg td {
 		font-family: Arial, sans-serif;
-		font-size: 14px;
+		font-size: 0.875rem;
 		padding: 10px 5px;
 		border-style: solid;
 		border-width: 1px;
@@ -35,7 +34,7 @@ const StyledLessons = styled.section`
 	}
 	.tg th {
 		font-family: Arial, sans-serif;
-		font-size: 14px;
+		font-size: 0.875rem;
 		font-weight: normal;
 		padding: 10px 5px;
 		border-style: solid;

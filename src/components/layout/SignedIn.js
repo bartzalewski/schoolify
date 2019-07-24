@@ -25,9 +25,24 @@ const StyledHome = styled.div`
 	top: 100px;
 `;
 
+const StyledLeftSide = styled.div``;
+
 const StyledRightSide = styled.div`
 	position: fixed;
-	right: 25vw;
+	left: calc(100vw - 25vw);
+`;
+
+const StyledDesktop = styled.div`
+	/* @media (max-width: 1124px) {
+		display: none;
+	} */
+`;
+const StyledMobile = styled.div`
+	display: none;
+
+	/* @media (max-width: 1124px) {
+		display: block;
+	} */
 `;
 
 const SignedIn = props => {
@@ -35,29 +50,48 @@ const SignedIn = props => {
 	console.log(firstName, lastName);
 	return (
 		<>
-			<Navbar />
-			<StyledWrapper>
-				<div>
-					<Reminders />
-					<Grades />
-				</div>
-				<StyledHome>
-					<Switch>
-						<Route exact path="/" component={News} />
-						<Route path="/notifications" component={Notification} />
-						<Route path="/profile" component={Profile} />
-						<Route path="/lessons" component={Lessons} />
-						<Route path="/contact" component={Contact} />
-						<Route path="/create" component={CreatePost} />
-						<Route path="/settings" component={Settings} />
-						<Route component={Error} />
-					</Switch>
-				</StyledHome>
-				<StyledRightSide>
-					<Homework />
-					<Tests />
-				</StyledRightSide>
-			</StyledWrapper>
+			<StyledDesktop>
+				<Navbar />
+				<StyledWrapper>
+					<StyledLeftSide>
+						<Reminders />
+						<Grades />
+					</StyledLeftSide>
+					<StyledHome>
+						<Switch>
+							<Route exact path="/" component={News} />
+							<Route path="/notifications" component={Notification} />
+							<Route path="/profile" component={Profile} />
+							<Route path="/lessons" component={Lessons} />
+							<Route path="/contact" component={Contact} />
+							<Route path="/create" component={CreatePost} />
+							<Route path="/settings" component={Settings} />
+							<Route component={Error} />
+						</Switch>
+					</StyledHome>
+					<StyledRightSide>
+						<Homework />
+						<Tests />
+					</StyledRightSide>
+				</StyledWrapper>
+			</StyledDesktop>
+			<StyledMobile>
+				<Navbar />
+				<Reminders />
+				<Grades />
+				<Switch>
+					<Route exact path="/" component={News} />
+					<Route path="/notifications" component={Notification} />
+					<Route path="/profile" component={Profile} />
+					<Route path="/lessons" component={Lessons} />
+					<Route path="/contact" component={Contact} />
+					<Route path="/create" component={CreatePost} />
+					<Route path="/settings" component={Settings} />
+					<Route component={Error} />
+				</Switch>
+				<Homework />
+				<Tests />
+			</StyledMobile>
 		</>
 	);
 };

@@ -16,12 +16,12 @@ import history from '../../images/subjects/history.svg';
 
 const StyledGrades = styled.aside`
 	width: 25vw;
-	height: 44.6vh;
+	height: calc(50% - 50px);
 	padding: 25px;
 	border-right: 1px solid #d2d2d2;
-	top: calc(100vh - 100px - 30.4vh);
 	position: fixed;
 	background: #fff;
+	bottom: 0;
 
 	.title {
 		font-size: 2rem;

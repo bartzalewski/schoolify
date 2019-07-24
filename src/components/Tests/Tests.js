@@ -5,12 +5,12 @@ import AddTests from './AddTests';
 
 const StyledTests = styled.aside`
 	width: 25vw;
-	height: 44.6vh;
+	height: calc(50% - 50px);
 	padding: 25px;
 	border-left: 1px solid #d2d2d2;
-	top: calc(100vh - 100px - 30.4vh);
 	background: #fff;
 	position: fixed;
+	bottom: 0;
 
 	.title {
 		font-size: 2rem;
@@ -20,6 +20,7 @@ const StyledTests = styled.aside`
 	.container {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 	}
 `;
 

@@ -14,8 +14,12 @@ const StyledHome = styled.div`
 
 	h1 {
 		font-weight: 400;
-		font-size: 48px;
+		font-size: 3rem;
 		user-select: none;
+
+		@media (max-width: 1600px) {
+			font-size: 2.5rem;
+		}
 	}
 
 	span,
@@ -27,7 +31,7 @@ const StyledHome = styled.div`
 	}
 
 	.title {
-		font-size: 36px;
+		font-size: 2.25rem;
 		font-weight: 300;
 		user-select: none;
 	}
@@ -57,10 +61,14 @@ const StyledHome = styled.div`
 		font-weight: 600;
 		border: none;
 		height: 50px;
-		font-size: 18px;
+		font-size: 1.125rem;
 		cursor: pointer;
 		padding: 10px 25px;
 		margin-top: 20px;
+
+		@media (max-width: 1600px) {
+			padding: 0px 25px;
+		}
 	}
 `;
 
@@ -70,6 +78,29 @@ const StyledWrapperLeft = styled.div`
 	background: #ececf0;
 	padding: 100px;
 	border-right: 1px solid #d2d2d2;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+
+	@media (max-width: 1600px) {
+		padding: 50px;
+	}
+
+	@media (max-width: 1124px) {
+		display: none;
+	}
+`;
+
+const StyledHero = styled.div`
+	height: fit-content;
+`;
+
+const StyledSign = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	height: fit-content;
+	width: 100%;
 `;
 
 const StyledWrapperRight = styled.div`
@@ -78,17 +109,73 @@ const StyledWrapperRight = styled.div`
 	background: #fff;
 	padding: 100px;
 	text-align: center;
+	z-index: 1;
+
+	@media (max-width: 1600px) {
+		padding: 50px;
+	}
+
+	@media (max-width: 1124px) {
+		display: none;
+	}
+`;
+
+const StyledMobile = styled.div`
+	display: none;
+	@media (max-width: 1124px) {
+		text-align: center;
+		padding: 50px;
+		display: block;
+		overflow-y: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		.home-bg {
+			width: 50%;
+			margin-top: 5rem;
+		}
+
+		.title {
+			font-size: 1.8rem;
+		}
+
+		h1 {
+			font-size: 2.3rem;
+			margin-top: 5rem;
+
+			@media (max-width: 600px) {
+				font-size: 2rem;
+			}
+		}
+	}
+
+	@media (max-width: 600px) {
+		padding: 25px;
+		.home-bg {
+			width: 80%;
+		}
+	}
+`;
+
+const StyledLogo = styled.div`
+	width: 50px;
+	height: 50px;
 `;
 
 export default function Home() {
 	return (
 		<StyledHome>
 			<StyledWrapperLeft>
-				<h1>
-					the <span>first</span> globalized electronic diary for schools.
-				</h1>
-				<SignUp />
-				<SignIn />
+				<StyledHero>
+					<h1>
+						the <span>first</span> globalized electronic diary for schools.
+					</h1>
+				</StyledHero>
+				<StyledSign>
+					<SignUp />
+					<SignIn />
+				</StyledSign>
 			</StyledWrapperLeft>
 			<StyledWrapperRight>
 				<Logo />
@@ -97,6 +184,18 @@ export default function Home() {
 					<img className="home-bg" src={homebg} alt="home background" />
 				</div>
 			</StyledWrapperRight>
+			<StyledMobile>
+				<StyledLogo>
+					<Logo />
+				</StyledLogo>
+				<div className="title">schoolify</div>
+				<h1>
+					the <span>first</span> globalized electronic diary for schools.
+				</h1>
+				<img className="home-bg" src={homebg} alt="home background" />
+				<SignIn />
+				<SignUp />
+			</StyledMobile>
 		</StyledHome>
 	);
 }

@@ -1,5 +1,3 @@
-import { getFirestore } from 'redux-firestore';
-
 export const signIn = credentials => {
 	return (dispatch, getState, { getFirebase }) => {
 		const firebase = getFirebase();
