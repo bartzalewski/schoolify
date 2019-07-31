@@ -8,12 +8,12 @@ import Homework from '../../components/Homework/Homework';
 import Tests from '../../components/Tests/Tests';
 import News from '../../pages/News';
 import Notification from '../../pages/Notification.js';
-import Profile from '../../pages/Profile.js';
 import Lessons from '../../pages/Lessons.js';
 import Contact from '../../pages/Contact.js';
 import CreatePost from '../../components/posts/CreatePost';
 import Settings from '../../pages/Settings';
 import Error from '../../pages/Error';
+import { ReactComponent as User } from '../../images/user.svg';
 
 const StyledWrapper = styled.div`
 	display: flex;
@@ -47,9 +47,51 @@ const StyledMobile = styled.div`
 	}
 `;
 
+const StyledProfile = styled.section`
+	width: 50vw;
+	background: #ececf0;
+
+	.profile-wrapper {
+		padding: 40px;
+	}
+
+	.profile-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		font-size: 1.125rem;
+		margin: 2rem 0;
+
+		svg {
+			width: 150px;
+			height: 150px;
+		}
+
+		h2 {
+			font-size: 2rem;
+			font-weight: 300;
+		}
+
+		.profile-bold {
+			font-weight: 600;
+		}
+
+		.profile-school {
+			margin-top: 5rem;
+			margin-bottom: 1rem;
+		}
+	}
+
+	h1 {
+		font-size: 1.625rem;
+		font-weight: 600;
+	}
+`;
+
 const SignedIn = props => {
 	const { firstName, lastName } = props.profile;
-	console.log(firstName, lastName);
+	console.log(props);
 	return (
 		<>
 			<StyledDesktop>
@@ -63,7 +105,27 @@ const SignedIn = props => {
 						<Switch>
 							<Route exact path="/" component={News} />
 							<Route path="/notifications" component={Notification} />
-							<Route path="/profile" component={Profile} />
+							<Route path="/profile">
+								<StyledProfile>
+									<div className="profile-wrapper">
+										<h1>Profile</h1>
+										<div className="profile-container">
+											<User />
+											<h2>
+												{firstName} {lastName}
+											</h2>
+											<div className="profile-school">
+												<p className="profile-bold">School:</p>
+												<p>Lorem ipsum dolor sit amet consectetur.</p>
+											</div>
+											<div className="profile-class">
+												<p className="profile-bold">Class:</p>
+												<p>Lorem, ipsum.</p>
+											</div>
+										</div>
+									</div>
+								</StyledProfile>
+							</Route>
 							<Route path="/lessons" component={Lessons} />
 							<Route path="/contact" component={Contact} />
 							<Route path="/create" component={CreatePost} />
@@ -86,7 +148,27 @@ const SignedIn = props => {
 				<Switch>
 					<Route exact path="/" component={News} />
 					<Route path="/notifications" component={Notification} />
-					<Route path="/profile" component={Profile} />
+					<Route path="/profile">
+						<StyledProfile>
+							<div className="profile-wrapper">
+								<h1>Profile</h1>
+								<div className="profile-container">
+									<User />
+									<h2>
+										{firstName} {lastName}
+									</h2>
+									<div className="profile-school">
+										<p className="profile-bold">School:</p>
+										<p>Lorem ipsum dolor sit amet consectetur.</p>
+									</div>
+									<div className="profile-class">
+										<p className="profile-bold">Class:</p>
+										<p>Lorem, ipsum.</p>
+									</div>
+								</div>
+							</div>
+						</StyledProfile>
+					</Route>
 					<Route path="/lessons" component={Lessons} />
 					<Route path="/contact" component={Contact} />
 					<Route path="/create" component={CreatePost} />

@@ -35,7 +35,10 @@ const StyledCreatePost = styled.section`
 class CreatePost extends Component {
 	state = {
 		schoolName: '',
-		content: ''
+		schoolLogo:
+			'https://firebasestorage.googleapis.com/v0/b/schoolify-167f2.appspot.com/o/images%2Fschools%2Flogos%2Fzsz-zabk-logo.gif?alt=media&token=15dcf72f-0f92-4890-8256-4ae7c686c768',
+		content: '',
+		postBackground: `https://firebasestorage.googleapis.com/v0/b/schoolify-167f2.appspot.com/o/images%2Ffeed%2Fzszfeed.jpg?alt=media&token=6e133a8f-1363-4e7e-b084-4b4d549b1100`
 	};
 	handleChange = e => {
 		this.setState({
@@ -55,8 +58,8 @@ class CreatePost extends Component {
 					<form onSubmit={this.handleSubmit}>
 						<h1>Create new post</h1>
 						<div className="input-field">
-							<label htmlFor="title">Title</label>
-							<input type="text" id="title" onChange={this.handleChange} />
+							<label htmlFor="schoolName">School Name</label>
+							<input type="text" id="schoolName" onChange={this.handleChange} />
 						</div>
 						<div className="input-field">
 							<label htmlFor="content">Post Content</label>

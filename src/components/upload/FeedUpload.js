@@ -41,7 +41,6 @@ export default class FeedUpload extends Component {
 		return (
 			<>
 				<input type="file" onChange={this.handleChange} />
-				<button onClick={this.handleUpload}>Upload</button>
 				<br />
 				<img
 					src={this.state.url || 'http://via.placeholder.com/300x150'}

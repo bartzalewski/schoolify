@@ -5,7 +5,6 @@ export const createPost = post => {
 			.collection('posts')
 			.add({
 				...post,
-				schoolName: 'ZSZ im. Stanisława Staszica w Ząbkowicach Śląskich',
 				authorId: 12345,
 				createdAt: new Date()
 			})
