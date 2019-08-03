@@ -32,7 +32,6 @@ const StyledSettings = styled.section`
 		position: absolute;
 	}
 
-	/* same as <Link> */
 	a {
 		text-decoration: none;
 	}

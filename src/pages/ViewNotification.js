@@ -36,7 +36,7 @@ const StyledNotification = styled.section`
 	}
 
 	.notification-time {
-		color: #d2d2d2;
+		color: #9b9b9b;
 	}
 
 	@media (max-width: 1359px) {
