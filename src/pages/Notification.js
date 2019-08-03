@@ -1,23 +1,25 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+import ViewNotification from '../pages/ViewNotification';
 
-const StyledNotification = styled.section`
-	width: 50vw;
-	background: #ececf0;
-
-	h1 {
-		padding: 40px;
-		font-size: 1.625rem;
-		font-weight: 600;
+class Notification extends Component {
+	render() {
+		const { notifications } = this.props;
+		return <ViewNotification notifications={notifications} />;
 	}
-`;
+}
 
-const Notification = () => {
-	return (
-		<StyledNotification>
-			<h1>Notifications</h1>
-		</StyledNotification>
-	);
+const mapStateToProps = state => {
+	return {
+		notifications: state.firestore.ordered.notifications
+	};
 };
 
-export default Notification;
+export default compose(
+	connect(mapStateToProps),
+	firestoreConnect([
+		{ collection: 'notifications', limit: 50, orderBy: ['time', 'desc'] }
+	])
+)(Notification);

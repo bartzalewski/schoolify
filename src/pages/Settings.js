@@ -36,6 +36,26 @@ const StyledSettings = styled.section`
 	a {
 		text-decoration: none;
 	}
+
+	@media (max-width: 1359px) {
+		padding: 12.5px;
+
+		.container {
+			padding: 20px;
+		}
+	}
+
+	@media (max-width: 1124px) {
+		width: 80%;
+	}
+
+	@media (max-width: 813px) {
+		width: 100%;
+
+		.container {
+			padding: 10px;
+		}
+	}
 `;
 
 const Settings = props => {

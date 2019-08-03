@@ -14,6 +14,30 @@ const StyledCreatePost = styled.section`
 		font-weight: 600;
 	}
 
+	#schoolName,
+	#content {
+		border-radius: 15px;
+		border: 1px solid #d2d2d2;
+		width: 100%;
+		margin: 0.25rem 0;
+		font-size: inherit;
+	}
+
+	#content {
+		height: 10rem;
+	}
+
+	#schoolName:focus,
+	#content:focus {
+		border: 1px solid #fe843f;
+		outline: none;
+	}
+
+	input[placeholder],
+	textarea[placeholder] {
+		padding: 10px 15px;
+	}
+
 	.container {
 		padding: 40px;
 	}
@@ -29,6 +53,30 @@ const StyledCreatePost = styled.section`
 		cursor: pointer;
 		padding: 10px 25px;
 		margin-top: 20px;
+	}
+
+	.input-field:first-of-type {
+		margin-top: 2rem;
+	}
+
+	@media (max-width: 1359px) {
+		padding: 12.5px;
+
+		.container {
+			padding: 20px;
+		}
+	}
+
+	@media (max-width: 1124px) {
+		width: 80%;
+	}
+
+	@media (max-width: 813px) {
+		width: 100%;
+
+		.container {
+			padding: 10px;
+		}
 	}
 `;
 
@@ -58,12 +106,21 @@ class CreatePost extends Component {
 					<form onSubmit={this.handleSubmit}>
 						<h1>Create new post</h1>
 						<div className="input-field">
-							<label htmlFor="schoolName">School Name</label>
-							<input type="text" id="schoolName" onChange={this.handleChange} />
+							<label htmlFor="schoolName" />
+							<input
+								placeholder="School Name"
+								type="text"
+								id="schoolName"
+								onChange={this.handleChange}
+							/>
 						</div>
 						<div className="input-field">
-							<label htmlFor="content">Post Content</label>
-							<textarea id="content" onChange={this.handleChange} />
+							<label htmlFor="content" />
+							<textarea
+								placeholder="Post Content"
+								id="content"
+								onChange={this.handleChange}
+							/>
 						</div>
 						<div className="input-field">
 							<FeedUpload />

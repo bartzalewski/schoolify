@@ -14,6 +14,11 @@ const StyledAddHomework = styled.div`
 			font-size: 0.8rem;
 		}
 	}
+
+	.input-homework:focus {
+		outline: none;
+		border: 1px solid #fe843f;
+	}
 `;
 
 export default class AddHomework extends Component {

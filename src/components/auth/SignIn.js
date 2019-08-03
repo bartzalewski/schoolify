@@ -29,6 +29,12 @@ const StyledSignIn = styled.section`
 		}
 	}
 
+	input#email:focus,
+	input#password:focus {
+		outline: none;
+		border: 1px solid #fe843f;
+	}
+
 	input {
 		margin-top: 10px;
 	}

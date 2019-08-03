@@ -35,11 +35,13 @@ const GlobalStyle = createGlobalStyle`
   }
 
   input,
-  button {
+  button,
+  textarea {
     font-family: 'Poppins';
   }
 
-  input[placeholder] {
+  input[placeholder],
+  textarea[placeholder] {
     padding: 10px;
   }
 `;

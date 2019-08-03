@@ -87,6 +87,26 @@ const StyledProfile = styled.section`
 		font-size: 1.625rem;
 		font-weight: 600;
 	}
+
+	@media (max-width: 1359px) {
+		padding: 12.5px;
+
+		.profile-wrapper {
+			padding: 20px;
+		}
+	}
+
+	@media (max-width: 1124px) {
+		width: 80%;
+	}
+
+	@media (max-width: 813px) {
+		width: 100%;
+
+		.profile-wrapper {
+			padding: 10px;
+		}
+	}
 `;
 
 const SignedIn = props => {

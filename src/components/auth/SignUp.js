@@ -35,6 +35,14 @@ const StyledSignUp = styled.div`
 		}
 	}
 
+	input#email:focus,
+	input#password:focus,
+	input#firstName:focus,
+	input#lastName:focus {
+		outline: none;
+		border: 1px solid #fe843f;
+	}
+
 	input {
 		margin-top: 10px;
 	}

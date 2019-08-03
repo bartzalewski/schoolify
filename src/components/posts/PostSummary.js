@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 
 const StyledPostSummary = styled.div`
 	display: flex;
@@ -18,7 +19,9 @@ export default function PostSummary({ post }) {
 						alt="school logo"
 					/>
 					<h5 className="posts-title">{post.schoolName}</h5>
-					<p className="posts-time">5 mins</p>
+					<p className="posts-time">
+						{moment(post.createdAt.toDate()).calendar()}
+					</p>
 				</div>
 				<p className="posts-desc">{post.content}</p>
 				<img

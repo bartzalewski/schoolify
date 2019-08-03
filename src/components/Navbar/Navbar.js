@@ -98,6 +98,7 @@ const StyledNavbar = styled.nav`
 	}
 
 	@media (max-width: 1124px) {
+		top: 0px;
 		.left,
 		.right {
 			width: 10vw;

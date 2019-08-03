@@ -181,6 +181,14 @@ const StyledNews = styled.section`
 		.wrapper {
 			padding: 20px;
 		}
+
+		.add-post {
+			margin-top: 1.5rem;
+		}
+
+		.posts-list {
+			margin-top: 1.5rem;
+		}
 	}
 
 	@media (max-width: 1124px) {
@@ -294,5 +302,5 @@ const mapStateToProps = state => {
 
 export default compose(
 	connect(mapStateToProps),
-	firestoreConnect([{ collection: 'posts' }])
+	firestoreConnect([{ collection: 'posts', orderBy: ['createdAt', 'desc'] }])
 )(News);

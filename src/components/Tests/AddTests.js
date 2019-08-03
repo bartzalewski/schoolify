@@ -14,6 +14,11 @@ const StyledAddTests = styled.div`
 			font-size: 0.8rem;
 		}
 	}
+
+	.input-tests:focus {
+		outline: none;
+		border: 1px solid #fe843f;
+	}
 `;
 
 export default class AddTests extends Component {

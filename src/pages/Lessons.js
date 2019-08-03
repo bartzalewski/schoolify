@@ -80,6 +80,26 @@ const StyledLessons = styled.section`
 		text-align: left;
 		vertical-align: top;
 	}
+
+	@media (max-width: 1359px) {
+		padding: 12.5px;
+
+		.container {
+			padding: 20px;
+		}
+	}
+
+	@media (max-width: 1124px) {
+		width: 80%;
+	}
+
+	@media (max-width: 813px) {
+		width: 100%;
+
+		.container {
+			padding: 10px;
+		}
+	}
 `;
 
 const Lessons = () => {
