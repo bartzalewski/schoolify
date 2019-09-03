@@ -5,6 +5,7 @@ export const createSchool = school => {
 			.collection('schools')
 			.add({
 				...school,
+				schoolId: 123,
 				createdAt: new Date()
 			})
 			.then(() => {

@@ -11,6 +11,7 @@ import Notification from '../../pages/Notification.js';
 import Lessons from '../../pages/Lessons.js';
 import Contact from '../../pages/Contact.js';
 import CreatePost from '../../components/posts/CreatePost';
+import CreateSchool from '../../components/schools/CreateSchool';
 import Settings from '../../pages/Settings';
 import Error from '../../pages/Error';
 import { ReactComponent as User } from '../../images/user.svg';
@@ -149,6 +150,7 @@ const SignedIn = props => {
 							<Route path="/lessons" component={Lessons} />
 							<Route path="/contact" component={Contact} />
 							<Route path="/create" component={CreatePost} />
+							<Route path="/add" component={CreateSchool} />
 							<Route path="/settings" component={Settings} />
 							<Route component={Error} />
 						</Switch>
@@ -192,6 +194,7 @@ const SignedIn = props => {
 					<Route path="/lessons" component={Lessons} />
 					<Route path="/contact" component={Contact} />
 					<Route path="/create" component={CreatePost} />
+					<Route path="/add" component={CreateSchool} />
 					<Route path="/settings" component={Settings} />
 					<Route component={Error} />
 				</Switch>

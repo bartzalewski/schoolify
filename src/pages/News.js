@@ -84,6 +84,8 @@ const StyledNews = styled.section`
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		text-decoration: none;
+		color: inherit;
 	}
 
 	.add-title {
@@ -271,12 +273,12 @@ class News extends Component {
 						<img className="school-logo" src={p4logo} alt="p4 logo" />
 						<img className="school-bg" src={p4bg} alt="p4 background" />
 					</div>
-					<div className="box box-add">
+					<Link to="/add" className="box box-add">
 						<div className="box-wrapper">
 							<h1 className="add-title">Add your school!</h1>
 							<Add className="add" />
 						</div>
-					</div>
+					</Link>
 				</div>
 				<div className="wrapper">
 					<div className="add-post">
