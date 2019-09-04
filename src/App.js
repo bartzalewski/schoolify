@@ -6,7 +6,6 @@ import SignedOut from '../src/components/layout/SignedOut';
 import GlobalStyle from '../src/theme/globalStyle';
 
 function App(props) {
-	console.log(props);
 	const { auth, profile } = props;
 	const links = auth.uid ? <SignedIn profile={profile} /> : <SignedOut />;
 

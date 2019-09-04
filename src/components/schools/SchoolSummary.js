@@ -7,22 +7,21 @@ const StyledSchoolSummary = styled.div`
 	align-items: center;
 `;
 
-export default function SchoolSummary({ post }) {
+export default function SchoolSummary({ school }) {
 	return (
 		<StyledSchoolSummary>
-			<div className="posts-list">
+			<div className="schools-list">
 				<div className="flex">
 					<img
 						className="school-logo posts-logo"
-						src={post.schoolLogo}
+						src={school.schoolLogo}
 						alt="school logo"
 					/>
-					<h5 className="posts-title">{post.schoolName}</h5>
+					<h5 className="posts-title">{school.schoolName}</h5>
 				</div>
-				<p className="posts-desc">{post.content}</p>
 				<img
 					className="posts-img"
-					src={post.postBackground}
+					src={school.schoolBackground}
 					alt="school feed"
 				/>
 			</div>

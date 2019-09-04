@@ -12,6 +12,7 @@ import Lessons from '../../pages/Lessons.js';
 import Contact from '../../pages/Contact.js';
 import CreatePost from '../../components/posts/CreatePost';
 import CreateSchool from '../../components/schools/CreateSchool';
+import SchoolList from '../../components/schools/SchoolList';
 import Settings from '../../pages/Settings';
 import Error from '../../pages/Error';
 import { ReactComponent as User } from '../../images/user.svg';
@@ -112,7 +113,6 @@ const StyledProfile = styled.section`
 
 const SignedIn = props => {
 	const { firstName, lastName } = props.profile;
-	console.log(props);
 	return (
 		<>
 			<StyledDesktop>
@@ -151,7 +151,7 @@ const SignedIn = props => {
 							<Route path="/contact" component={Contact} />
 							<Route path="/create" component={CreatePost} />
 							<Route path="/add" component={CreateSchool} />
-							<Route path="/school-list" component={CreateSchool} />
+							<Route path="/school-list" component={SchoolList} />
 							<Route path="/settings" component={Settings} />
 							<Route component={Error} />
 						</Switch>
@@ -196,7 +196,7 @@ const SignedIn = props => {
 					<Route path="/contact" component={Contact} />
 					<Route path="/create" component={CreatePost} />
 					<Route path="/add" component={CreateSchool} />
-					<Route path="/school-list" component={CreateSchool} />
+					<Route path="/school-list" component={SchoolList} />
 					<Route path="/settings" component={Settings} />
 					<Route component={Error} />
 				</Switch>

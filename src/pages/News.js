@@ -33,8 +33,8 @@ const StyledNews = styled.section`
 		font-size: 1.4375rem;
 		color: #fe843f;
 		font-weight: 400;
-		padding-right: 40px;
-		padding-top: 40px;
+		margin-right: 40px;
+		margin-top: 40px;
 		text-decoration: none;
 	}
 
