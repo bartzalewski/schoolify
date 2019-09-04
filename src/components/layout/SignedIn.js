@@ -151,6 +151,7 @@ const SignedIn = props => {
 							<Route path="/contact" component={Contact} />
 							<Route path="/create" component={CreatePost} />
 							<Route path="/add" component={CreateSchool} />
+							<Route path="/school-list" component={CreateSchool} />
 							<Route path="/settings" component={Settings} />
 							<Route component={Error} />
 						</Switch>
@@ -195,6 +196,7 @@ const SignedIn = props => {
 					<Route path="/contact" component={Contact} />
 					<Route path="/create" component={CreatePost} />
 					<Route path="/add" component={CreateSchool} />
+					<Route path="/school-list" component={CreateSchool} />
 					<Route path="/settings" component={Settings} />
 					<Route component={Error} />
 				</Switch>

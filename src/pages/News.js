@@ -35,6 +35,7 @@ const StyledNews = styled.section`
 		font-weight: 400;
 		padding-right: 40px;
 		padding-top: 40px;
+		text-decoration: none;
 	}
 
 	.home-wrapper {
@@ -254,7 +255,9 @@ class News extends Component {
 			<StyledNews>
 				<div className="home-wrapper">
 					<h1 className="school-title">Browse schools</h1>
-					<h2 className="school-list">See All</h2>
+					<Link to="/school-list" className="school-list">
+						See All
+					</Link>
 				</div>
 				<div className="container">
 					<div className="box">
