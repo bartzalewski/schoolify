@@ -13,6 +13,8 @@ import eco from '../../images/subjects/eco.svg';
 import geo from '../../images/subjects/geo.svg';
 import chem from '../../images/subjects/chem.svg';
 import history from '../../images/subjects/history.svg';
+import { ReactComponent as Add } from '../../images/add.svg';
+import { Link } from 'react-router-dom';
 
 const StyledGrades = styled.aside`
 	width: 25vw;
@@ -28,7 +30,19 @@ const StyledGrades = styled.aside`
 		font-weight: 600;
 	}
 
-	img {
+	.add {
+		width: 40px;
+		height: 40px;
+	}
+
+	.container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	img,
+	svg {
 		height: 40px;
 		margin: 10px;
 		cursor: pointer;
@@ -46,7 +60,8 @@ const StyledGrades = styled.aside`
 			font-size: 1.5rem;
 		}
 
-		img {
+		img,
+		.add {
 			height: 30px;
 		}
 	}
@@ -57,6 +72,13 @@ const StyledGrades = styled.aside`
 		width: 80%;
 		border: none;
 		text-align: center;
+
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
 	}
 
 	@media (max-width: 813px) {
@@ -67,7 +89,12 @@ const StyledGrades = styled.aside`
 const Grades = () => {
 	return (
 		<StyledGrades>
-			<h1 className="title">Grades</h1>
+			<div className="container">
+				<h1 className="title">Grades</h1>
+				<Link to="/add-grade">
+					<Add className="add"></Add>
+				</Link>
+			</div>
 			<div className="subjects">
 				<img title="English" src={english} alt="english subject" />
 				<img title="German" src={german} alt="german subject" />

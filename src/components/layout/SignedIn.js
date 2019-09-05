@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import Reminders from '../../components/Reminders/Reminders';
 import Grades from '../../components/Grades/Grades';
+import AddGrades from '../../components/Grades/AddGrades';
 import Homework from '../../components/Homework/Homework';
 import Tests from '../../components/Tests/Tests';
 import News from '../../pages/News';
@@ -152,6 +153,7 @@ const SignedIn = props => {
 							<Route path="/create" component={CreatePost} />
 							<Route path="/add" component={CreateSchool} />
 							<Route path="/school-list" component={SchoolList} />
+							<Route path="/add-grade" component={AddGrades} />
 							<Route path="/settings" component={Settings} />
 							<Route component={Error} />
 						</Switch>
@@ -197,6 +199,7 @@ const SignedIn = props => {
 					<Route path="/create" component={CreatePost} />
 					<Route path="/add" component={CreateSchool} />
 					<Route path="/school-list" component={SchoolList} />
+					<Route path="/add-grade" component={AddGrades} />
 					<Route path="/settings" component={Settings} />
 					<Route component={Error} />
 				</Switch>
