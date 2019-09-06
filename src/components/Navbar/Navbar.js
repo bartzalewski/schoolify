@@ -26,6 +26,10 @@ const StyledNavbar = styled.nav`
 		}
 	}
 
+	.left {
+		text-decoration: none;
+	}
+
 	.left,
 	.right {
 		width: 25vw;
@@ -113,10 +117,10 @@ const StyledNavbar = styled.nav`
 const Navbar = () => {
 	return (
 		<StyledNavbar>
-			<div className="left">
+			<Link to="/" className="left">
 				<Logo className="schoolify-logo" />
 				<p className="title">schoolify</p>
-			</div>
+			</Link>
 			<div className="center">
 				<Link to="/" className="box">
 					<svg
