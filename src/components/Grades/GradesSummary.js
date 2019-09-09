@@ -1,37 +1,62 @@
 import React from 'react';
 import styled from 'styled-components';
 import english from '../../images/subjects/english.svg';
-import german from '../../images/subjects/german.svg';
-import spanish from '../../images/subjects/spanish.svg';
-import math from '../../images/subjects/math.svg';
-import physics from '../../images/subjects/physics.svg';
-import bio from '../../images/subjects/bio.svg';
-import religion from '../../images/subjects/religion.svg';
-import it from '../../images/subjects/it.svg';
-import pe from '../../images/subjects/pe.svg';
-import eco from '../../images/subjects/eco.svg';
-import geo from '../../images/subjects/geo.svg';
-import chem from '../../images/subjects/chem.svg';
-import history from '../../images/subjects/history.svg';
 
-const StyledGradesSummary = styled.div``;
+const StyledGradesSummary = styled.div`
+	width: 50vw;
+	background: #ececf0;
+
+	.container {
+		padding: 40px;
+	}
+
+	h1 {
+		font-size: 1.625rem;
+		font-weight: 600;
+	}
+
+	img {
+		width: 150px;
+		height: 150px;
+	}
+
+	.wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 2rem 0;
+	}
+
+	@media (max-width: 1359px) {
+		padding: 12.5px;
+
+		.container {
+			padding: 20px;
+		}
+	}
+
+	@media (max-width: 1124px) {
+		width: 80%;
+	}
+
+	@media (max-width: 813px) {
+		width: 100%;
+
+		.container {
+			padding: 10px;
+		}
+	}
+`;
 
 export default function GradesSummary() {
 	return (
 		<StyledGradesSummary>
-			<img title="English" src={english} alt="english subject" />
-			<img title="German" src={german} alt="german subject" />
-			<img title="Spanish" src={spanish} alt="spanish subject" />
-			<img title="Math" src={math} alt="math subject" />
-			<img title="Physics" src={physics} alt="physics subject" />
-			<img title="Biology" src={bio} alt="biology subject" />
-			<img title="Religion" src={religion} alt="religion subject" />
-			<img title="IT" src={it} alt="it subject" />
-			<img title="Physical E." src={pe} alt="physical education subject" />
-			<img title="Economy" src={eco} alt="economy subject" />
-			<img title="Geometry" src={geo} alt="geography subject" />
-			<img title="Chem" src={chem} alt="chem subject" />
-			<img title="History" src={history} alt="history subject" />
+			<div className="container">
+				<h1>English</h1>
+				<div className="wrapper">
+					<img src={english} alt="english subject" />
+				</div>
+			</div>
 		</StyledGradesSummary>
 	);
 }
