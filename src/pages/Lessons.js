@@ -1,5 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import zszlogo from '../images/schools/logos/zsz-zabk-logo.gif';
+import lologo from '../images/schools/logos/lo-zabk-logo.jpg';
+import sp3logo from '../images/schools/logos/sp3-zabk-logo.jpg';
+import p4logo from '../images/schools/logos/p4-zabk-logo.jpg';
+import { Link } from 'react-router-dom';
 
 const StyledLessons = styled.section`
 	width: 50vw;
@@ -14,71 +19,49 @@ const StyledLessons = styled.section`
 		padding: 40px;
 	}
 
-	.tg {
-		border-collapse: collapse;
-		border-spacing: 0;
-		border-color: #aabcfe;
-		width: 100%;
+	.lesson-box {
+		background: #fff;
+		padding: 15px 25px;
+		border-radius: 15px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 0.5rem 0;
 
-		@media (max-width: 813px) {
-			display: none;
+		&:first-of-type {
+			margin-top: 2rem;
 		}
 	}
-	.tg td {
-		font-family: Arial, sans-serif;
-		font-size: 0.875rem;
-		padding: 10px 5px;
-		border-style: solid;
-		border-width: 1px;
-		overflow: hidden;
-		word-break: normal;
-		border-color: #aabcfe;
-		color: #669;
-		background-color: #e8edff;
+
+	.left {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
-	.tg th {
-		font-family: Arial, sans-serif;
-		font-size: 0.875rem;
-		font-weight: normal;
-		padding: 10px 5px;
-		border-style: solid;
-		border-width: 1px;
-		overflow: hidden;
-		word-break: normal;
-		border-color: #aabcfe;
-		color: #039;
-		background-color: #b9c9fe;
+
+	button {
+		border-radius: 10px;
+		background: #ff9800;
+		color: #fff;
+		font-weight: 600;
+		border: none;
+		height: 50px;
+		width: fit-content;
+		font-size: 1.125rem;
+		cursor: pointer;
+		padding: 2.5px 20px;
+		margin: 0.25rem;
 	}
-	.tg .tg-phtq {
-		background-color: #d2e4fc;
-		border-color: inherit;
-		text-align: left;
-		vertical-align: top;
+
+	.school-logo {
+		width: 50px;
+		height: 50px;
+		border-radius: 100px;
 	}
-	.tg .tg-hmp3 {
-		background-color: #d2e4fc;
-		text-align: left;
-		vertical-align: top;
-	}
-	.tg .tg-baqh {
-		text-align: center;
-		vertical-align: top;
-	}
-	.tg .tg-l5at {
-		background-color: #d2e4fc;
-		font-family: serif !important;
-		border-color: inherit;
-		text-align: left;
-		vertical-align: top;
-	}
-	.tg .tg-0pky {
-		border-color: inherit;
-		text-align: left;
-		vertical-align: top;
-	}
-	.tg .tg-0lax {
-		text-align: left;
-		vertical-align: top;
+
+	.school-name {
+		margin-left: 1rem;
+		font-weight: 600;
 	}
 
 	@media (max-width: 1359px) {
@@ -107,85 +90,58 @@ const Lessons = () => {
 		<StyledLessons>
 			<div className="container">
 				<h1>Lessons</h1>
-				<table className="tg">
-					<tr>
-						<th className="tg-baqh" colspan="7">
-							1A
-						</th>
-					</tr>
-					<tr>
-						<td className="tg-phtq">No</td>
-						<td className="tg-phtq">Hour</td>
-						<td className="tg-phtq">Monday</td>
-						<td className="tg-phtq">Tuesday</td>
-						<td className="tg-phtq">Wednesday</td>
-						<td className="tg-phtq">Thursday</td>
-						<td className="tg-hmp3">Friday</td>
-					</tr>
-					<tr>
-						<td className="tg-0pky">1</td>
-						<td className="tg-0pky">8:00-8:45</td>
-						<td className="tg-0pky">bio</td>
-						<td className="tg-0pky">geo</td>
-						<td className="tg-0pky">ger</td>
-						<td className="tg-0pky">his</td>
-						<td className="tg-0lax">rel</td>
-					</tr>
-					<tr>
-						<td className="tg-phtq">2</td>
-						<td className="tg-phtq">8:50-9:35</td>
-						<td className="tg-phtq">math</td>
-						<td className="tg-phtq">eco</td>
-						<td className="tg-phtq">chem</td>
-						<td className="tg-phtq">it</td>
-						<td className="tg-hmp3">ger</td>
-					</tr>
-					<tr>
-						<td className="tg-0pky">3</td>
-						<td className="tg-0pky">9:40-10:25</td>
-						<td className="tg-0pky">eng</td>
-						<td className="tg-0pky">chem</td>
-						<td className="tg-0pky">pe</td>
-						<td className="tg-0pky">eng</td>
-						<td className="tg-0lax">math</td>
-					</tr>
-					<tr>
-						<td className="tg-phtq">4</td>
-						<td className="tg-phtq">10:45-11:30</td>
-						<td className="tg-phtq">it</td>
-						<td className="tg-phtq">rel</td>
-						<td className="tg-phtq">math</td>
-						<td className="tg-phtq">eng</td>
-						<td className="tg-hmp3">math</td>
-					</tr>
-					<tr>
-						<td className="tg-0pky">5</td>
-						<td className="tg-0pky">11:35-12:20</td>
-						<td className="tg-0pky">pe</td>
-						<td className="tg-0pky">esp</td>
-						<td className="tg-0pky">math</td>
-						<td className="tg-0pky">pe</td>
-						<td className="tg-0lax">eco</td>
-					</tr>
-					<tr>
-						<td className="tg-l5at">6</td>
-						<td className="tg-phtq">12:25-13:10</td>
-						<td className="tg-phtq">pe</td>
-						<td className="tg-phtq">eng</td>
-						<td className="tg-phtq">it</td>
-						<td className="tg-phtq" />
-						<td className="tg-hmp3">esp</td>
-					</tr>
-					<tr>
-						<td className="tg-0lax">7</td>
-						<td className="tg-0lax">13:15-14:00</td>
-						<td className="tg-0lax">chem</td>
-						<td className="tg-0lax" />
-						<td className="tg-0lax" />
-						<td className="tg-0lax" />
-						<td className="tg-0lax" />
-					</tr>
-				</table>
+				<div className="lesson-box">
+					<div className="left">
+						<img className="school-logo" src={zszlogo} alt="" />
+						<span className="school-name">
+							ZSZ im. Stanisława Staszica w Ząbkowicach Śląskich
+						</span>
+					</div>
+					<div className="right">
+						<Link to="/lessons-zsz">
+							<button>View plans</button>
+						</Link>
+					</div>
+				</div>
+				<div className="lesson-box">
+					<div className="left">
+						<img className="school-logo" src={sp3logo} alt="" />
+						<span className="school-name">
+							SP3 im. Mikołaja Kopernika w Ząbkowicach Śląskich
+						</span>
+					</div>
+					<div className="right">
+						<Link to="/lessons-sp3">
+							<button>View plans</button>
+						</Link>
+					</div>
+				</div>
+				<div className="lesson-box">
+					<div className="left">
+						<img className="school-logo" src={lologo} alt="" />
+						<span className="school-name">
+							LO im. Władysława Jagiełły w Ząbkowicach Śląskich
+						</span>
+					</div>
+					<div className="right">
+						<Link to="/lessons-lo">
+							<button>View plans</button>
+						</Link>
+					</div>
+				</div>
+				<div className="lesson-box">
+					<div className="left">
+						<img className="school-logo" src={p4logo} alt="" />
+						<span className="school-name">
+							Przedszkole Publiczne nr 4 w Ząbkowicach Śląskich
+						</span>
+					</div>
+					<div className="right">
+						<Link to="/lessons-p4">
+							<button>View plans</button>
+						</Link>
+					</div>
+				</div>
 			</div>
 		</StyledLessons>
 	);

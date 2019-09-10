@@ -17,6 +17,7 @@ import SchoolList from '../../components/schools/SchoolList';
 import Settings from '../../pages/Settings';
 import Error from '../../pages/Error';
 import GradesSummary from '../../components/Grades/GradesSummary';
+import ClassPlan from '../../components/plans/ClassPlan';
 import { ReactComponent as User } from '../../images/user.svg';
 
 const StyledWrapper = styled.div`
@@ -156,6 +157,7 @@ const SignedIn = props => {
 							<Route path="/school-list" component={SchoolList} />
 							<Route path="/add-grade" component={AddGrades} />
 							<Route path="/grade" component={GradesSummary} />
+							<Route path="/lessons-zsz" component={ClassPlan} />
 							<Route path="/settings" component={Settings} />
 							<Route component={Error} />
 						</Switch>
@@ -203,6 +205,7 @@ const SignedIn = props => {
 					<Route path="/school-list" component={SchoolList} />
 					<Route path="/add-grade" component={AddGrades} />
 					<Route path="/grade" component={GradesSummary} />
+					<Route path="/lessons-zsz" component={ClassPlan} />
 					<Route path="/settings" component={Settings} />
 					<Route component={Error} />
 				</Switch>

@@ -14,6 +14,7 @@ import eco from '../../images/subjects/eco.svg';
 import geo from '../../images/subjects/geo.svg';
 import chem from '../../images/subjects/chem.svg';
 import history from '../../images/subjects/history.svg';
+import { ReactComponent as Add } from '../../images/add.svg';
 
 const StyledAddGrades = styled.div`
 	width: 50vw;
@@ -33,6 +34,7 @@ const StyledAddGrades = styled.div`
 	}
 
 	img,
+	svg,
 	.add {
 		width: 60px;
 		height: 60px;
@@ -240,6 +242,16 @@ export default function AddGrades() {
 						<div className="flex-start">
 							<img src={history} alt="" />
 							<h3>History</h3>
+						</div>
+						<div className="flex-end">
+							<button>Add</button>
+							<button className="remove">Remove</button>
+						</div>
+					</div>
+					<div className="box">
+						<div className="flex-start">
+							<Add />
+							<h3>New Grade</h3>
 						</div>
 						<div className="flex-end">
 							<button>Add</button>
