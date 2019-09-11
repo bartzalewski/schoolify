@@ -14,6 +14,10 @@ const StyledContact = styled.section`
 		font-weight: 600;
 	}
 
+	p {
+		margin-top: 2rem;
+	}
+
 	@media (max-width: 1359px) {
 		padding: 12.5px;
 
@@ -40,6 +44,16 @@ const Contact = () => {
 		<StyledContact>
 			<div className="container">
 				<h1>Contact</h1>
+				<p>
+					Repository:{' '}
+					<a
+						href="https://github.com/bartzalewski/schoolify"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						https://github.com/bartzalewski/schoolify
+					</a>
+				</p>
 			</div>
 		</StyledContact>
 	);
