@@ -110,6 +110,28 @@ const StyledAddGrades = styled.div`
 			padding: 10px;
 		}
 	}
+
+	@media (max-width: 542px) {
+		.box {
+			padding: 5px 10px;
+
+			img,
+			svg {
+				width: 20px;
+				height: 20px;
+			}
+
+			h3,
+			button {
+				font-size: 0.8rem;
+			}
+
+			button {
+				padding: 0px 10px;
+				margin: 0.1rem;
+			}
+		}
+	}
 `;
 
 export default function AddGrades() {

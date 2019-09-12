@@ -28,7 +28,7 @@ const StyledSettings = styled.section`
 		font-size: 1.125rem;
 		cursor: pointer;
 		padding: 10px 25px;
-		margin-top: 20px;
+		margin-top: 2rem;
 		position: absolute;
 	}
 

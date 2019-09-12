@@ -21,6 +21,9 @@ const StyledError = styled.section`
 		flex-direction: column;
 		margin-top: 2rem;
 		text-align: center;
+		background: #fff;
+		border-radius: 15px;
+		padding: 15px 25px;
 
 		p:nth-of-type(2) {
 			margin-top: 1rem;

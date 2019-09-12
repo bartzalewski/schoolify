@@ -83,6 +83,19 @@ const StyledLessons = styled.section`
 			padding: 10px;
 		}
 	}
+
+	@media (max-width: 452px) {
+		.lesson-box {
+			padding: 5px 10px;
+		}
+		.school-name,
+		button {
+			font-size: 0.8rem;
+		}
+		.school-name {
+			margin-left: 0.5rem;
+		}
+	}
 `;
 
 const Lessons = () => {
