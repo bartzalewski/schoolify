@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import github from '../images/github-logo.svg';
+import bartzalewski from '../images/my-avatar.svg';
+import linkedin from '../images/linkedin-logo.svg';
 
 const StyledContact = styled.section`
 	width: 50vw;
@@ -7,6 +10,21 @@ const StyledContact = styled.section`
 
 	.container {
 		padding: 40px;
+
+		.wrapper {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			.box {
+				background: #fff;
+				border-radius: 15px;
+
+				img {
+					width: 10vw;
+				}
+			}
+		}
 	}
 
 	h1 {
@@ -44,16 +62,17 @@ const Contact = () => {
 		<StyledContact>
 			<div className="container">
 				<h1>Contact</h1>
-				<p>
-					Repository:{' '}
-					<a
-						href="https://github.com/bartzalewski/schoolify"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						https://github.com/bartzalewski/schoolify
-					</a>
-				</p>
+				<div className="wrapper">
+					<div className="box">
+						<img src={github} alt="github logo" />
+					</div>
+					<div className="box">
+						<img src={bartzalewski} alt="my logo" />
+					</div>
+					<div className="box">
+						<img src={linkedin} alt="linkedin logo" />
+					</div>
+				</div>
 			</div>
 		</StyledContact>
 	);
