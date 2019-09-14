@@ -15,13 +15,32 @@ const StyledContact = styled.section`
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+			margin-top: 2rem;
 
 			.box {
 				background: #fff;
 				border-radius: 15px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				width: 14vw;
+				padding: 1rem;
+				transition: 0.2s;
+
+				&:hover {
+					transform: scale(1.05);
+					transition: 0.2s;
+				}
 
 				img {
-					width: 10vw;
+					width: 100%;
+					height: 20vh;
+				}
+
+				a {
+					text-decoration: none;
+					margin-top: 2rem;
 				}
 			}
 		}
@@ -46,6 +65,16 @@ const StyledContact = styled.section`
 
 	@media (max-width: 1124px) {
 		width: 80%;
+
+		.wrapper {
+			display: flex;
+			flex-direction: column;
+
+			.box {
+				margin-top: 1rem;
+				width: 100% !important;
+			}
+		}
 	}
 
 	@media (max-width: 813px) {
@@ -65,12 +94,33 @@ const Contact = () => {
 				<div className="wrapper">
 					<div className="box">
 						<img src={github} alt="github logo" />
+						<a
+							href="https://github.com/bartzalewski/schoolify"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							This repository
+						</a>
 					</div>
 					<div className="box">
 						<img src={bartzalewski} alt="my logo" />
+						<a
+							href="https://bartzalewski.com/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							My website
+						</a>
 					</div>
 					<div className="box">
 						<img src={linkedin} alt="linkedin logo" />
+						<a
+							href="https://www.linkedin.com/in/bartzalewski"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							My LinkedIn
+						</a>
 					</div>
 				</div>
 			</div>

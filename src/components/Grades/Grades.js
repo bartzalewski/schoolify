@@ -18,6 +18,15 @@ const StyledGrades = styled.aside`
 		font-weight: 600;
 	}
 
+	a {
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.1);
+			transition: 0.2s;
+		}
+	}
+
 	.add {
 		width: 40px;
 		height: 40px;

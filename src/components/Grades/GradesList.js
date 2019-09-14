@@ -15,7 +15,17 @@ import chem from '../../images/subjects/chem.svg';
 import history from '../../images/subjects/history.svg';
 import { Link } from 'react-router-dom';
 
-const StyledGradesList = styled.div``;
+const StyledGradesList = styled.div`
+	a,
+	img {
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.1);
+			transition: 0.2s;
+		}
+	}
+`;
 
 export default function GradesList() {
 	return (

@@ -47,6 +47,12 @@ const StyledAddGrades = styled.div`
 		padding: 15px 25px;
 		border-radius: 15px;
 		margin-top: 0.5rem;
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.05);
+			transition: 0.2s;
+		}
 
 		.flex-start,
 		.flex-end {

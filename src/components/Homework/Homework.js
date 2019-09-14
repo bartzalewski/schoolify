@@ -29,6 +29,12 @@ const StyledHomework = styled.aside`
 		border-radius: 10px;
 		position: relative;
 		margin-top: 2rem;
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.025);
+			transition: 0.2s;
+		}
 
 		@media (max-width: 1124px) {
 			width: 50%;

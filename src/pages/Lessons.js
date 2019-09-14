@@ -27,6 +27,12 @@ const StyledLessons = styled.section`
 		align-items: center;
 		justify-content: space-between;
 		margin: 0.5rem 0;
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.05);
+			transition: 0.2s;
+		}
 
 		&:first-of-type {
 			margin-top: 2rem;

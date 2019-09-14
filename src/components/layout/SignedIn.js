@@ -71,11 +71,18 @@ const StyledProfile = styled.section`
 		svg {
 			width: 150px;
 			height: 150px;
+			transition: 0.2s;
+
+			&:hover {
+				transform: scale(1.05);
+				transition: 0.2s;
+			}
 		}
 
 		h2 {
 			font-size: 2rem;
 			font-weight: 300;
+			margin-top: 1rem;
 		}
 
 		.profile-bold {

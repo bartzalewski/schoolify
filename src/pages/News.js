@@ -36,6 +36,12 @@ const StyledNews = styled.section`
 		padding-right: 40px;
 		padding-top: 40px;
 		text-decoration: none;
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.05);
+			transition: 0.2s;
+		}
 	}
 
 	.home-wrapper {
@@ -49,6 +55,12 @@ const StyledNews = styled.section`
 		background-color: white;
 		border-radius: 15px;
 		border: 1px solid #d2d2d2;
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.05);
+			transition: 0.2s;
+		}
 	}
 
 	.container {
@@ -99,6 +111,12 @@ const StyledNews = styled.section`
 		padding: 40px;
 		display: flex;
 		justify-content: center;
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.025);
+			transition: 0.2s;
+		}
 	}
 
 	.add-post,
@@ -162,6 +180,7 @@ const StyledNews = styled.section`
 
 	.posts-img {
 		width: 100%;
+		margin-top: 1rem;
 	}
 
 	@media (max-width: 1359px) {

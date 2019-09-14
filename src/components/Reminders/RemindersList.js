@@ -8,6 +8,12 @@ const StyledRemindersList = styled.div`
 	padding: 5px 15px;
 	margin-top: 5px;
 	width: fit-content;
+	transition: 0.2s;
+
+	&:hover {
+		transform: scale(1.05);
+		transition: 0.2s;
+	}
 
 	@media (max-width: 1359px) {
 		padding: 2.5px 10px;

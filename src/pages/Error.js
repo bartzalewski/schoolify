@@ -24,6 +24,12 @@ const StyledError = styled.section`
 		background: #fff;
 		border-radius: 15px;
 		padding: 15px 25px;
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.025);
+			transition: 0.2s;
+		}
 
 		p:nth-of-type(2) {
 			margin-top: 1rem;

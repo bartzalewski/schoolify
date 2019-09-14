@@ -67,36 +67,61 @@ const StyledNavbar = styled.nav`
 			display: none;
 		}
 	}
+
 	.box {
-		width: 40px;
-		height: 40px;
+		width: 100px;
+		height: 100px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: transparent;
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.05);
+			transition: 0.2s;
+			/* border: 2px solid #fe843f; */
+		}
+
 		@media (max-width: 1359px) {
 			width: 30px;
 			height: 30px;
 		}
 	}
+
+	.schoolify-logo {
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.1);
+			transition: 0.2s;
+		}
+	}
+
 	.box:hover::before {
 		content: '';
 		width: 100px;
 		height: 3px;
 		background: #fe843f;
 		position: absolute;
-		margin-left: -30px;
-		margin-top: 66px;
+		bottom: 3px;
 
 		@media (max-width: 1359px) {
 			display: none;
 		}
 	}
+
 	svg {
 		@media (max-width: 1359px) {
 			width: 30px;
 			height: 30px;
 		}
 	}
+
 	svg:hover {
 		fill: #fe843f;
 	}
+
 	.schoolify-logo {
 		min-width: 50px;
 	}

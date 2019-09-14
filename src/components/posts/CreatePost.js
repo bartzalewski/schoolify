@@ -55,6 +55,15 @@ const StyledCreatePost = styled.section`
 		margin-top: 20px;
 	}
 
+	.input-field {
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.025);
+			transition: 0.2s;
+		}
+	}
+
 	.input-field:first-of-type {
 		margin-top: 2rem;
 	}
