@@ -3,20 +3,20 @@ const initState = {
 		{
 			id: 1,
 			schoolName: 'SP3 im. Mikołaja Kopernika',
-			schoolLogo: '',
-			schoolBackground: ''
+			schoolLogo: 'asd',
+			schoolBackground: 'asd'
 		},
 		{
 			id: 2,
 			schoolName: 'LO im. Władysława Jagiełły',
-			schoolLogo: '',
-			schoolBackground: ''
+			schoolLogo: 'asd',
+			schoolBackground: 'asd'
 		},
 		{
 			id: 3,
 			schoolName: 'Przedskole nr 4',
-			schoolLogo: '',
-			schoolBackground: ''
+			schoolLogo: 'asd',
+			schoolBackground: 'asd'
 		}
 	]
 };
@@ -24,7 +24,7 @@ const initState = {
 const schoolReducer = (state = initState, action) => {
 	switch (action.type) {
 		case 'CREATE_SCHOOL':
-			console.log('Created school!', action.add);
+			console.log('Created school!', action.school);
 			return state;
 		case 'CREATE_SCHOOL_ERROR':
 			console.log('Created school error!', action.err);

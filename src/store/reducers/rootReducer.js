@@ -8,7 +8,7 @@ import { firebaseReducer } from 'react-redux-firebase';
 const rootReducer = combineReducers({
 	auth: authReducer,
 	post: postReducer,
-	add: schoolReducer,
+	school: schoolReducer,
 	firestore: firestoreReducer,
 	firebase: firebaseReducer
 });

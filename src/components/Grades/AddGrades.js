@@ -31,6 +31,7 @@ const StyledAddGrades = styled.div`
 	h1 {
 		font-size: 1.625rem;
 		font-weight: 600;
+		user-select: none;
 	}
 
 	img,

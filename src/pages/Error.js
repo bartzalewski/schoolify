@@ -12,6 +12,7 @@ const StyledError = styled.section`
 	h1 {
 		font-size: 1.625rem;
 		font-weight: 600;
+		user-select: none;
 	}
 
 	.flex {
@@ -71,7 +72,7 @@ const Error = () => {
 		<StyledError>
 			<div className="container">
 				<h1>404 not found</h1>
-				<div class="flex">
+				<div className="flex">
 					<p>
 						If you found this page, it can mean that it is not yet supported or
 						you've entered the invalid URL. Please keep in mind that this is

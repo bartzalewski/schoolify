@@ -21,22 +21,21 @@ const StyledNews = styled.section`
 	width: 50vw;
 	height: fit-content;
 	background: #ececf0;
+	padding: 40px;
 
 	.school-title {
-		padding-left: 40px;
-		padding-top: 40px;
 		font-size: 1.625rem;
 		font-weight: 600;
+		user-select: none;
 	}
 
 	.school-list {
 		font-size: 1.4375rem;
 		color: #fe843f;
 		font-weight: 400;
-		padding-right: 40px;
-		padding-top: 40px;
 		text-decoration: none;
 		transition: 0.2s;
+		user-select: none;
 
 		&:hover {
 			transform: scale(1.05);
@@ -68,13 +67,14 @@ const StyledNews = styled.section`
 		height: 250px;
 		display: flex;
 		justify-content: space-between;
-		padding: 40px;
+		margin-top: 2rem;
 	}
 
 	.school-bg {
 		width: 100%;
 		height: 250px;
 		border-radius: 15px;
+		user-select: none;
 	}
 
 	.school-logo {
@@ -83,6 +83,7 @@ const StyledNews = styled.section`
 		position: absolute;
 		border-radius: 100px;
 		margin: 0.5em;
+		user-select: none;
 	}
 
 	.add {
@@ -104,19 +105,13 @@ const StyledNews = styled.section`
 	.add-title {
 		font-size: 1.125rem;
 		font-weight: 600;
+		user-select: none;
 	}
 
 	.wrapper {
 		width: 100%;
-		padding: 40px;
 		display: flex;
 		justify-content: center;
-		transition: 0.2s;
-
-		&:hover {
-			transform: scale(1.025);
-			transition: 0.2s;
-		}
 	}
 
 	.add-post,
@@ -144,6 +139,13 @@ const StyledNews = styled.section`
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		user-select: none;
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.05);
+			transition: 0.2s;
+		}
 	}
 
 	.posts-wrapper {

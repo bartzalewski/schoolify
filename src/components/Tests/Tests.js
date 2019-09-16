@@ -15,6 +15,7 @@ const StyledTests = styled.aside`
 	.title {
 		font-size: 2rem;
 		font-weight: 600;
+		user-select: none;
 	}
 
 	.container {

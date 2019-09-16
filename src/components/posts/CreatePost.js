@@ -12,6 +12,7 @@ const StyledCreatePost = styled.section`
 	h1 {
 		font-size: 1.625rem;
 		font-weight: 600;
+		user-select: none;
 	}
 
 	#schoolName,
@@ -49,10 +50,18 @@ const StyledCreatePost = styled.section`
 		font-weight: 600;
 		border: none;
 		height: 50px;
+		width: fit-content;
 		font-size: 1.125rem;
 		cursor: pointer;
 		padding: 10px 25px;
-		margin-top: 20px;
+		margin-top: 2rem;
+		position: absolute;
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.05);
+			transition: 0.2s;
+		}
 	}
 
 	.input-field {
@@ -132,12 +141,10 @@ class CreatePost extends Component {
 								onChange={this.handleChange}
 							/>
 						</div>
-						<div className="input-field">
+						<div>
 							<FeedUpload />
 						</div>
-						<div className="input-field">
-							<button className="btn">Create</button>
-						</div>
+						<button className="btn">Create</button>
 					</form>
 				</div>
 			</StyledCreatePost>
