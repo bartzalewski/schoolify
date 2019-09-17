@@ -8,7 +8,6 @@ const StyledSchoolSummary = styled.div`
 		border-radius: 15px;
 		border: 1px solid #d2d2d2;
 		transition: 0.2s;
-		margin-top: 2rem;
 
 		&:hover {
 			transform: scale(1.05);
@@ -60,7 +59,7 @@ export default function SchoolSummary({ school }) {
 					src={school.schoolBackground}
 					alt="school background"
 				/>
-				<h5 className="posts-title">{school.schoolName}</h5>
+				{/* <h5 className="posts-title">{school.schoolName}</h5> */}
 			</div>
 		</StyledSchoolSummary>
 	);

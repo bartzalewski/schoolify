@@ -170,6 +170,10 @@ const StyledNavbar = styled.nav`
 
 	.left {
 		text-decoration: none;
+
+		a {
+			display: flex;
+		}
 	}
 
 	.left,
@@ -284,12 +288,9 @@ const StyledNavbar = styled.nav`
 		}
 	}
 
-	.schoolify-logo {
-		min-width: 50px;
-	}
-
 	@media (max-width: 1124px) {
 		top: 0px;
+		height: 60px;
 		.left,
 		.right {
 			width: 10vw;

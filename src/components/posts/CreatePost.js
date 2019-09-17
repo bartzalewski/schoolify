@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { createPost } from '../../store/actions/postActions';
 import { Redirect } from 'react-router-dom';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+import SchoolList from '../schools/SchoolList';
 import FeedUpload from '../upload/FeedUpload';
 
 const StyledCreatePost = styled.section`
@@ -117,7 +120,8 @@ class CreatePost extends Component {
 		this.props.history.push('/');
 	};
 	render() {
-		const { auth } = this.props;
+		const { auth, schools } = this.props;
+		console.log(schools);
 		if (!auth.uid) return <Redirect to="/" />;
 		return (
 			<StyledCreatePost>
@@ -146,6 +150,7 @@ class CreatePost extends Component {
 						</div>
 						<button className="btn">Create</button>
 					</form>
+					{/* <SchoolList schools={schools} /> */}
 				</div>
 			</StyledCreatePost>
 		);
@@ -154,7 +159,8 @@ class CreatePost extends Component {
 
 const mapStateToProps = state => {
 	return {
-		auth: state.firebase.auth
+		auth: state.firebase.auth,
+		schools: state.firestore.ordered.schools
 	};
 };
 
@@ -164,7 +170,10 @@ const mapDispatchToProps = dispatch => {
 	};
 };
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
+export default compose(
+	connect(
+		mapStateToProps,
+		mapDispatchToProps
+	),
+	firestoreConnect([{ collection: 'schools', orderBy: ['createdAt', 'desc'] }])
 )(CreatePost);

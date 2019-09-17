@@ -41,6 +41,7 @@ export default class FeedUpload extends Component {
 		return (
 			<>
 				<input type="file" onChange={this.handleChange} />
+				{/* <button onClick={this.handleUpload}>upload</button> */}
 			</>
 		);
 	}
