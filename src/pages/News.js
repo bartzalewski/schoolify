@@ -266,6 +266,24 @@ const StyledNews = styled.section`
 			height: 30px;
 		}
 	}
+
+	@media (max-width: 478px) {
+		.posts-title {
+			font-size: 1rem;
+		}
+		.posts-time {
+			font-size: 0.9rem;
+		}
+		.posts-desc {
+			font-size: 0.8rem;
+		}
+		.posts-btn {
+			font-size: 0.9rem;
+		}
+		.add-title {
+			font-size: 0.9rem;
+		}
+	}
 `;
 
 class News extends Component {

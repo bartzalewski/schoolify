@@ -89,6 +89,12 @@ const StyledLessons = styled.section`
 		.container {
 			padding: 10px;
 		}
+		button {
+			font-size: 1rem;
+		}
+		.school-name {
+			font-size: 0.9rem;
+		}
 	}
 
 	@media (max-width: 452px) {
