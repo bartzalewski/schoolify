@@ -36,12 +36,16 @@ export default class FeedUpload extends Component {
 					});
 			}
 		);
+		uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+			console.log('File available at', downloadURL);
+			return downloadURL;
+		});
 	};
 	render() {
 		return (
 			<>
 				<input type="file" onChange={this.handleChange} />
-				{/* <button onClick={this.handleUpload}>upload</button> */}
+				<button onClick={this.handleUpload}>upload</button>
 			</>
 		);
 	}

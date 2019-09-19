@@ -7,6 +7,8 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import SchoolList from '../schools/SchoolList';
 import FeedUpload from '../upload/FeedUpload';
+import firebase from 'firebase/app';
+import { storage } from '../../config/fbConfig';
 
 const StyledCreatePost = styled.section`
 	width: 50vw;
@@ -104,10 +106,10 @@ const StyledCreatePost = styled.section`
 class CreatePost extends Component {
 	state = {
 		schoolName: '',
-		schoolLogo:
-			'https://firebasestorage.googleapis.com/v0/b/schoolify-167f2.appspot.com/o/images%2Fschools%2Flogos%2Fzsz-zabk-logo.gif?alt=media&token=15dcf72f-0f92-4890-8256-4ae7c686c768',
+		schoolLogo: '',
 		content: '',
-		postBackground: `https://firebasestorage.googleapis.com/v0/b/schoolify-167f2.appspot.com/o/images%2Ffeed%2Fzszfeed.jpg?alt=media&token=6e133a8f-1363-4e7e-b084-4b4d549b1100`
+		postBackground: null,
+		url: ''
 	};
 	handleChange = e => {
 		this.setState({
@@ -117,7 +119,55 @@ class CreatePost extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		this.props.createPost(this.state);
-		this.props.history.push('/');
+		// this.props.history.push('/');
+	};
+	handleChoose = e => {
+		if (e.target.files[0]) {
+			const postBackground = e.target.files[0];
+			this.setState(() => ({ postBackground }));
+		}
+	};
+	handleUpload = () => {
+		const { postBackground } = this.state;
+		const uploadTask = storage
+			.ref(`images/feed/${postBackground.name}`)
+			.put(postBackground);
+		uploadTask.on(
+			'state_changed',
+			error => {
+				console.log(error);
+			},
+			() => {
+				storage
+					.ref('images/feed')
+					.child(postBackground.name)
+					.getDownloadURL()
+					.then(url => {
+						console.log(url);
+						this.setState({ url });
+					});
+			}
+		);
+		uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+			console.log('File available at', downloadURL);
+			return downloadURL;
+		});
+	};
+	fileUpload = () => {
+		var image;
+
+		var storageRef = firebase.storage().ref();
+
+		var uploadTask = storageRef.child('images/feed' + image).put(image);
+
+		uploadTask.on(
+			firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+			function() {
+				uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+					console.log('File available at', downloadURL);
+				});
+			}
+		);
 	};
 	render() {
 		const { auth, schools } = this.props;
@@ -145,10 +195,9 @@ class CreatePost extends Component {
 								onChange={this.handleChange}
 							/>
 						</div>
-						<div>
-							<FeedUpload />
-						</div>
-						<button className="btn">Create</button>
+						<div>{/* <FeedUpload></FeedUpload> */}</div>
+						<input id="send" type="file" onChange={this.handleChoose} />
+						<button onClick={this.handleUpload}>upload</button>
 					</form>
 					{/* <SchoolList schools={schools} /> */}
 				</div>
