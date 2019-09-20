@@ -5,9 +5,6 @@ import { createPost } from '../../store/actions/postActions';
 import { Redirect } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import SchoolList from '../schools/SchoolList';
-import FeedUpload from '../upload/FeedUpload';
-import firebase from 'firebase/app';
 import { storage } from '../../config/fbConfig';
 
 const StyledCreatePost = styled.section`
@@ -104,13 +101,20 @@ const StyledCreatePost = styled.section`
 `;
 
 class CreatePost extends Component {
-	state = {
-		schoolName: '',
-		schoolLogo: '',
-		content: '',
-		postBackground: null,
-		url: ''
-	};
+	constructor(props) {
+		super(props);
+		this.state = {
+			schoolName: '',
+			schoolLogo: '',
+			content: '',
+			postBackground: null,
+			progress: 0
+		};
+		this.handleChange = this.handleChange.bind(this);
+		this.handleUpload = this.handleUpload.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChoose = this.handleChoose.bind(this);
+	}
 	handleChange = e => {
 		this.setState({
 			[e.target.id]: e.target.value
@@ -119,13 +123,14 @@ class CreatePost extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		this.props.createPost(this.state);
-		// this.props.history.push('/');
+		this.props.history.push('/');
 	};
 	handleChoose = e => {
 		if (e.target.files[0]) {
 			const postBackground = e.target.files[0];
 			this.setState(() => ({ postBackground }));
 		}
+		console.log(this.state);
 	};
 	handleUpload = () => {
 		const { postBackground } = this.state;
@@ -134,6 +139,12 @@ class CreatePost extends Component {
 			.put(postBackground);
 		uploadTask.on(
 			'state_changed',
+			snapshot => {
+				const progress = Math.round(
+					(snapshot.bytesTransferred / snapshot.totalBytes) * 100
+				);
+				this.setState({ progress });
+			},
 			error => {
 				console.log(error);
 			},
@@ -142,9 +153,8 @@ class CreatePost extends Component {
 					.ref('images/feed')
 					.child(postBackground.name)
 					.getDownloadURL()
-					.then(url => {
-						console.log(url);
-						this.setState({ url });
+					.then(postBackground => {
+						this.setState({ postBackground });
 					});
 			}
 		);
@@ -153,25 +163,9 @@ class CreatePost extends Component {
 			return downloadURL;
 		});
 	};
-	fileUpload = () => {
-		var image;
-
-		var storageRef = firebase.storage().ref();
-
-		var uploadTask = storageRef.child('images/feed' + image).put(image);
-
-		uploadTask.on(
-			firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-			function() {
-				uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-					console.log('File available at', downloadURL);
-				});
-			}
-		);
-	};
 	render() {
-		const { auth, schools } = this.props;
-		console.log(schools);
+		const { auth } = this.props;
+		// console.log(`this is url: ${this.state.url || 'none'} `);
 		if (!auth.uid) return <Redirect to="/" />;
 		return (
 			<StyledCreatePost>
@@ -195,11 +189,12 @@ class CreatePost extends Component {
 								onChange={this.handleChange}
 							/>
 						</div>
-						<div>{/* <FeedUpload></FeedUpload> */}</div>
-						<input id="send" type="file" onChange={this.handleChoose} />
-						<button onClick={this.handleUpload}>upload</button>
+						<button onClick={this.handleSubmit}>Upload Post</button>
 					</form>
-					{/* <SchoolList schools={schools} /> */}
+					<progress value={this.state.progress} max="100" />
+					<br />
+					<input type="file" onChange={this.handleChoose} />
+					<button onClick={this.handleUpload}>Upload Image</button>
 				</div>
 			</StyledCreatePost>
 		);
