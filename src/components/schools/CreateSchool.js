@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { createSchool } from '../../store/actions/schoolActions';
 import { Redirect } from 'react-router-dom';
+import { storage } from '../../config/fbConfig';
 
 const StyledCreateSchool = styled.section`
 	width: 50vw;
@@ -47,8 +48,8 @@ const StyledCreateSchool = styled.section`
 		font-size: 1.125rem;
 		cursor: pointer;
 		padding: 10px 25px;
-		margin-top: 2rem;
-		position: absolute;
+		margin: 2rem 0;
+		position: relative;
 		transition: 0.2s;
 	}
 
@@ -98,9 +99,9 @@ const StyledCreateSchool = styled.section`
 class CreateSchool extends Component {
 	state = {
 		schoolName: '',
-		schoolLogo:
-			'https://firebasestorage.googleapis.com/v0/b/schoolify-167f2.appspot.com/o/images%2Fschools%2Flogos%2Fzsz-zabk-logo.gif?alt=media&token=15dcf72f-0f92-4890-8256-4ae7c686c768',
-		schoolBackground: ''
+		schoolLogo: null,
+		schoolBackground: null,
+		progress: 0
 	};
 	handleChange = e => {
 		this.setState({
@@ -110,10 +111,88 @@ class CreateSchool extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		this.props.createSchool(this.state);
-		this.props.history.push('/');
+		this.props.history.push('/school-list');
+	};
+	handleChooseSchoolLogo = e => {
+		if (e.target.files[0]) {
+			const schoolLogo = e.target.files[0];
+			this.setState(() => ({ schoolLogo }));
+		}
+		console.log(this.state);
+	};
+	handleUploadSchoolLogo = () => {
+		const { schoolLogo } = this.state;
+		const uploadTask = storage
+			.ref(`images/schools/logos/${schoolLogo.name}`)
+			.put(schoolLogo);
+		uploadTask.on(
+			'state_changed',
+			snapshot => {
+				const progress = Math.round(
+					(snapshot.bytesTransferred / snapshot.totalBytes) * 100
+				);
+				this.setState({ progress });
+			},
+			error => {
+				console.log(error);
+			},
+			() => {
+				storage
+					.ref('images/schools/logos')
+					.child(schoolLogo.name)
+					.getDownloadURL()
+					.then(schoolLogo => {
+						this.setState({ schoolLogo });
+					});
+			}
+		);
+		uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+			console.log('File available at', downloadURL);
+			return downloadURL;
+		});
+	};
+	handleChooseSchoolBackground = e => {
+		if (e.target.files[0]) {
+			const schoolBackground = e.target.files[0];
+			this.setState(() => ({ schoolBackground }));
+		}
+		console.log(this.state);
+	};
+	handleUploadSchoolBackground = () => {
+		const { schoolBackground } = this.state;
+		const uploadTask = storage
+			.ref(`images/schools/backgrounds/${schoolBackground.name}`)
+			.put(schoolBackground);
+		uploadTask.on(
+			'state_changed',
+			snapshot => {
+				const progress = Math.round(
+					(snapshot.bytesTransferred / snapshot.totalBytes) * 100
+				);
+				this.setState({ progress });
+			},
+			error => {
+				console.log(error);
+			},
+			() => {
+				storage
+					.ref('images/schools/backgrounds')
+					.child(schoolBackground.name)
+					.getDownloadURL()
+					.then(schoolBackground => {
+						this.setState({ schoolBackground });
+					});
+			}
+		);
+		uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+			console.log('File available at', downloadURL);
+			return downloadURL;
+		});
 	};
 	render() {
 		const { auth } = this.props;
+		// console.log(`this is url: ${this.state.schoolLogo || 'none'} `);
+		// console.log(this.state);
 		if (!auth.uid) return <Redirect to="/" />;
 		return (
 			<StyledCreateSchool>
@@ -129,8 +208,23 @@ class CreateSchool extends Component {
 								onChange={this.handleChange}
 							/>
 						</div>
-						<button className="btn">Create</button>
+						<button className="btn" onClick={this.handleSubmit}>
+							Add School
+						</button>
 					</form>
+					<progress value={this.state.progress} max="100" />
+					<br />
+					<input type="file" onChange={this.handleChooseSchoolLogo} />
+					<button onClick={this.handleUploadSchoolLogo}>
+						Upload Scholo Logo
+					</button>
+					<br />
+					<progress value={this.state.progress} max="100" />
+					<br />
+					<input type="file" onChange={this.handleChooseSchoolBackground} />
+					<button onClick={this.handleUploadSchoolBackground}>
+						Upload School Background
+					</button>
 				</div>
 			</StyledCreateSchool>
 		);

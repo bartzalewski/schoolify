@@ -56,8 +56,8 @@ const StyledCreatePost = styled.section`
 		font-size: 1.125rem;
 		cursor: pointer;
 		padding: 10px 25px;
-		margin-top: 2rem;
-		position: absolute;
+		margin: 2rem 0;
+		position: relative;
 		transition: 0.2s;
 
 		&:hover {
@@ -189,7 +189,9 @@ class CreatePost extends Component {
 								onChange={this.handleChange}
 							/>
 						</div>
-						<button onClick={this.handleSubmit}>Upload Post</button>
+						<button className="btn" onClick={this.handleSubmit}>
+							Upload Post
+						</button>
 					</form>
 					<progress value={this.state.progress} max="100" />
 					<br />
