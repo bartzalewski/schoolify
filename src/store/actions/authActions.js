@@ -41,7 +41,8 @@ export const signUp = newUser => {
 					.doc(resp.user.uid)
 					.set({
 						firstName: newUser.firstName,
-						lastName: newUser.lastName
+						lastName: newUser.lastName,
+						userAvatar: newUser.userAvatar
 					});
 			})
 			.then(() => {

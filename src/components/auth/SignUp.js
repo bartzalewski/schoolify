@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { signUp } from '../../store/actions/authActions';
 import { connect } from 'react-redux';
+import avatar from '../../images/user.svg';
 
 const StyledSignUp = styled.div`
 	width: 49%;
@@ -66,7 +67,8 @@ class SignUp extends Component {
 		email: '',
 		password: '',
 		firstName: '',
-		lastName: ''
+		lastName: '',
+		userAvatar: `${avatar}`
 	};
 	handleChange = e => {
 		this.setState({

@@ -50,7 +50,7 @@ export default function SchoolSummary({ school }) {
 		<StyledSchoolSummary>
 			<div className="box">
 				<img
-					className="school-logo posts-logo"
+					className="school-logo"
 					src={school.schoolLogo}
 					alt="school logo"
 				/>

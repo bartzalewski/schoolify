@@ -15,7 +15,7 @@ const StyledSchoolList = styled.div`
 
 export default function SchoolList({ schools }) {
 	return (
-		<StyledSchoolList>
+		<StyledSchoolList id="school-list">
 			{schools &&
 				schools.map(school => {
 					return <SchoolSummary school={school} key={school.id} />;

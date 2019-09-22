@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Add } from '../images/add.svg';
-import zszbg from '../images/schools/backgrounds/zsz-zabk-bg.jpg';
-import zszlogo from '../images/schools/logos/zsz-zabk-logo.gif';
-import lobg from '../images/schools/backgrounds/lo-zabk-bg.jpg';
-import lologo from '../images/schools/logos/lo-zabk-logo.jpg';
-import sp3bg from '../images/schools/backgrounds/sp3-zabk-bg.jpg';
-import sp3logo from '../images/schools/logos/sp3-zabk-logo.jpg';
-import p4bg from '../images/schools/backgrounds/p4-zabk-bg.jpg';
-import p4logo from '../images/schools/logos/p4-zabk-logo.jpg';
-import { ReactComponent as User } from '../images/user.svg';
+import info from '../images/info.svg';
+import warning from '../images/warning.svg';
 import PostList from '../components/posts/PostList';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
+import SchoolList from '../components/schools/SchoolList';
 
 const StyledNews = styled.section`
 	width: 50vw;
@@ -68,6 +62,24 @@ const StyledNews = styled.section`
 		display: flex;
 		justify-content: space-between;
 		margin-top: 2rem;
+
+		#school-list {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			grid-gap: 5px;
+			/* display: flex;
+			justify-content: space-between; */
+			margin-top: 0;
+			margin-right: 5px;
+		}
+
+		.box {
+			width: 100%;
+		}
+
+		.box-add {
+			width: 50%;
+		}
 	}
 
 	.school-bg {
@@ -185,6 +197,12 @@ const StyledNews = styled.section`
 		margin-top: 1rem;
 	}
 
+	.user-logo {
+		width: 40px;
+		height: 40px;
+		user-select: none;
+	}
+
 	@media (max-width: 1359px) {
 		padding: 12.5px;
 
@@ -288,7 +306,7 @@ const StyledNews = styled.section`
 
 class News extends Component {
 	render() {
-		const { posts, auth } = this.props;
+		const { posts, auth, schools } = this.props;
 		if (!auth.uid) return <Redirect to="/" />;
 		return (
 			<StyledNews>
@@ -299,22 +317,7 @@ class News extends Component {
 					</Link>
 				</div>
 				<div className="container">
-					<div className="box">
-						<img className="school-logo" src={zszlogo} alt="zsz logo" />
-						<img className="school-bg" src={zszbg} alt="zsz background" />
-					</div>
-					<div className="box">
-						<img className="school-logo" src={lologo} alt="lo logo" />
-						<img className="school-bg" src={lobg} alt="lo background" />
-					</div>
-					<div className="box">
-						<img className="school-logo" src={sp3logo} alt="sp3 logo" />
-						<img className="school-bg" src={sp3bg} alt="sp3 background" />
-					</div>
-					<div className="box">
-						<img className="school-logo" src={p4logo} alt="p4 logo" />
-						<img className="school-bg" src={p4bg} alt="p4 background" />
-					</div>
+					<SchoolList schools={schools} />
 					<Link to="/add" className="box box-add">
 						<div className="box-wrapper">
 							<h1 className="add-title">Add your school!</h1>
@@ -324,11 +327,11 @@ class News extends Component {
 				</div>
 				<div className="wrapper">
 					<div className="add-post">
-						<User className="user-logo" />
+						<img className="user-logo" src={info} alt="post info" />
 						<Link to="/create" className="posts-btn">
 							Add a post
 						</Link>
-						<User className="user-logo" />
+						<img className="user-logo" src={warning} alt="post info" />
 					</div>
 				</div>
 				<PostList posts={posts} />
@@ -340,11 +343,15 @@ class News extends Component {
 const mapStateToProps = state => {
 	return {
 		posts: state.firestore.ordered.posts,
-		auth: state.firebase.auth
+		auth: state.firebase.auth,
+		schools: state.firestore.ordered.schools
 	};
 };
 
 export default compose(
 	connect(mapStateToProps),
-	firestoreConnect([{ collection: 'posts', orderBy: ['createdAt', 'desc'] }])
+	firestoreConnect([
+		{ collection: 'posts', orderBy: ['createdAt', 'desc'] },
+		{ collection: 'schools', limit: 4, orderBy: ['createdAt', 'desc'] }
+	])
 )(News);
