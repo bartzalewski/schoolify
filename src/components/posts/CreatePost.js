@@ -5,7 +5,7 @@ import { createPost } from '../../store/actions/postActions';
 import { Redirect } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import { storage } from '../../config/fbConfig';
+import { storage, db } from '../../config/fbConfig';
 
 const StyledCreatePost = styled.section`
 	width: 50vw;
@@ -119,6 +119,28 @@ class CreatePost extends Component {
 		this.setState({
 			[e.target.id]: e.target.value
 		});
+		console.log(this.state);
+	};
+	handleSelect = e => {
+		db.collection('schools')
+			.get()
+			.then(function(querySnapshot) {
+				querySnapshot.forEach(function(doc) {
+					// console.log(
+					// 	doc.id,
+					// 	' => ',
+					// 	doc.data().schoolName,
+					// 	doc.data().schoolLogo
+					// );
+					let schoolName = document.getElementById('schoolName');
+					schoolName.value = doc.data().schoolName;
+					console.log(schoolName);
+				});
+			});
+		this.setState({
+			[e.target.id]: e.target.value
+		});
+		console.log(this.state);
 	};
 	handleSubmit = e => {
 		e.preventDefault();
@@ -164,8 +186,9 @@ class CreatePost extends Component {
 		});
 	};
 	render() {
-		const { auth } = this.props;
+		const { auth, schools } = this.props;
 		// console.log(`this is url: ${this.state.url || 'none'} `);
+		console.log(this.state);
 		if (!auth.uid) return <Redirect to="/" />;
 		return (
 			<StyledCreatePost>
@@ -178,8 +201,12 @@ class CreatePost extends Component {
 								placeholder="School Name"
 								type="text"
 								id="schoolName"
-								onChange={this.handleChange}
+								onChange={this.handleSelect}
 							/>
+							<select id="schoolName" onChange={this.handleSelect} name="">
+								<option value="">asd</option>
+								<option value="">weq</option>
+							</select>
 						</div>
 						<div className="input-field">
 							<label htmlFor="content" />
