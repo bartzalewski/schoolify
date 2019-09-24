@@ -26,6 +26,12 @@ const StyledCreatePost = styled.section`
 		font-size: inherit;
 	}
 
+	#schoolName {
+		padding: 10px 15px;
+		background: #fff;
+		font-family: 'Poppins';
+	}
+
 	#content {
 		height: 10rem;
 	}
@@ -122,21 +128,44 @@ class CreatePost extends Component {
 		console.log(this.state);
 	};
 	handleSelect = e => {
+		// db.collection('schools')
+		// 	.get()
+		// 	.then(function(snap) {
+		// 		snap.forEach(function(doc) {
+		// 			console.log(
+		// 				doc.id,
+		// 				' => ',
+		// 				doc.data().schoolName,
+		// 				doc.data().schoolLogo
+		// 			);
+		// 			const schoolName = document.getElementById('schoolName');
+		// 			const option = document.createElement('option');
+		// 			schoolName.appendChild(option);
+		// 			option.innerText = doc.data().schoolName;
+		// 		});
+		// 	});
 		db.collection('schools')
 			.get()
-			.then(function(querySnapshot) {
-				querySnapshot.forEach(function(doc) {
-					// console.log(
-					// 	doc.id,
-					// 	' => ',
-					// 	doc.data().schoolName,
-					// 	doc.data().schoolLogo
-					// );
-					let schoolName = document.getElementById('schoolName');
-					schoolName.value = doc.data().schoolName;
-					console.log(schoolName);
-				});
-			});
+			.then(snap =>
+				snap.forEach(doc => {
+					const { schoolName, schoolLogo } = doc.data();
+					const schoolList = document.getElementById('schoolName');
+					const option = document.createElement('option');
+					schoolList.appendChild(option);
+					option.innerText = schoolName;
+					this.state.schoolLogo = schoolLogo;
+				})
+			);
+		// db.collection('schools')
+		// 	.get()
+		// 	.then(snap =>
+		// 		snap.forEach(
+		// 			doc => (
+		// 				(this.schools[doc.id] = doc.data()),
+		// 				(this.state.schoolLogo = doc.data().schoolLogo)
+		// 			)
+		// 		)
+		// 	);
 		this.setState({
 			[e.target.id]: e.target.value
 		});
@@ -197,15 +226,10 @@ class CreatePost extends Component {
 						<h1>Create new post</h1>
 						<div className="input-field">
 							<label htmlFor="schoolName" />
-							<input
-								placeholder="School Name"
-								type="text"
-								id="schoolName"
-								onChange={this.handleSelect}
-							/>
-							<select id="schoolName" onChange={this.handleSelect} name="">
-								<option value="">asd</option>
-								<option value="">weq</option>
+							<select id="schoolName" onClick={this.handleSelect}>
+								{/* <option disabled selected>
+									Select your school
+								</option> */}
 							</select>
 						</div>
 						<div className="input-field">
