@@ -16,7 +16,7 @@ const StyledSignIn = styled.section`
 		-webkit-text-fill-color: transparent;
 	}
 
-	.input-field {
+	.btn {
 		transition: 0.2s;
 
 		&:hover {

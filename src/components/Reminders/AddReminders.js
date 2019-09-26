@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const StyledAddReminders = styled.div`
-	transition: 0.2s;
-
-	&:hover {
-		transform: scale(1.05);
-		transition: 0.2s;
-	}
-
 	.input-reminder {
 		border-radius: 10px;
 		border: 1px solid #d2d2d2;

@@ -72,15 +72,6 @@ const StyledCreatePost = styled.section`
 		}
 	}
 
-	.input-field {
-		transition: 0.2s;
-
-		&:hover {
-			transform: scale(1.025);
-			transition: 0.2s;
-		}
-	}
-
 	.input-field:first-of-type {
 		margin-top: 2rem;
 	}
@@ -120,56 +111,25 @@ class CreatePost extends Component {
 		this.handleUpload = this.handleUpload.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChoose = this.handleChoose.bind(this);
+		this.handleSelect = this.handleSelect.bind(this);
 	}
 	handleChange = e => {
 		this.setState({
 			[e.target.id]: e.target.value
 		});
-		console.log(this.state);
+		// this.setState({
+		// 	schoolName: { [e.target.id]: e.target.innerText },
+		// 	schoolLogo: { [e.target.id]: e.target.value }
+		// });
 	};
 	handleSelect = e => {
-		// db.collection('schools')
-		// 	.get()
-		// 	.then(function(snap) {
-		// 		snap.forEach(function(doc) {
-		// 			console.log(
-		// 				doc.id,
-		// 				' => ',
-		// 				doc.data().schoolName,
-		// 				doc.data().schoolLogo
-		// 			);
-		// 			const schoolName = document.getElementById('schoolName');
-		// 			const option = document.createElement('option');
-		// 			schoolName.appendChild(option);
-		// 			option.innerText = doc.data().schoolName;
-		// 		});
-		// 	});
-		db.collection('schools')
-			.get()
-			.then(snap =>
-				snap.forEach(doc => {
-					const { schoolName, schoolLogo } = doc.data();
-					const schoolList = document.getElementById('schoolName');
-					const option = document.createElement('option');
-					schoolList.appendChild(option);
-					option.innerText = schoolName;
-					this.state.schoolLogo = schoolLogo;
-				})
-			);
-		// db.collection('schools')
-		// 	.get()
-		// 	.then(snap =>
-		// 		snap.forEach(
-		// 			doc => (
-		// 				(this.schools[doc.id] = doc.data()),
-		// 				(this.state.schoolLogo = doc.data().schoolLogo)
-		// 			)
-		// 		)
-		// 	);
-		this.setState({
-			[e.target.id]: e.target.value
-		});
-		console.log(this.state);
+		if (e.target.id === 'schoolName') {
+			this.setState({
+				// schoolName: e.target.innerText,
+				schoolName: e.target.querySelector('option').innerText,
+				schoolLogo: e.target.value
+			});
+		}
 	};
 	handleSubmit = e => {
 		e.preventDefault();
@@ -214,6 +174,20 @@ class CreatePost extends Component {
 			return downloadURL;
 		});
 	};
+	componentDidMount() {
+		db.collection('schools')
+			.get()
+			.then(snap =>
+				snap.forEach(doc => {
+					const { schoolName, schoolLogo } = doc.data();
+					const schoolList = document.getElementById('schoolName');
+					const option = document.createElement('option');
+					schoolList.appendChild(option);
+					option.innerText = schoolName;
+					option.value = schoolLogo;
+				})
+			);
+	}
 	render() {
 		const { auth, schools } = this.props;
 		// console.log(`this is url: ${this.state.url || 'none'} `);
@@ -226,7 +200,7 @@ class CreatePost extends Component {
 						<h1>Create new post</h1>
 						<div className="input-field">
 							<label htmlFor="schoolName" />
-							<select id="schoolName" onClick={this.handleSelect}>
+							<select id="schoolName" onChange={this.handleSelect}>
 								{/* <option disabled selected>
 									Select your school
 								</option> */}

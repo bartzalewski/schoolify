@@ -62,17 +62,8 @@ const StyledCreateSchool = styled.section`
 		}
 	}
 
-	.input-field {
-		transition: 0.2s;
-
-		&:hover {
-			transform: scale(1.02);
-			transition: 0.2s;
-		}
-
-		&:first-of-type {
-			margin-top: 2rem;
-		}
+	.input-field:first-of-type {
+		margin-top: 2rem;
 	}
 
 	@media (max-width: 1359px) {

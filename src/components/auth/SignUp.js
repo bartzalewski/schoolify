@@ -17,17 +17,17 @@ const StyledSignUp = styled.div`
 		-webkit-text-fill-color: transparent;
 	}
 
-	.signup-form {
-		width: 100%;
-	}
-
-	.input-field {
+	.btn {
 		transition: 0.2s;
 
 		&:hover {
 			transform: scale(1.05);
 			transition: 0.2s;
 		}
+	}
+
+	.signup-form {
+		width: 100%;
 	}
 
 	input#email,
