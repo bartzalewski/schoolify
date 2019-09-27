@@ -123,13 +123,13 @@ class CreatePost extends Component {
 		// });
 	};
 	handleSelect = e => {
-		if (e.target.id === 'schoolName') {
-			this.setState({
-				// schoolName: e.target.innerText,
-				schoolName: e.target.querySelector('option').innerText,
-				schoolLogo: e.target.value
-			});
-		}
+		const schoolList = document.getElementById('schoolName');
+		const value = schoolList.value;
+		const array = value.split(',');
+		this.setState({
+			schoolName: array[0],
+			schoolLogo: array[1]
+		});
 	};
 	handleSubmit = e => {
 		e.preventDefault();
@@ -182,16 +182,22 @@ class CreatePost extends Component {
 					const { schoolName, schoolLogo } = doc.data();
 					const schoolList = document.getElementById('schoolName');
 					const option = document.createElement('option');
+					const p = document.createElement('p');
+					const img = document.createElement('img');
 					schoolList.appendChild(option);
-					option.innerText = schoolName;
-					option.value = schoolLogo;
+					option.appendChild(p);
+					option.appendChild(img);
+					p.value = schoolName;
+					p.innerText = schoolName;
+					img.value = schoolLogo;
+					option.value = [p.value, img.value];
 				})
 			);
 	}
 	render() {
-		const { auth, schools } = this.props;
+		const { auth } = this.props;
 		// console.log(`this is url: ${this.state.url || 'none'} `);
-		console.log(this.state);
+		// console.log(this.state);
 		if (!auth.uid) return <Redirect to="/" />;
 		return (
 			<StyledCreatePost>
