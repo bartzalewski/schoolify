@@ -35,17 +35,18 @@ const StyledTests = styled.aside`
 	@media (max-width: 1124px) {
 		position: static;
 		top: 0px;
-		width: 80%;
+		width: 100%;
 		border: none;
 		border-bottom: 1px solid #d2d2d2;
+		padding: 3.375px;
 
 		.container {
 			flex-direction: column;
 		}
-	}
 
-	@media (max-width: 813px) {
-		width: 100%;
+		.title {
+			font-size: 1rem;
+		}
 	}
 `;
 
@@ -56,7 +57,8 @@ class Tests extends Component {
 			{ id: 2, content: '02-09-2019 | Biology | Anatomy' },
 			{ id: 3, content: '03-09-2019 | Spanish | Thigs at home' },
 			{ id: 4, content: '04-09-2019 | English | Essay' }
-		]
+		],
+		active: false
 	};
 	deleteTodo = id => {
 		const todos = this.state.todos.filter(todo => {
@@ -73,14 +75,23 @@ class Tests extends Component {
 			todos
 		});
 	};
+	isHidden = () => {
+		this.setState({
+			active: !this.state.active
+		});
+	};
 	render() {
 		return (
 			<StyledTests>
 				<div className="container">
-					<h1 className="title">Tests</h1>
-					<AddTests addTodo={this.addTodo} />
+					<h1 onClick={this.isHidden} className="title">
+						Tests
+					</h1>
+					{!this.state.active && <AddTests addTodo={this.addTodo} />}
 				</div>
-				<TestsList todos={this.state.todos} deleteTodo={this.deleteTodo} />
+				{!this.state.active && (
+					<TestsList todos={this.state.todos} deleteTodo={this.deleteTodo} />
+				)}
 			</StyledTests>
 		);
 	}

@@ -65,6 +65,14 @@ const StyledNotification = styled.section`
 			padding: 10px;
 		}
 	}
+
+	@media (max-width: 452px) {
+		.notification-user,
+		.notification-time,
+		span {
+			font-size: 0.9rem;
+		}
+	}
 `;
 
 const ViewNotification = props => {

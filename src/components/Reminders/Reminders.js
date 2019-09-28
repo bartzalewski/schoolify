@@ -36,21 +36,22 @@ const StyledReminders = styled.aside`
 	@media (max-width: 1124px) {
 		position: static;
 		top: 0px;
-		width: 80%;
+		width: 100%;
 		border: none;
 		margin: 60px 1rem 0px 1rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		border-bottom: 1px solid #d2d2d2;
+		padding: 3.375px;
 
 		.container {
 			flex-direction: column;
 		}
-	}
 
-	@media (max-width: 813px) {
-		width: 100%;
+		.title {
+			font-size: 1rem;
+		}
 	}
 `;
 
@@ -61,7 +62,8 @@ class Reminders extends Component {
 			{ id: 2, content: 'get enough sleep' },
 			{ id: 3, content: 'get organized' },
 			{ id: 4, content: 'lay out your outfit before' }
-		]
+		],
+		active: false
 	};
 	deleteTodo = id => {
 		const todos = this.state.todos.filter(todo => {
@@ -78,14 +80,29 @@ class Reminders extends Component {
 			todos
 		});
 	};
+	isHidden = () => {
+		this.setState({
+			active: !this.state.active
+		});
+	};
 	render() {
 		return (
 			<StyledReminders>
 				<div className="container">
-					<h1 className="title">Reminders</h1>
-					<AddReminder addTodo={this.addTodo} />
+					<h1 onClick={this.isHidden} className="title">
+						Reminders
+					</h1>
+					{!this.state.active && (
+						<AddReminder active={this.state.active} addTodo={this.addTodo} />
+					)}
 				</div>
-				<RemindersList todos={this.state.todos} deleteTodo={this.deleteTodo} />
+				{!this.state.active && (
+					<RemindersList
+						active={this.state.active}
+						todos={this.state.todos}
+						deleteTodo={this.deleteTodo}
+					/>
+				)}
 			</StyledReminders>
 		);
 	}

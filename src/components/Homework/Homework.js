@@ -69,18 +69,19 @@ const StyledHomework = styled.aside`
 	@media (max-width: 1124px) {
 		position: static;
 		top: 0px;
-		width: 80%;
+		width: 100%;
 		border: none;
 		text-align: center;
 		border-bottom: 1px solid #d2d2d2;
+		padding: 3.375px;
 
 		.container {
 			flex-direction: column;
 		}
-	}
 
-	@media (max-width: 813px) {
-		width: 100%;
+		.title {
+			font-size: 1rem;
+		}
 	}
 `;
 
@@ -90,7 +91,8 @@ class Homework extends Component {
 			{ id: 1, content: 'Math: ex.1, p.5' },
 			{ id: 2, content: 'English: ex.1, p.6' },
 			{ id: 3, content: 'Spanish: ex.1, p.3' }
-		]
+		],
+		active: false
 	};
 	deleteTodo = id => {
 		const todos = this.state.todos.filter(todo => {
@@ -107,14 +109,23 @@ class Homework extends Component {
 			todos
 		});
 	};
+	isHidden = () => {
+		this.setState({
+			active: !this.state.active
+		});
+	};
 	render() {
 		return (
 			<StyledHomework>
 				<div className="container">
-					<h1 className="title">Homework</h1>
-					<AddHomework addTodo={this.addTodo} />
+					<h1 onClick={this.isHidden} className="title">
+						Homework
+					</h1>
+					{!this.state.active && <AddHomework addTodo={this.addTodo} />}
 				</div>
-				<HomeworkList todos={this.state.todos} deleteTodo={this.deleteTodo} />
+				{!this.state.active && (
+					<HomeworkList todos={this.state.todos} deleteTodo={this.deleteTodo} />
+				)}
 			</StyledHomework>
 		);
 	}

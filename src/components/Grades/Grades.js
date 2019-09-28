@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Add } from '../../images/add.svg';
 import { Link } from 'react-router-dom';
@@ -67,9 +67,10 @@ const StyledGrades = styled.aside`
 	@media (max-width: 1124px) {
 		position: static;
 		top: 0px;
-		width: 80%;
+		width: 100%;
 		border: none;
 		text-align: center;
+		padding: 3.375px;
 
 		.container {
 			display: flex;
@@ -77,27 +78,43 @@ const StyledGrades = styled.aside`
 			align-items: center;
 			flex-direction: column;
 		}
-	}
 
-	@media (max-width: 813px) {
-		width: 100%;
+		.title {
+			font-size: 1rem;
+		}
 	}
 `;
 
-const Grades = () => {
-	return (
-		<StyledGrades>
-			<div className="container">
-				<h1 className="title">Grades</h1>
-				<Link to="/add-grade">
-					<Add className="add"></Add>
-				</Link>
-			</div>
-			<div className="subjects">
-				<GradesList />
-			</div>
-		</StyledGrades>
-	);
-};
+class Grades extends Component {
+	state = {
+		active: false
+	};
+	isHidden = () => {
+		this.setState({
+			active: !this.state.active
+		});
+	};
+	render() {
+		return (
+			<StyledGrades>
+				<div className="container">
+					<h1 onClick={this.isHidden} className="title">
+						Grades
+					</h1>
+					{!this.state.active && (
+						<Link to="/add-grade">
+							<Add className="add"></Add>
+						</Link>
+					)}
+				</div>
+				{!this.state.active && (
+					<div className="subjects">
+						<GradesList />
+					</div>
+				)}
+			</StyledGrades>
+		);
+	}
+}
 
 export default Grades;
