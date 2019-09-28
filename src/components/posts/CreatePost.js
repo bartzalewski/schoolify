@@ -207,9 +207,9 @@ class CreatePost extends Component {
 						<div className="input-field">
 							<label htmlFor="schoolName" />
 							<select id="schoolName" onChange={this.handleSelect}>
-								{/* <option disabled selected>
+								<option disabled selected>
 									Select your school
-								</option> */}
+								</option>
 							</select>
 						</div>
 						<div className="input-field">

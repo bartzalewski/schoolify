@@ -15,14 +15,13 @@ const HomeworkList = ({ todos, deleteTodo }) => {
 	const todoList = todos.length ? (
 		todos.map(todo => {
 			return (
-				<StyledHomeworkList key={todo.id}>
-					<span
-						onClick={() => {
-							deleteTodo(todo.id);
-						}}
-					>
-						{todo.content}
-					</span>
+				<StyledHomeworkList
+					key={todo.id}
+					onClick={() => {
+						deleteTodo(todo.id);
+					}}
+				>
+					<span>{todo.content}</span>
 				</StyledHomeworkList>
 			);
 		})

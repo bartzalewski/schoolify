@@ -28,14 +28,13 @@ const TestsList = ({ todos, deleteTodo }) => {
 	const todoList = todos.length ? (
 		todos.map(todo => {
 			return (
-				<StyledTestsList key={todo.id}>
-					<span
-						onClick={() => {
-							deleteTodo(todo.id);
-						}}
-					>
-						{todo.content}
-					</span>
+				<StyledTestsList
+					key={todo.id}
+					onClick={() => {
+						deleteTodo(todo.id);
+					}}
+				>
+					<span>{todo.content}</span>
 				</StyledTestsList>
 			);
 		})
