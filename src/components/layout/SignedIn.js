@@ -9,7 +9,7 @@ import Tests from '../../components/Tests/Tests';
 import News from '../../pages/News';
 import Notification from '../../pages/Notification.js';
 import Lessons from '../../pages/Lessons.js';
-import Contact from '../../pages/Contact.js';
+import Chat from '../../pages/Chat';
 import CreatePost from '../../components/posts/CreatePost';
 import CreateSchool from '../../components/schools/CreateSchool';
 import ViewSchools from '../../components/schools/ViewSchools';
@@ -405,7 +405,7 @@ class SignedIn extends Component {
 									<path d="M34.7883 28.862C34.53 28.6124 34.1203 28.6124 33.862 28.862L31 31.724L29.4713 30.1953C29.2065 29.9395 28.7845 29.9468 28.5287 30.2117C28.2791 30.47 28.2791 30.8797 28.5287 31.138L30.5287 33.138C30.789 33.3983 31.211 33.3983 31.4713 33.138L34.8047 29.8047C35.0605 29.5398 35.0532 29.1178 34.7883 28.862Z" />
 								</svg>
 							</NavLink>
-							<NavLink activeClassName="active" to="/contact" className="box">
+							<NavLink activeClassName="active" to="/chat" className="box">
 								<svg
 									width="40"
 									height="40"
@@ -465,7 +465,7 @@ class SignedIn extends Component {
 									</StyledProfile>
 								</Route>
 								<Route path="/lessons" component={Lessons} />
-								<Route path="/contact" component={Contact} />
+								<Route path="/chat" component={Chat} />
 								<Route path="/create" component={CreatePost} />
 								<Route path="/add" component={CreateSchool} />
 								<Route path="/school-list" component={ViewSchools} />
@@ -543,7 +543,7 @@ class SignedIn extends Component {
 									<path d="M34.7883 28.862C34.53 28.6124 34.1203 28.6124 33.862 28.862L31 31.724L29.4713 30.1953C29.2065 29.9395 28.7845 29.9468 28.5287 30.2117C28.2791 30.47 28.2791 30.8797 28.5287 31.138L30.5287 33.138C30.789 33.3983 31.211 33.3983 31.4713 33.138L34.8047 29.8047C35.0605 29.5398 35.0532 29.1178 34.7883 28.862Z" />
 								</svg>
 							</NavLink>
-							<NavLink activeClassName="active" to="/contact" className="box">
+							<NavLink activeClassName="active" to="/chat" className="box">
 								<svg
 									width="40"
 									height="40"
@@ -601,7 +601,7 @@ class SignedIn extends Component {
 							</StyledProfile>
 						</Route>
 						<Route path="/lessons" component={Lessons} />
-						<Route path="/contact" component={Contact} />
+						<Route path="/chat" component={Chat} />
 						<Route path="/create" component={CreatePost} />
 						<Route path="/add" component={CreateSchool} />
 						<Route path="/school-list" component={ViewSchools} />
