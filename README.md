@@ -6,7 +6,10 @@ Link to the app: https://schoolify-app.herokuapp.com/
 
 ## What kind of technologies did I use?
 
-- I wanted to make my styles "better, faster, stronger" using styled-components. We'll see how it goes. 🤔
+- React.js
+- Redux
+- Firebase
+- styled-components
 
 ## How to run?
 
