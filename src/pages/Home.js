@@ -47,7 +47,7 @@ const StyledHome = styled.div`
 
 	input,
 	button {
-		user-select: none;
+		user-select: text;
 	}
 
 	input:focus {
