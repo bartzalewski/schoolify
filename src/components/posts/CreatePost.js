@@ -94,6 +94,20 @@ const StyledCreatePost = styled.section`
 		.container {
 			padding: 10px;
 		}
+
+		h1 {
+			font-size: 1.2rem;
+		}
+
+		#schoolName,
+		#content {
+			font-size: 0.9rem;
+		}
+
+		.btn {
+			font-size: 0.8rem;
+			padding: 0px 12.5px;
+		}
 	}
 `;
 

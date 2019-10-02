@@ -54,6 +54,10 @@ const StyledNews = styled.section`
 			transform: scale(1.05);
 			transition: 0.2s;
 		}
+
+		@media (max-width: 813px) {
+			height: 100px;
+		}
 	}
 
 	.container {
@@ -80,6 +84,10 @@ const StyledNews = styled.section`
 		.box-add {
 			width: 50%;
 		}
+
+		@media (max-width: 813px) {
+			height: 100px;
+		}
 	}
 
 	.school-bg {
@@ -87,6 +95,10 @@ const StyledNews = styled.section`
 		height: 250px;
 		border-radius: 15px;
 		user-select: none;
+
+		@media (max-width: 813px) {
+			height: 100px;
+		}
 	}
 
 	.school-logo {
@@ -177,6 +189,7 @@ const StyledNews = styled.section`
 	.posts-title {
 		margin-left: 3.5rem;
 		font-size: 1.1875rem;
+		line-height: 1.25;
 	}
 
 	.posts-time {
@@ -184,12 +197,14 @@ const StyledNews = styled.section`
 		margin-left: 3.5rem;
 		font-size: 1.0625rem;
 		color: #9b9b9b;
+		line-height: 1.25;
 	}
 
 	.posts-desc {
 		margin-top: 3rem;
 		text-align: justify;
 		font-size: 18px;
+		line-height: 1.25;
 	}
 
 	.posts-img {
@@ -243,11 +258,13 @@ const StyledNews = styled.section`
 		.school-title {
 			padding-left: 10px;
 			padding-top: 10px;
+			font-size: 1.2rem;
 		}
 
 		.school-list {
 			padding-right: 10px;
 			padding-top: 10px;
+			font-size: 1.2rem;
 		}
 
 		.container {
@@ -270,13 +287,14 @@ const StyledNews = styled.section`
 		}
 
 		.add {
-			width: 40px;
-			height: 40px;
+			width: 30px;
+			height: 30px;
+			margin: 0;
 		}
 
 		.school-logo {
-			width: 40px;
-			height: 40px;
+			width: 30px;
+			height: 30px;
 		}
 
 		.user-logo {
@@ -299,7 +317,7 @@ const StyledNews = styled.section`
 			font-size: 0.9rem;
 		}
 		.add-title {
-			font-size: 0.9rem;
+			font-size: 0.75rem;
 		}
 	}
 `;

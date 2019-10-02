@@ -53,6 +53,10 @@ const StyledSettings = styled.section`
 
 	@media (max-width: 1124px) {
 		width: 80%;
+
+		h1 {
+			font-size: 1.2rem;
+		}
 	}
 
 	@media (max-width: 813px) {

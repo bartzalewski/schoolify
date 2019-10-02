@@ -116,6 +116,15 @@ const StyledAddGrades = styled.div`
 		.container {
 			padding: 10px;
 		}
+
+		h1 {
+			font-size: 1.2rem;
+		}
+
+		h3,
+		button {
+			font-size: 0.9rem !important;
+		}
 	}
 
 	@media (max-width: 542px) {

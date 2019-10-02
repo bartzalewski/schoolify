@@ -64,6 +64,10 @@ const StyledError = styled.section`
 		.container {
 			padding: 10px;
 		}
+
+		h1 {
+			font-size: 1.2rem;
+		}
 	}
 `;
 

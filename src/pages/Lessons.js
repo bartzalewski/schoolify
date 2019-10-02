@@ -95,6 +95,9 @@ const StyledLessons = styled.section`
 		.school-name {
 			font-size: 0.9rem;
 		}
+		h1 {
+			font-size: 1.2rem;
+		}
 	}
 
 	@media (max-width: 452px) {
