@@ -391,6 +391,24 @@ class SignedIn extends Component {
 			console.log('File available at', downloadURL);
 		});
 	};
+	componentDidMount() {
+		db.collection('schools')
+			.get()
+			.then(snap =>
+				snap.forEach(doc => {
+					const { reminders, homework, tests } = doc.data();
+					console.log(reminders, homework, tests);
+				})
+			);
+		// db.collection('classes')
+		// 	.get()
+		// 	.then(snap =>
+		// 		snap.forEach(doc => {
+		// 			const { schoolName } = doc.data();
+		// 			console.log(schoolName);
+		// 		})
+		// 	);
+	}
 	render() {
 		const { firstName, lastName, userAvatar } = this.props.profile;
 		return (
