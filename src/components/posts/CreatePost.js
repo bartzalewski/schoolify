@@ -240,8 +240,14 @@ class CreatePost extends Component {
 					</form>
 					<progress value={this.state.progress} max="100" />
 					<br />
-					<input type="file" onChange={this.handleChoose} />
-					<button onClick={this.handleUpload}>Upload Image</button>
+					<input
+						className="custom-file-input"
+						type="file"
+						onChange={this.handleChoose}
+					/>
+					<button className="btn" onClick={this.handleUpload}>
+						Upload Image
+					</button>
 				</div>
 			</StyledCreatePost>
 		);

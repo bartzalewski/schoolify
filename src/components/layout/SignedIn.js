@@ -523,7 +523,11 @@ class SignedIn extends Component {
 													{firstName} {lastName}
 												</h2>
 												<progress value={this.state.progress} max="100" />
-												<input type="file" onChange={this.handleChoose} />
+												<input
+													className="custom-file-input"
+													type="file"
+													onChange={this.handleChoose}
+												/>
 												<button onClick={this.handleUpload}>
 													Change your avatar!
 												</button>

@@ -218,14 +218,22 @@ class CreateSchool extends Component {
 					</form>
 					<progress value={this.state.progress} max="100" />
 					<br />
-					<input type="file" onChange={this.handleChooseSchoolLogo} />
+					<input
+						className="custom-file-input"
+						type="file"
+						onChange={this.handleChooseSchoolLogo}
+					/>
 					<button onClick={this.handleUploadSchoolLogo}>
 						Upload Scholo Logo
 					</button>
 					<br />
 					<progress value={this.state.progress} max="100" />
 					<br />
-					<input type="file" onChange={this.handleChooseSchoolBackground} />
+					<input
+						className="custom-file-input"
+						type="file"
+						onChange={this.handleChooseSchoolBackground}
+					/>
 					<button onClick={this.handleUploadSchoolBackground}>
 						Upload School Background
 					</button>
