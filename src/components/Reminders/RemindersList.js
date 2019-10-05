@@ -29,12 +29,13 @@ const RemindersList = ({ todos, deleteTodo }) => {
 		todos.map(todo => {
 			return (
 				<StyledRemindersList
+					id="reminders"
 					key={todo.id}
 					onClick={() => {
 						deleteTodo(todo.id);
 					}}
 				>
-					<span>{todo.content}</span>
+					<span></span>
 				</StyledRemindersList>
 			);
 		})

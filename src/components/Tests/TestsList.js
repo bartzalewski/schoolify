@@ -29,6 +29,7 @@ const TestsList = ({ todos, deleteTodo }) => {
 		todos.map(todo => {
 			return (
 				<StyledTestsList
+					id="tests"
 					key={todo.id}
 					onClick={() => {
 						deleteTodo(todo.id);

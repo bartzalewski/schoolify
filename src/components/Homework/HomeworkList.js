@@ -16,6 +16,7 @@ const HomeworkList = ({ todos, deleteTodo }) => {
 		todos.map(todo => {
 			return (
 				<StyledHomeworkList
+					id="homework"
 					key={todo.id}
 					onClick={() => {
 						deleteTodo(todo.id);

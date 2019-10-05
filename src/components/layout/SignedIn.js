@@ -342,7 +342,8 @@ class SignedIn extends Component {
 	state = {
 		userAvatar: null,
 		url: '',
-		progress: 0
+		progress: 0,
+		active: true
 	};
 	handleChoose = e => {
 		if (e.target.files[0]) {
@@ -391,13 +392,29 @@ class SignedIn extends Component {
 			console.log('File available at', downloadURL);
 		});
 	};
+	isHidden = () => {
+		this.setState({
+			active: !this.state.active
+		});
+	};
 	componentDidMount() {
 		db.collection('schools')
 			.get()
 			.then(snap =>
 				snap.forEach(doc => {
 					const { reminders, homework, tests } = doc.data();
-					console.log(reminders, homework, tests);
+					const remindersList = document.getElementById('reminders');
+					const homeworkList = document.getElementById('homework');
+					const testsList = document.getElementById('tests');
+					remindersList.innerHTML = reminders;
+					homeworkList.innerHTML = homework;
+					testsList.innerHTML = tests;
+					const remindersArray = remindersList.innerHTML.split(',');
+					const homeworkArray = homeworkList.innerHTML.split(',');
+					const testsArray = testsList.innerHTML.split(',');
+					remindersList.innerHTML = remindersArray[0];
+					homeworkList.innerHTML = homeworkArray[0];
+					testsList.innerHTML = testsArray[0];
 				})
 			);
 		// db.collection('classes')
@@ -527,10 +544,13 @@ class SignedIn extends Component {
 													className="custom-file-input"
 													type="file"
 													onChange={this.handleChoose}
+													onClick={this.isHidden}
 												/>
-												<button onClick={this.handleUpload}>
-													Change your avatar!
-												</button>
+												{!this.state.active && (
+													<button onClick={this.handleUpload}>
+														Change your avatar!
+													</button>
+												)}
 												<div className="profile-school">
 													<p className="profile-bold">School:</p>
 													<p className="profile-normal">
