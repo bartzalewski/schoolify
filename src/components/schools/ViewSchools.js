@@ -49,7 +49,7 @@ class ViewSchools extends Component {
 		const { schools } = this.props;
 		return (
 			<StyledViewSchools>
-				<div className="container">
+				<div className="container school-list-page">
 					<h1>School list</h1>
 					<SchoolList schools={schools} />
 				</div>

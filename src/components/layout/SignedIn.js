@@ -406,9 +406,9 @@ class SignedIn extends Component {
 					const remindersList = document.getElementById('reminders');
 					const homeworkList = document.getElementById('homework');
 					const testsList = document.getElementById('tests');
-					remindersList.innerHTML = reminders;
-					homeworkList.innerHTML = homework;
-					testsList.innerHTML = tests;
+					remindersList.innerHTML = reminders || null;
+					homeworkList.innerHTML = homework || null;
+					testsList.innerHTML = tests || null;
 					const remindersArray = remindersList.innerHTML.split(',');
 					const homeworkArray = homeworkList.innerHTML.split(',');
 					const testsArray = testsList.innerHTML.split(',');

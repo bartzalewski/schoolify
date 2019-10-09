@@ -190,6 +190,7 @@ const StyledNews = styled.section`
 		margin-left: 3.5rem;
 		font-size: 1.1875rem;
 		line-height: 1.25;
+		text-align: justify;
 	}
 
 	.posts-time {
@@ -198,6 +199,7 @@ const StyledNews = styled.section`
 		font-size: 1.0625rem;
 		color: #9b9b9b;
 		line-height: 1.25;
+		text-align: justify;
 	}
 
 	.posts-desc {
@@ -286,6 +288,11 @@ const StyledNews = styled.section`
 			margin-top: 1rem;
 		}
 
+		.posts-title,
+		.posts-time {
+			margin-left: 2.25rem;
+		}
+
 		.add {
 			width: 30px;
 			height: 30px;
@@ -305,7 +312,7 @@ const StyledNews = styled.section`
 
 	@media (max-width: 478px) {
 		.posts-title {
-			font-size: 1rem;
+			font-size: 0.9rem;
 		}
 		.posts-time {
 			font-size: 0.9rem;

@@ -89,7 +89,7 @@ const ViewNotification = props => {
 					{notifications &&
 						notifications.map(item => {
 							return (
-								<li key={item.id}>
+								<li className="notification-item" key={item.id}>
 									<span className="notification-user">{item.user} </span>
 									<span>{item.content}</span>
 									<div className="notification-time">
