@@ -29,6 +29,10 @@ const StyledHome = styled.div`
 	position: relative;
 	left: 25vw;
 	top: 100px;
+
+	@media (max-width: 1359px) {
+		top: 60px;
+	}
 `;
 
 const StyledLeftSide = styled.div``;
@@ -163,21 +167,7 @@ const StyledNavbar = styled.nav`
 		}
 
 		&::before {
-			content: '';
-			width: 100px;
-			height: 3px;
-			background: #fe843f;
-			position: absolute;
-			bottom: 0;
-
-			@media (max-width: 1359px) {
-				height: 2px;
-				width: 60px;
-			}
-
-			@media (max-width: 813px) {
-				width: 30px;
-			}
+			transform: scaleX(1) !important;
 		}
 	}
 
@@ -250,11 +240,29 @@ const StyledNavbar = styled.nav`
 		transition: 0.2s;
 
 		&:hover {
-			transition: 0.2s;
-			transform: scale(1.05);
-
 			svg {
 				fill: #fe843f;
+				transition: 0.2s;
+			}
+		}
+
+		&::before {
+			content: '';
+			width: 100px;
+			height: 3px;
+			background: #fe843f;
+			position: absolute;
+			bottom: 0;
+			transform: scaleX(0);
+			transition: 0.2s ease-in-out;
+
+			@media (max-width: 1359px) {
+				height: 2px;
+				width: 60px;
+			}
+
+			@media (max-width: 813px) {
+				width: 30px;
 			}
 		}
 
@@ -284,6 +292,7 @@ const StyledNavbar = styled.nav`
 		&:hover {
 			img {
 				box-shadow: 0 0 0 2pt #fe843f;
+				transition: 0.2s;
 			}
 		}
 	}
@@ -297,23 +306,8 @@ const StyledNavbar = styled.nav`
 		}
 	}
 
-	.box:hover::before {
-		content: '';
-		width: 100px;
-		height: 3px;
-		background: #fe843f;
-		position: absolute;
-		bottom: 3px;
-
-		@media (max-width: 1359px) {
-			width: 60px;
-			height: 2px;
-		}
-
-		@media (max-width: 813px) {
-			width: 30px;
-			height: 2px;
-		}
+	svg {
+		transition: 0.2s;
 	}
 
 	svg,
@@ -324,9 +318,12 @@ const StyledNavbar = styled.nav`
 		}
 	}
 
+	@media (max-width: 1359px) {
+		height: 60px;
+	}
+
 	@media (max-width: 1124px) {
 		top: 0px;
-		height: 60px;
 		.left,
 		.right {
 			width: 10vw;
@@ -402,29 +399,9 @@ class SignedIn extends Component {
 			.get()
 			.then(snap =>
 				snap.forEach(doc => {
-					const { reminders, homework, tests } = doc.data();
-					const remindersList = document.getElementById('reminders');
-					const homeworkList = document.getElementById('homework');
-					const testsList = document.getElementById('tests');
-					remindersList.innerHTML = reminders || null;
-					homeworkList.innerHTML = homework || null;
-					testsList.innerHTML = tests || null;
-					const remindersArray = remindersList.innerHTML.split(',');
-					const homeworkArray = homeworkList.innerHTML.split(',');
-					const testsArray = testsList.innerHTML.split(',');
-					remindersList.innerHTML = remindersArray[0];
-					homeworkList.innerHTML = homeworkArray[0];
-					testsList.innerHTML = testsArray[0];
+					console.log(doc.data().classes);
 				})
 			);
-		// db.collection('classes')
-		// 	.get()
-		// 	.then(snap =>
-		// 		snap.forEach(doc => {
-		// 			const { schoolName } = doc.data();
-		// 			console.log(schoolName);
-		// 		})
-		// 	);
 	}
 	render() {
 		const { firstName, lastName, userAvatar } = this.props.profile;

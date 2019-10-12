@@ -6,7 +6,6 @@ const StyledSchoolSummary = styled.div`
 		height: 250px;
 		background-color: white;
 		border-radius: 15px;
-		border: 1px solid #d2d2d2;
 		transition: 0.2s;
 
 		&:hover {

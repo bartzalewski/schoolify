@@ -59,7 +59,9 @@ const StyledHomework = styled.aside`
 	}
 
 	@media (max-width: 1359px) {
+		top: 60px;
 		padding: 12.5px;
+		height: calc(50% - 30px);
 
 		.title {
 			font-size: 1.5rem;

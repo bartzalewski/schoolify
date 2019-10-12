@@ -7,25 +7,25 @@ import GlobalStyle from '../src/theme/globalStyle';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 const DarkTheme = createGlobalStyle`
-	body {
+	body, section, .school-list-page, .add-grades-page, .grades-summary-page {
 		background: ${props =>
-			props.theme.mode === 'dark' ? '#282828' : '#EEE'} !important;
-		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : '#111')};
+			props.theme.mode === 'dark' ? '#141414' : null} !important;
+		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)};
 	}
 
-	aside, nav, section, .input-reminder, .input-reminder::placeholder, .input-homework, .input-homework::placeholder, .input-tests, .input-tests::placeholder, #schoolName, #schoolName::placeholder, #content, #content::placeholder {
+	aside, nav, .input-reminder, .input-reminder::placeholder, .input-homework, .input-homework::placeholder, .input-tests, .input-tests::placeholder, #schoolName, #schoolName::placeholder, #content, #content::placeholder {
 		background: ${props =>
-			props.theme.mode === 'dark' ? '#282828' : '#EEE'} !important;
-		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : '#111')};
+			props.theme.mode === 'dark' ? '#1F1F1F' : null} !important;
+		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)};
 	}
 
-	.posts-list, .add-post, .posts-btn, .lesson-box, .box-add, .school-list-page, .notification-item {
+	.posts-list, .add-post, .posts-btn, .lesson-box, .box-add, .notification-item, .add-grades-box, .box-error-page {
 		background: ${props =>
-			props.theme.mode === 'dark' ? '#1F1F1F' : '#EEE'} !important;
+			props.theme.mode === 'dark' ? '#0a0a0a' : null} !important;
 	}
 
 	.box {
-		fill: ${props => (props.theme.mode === 'dark' ? '#EEE' : '#000')} !important;
+		fill: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 	}
 `;
 
@@ -36,7 +36,7 @@ function App(props) {
 	return (
 		<BrowserRouter>
 			<GlobalStyle />
-			<ThemeProvider theme={{ mode: 'dark' }}>
+			<ThemeProvider theme={{ mode: 'light' }}>
 				<>
 					<DarkTheme />
 					{links}

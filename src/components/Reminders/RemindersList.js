@@ -35,7 +35,7 @@ const RemindersList = ({ todos, deleteTodo }) => {
 						deleteTodo(todo.id);
 					}}
 				>
-					<span></span>
+					<span>{todo.content}</span>
 				</StyledRemindersList>
 			);
 		})

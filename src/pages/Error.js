@@ -76,7 +76,7 @@ const Error = () => {
 		<StyledError>
 			<div className="container">
 				<h1>404 not found</h1>
-				<div className="flex">
+				<div className="flex box-error-page">
 					<p>
 						If you found this page, it can mean that it is not yet supported or
 						you've entered the invalid URL. Please keep in mind that this is

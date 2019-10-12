@@ -47,7 +47,6 @@ const StyledNews = styled.section`
 		height: 250px;
 		background-color: white;
 		border-radius: 15px;
-		border: 1px solid #d2d2d2;
 		transition: 0.2s;
 
 		&:hover {
@@ -71,8 +70,6 @@ const StyledNews = styled.section`
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
 			grid-gap: 5px;
-			/* display: flex;
-			justify-content: space-between; */
 			margin-top: 0;
 			margin-right: 5px;
 		}

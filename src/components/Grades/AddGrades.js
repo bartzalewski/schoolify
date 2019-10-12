@@ -153,10 +153,10 @@ const StyledAddGrades = styled.div`
 export default function AddGrades() {
 	return (
 		<StyledAddGrades>
-			<div className="container">
+			<div className="container add-grades-page">
 				<h1>Add a grade</h1>
 				<div className="subjects">
-					<div className="box">
+					<div className="box add-grades-box">
 						<Link to="/grade" className="flex-start">
 							<img src={english} alt="" />
 							<h3>English</h3>
@@ -166,7 +166,7 @@ export default function AddGrades() {
 							<button className="remove">Remove</button>
 						</div>
 					</div>
-					<div className="box">
+					<div className="box add-grades-box">
 						<div className="flex-start">
 							<img src={german} alt="" />
 							<h3>German</h3>
@@ -176,7 +176,7 @@ export default function AddGrades() {
 							<button className="remove">Remove</button>
 						</div>
 					</div>
-					<div className="box">
+					<div className="box add-grades-box">
 						<div className="flex-start">
 							<img src={spanish} alt="" />
 							<h3>Spanish</h3>
@@ -186,7 +186,7 @@ export default function AddGrades() {
 							<button className="remove">Remove</button>
 						</div>
 					</div>
-					<div className="box">
+					<div className="box add-grades-box">
 						<div className="flex-start">
 							<img src={math} alt="" />
 							<h3>Math</h3>
@@ -196,7 +196,7 @@ export default function AddGrades() {
 							<button className="remove">Remove</button>
 						</div>
 					</div>
-					<div className="box">
+					<div className="box add-grades-box">
 						<div className="flex-start">
 							<img src={physics} alt="" />
 							<h3>Physics</h3>
@@ -206,7 +206,7 @@ export default function AddGrades() {
 							<button className="remove">Remove</button>
 						</div>
 					</div>
-					<div className="box">
+					<div className="box add-grades-box">
 						<div className="flex-start">
 							<img src={bio} alt="" />
 							<h3>Biology</h3>
@@ -216,7 +216,7 @@ export default function AddGrades() {
 							<button className="remove">Remove</button>
 						</div>
 					</div>
-					<div className="box">
+					<div className="box add-grades-box">
 						<div className="flex-start">
 							<img src={religion} alt="" />
 							<h3>Religion</h3>
@@ -226,7 +226,7 @@ export default function AddGrades() {
 							<button className="remove">Remove</button>
 						</div>
 					</div>
-					<div className="box">
+					<div className="box add-grades-box">
 						<div className="flex-start">
 							<img src={it} alt="" />
 							<h3>Informatics</h3>
@@ -236,7 +236,7 @@ export default function AddGrades() {
 							<button className="remove">Remove</button>
 						</div>
 					</div>
-					<div className="box">
+					<div className="box add-grades-box">
 						<div className="flex-start">
 							<img src={pe} alt="" />
 							<h3>Physical Education</h3>
@@ -246,7 +246,7 @@ export default function AddGrades() {
 							<button className="remove">Remove</button>
 						</div>
 					</div>
-					<div className="box">
+					<div className="box add-grades-box">
 						<div className="flex-start">
 							<img src={eco} alt="" />
 							<h3>Economy</h3>
@@ -256,7 +256,7 @@ export default function AddGrades() {
 							<button className="remove">Remove</button>
 						</div>
 					</div>
-					<div className="box">
+					<div className="box add-grades-box">
 						<div className="flex-start">
 							<img src={geo} alt="" />
 							<h3>Geography</h3>
@@ -266,7 +266,7 @@ export default function AddGrades() {
 							<button className="remove">Remove</button>
 						</div>
 					</div>
-					<div className="box">
+					<div className="box add-grades-box">
 						<div className="flex-start">
 							<img src={chem} alt="" />
 							<h3>Chemistry</h3>
@@ -276,7 +276,7 @@ export default function AddGrades() {
 							<button className="remove">Remove</button>
 						</div>
 					</div>
-					<div className="box">
+					<div className="box add-grades-box">
 						<div className="flex-start">
 							<img src={history} alt="" />
 							<h3>History</h3>
@@ -286,7 +286,7 @@ export default function AddGrades() {
 							<button className="remove">Remove</button>
 						</div>
 					</div>
-					<div className="box">
+					<div className="box add-grades-box">
 						<div className="flex-start">
 							<Add />
 							<h3>New Grade</h3>
