@@ -177,6 +177,10 @@ const StyledNews = styled.section`
 		height: fit-content;
 		display: block;
 		padding: 25px;
+
+		&:nth-of-type(1) {
+			margin-top: 1rem;
+		}
 	}
 
 	.posts-logo {
@@ -304,6 +308,10 @@ const StyledNews = styled.section`
 		.user-logo {
 			width: 30px;
 			height: 30px;
+		}
+
+		.add-title {
+			font-size: 0.9rem;
 		}
 	}
 

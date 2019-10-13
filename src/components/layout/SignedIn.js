@@ -249,7 +249,7 @@ const StyledNavbar = styled.nav`
 		&::before {
 			content: '';
 			width: 100px;
-			height: 3px;
+			height: 2px;
 			background: #fe843f;
 			position: absolute;
 			bottom: 0;
@@ -257,7 +257,6 @@ const StyledNavbar = styled.nav`
 			transition: 0.2s ease-in-out;
 
 			@media (max-width: 1359px) {
-				height: 2px;
 				width: 60px;
 			}
 
@@ -270,6 +269,7 @@ const StyledNavbar = styled.nav`
 			width: 40px;
 			height: 40px;
 			border-radius: 100px;
+			transition: 0.2s;
 
 			@media (max-width: 1359px) {
 				width: 30px;
