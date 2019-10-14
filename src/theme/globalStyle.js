@@ -46,31 +46,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   progress {
-		display: block;
-		width: 50%;
-		padding: 4px;
-		border: 0 none;
-		background: #444;
-		border-radius: 14px;
-		box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5),
-			0px 1px 0px rgba(255, 255, 255, 0.2);
-	}
-
-	progress::-moz-progress-bar {
-		border-radius: 12px;
-		background: #fff;
-		box-shadow: inset 0 2px 5px 0px #ff9800;
-	}
-
-	progress::-webkit-progress-bar {
-		background: transparent;
-	}
-
-	progress::-webkit-progress-value {
-		border-radius: 12px;
-		background: #ff9800;
-		box-shadow: inset 0 2px 5px 0px #ff9800;
-	}
+    visibility: hidden;
+  }
 
   .custom-file-input {
     color: transparent;

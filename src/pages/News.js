@@ -17,7 +17,7 @@ const StyledNews = styled.section`
 	background: #ececf0;
 	padding: 40px;
 
-	.school-title {
+	.schools-title {
 		font-size: 1.625rem;
 		font-weight: 600;
 		user-select: none;
@@ -79,7 +79,7 @@ const StyledNews = styled.section`
 		}
 
 		.box-add {
-			width: 50%;
+			width: 24.35%;
 		}
 
 		@media (max-width: 813px) {
@@ -224,7 +224,7 @@ const StyledNews = styled.section`
 	@media (max-width: 1359px) {
 		padding: 12.5px;
 
-		.school-title {
+		.schools-title {
 			padding-left: 20px;
 			padding-top: 20px;
 		}
@@ -258,7 +258,7 @@ const StyledNews = styled.section`
 	@media (max-width: 813px) {
 		width: 100%;
 
-		.school-title {
+		.schools-title {
 			padding-left: 10px;
 			padding-top: 10px;
 			font-size: 1.2rem;
@@ -341,7 +341,7 @@ class News extends Component {
 		return (
 			<StyledNews>
 				<div className="home-wrapper">
-					<h1 className="school-title">Browse schools</h1>
+					<h1 className="schools-title">Browse schools</h1>
 					<Link to="/school-list" className="school-list">
 						See All
 					</Link>

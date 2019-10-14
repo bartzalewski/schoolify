@@ -7,6 +7,7 @@ const StyledSchoolList = styled.div`
 	grid-template-columns: repeat(5, 1fr);
 	grid-gap: 5px;
 	margin-top: 2rem;
+	width: 100%;
 
 	@media (max-width: 813px) {
 		grid-template-columns: repeat(2, 1fr);

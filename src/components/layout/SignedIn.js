@@ -78,10 +78,24 @@ const StyledProfile = styled.section`
 			height: 150px;
 			transition: 0.2s;
 			border-radius: 100px;
+			position: relative;
 
 			&:hover {
 				transform: scale(1.05);
 				transition: 0.2s;
+			}
+		}
+
+		svg {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			cursor: pointer;
+			transition: 0.2s;
+
+			&:hover {
+				transition: 0.2s;
+				fill: #fe843f;
 			}
 		}
 
@@ -96,9 +110,31 @@ const StyledProfile = styled.section`
 		}
 
 		.profile-school {
-			margin-top: 5rem;
 			margin-bottom: 1rem;
 		}
+	}
+
+	.avatar-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+	}
+
+	.profile-info-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		position: relative;
+	}
+
+	.custom-file-input {
+		visibility: hidden;
+	}
+
+	.avatar-btn {
+		margin-top: 1rem;
 	}
 
 	h1 {
@@ -340,7 +376,7 @@ class SignedIn extends Component {
 		userAvatar: null,
 		url: '',
 		progress: 0,
-		active: true
+		active: false
 	};
 	handleChoose = e => {
 		if (e.target.files[0]) {
@@ -388,6 +424,10 @@ class SignedIn extends Component {
 		uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
 			console.log('File available at', downloadURL);
 		});
+	};
+	handleEditPicture = () => {
+		const fileInput = document.getElementById('imageInput');
+		fileInput.click();
 	};
 	isHidden = () => {
 		this.setState({
@@ -512,31 +552,51 @@ class SignedIn extends Component {
 										<div className="profile-wrapper">
 											<h1>Profile</h1>
 											<div className="profile-container">
-												<img src={userAvatar} alt="" />
-												<h2>
-													{firstName} {lastName}
-												</h2>
-												<progress value={this.state.progress} max="100" />
-												<input
-													className="custom-file-input"
-													type="file"
-													onChange={this.handleChoose}
-													onClick={this.isHidden}
-												/>
-												{!this.state.active && (
-													<button onClick={this.handleUpload}>
-														Change your avatar!
-													</button>
-												)}
-												<div className="profile-school">
-													<p className="profile-bold">School:</p>
-													<p className="profile-normal">
-														Lorem ipsum dolor sit amet consectetur.
-													</p>
+												<div className="avatar-container">
+													<img title="Your avatar" src={userAvatar} alt="" />
+													<svg
+														onClick={this.handleEditPicture}
+														width="20"
+														height="20"
+														viewBox="0 0 20 20"
+														xmlns="http://www.w3.org/2000/svg"
+													>
+														<path d="M17.0833 4.58331H14.5833C14.4041 4.58331 14.245 4.46913 14.1883 4.29831L13.925 3.50831C13.6408 2.65581 12.8467 2.08331 11.9483 2.08331H8.05164C7.15332 2.08331 6.35914 2.65581 6.07582 3.50749L5.8125 4.29831C5.755 4.46913 5.59582 4.58331 5.41668 4.58331H2.91668C1.30832 4.58331 0 5.89167 0 7.49999V15C0 16.6083 1.30832 17.9167 2.91668 17.9167H17.0834C18.6917 17.9167 20 16.6083 20 15V7.49999C20 5.89167 18.6917 4.58331 17.0833 4.58331ZM19.1667 15C19.1667 16.1483 18.2317 17.0833 17.0834 17.0833H2.91668C1.76836 17.0833 0.833359 16.1483 0.833359 15V7.49999C0.833359 6.35167 1.76836 5.41667 2.91668 5.41667H5.41668C5.955 5.41667 6.43168 5.07335 6.6025 4.56249L6.86668 3.77081C7.03668 3.25999 7.51336 2.91663 8.05168 2.91663H11.9484C12.4867 2.91663 12.9634 3.25995 13.1342 3.77163L13.3975 4.56245C13.5683 5.07327 14.045 5.41663 14.5833 5.41663H17.0833C18.2316 5.41663 19.1666 6.35163 19.1666 7.49995V15H19.1667Z" />
+														<path d="M10 6.25C7.2425 6.25 5 8.4925 5 11.25C5 14.0075 7.2425 16.25 10 16.25C12.7575 16.25 15 14.0075 15 11.25C15 8.4925 12.7575 6.25 10 6.25ZM10 15.4167C7.7025 15.4167 5.83332 13.5475 5.83332 11.25C5.83332 8.9525 7.7025 7.08332 10 7.08332C12.2975 7.08332 14.1667 8.9525 14.1667 11.25C14.1667 13.5475 12.2975 15.4167 10 15.4167Z" />
+														<path d="M10 7.91669C8.16168 7.91669 6.66668 9.41168 6.66668 11.25C6.66668 11.48 6.85336 11.6667 7.08336 11.6667C7.31336 11.6667 7.5 11.48 7.5 11.25C7.5 9.87168 8.62168 8.75001 10 8.75001C10.23 8.75001 10.4167 8.56333 10.4167 8.33333C10.4167 8.10333 10.23 7.91669 10 7.91669Z" />
+													</svg>
 												</div>
-												<div className="profile-class">
-													<p className="profile-bold">Class:</p>
-													<p className="profile-normal">Lorem, ipsum.</p>
+												<div className="profile-info-container">
+													{!this.state.active &&
+														this.state.userAvatar !== null && (
+															<button
+																className="avatar-btn"
+																onClick={this.handleUpload}
+															>
+																Click to change your avatar!
+															</button>
+														)}
+													<h2>
+														{firstName} {lastName}
+													</h2>
+													<progress value={this.state.progress} max="100" />
+													<input
+														id="imageInput"
+														className="custom-file-input"
+														type="file"
+														onChange={this.handleChoose}
+													/>
+
+													<div className="profile-school">
+														<p className="profile-bold">School:</p>
+														<p className="profile-normal">
+															Lorem ipsum dolor sit amet consectetur.
+														</p>
+													</div>
+													<div className="profile-class">
+														<p className="profile-bold">Class:</p>
+														<p className="profile-normal">Lorem, ipsum.</p>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -663,23 +723,50 @@ class SignedIn extends Component {
 								<div className="profile-wrapper">
 									<h1>Profile</h1>
 									<div className="profile-container">
-										<img src={userAvatar} alt="" />
-										<h2>
-											{firstName} {lastName}
-										</h2>
-										<input type="file" onChange={this.handleChoose} />
-										<button onClick={this.handleUpload}>
-											Change your avatar!
-										</button>
-										<div className="profile-school">
-											<p className="profile-bold">School:</p>
-											<p className="profile-normal">
-												Lorem ipsum dolor sit amet consectetur.
-											</p>
+										<div className="avatar-container">
+											<img title="Your avatar" src={userAvatar} alt="" />
+											<svg
+												onClick={this.handleEditPicture}
+												width="20"
+												height="20"
+												viewBox="0 0 20 20"
+												xmlns="http://www.w3.org/2000/svg"
+											>
+												<path d="M17.0833 4.58331H14.5833C14.4041 4.58331 14.245 4.46913 14.1883 4.29831L13.925 3.50831C13.6408 2.65581 12.8467 2.08331 11.9483 2.08331H8.05164C7.15332 2.08331 6.35914 2.65581 6.07582 3.50749L5.8125 4.29831C5.755 4.46913 5.59582 4.58331 5.41668 4.58331H2.91668C1.30832 4.58331 0 5.89167 0 7.49999V15C0 16.6083 1.30832 17.9167 2.91668 17.9167H17.0834C18.6917 17.9167 20 16.6083 20 15V7.49999C20 5.89167 18.6917 4.58331 17.0833 4.58331ZM19.1667 15C19.1667 16.1483 18.2317 17.0833 17.0834 17.0833H2.91668C1.76836 17.0833 0.833359 16.1483 0.833359 15V7.49999C0.833359 6.35167 1.76836 5.41667 2.91668 5.41667H5.41668C5.955 5.41667 6.43168 5.07335 6.6025 4.56249L6.86668 3.77081C7.03668 3.25999 7.51336 2.91663 8.05168 2.91663H11.9484C12.4867 2.91663 12.9634 3.25995 13.1342 3.77163L13.3975 4.56245C13.5683 5.07327 14.045 5.41663 14.5833 5.41663H17.0833C18.2316 5.41663 19.1666 6.35163 19.1666 7.49995V15H19.1667Z" />
+												<path d="M10 6.25C7.2425 6.25 5 8.4925 5 11.25C5 14.0075 7.2425 16.25 10 16.25C12.7575 16.25 15 14.0075 15 11.25C15 8.4925 12.7575 6.25 10 6.25ZM10 15.4167C7.7025 15.4167 5.83332 13.5475 5.83332 11.25C5.83332 8.9525 7.7025 7.08332 10 7.08332C12.2975 7.08332 14.1667 8.9525 14.1667 11.25C14.1667 13.5475 12.2975 15.4167 10 15.4167Z" />
+												<path d="M10 7.91669C8.16168 7.91669 6.66668 9.41168 6.66668 11.25C6.66668 11.48 6.85336 11.6667 7.08336 11.6667C7.31336 11.6667 7.5 11.48 7.5 11.25C7.5 9.87168 8.62168 8.75001 10 8.75001C10.23 8.75001 10.4167 8.56333 10.4167 8.33333C10.4167 8.10333 10.23 7.91669 10 7.91669Z" />
+											</svg>
 										</div>
-										<div className="profile-class">
-											<p className="profile-bold">Class:</p>
-											<p className="profile-normal">Lorem, ipsum.</p>
+										<div className="profile-info-container">
+											{!this.state.active && this.state.userAvatar !== null && (
+												<button
+													className="avatar-btn"
+													onClick={this.handleUpload}
+												>
+													Click to change your avatar!
+												</button>
+											)}
+											<h2>
+												{firstName} {lastName}
+											</h2>
+											<progress value={this.state.progress} max="100" />
+											<input
+												id="imageInput"
+												className="custom-file-input"
+												type="file"
+												onChange={this.handleChoose}
+											/>
+
+											<div className="profile-school">
+												<p className="profile-bold">School:</p>
+												<p className="profile-normal">
+													Lorem ipsum dolor sit amet consectetur.
+												</p>
+											</div>
+											<div className="profile-class">
+												<p className="profile-bold">Class:</p>
+												<p className="profile-normal">Lorem, ipsum.</p>
+											</div>
 										</div>
 									</div>
 								</div>
