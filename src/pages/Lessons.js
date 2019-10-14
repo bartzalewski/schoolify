@@ -54,7 +54,7 @@ const StyledLessons = styled.section`
 		border: none;
 		height: 50px;
 		width: fit-content;
-		font-size: 1.125rem;
+		font-size: 0.9rem;
 		cursor: pointer;
 		padding: 2.5px 20px;
 		margin: 0.25rem;
@@ -88,9 +88,6 @@ const StyledLessons = styled.section`
 
 		.container {
 			padding: 10px;
-		}
-		button {
-			font-size: 1rem;
 		}
 		.school-name {
 			font-size: 0.9rem;

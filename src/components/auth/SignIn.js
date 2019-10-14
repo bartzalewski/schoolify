@@ -74,21 +74,21 @@ class SignIn extends Component {
 				<form className="signin-form" onSubmit={this.handleSubmit}>
 					<h1 className="signin-title">sign in</h1>
 					<div className="input-field">
-						<label htmlFor="email" />
 						<input
 							type="email"
 							id="email"
 							onChange={this.handleChange}
-							placeholder="test@test.com"
+							placeholder="E-mail"
+							aria-label="email"
 						/>
 					</div>
 					<div className="input-field">
-						<label htmlFor="password" />
 						<input
 							type="password"
 							id="password"
 							onChange={this.handleChange}
-							placeholder="test123"
+							placeholder="Password"
+							aria-label="password"
 						/>
 					</div>
 					<div className="input-field">

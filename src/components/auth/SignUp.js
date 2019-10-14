@@ -85,39 +85,39 @@ class SignUp extends Component {
 				<form className="signup-form" onSubmit={this.handleSubmit}>
 					<h1 className="signup-title">sign up</h1>
 					<div className="input-field">
-						<label htmlFor="firstName" />
 						<input
 							type="text"
 							id="firstName"
 							onChange={this.handleChange}
 							placeholder="First Name"
+							aria-label="firstName"
 						/>
 					</div>
 					<div className="input-field">
-						<label htmlFor="lastName" />
 						<input
 							type="text"
 							id="lastName"
 							onChange={this.handleChange}
 							placeholder="Last Name"
+							aria-label="lastName"
 						/>
 					</div>
 					<div className="input-field">
-						<label htmlFor="email" />
 						<input
 							type="email"
 							id="email"
 							onChange={this.handleChange}
 							placeholder="E-mail"
+							aria-label="email"
 						/>
 					</div>
 					<div className="input-field">
-						<label htmlFor="password" />
 						<input
 							type="password"
 							id="password"
 							onChange={this.handleChange}
 							placeholder="Password"
+							aria-label="password"
 						/>
 					</div>
 					<div className="input-field">
