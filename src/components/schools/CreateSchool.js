@@ -28,6 +28,12 @@ const StyledCreateSchool = styled.section`
 		outline: none;
 	}
 
+	#upload-post-btn {
+		visibility: hidden;
+		position: absolute;
+		animation: pulse 0.5s infinite alternate;
+	}
+
 	input[placeholder],
 	textarea[placeholder] {
 		padding: 10px 15px;
@@ -60,6 +66,19 @@ const StyledCreateSchool = styled.section`
 			transform: scale(1.05);
 			transition: 0.2s;
 		}
+	}
+
+	.btn-choose {
+		background: #fff;
+		font-weight: 400;
+		font-size: 0.9rem;
+		color: inherit;
+		border: 1px solid #d2d2d2;
+	}
+
+	.upload-container {
+		display: flex;
+		margin-top: -1.75rem;
 	}
 
 	.input-field:first-of-type {
@@ -195,9 +214,21 @@ class CreateSchool extends Component {
 	};
 	render() {
 		const { auth } = this.props;
+		const uploadPostButton = document.getElementById('upload-post-btn');
 		// console.log(`this is url: ${this.state.schoolLogo || 'none'} `);
-		// console.log(this.state);
+		console.log(this.state);
 		if (!auth.uid) return <Redirect to="/" />;
+		if (
+			this.state.schoolBackground !== File &&
+			this.state.schoolBackground !== null &&
+			this.state.schoolLogo !== File &&
+			this.state.schoolLogo !== null &&
+			this.state.progress === 100 &&
+			this.state.schoolName !== ''
+		) {
+			uploadPostButton.disabled = false;
+			uploadPostButton.style.visibility = 'visible';
+		}
 		return (
 			<StyledCreateSchool>
 				<div className="container">
@@ -212,31 +243,49 @@ class CreateSchool extends Component {
 								onChange={this.handleChange}
 							/>
 						</div>
-						<button className="btn" onClick={this.handleSubmit}>
+						<button
+							id="upload-post-btn"
+							disabled
+							className="btn"
+							style={{ margin: '10rem 0 0 0' }}
+							onClick={this.handleSubmit}
+						>
 							Add School
 						</button>
 					</form>
 					<progress value={this.state.progress} max="100" />
 					<br />
-					<input
-						className="custom-file-input"
-						type="file"
-						onChange={this.handleChooseSchoolLogo}
-					/>
-					<button onClick={this.handleUploadSchoolLogo}>
-						Upload Scholo Logo
-					</button>
+					<div className="upload-container">
+						<input
+							className="custom-file-input"
+							type="file"
+							onChange={this.handleChooseSchoolLogo}
+						/>
+						<button
+							className="btn btn-choose"
+							style={{ margin: '0 0 0 1rem' }}
+							onClick={this.handleUploadSchoolLogo}
+						>
+							Upload Scholo Logo
+						</button>
+					</div>
 					<br />
 					<progress value={this.state.progress} max="100" />
 					<br />
-					<input
-						className="custom-file-input"
-						type="file"
-						onChange={this.handleChooseSchoolBackground}
-					/>
-					<button onClick={this.handleUploadSchoolBackground}>
-						Upload School Background
-					</button>
+					<div className="upload-container">
+						<input
+							className="custom-file-input"
+							type="file"
+							onChange={this.handleChooseSchoolBackground}
+						/>
+						<button
+							className="btn btn-choose"
+							style={{ margin: '0 0 0 1rem' }}
+							onClick={this.handleUploadSchoolBackground}
+						>
+							Upload School Background
+						</button>
+					</div>
 				</div>
 			</StyledCreateSchool>
 		);

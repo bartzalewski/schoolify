@@ -42,6 +42,12 @@ const StyledCreatePost = styled.section`
 		outline: none;
 	}
 
+	#upload-post-btn {
+		visibility: hidden;
+		position: absolute;
+		animation: pulse 0.5s infinite alternate;
+	}
+
 	input[placeholder],
 	textarea[placeholder] {
 		padding: 10px 15px;
@@ -70,6 +76,19 @@ const StyledCreatePost = styled.section`
 			transform: scale(1.05);
 			transition: 0.2s;
 		}
+	}
+
+	.btn-choose {
+		background: #fff;
+		font-weight: 400;
+		font-size: 0.9rem;
+		color: inherit;
+		border: 1px solid #d2d2d2;
+	}
+
+	.upload-container {
+		display: flex;
+		margin-top: -1.75rem;
 	}
 
 	.input-field:first-of-type {
@@ -210,9 +229,18 @@ class CreatePost extends Component {
 	}
 	render() {
 		const { auth } = this.props;
+		const uploadPostButton = document.getElementById('upload-post-btn');
 		// console.log(`this is url: ${this.state.url || 'none'} `);
 		// console.log(this.state);
 		if (!auth.uid) return <Redirect to="/" />;
+		if (
+			this.state.postBackground !== null &&
+			this.state.progress === 100 &&
+			this.state.content !== ''
+		) {
+			uploadPostButton.disabled = false;
+			uploadPostButton.style.visibility = 'visible';
+		}
 		return (
 			<StyledCreatePost>
 				<div className="container">
@@ -234,20 +262,32 @@ class CreatePost extends Component {
 								onChange={this.handleChange}
 							/>
 						</div>
-						<button className="btn" onClick={this.handleSubmit}>
+						<button
+							id="upload-post-btn"
+							disabled
+							className="btn"
+							style={{ margin: '5rem 0 0 0' }}
+							onClick={this.handleSubmit}
+						>
 							Upload Post
 						</button>
 					</form>
 					<progress value={this.state.progress} max="100" />
 					<br />
-					<input
-						className="custom-file-input"
-						type="file"
-						onChange={this.handleChoose}
-					/>
-					<button className="btn" onClick={this.handleUpload}>
-						Upload Image
-					</button>
+					<div className="upload-container">
+						<input
+							className="custom-file-input"
+							type="file"
+							onChange={this.handleChoose}
+						/>
+						<button
+							className="btn btn-choose"
+							style={{ margin: '0 0 0 1rem' }}
+							onClick={this.handleUpload}
+						>
+							Upload an image
+						</button>
+					</div>
 				</div>
 			</StyledCreatePost>
 		);

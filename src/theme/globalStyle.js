@@ -52,7 +52,10 @@ const GlobalStyle = createGlobalStyle`
   .custom-file-input {
     color: transparent;
     width: 143.91px;
-    height: 31px;
+    height: 50px;
+    transition: .2s;
+    border: 1px solid #d2d2d2;
+    border-radius: 10px;
   }
 
   .custom-file-input::-webkit-file-upload-button {
@@ -61,23 +64,41 @@ const GlobalStyle = createGlobalStyle`
 
   .custom-file-input::before {
     content: 'Choose an image';
-    color: white;
+    color: #293347;
     display: block;
-		background: -webkit-linear-gradient(left, #fe843f, #fc5a37);
+		background: white;
     border: none;
     border-radius: 10px;
     padding: 5px 8px;
     outline: none;
     cursor: pointer;
     font-size: .9rem;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .custom-file-input:active {
     outline: 0;
   }
 
+  .custom-file-input:hover {
+    transform: scale(1.05);
+    transition: .2s;
+  }
+
   .custom-file-input:active::before {
-		background: -webkit-linear-gradient(left, #fe843f, #fc5a37);
+		background: white;
+  }
+
+  @keyframes pulse {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.05);
+    }
   }
 `;
 
