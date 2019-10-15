@@ -59,7 +59,7 @@ class Tests extends Component {
 			{ id: 3, content: '03-09-2019 | Spanish | Thigs at home' },
 			{ id: 4, content: '04-09-2019 | English | Essay' }
 		],
-		active: false
+		active: true
 	};
 	deleteTodo = id => {
 		const todos = this.state.todos.filter(todo => {
@@ -82,6 +82,9 @@ class Tests extends Component {
 		});
 	};
 	render() {
+		if (window.innerWidth >= 1124) {
+			this.state.active = false;
+		}
 		return (
 			<StyledTests>
 				<div className="container">

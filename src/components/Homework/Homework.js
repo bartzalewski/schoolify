@@ -94,7 +94,7 @@ class Homework extends Component {
 			{ id: 2, content: 'English: ex.1, p.6' },
 			{ id: 3, content: 'Spanish: ex.1, p.3' }
 		],
-		active: false
+		active: true
 	};
 	deleteTodo = id => {
 		const todos = this.state.todos.filter(todo => {
@@ -117,6 +117,9 @@ class Homework extends Component {
 		});
 	};
 	render() {
+		if (window.innerWidth >= 1124) {
+			this.state.active = false;
+		}
 		return (
 			<StyledHomework>
 				<div className="container">

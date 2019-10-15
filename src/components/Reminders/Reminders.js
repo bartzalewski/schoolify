@@ -65,7 +65,7 @@ class Reminders extends Component {
 			{ id: 3, content: 'get organized' },
 			{ id: 4, content: 'lay out your outfit before' }
 		],
-		active: false
+		active: true
 	};
 	deleteTodo = id => {
 		const todos = this.state.todos.filter(todo => {
@@ -88,6 +88,9 @@ class Reminders extends Component {
 		});
 	};
 	render() {
+		if (window.innerWidth >= 1124) {
+			this.state.active = false;
+		}
 		return (
 			<StyledReminders>
 				<div className="container">
