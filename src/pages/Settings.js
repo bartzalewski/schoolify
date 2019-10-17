@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut } from '../store/actions/authActions';
+import dark from '../images/dark.svg';
 
 const StyledSettings = styled.section`
 	width: 50vw;
@@ -24,7 +25,7 @@ const StyledSettings = styled.section`
 
 	.btn {
 		border-radius: 10px;
-		background: -webkit-linear-gradient(left, #fe843f, #fc5a37);
+		background: #ff9800;
 		color: #fff;
 		font-weight: 600;
 		border: none;
@@ -33,7 +34,13 @@ const StyledSettings = styled.section`
 		font-size: 1.125rem;
 		cursor: pointer;
 		padding: 10px 25px;
+	}
+
+	.btn-logout {
 		transition: 0.2s;
+		position: absolute;
+		margin-bottom: 2rem;
+		background: -webkit-linear-gradient(left, #fe843f, #fc5a37);
 
 		&:hover {
 			transform: scale(1.05);
@@ -41,30 +48,28 @@ const StyledSettings = styled.section`
 		}
 	}
 
-	.box {
+	.settings-box {
 		background: #fff;
 		padding: 15px 25px;
 		border-radius: 15px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		margin: 0.5rem 0;
-		transition: 0.2s;
-
-		&:hover {
-			transform: scale(1.05);
-			transition: 0.2s;
-		}
-
-		&:first-of-type {
-			margin-top: 2rem;
-		}
 	}
 
 	.left {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+
+		img {
+			width: 40px;
+			height: 40px;
+		}
+
+		span {
+			margin-left: 1rem;
+		}
 	}
 
 	.settings-wrapper {
@@ -75,6 +80,8 @@ const StyledSettings = styled.section`
 
 	a {
 		text-decoration: none;
+		margin-top: 2rem;
+		width: fit-content;
 	}
 
 	@media (max-width: 1359px) {
@@ -108,10 +115,10 @@ const Settings = props => {
 			<div className="container">
 				<h1>Settings</h1>
 				<div className="settings-wrapper">
-					<div className="box">
+					<div className="settings-box">
 						<div className="left">
-							<img src="" alt="" />
-							<span>Toggle Dark Theme</span>
+							<img src={dark} alt="toggle dark theme icon" />
+							<span>Dark Theme</span>
 						</div>
 						<div className="right">
 							<button
@@ -122,12 +129,12 @@ const Settings = props => {
 										: props.onChange('light')
 								}
 							>
-								Toggle Theme
+								Change
 							</button>
 						</div>
 					</div>
 					<Link to="/">
-						<span onClick={props.signOut} className="btn">
+						<span onClick={props.signOut} className="btn btn-logout">
 							Log Out
 						</span>
 					</Link>

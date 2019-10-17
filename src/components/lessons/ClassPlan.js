@@ -106,7 +106,7 @@ const StyledClassPlan = styled.div`
 
 export default function ClassPlan() {
 	return (
-		<StyledClassPlan>
+		<StyledClassPlan className="zsz-page">
 			<div className="container">
 				<h1>ZSZ im. Stanisława Staszica w Ząbkowicach Śląskich</h1>
 				<table className="tg">

@@ -152,8 +152,8 @@ const StyledAddGrades = styled.div`
 
 export default function AddGrades() {
 	return (
-		<StyledAddGrades>
-			<div className="container add-grades-page">
+		<StyledAddGrades className="add-grades-page">
+			<div className="container">
 				<h1>Add a grade</h1>
 				<div className="subjects">
 					<div className="box add-grades-box">

@@ -50,8 +50,8 @@ const StyledGradesSummary = styled.div`
 
 export default function GradesSummary() {
 	return (
-		<StyledGradesSummary>
-			<div className="container grades-summary-page">
+		<StyledGradesSummary className="grades-summary-page">
+			<div className="container">
 				<h1>English</h1>
 				<div className="wrapper">
 					<img src={english} alt="english subject" />

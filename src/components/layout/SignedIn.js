@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
 import Reminders from '../../components/Reminders/Reminders';
 import Grades from '../../components/Grades/Grades';
@@ -24,7 +24,7 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { connect } from 'react-redux';
 
 const DarkTheme = createGlobalStyle`
-	body, section, .school-list-page, .add-grades-page, .grades-summary-page {
+	body, section, .school-list-page, .add-grades-page, .grades-summary-page, .zsz-page {
 		background: ${props =>
 			props.theme.mode === 'dark' ? '#141414' : null} !important;
 		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)};
@@ -36,7 +36,7 @@ const DarkTheme = createGlobalStyle`
 		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)};
 	}
 
-	.posts-list, .add-post, .posts-btn, .lesson-box, .box-add, .notification-item, .add-grades-box, .box-error-page {
+	.posts-list, .add-post, .posts-btn, .lesson-box, .box-add, .notification-item, .add-grades-box, .box-error-page, .settings-box {
 		background: ${props =>
 			props.theme.mode === 'dark' ? '#0a0a0a' : null} !important;
 	}
@@ -402,7 +402,7 @@ class SignedIn extends Component {
 		url: '',
 		progress: 0,
 		active: false,
-		theme: { mode: 'dark' }
+		theme: { mode: 'light' }
 	};
 	handleChoose = e => {
 		if (e.target.files[0]) {
@@ -466,18 +466,17 @@ class SignedIn extends Component {
 		});
 	};
 	componentDidMount() {
-		db.collection('schools')
-			.get()
-			.then(snap =>
-				snap.forEach(doc => {
-					console.log(doc.data().classes);
-				})
-			);
+		// db.collection('schools')
+		// 	.get()
+		// 	.then(snap =>
+		// 		snap.forEach(doc => {
+		// 			console.log(doc.data().classes);
+		// 		})
+		// 	);
 	}
 	render() {
 		const { firstName, lastName, userAvatar } = this.props.profile;
 		const theme = this.state.theme;
-		console.log(this.state);
 		return (
 			<ThemeProvider theme={theme}>
 				<>
