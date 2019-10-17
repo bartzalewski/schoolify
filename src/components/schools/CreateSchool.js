@@ -72,7 +72,7 @@ const StyledCreateSchool = styled.section`
 		background: #fff;
 		font-weight: 400;
 		font-size: 0.9rem;
-		color: inherit;
+		color: #293347;
 		border: 1px solid #d2d2d2;
 	}
 

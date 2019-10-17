@@ -18,7 +18,11 @@ const StyledSettings = styled.section`
 		padding: 40px;
 	}
 
-	.btn-logout {
+	.btn-toggle-theme {
+		font-size: 0.9rem !important;
+	}
+
+	.btn {
 		border-radius: 10px;
 		background: -webkit-linear-gradient(left, #fe843f, #fc5a37);
 		color: #fff;
@@ -29,14 +33,44 @@ const StyledSettings = styled.section`
 		font-size: 1.125rem;
 		cursor: pointer;
 		padding: 10px 25px;
-		margin-top: 2rem;
-		position: absolute;
 		transition: 0.2s;
 
 		&:hover {
 			transform: scale(1.05);
 			transition: 0.2s;
 		}
+	}
+
+	.box {
+		background: #fff;
+		padding: 15px 25px;
+		border-radius: 15px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 0.5rem 0;
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.05);
+			transition: 0.2s;
+		}
+
+		&:first-of-type {
+			margin-top: 2rem;
+		}
+	}
+
+	.left {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.settings-wrapper {
+		display: flex;
+		flex-direction: column;
+		margin-top: 2rem;
 	}
 
 	a {
@@ -73,11 +107,31 @@ const Settings = props => {
 		<StyledSettings>
 			<div className="container">
 				<h1>Settings</h1>
-				<Link to="/">
-					<span onClick={props.signOut} className="btn-logout">
-						Log Out
-					</span>
-				</Link>
+				<div className="settings-wrapper">
+					<div className="box">
+						<div className="left">
+							<img src="" alt="" />
+							<span>Toggle Dark Theme</span>
+						</div>
+						<div className="right">
+							<button
+								className="btn btn-toggle-theme"
+								onClick={() =>
+									props.theme.mode === 'light'
+										? props.onChange('dark')
+										: props.onChange('light')
+								}
+							>
+								Toggle Theme
+							</button>
+						</div>
+					</div>
+					<Link to="/">
+						<span onClick={props.signOut} className="btn">
+							Log Out
+						</span>
+					</Link>
+				</div>
 			</div>
 		</StyledSettings>
 	);

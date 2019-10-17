@@ -48,8 +48,8 @@ class ViewSchools extends Component {
 	render() {
 		const { schools } = this.props;
 		return (
-			<StyledViewSchools>
-				<div className="container school-list-page">
+			<StyledViewSchools className="school-list-page">
+				<div className="container">
 					<h1>School list</h1>
 					<SchoolList schools={schools} />
 				</div>
