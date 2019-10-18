@@ -47,6 +47,8 @@ const GlobalStyle = createGlobalStyle`
 
   progress {
     visibility: hidden;
+    width: 1px;
+    height: 1px;
   }
 
   .custom-file-input {

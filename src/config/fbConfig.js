@@ -20,4 +20,4 @@ const storage = firebase.storage();
 const db = firebase.firestore();
 const perf = firebase.performance();
 
-export { storage, db, firebase as default };
+export { storage, db, perf, firebase as default };

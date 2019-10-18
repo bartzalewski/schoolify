@@ -107,6 +107,13 @@ const StyledSettings = styled.section`
 			padding: 10px;
 		}
 	}
+
+	@media (max-width: 452px) {
+		.btn-toggle-theme,
+		span {
+			font-size: 0.8rem !important;
+		}
+	}
 `;
 
 const Settings = props => {

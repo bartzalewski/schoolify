@@ -30,13 +30,13 @@ const DarkTheme = createGlobalStyle`
 		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)};
 	}
 
-	aside, nav, .input-reminder, .input-reminder::placeholder, .input-homework, .input-homework::placeholder, .input-tests, .input-tests::placeholder, #schoolName, #schoolName::placeholder, #content, #content::placeholder {
+	aside, nav, .input-reminder, .input-reminder::placeholder, .input-homework, .input-homework::placeholder, .input-tests, .input-tests::placeholder, #schoolName, #schoolName::placeholder, #content, #content::placeholder, .custom-file-input::before, .btn-choose {
 		background: ${props =>
 			props.theme.mode === 'dark' ? '#1F1F1F' : null} !important;
-		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)};
+		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 	}
 
-	.posts-list, .add-post, .posts-btn, .lesson-box, .box-add, .notification-item, .add-grades-box, .box-error-page, .settings-box {
+	.posts-list, .add-post, .posts-btn, .lesson-box, .box-add, .notification-item, .add-grades-box, .box-error-page, .settings-box, .profile-container {
 		background: ${props =>
 			props.theme.mode === 'dark' ? '#0a0a0a' : null} !important;
 	}
@@ -70,15 +70,19 @@ const StyledRightSide = styled.div`
 const StyledDesktop = styled.div`
 	@media (max-width: 1124px) {
 		display: none;
+		visibility: hidden;
 	}
 `;
+
 const StyledMobile = styled.div`
 	display: none;
+	visibility: hidden;
 
 	@media (max-width: 1124px) {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		visibility: visible;
 	}
 `;
 
@@ -97,6 +101,9 @@ const StyledProfile = styled.section`
 		text-align: center;
 		font-size: 1.125rem;
 		margin: 2rem 0;
+		background: #fff;
+		padding: 25px;
+		border-radius: 15px;
 
 		img {
 			width: 150px;
@@ -108,6 +115,7 @@ const StyledProfile = styled.section`
 			&:hover {
 				transform: scale(1.05);
 				transition: 0.2s;
+				box-shadow: 0 0 0 2pt #fe843f;
 			}
 		}
 
@@ -135,7 +143,7 @@ const StyledProfile = styled.section`
 		}
 
 		.profile-school {
-			margin-bottom: 1rem;
+			margin: 1rem 0 0 0;
 		}
 	}
 
@@ -143,7 +151,9 @@ const StyledProfile = styled.section`
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-direction: column;
 		position: relative;
+		width: fit-content;
 	}
 
 	.profile-info-container {
@@ -156,6 +166,13 @@ const StyledProfile = styled.section`
 
 	.custom-file-input {
 		visibility: hidden;
+		width: 1px;
+		height: 1px;
+
+		&::before {
+			width: 1px;
+			height: 1px;
+		}
 	}
 
 	.avatar-btn {
@@ -618,24 +635,23 @@ class SignedIn extends Component {
 														<h2>
 															{firstName} {lastName}
 														</h2>
-														<progress value={this.state.progress} max="100" />
-														<input
-															id="imageInput"
-															className="custom-file-input"
-															type="file"
-															onChange={this.handleChoose}
-														/>
-
-														<div className="profile-school">
-															<p className="profile-bold">School:</p>
-															<p className="profile-normal">
-																Lorem ipsum dolor sit amet consectetur.
-															</p>
-														</div>
-														<div className="profile-class">
-															<p className="profile-bold">Class:</p>
-															<p className="profile-normal">Lorem, ipsum.</p>
-														</div>
+													</div>
+													<progress value={this.state.progress} max="100" />
+													<input
+														id="imageInput"
+														className="custom-file-input"
+														type="file"
+														onChange={this.handleChoose}
+													/>
+													<div className="profile-school">
+														<p className="profile-bold">School:</p>
+														<p className="profile-normal">
+															ZSZ im. Stanisława Staszica w Ząbkowicach Śląskich
+														</p>
+													</div>
+													<div className="profile-class">
+														<p className="profile-bold">Class:</p>
+														<p className="profile-normal">4TI</p>
 													</div>
 												</div>
 											</div>
