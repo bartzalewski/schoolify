@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
+import ChatList from '../components/chats/ChatList';
+const firebase = require('firebase');
 
 const StyledChat = styled.section`
 	width: 50vw;
@@ -89,14 +91,58 @@ const StyledChat = styled.section`
 	}
 `;
 
-const Chat = () => {
-	return (
-		<StyledChat>
-			<div className="container">
-				<h1>Chat</h1>
-			</div>
-		</StyledChat>
-	);
-};
+class Chat extends Component {
+	constructor() {
+		super();
+		this.state = {
+			selectedChat: null,
+			newChatFormVisible: false,
+			email: null,
+			chats: []
+		};
+	}
+
+	selectChat = chatIndex => {
+		console.log('Selected a chat!', chatIndex);
+	};
+
+	newChatBtnClicked = () =>
+		this.setState({ newChatFormVisible: true, selectedChat: null });
+
+	componentDidMount = () => {
+		firebase.auth().onAuthStateChanged(async _usr => {
+			await firebase
+				.firestore()
+				.collection('chats')
+				.where('users', 'array-contains', _usr.email)
+				.onSnapshot(async res => {
+					const chats = res.docs.map(_doc => _doc.data());
+					await this.setState({
+						email: _usr.email,
+						chats: chats
+					});
+					console.log(this.state);
+				});
+		});
+	};
+
+	render() {
+		return (
+			<StyledChat>
+				<div className="container">
+					<h1>Chat</h1>
+					<ChatList
+						history={this.props.history}
+						newChatBtnFn={this.newChatBtnClicked}
+						selectChatFn={this.selectChat}
+						chats={this.state.chats}
+						userEmail={this.state.email}
+						selectedChatIndex={this.state.selectedChat}
+					/>
+				</div>
+			</StyledChat>
+		);
+	}
+}
 
 export default Chat;

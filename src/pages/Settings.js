@@ -110,7 +110,7 @@ const StyledSettings = styled.section`
 
 	@media (max-width: 452px) {
 		.btn-toggle-theme,
-		span {
+		.left span {
 			font-size: 0.8rem !important;
 		}
 	}

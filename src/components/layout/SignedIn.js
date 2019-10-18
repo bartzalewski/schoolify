@@ -794,6 +794,7 @@ class SignedIn extends Component {
 											<div className="avatar-container">
 												<img title="Your avatar" src={userAvatar} alt="" />
 												<svg
+													className="upload-pic"
 													onClick={this.handleEditPicture}
 													width="20"
 													height="20"
@@ -817,24 +818,23 @@ class SignedIn extends Component {
 												<h2>
 													{firstName} {lastName}
 												</h2>
-												<progress value={this.state.progress} max="100" />
-												<input
-													id="imageInput"
-													className="custom-file-input"
-													type="file"
-													onChange={this.handleChoose}
-												/>
-
-												<div className="profile-school">
-													<p className="profile-bold">School:</p>
-													<p className="profile-normal">
-														Lorem ipsum dolor sit amet consectetur.
-													</p>
-												</div>
-												<div className="profile-class">
-													<p className="profile-bold">Class:</p>
-													<p className="profile-normal">Lorem, ipsum.</p>
-												</div>
+											</div>
+											<progress value={this.state.progress} max="100" />
+											<input
+												id="imageInput"
+												className="custom-file-input"
+												type="file"
+												onChange={this.handleChoose}
+											/>
+											<div className="profile-school">
+												<p className="profile-bold">School:</p>
+												<p className="profile-normal">
+													ZSZ im. Stanisława Staszica w Ząbkowicach Śląskich
+												</p>
+											</div>
+											<div className="profile-class">
+												<p className="profile-bold">Class:</p>
+												<p className="profile-normal">4TI</p>
 											</div>
 										</div>
 									</div>
