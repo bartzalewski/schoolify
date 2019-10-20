@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import ChatList from '../components/chats/ChatList';
+import ChatView from '../components/chats/ChatView';
+import ChatTextBox from '../components/chats/ChatTextBox';
+import NewChat from '../components/chats/NewChat';
+import { db } from '../config/fbConfig';
 const firebase = require('firebase');
 
 const StyledChat = styled.section`
@@ -46,6 +50,64 @@ const StyledChat = styled.section`
 		}
 	}
 
+	.chat-wrapper {
+		margin-top: 2rem;
+		background: #fff;
+		padding: 25px;
+		border-radius: 15px;
+		display: flex;
+		height: calc(100vh - 100px - 39px - 32.5px - 32px - 48px);
+		position: relative;
+		overflow: hidden;
+	}
+
+	#chatview-container {
+		overflow-y: scroll;
+		height: 89%;
+		margin-right: -50px;
+		padding-right: 33px;
+	}
+
+	.user-sent {
+		background-color: #f2f2f2;
+		float: right;
+		border-radius: 10px;
+		padding: 2.5px 10px;
+		word-wrap: break-word;
+		clear: both;
+		margin-top: 5px;
+	}
+
+	.friend-sent {
+		background-color: #f2f2f2;
+		float: left;
+		border-radius: 10px;
+		padding: 2.5px 10px;
+		word-wrap: break-word;
+		clear: both;
+		margin-top: 5px;
+	}
+
+	.chat-left,
+	.chat-right {
+		width: 50%;
+		position: relative;
+	}
+
+	.chat-right {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.chat-right-view {
+		overflow: hidden;
+		height: 100%;
+	}
+
+	.chat-header {
+		text-align: center;
+	}
+
 	h1 {
 		font-size: 1.625rem;
 		font-weight: 600;
@@ -61,6 +123,10 @@ const StyledChat = styled.section`
 
 		.container {
 			padding: 20px;
+		}
+
+		.chat-wrapper {
+			height: calc(100vh - 60px - 39px - 32.5px - 32px - 33px);
 		}
 	}
 
@@ -102,17 +168,90 @@ class Chat extends Component {
 		};
 	}
 
-	selectChat = chatIndex => {
-		console.log('Selected a chat!', chatIndex);
+	selectChat = async chatIndex => {
+		await this.setState({ selectedChat: chatIndex, newChatFormVisible: false });
+		this.messageRead();
 	};
 
 	newChatBtnClicked = () =>
 		this.setState({ newChatFormVisible: true, selectedChat: null });
 
-	componentDidMount = () => {
-		firebase.auth().onAuthStateChanged(async _usr => {
-			await firebase
+	submitMessage = msg => {
+		const docKey = this.buildDocKey(
+			this.state.chats[this.state.selectedChat].users.filter(
+				_usr => _usr !== this.state.email
+			)[0]
+		);
+		db.collection('chats')
+			.doc(docKey)
+			.update({
+				messages: firebase.firestore.FieldValue.arrayUnion({
+					sender: this.state.email,
+					message: msg,
+					timestamp: Date.now()
+				}),
+				receiverHasRead: false
+			});
+	};
+
+	buildDocKey = friend => [this.state.email, friend].sort().join(':');
+
+	clickedChatWhereNotSender = chatIndex =>
+		this.state.chats[chatIndex].messages[
+			this.state.chats[chatIndex].messages.length - 1
+		].sender !== this.state.email;
+
+	messageRead = () => {
+		const chatIndex = this.state.selectedChat;
+		const docKey = this.buildDocKey(
+			this.state.chats[chatIndex].users.filter(
+				_usr => _usr !== this.state.email
+			)[0]
+		);
+		if (this.clickedChatWhereNotSender(chatIndex)) {
+			firebase
 				.firestore()
+				.collection('chats')
+				.doc(docKey)
+				.update({ receiverHasRead: true });
+		}
+	};
+
+	goToChat = async (docKey, msg) => {
+		const usersInChat = docKey.split(':');
+		const chat = this.state.chats.find(_chat =>
+			usersInChat.every(_user => _chat.users.includes(_user))
+		);
+		this.setState({ newChatFormVisible: false });
+		await this.selectChat(this.state.chats.indexOf(chat));
+		this.submitMessage(msg);
+	};
+
+	newChatSubmit = async chatObj => {
+		const docKey = this.buildDocKey(chatObj.sendTo);
+		await firebase
+			.firestore()
+			.collection('chats')
+			.doc(docKey)
+			.set({
+				receiverHasRead: false,
+				users: [this.state.email, chatObj.sendTo],
+				messages: [
+					{
+						message: chatObj.message,
+						sender: this.state.email
+					}
+				]
+			});
+		this.setState({
+			newChatFormVisible: false
+		});
+		this.selectChat(this.state.chats.length - 1);
+	};
+
+	componentWillMount = () => {
+		firebase.auth().onAuthStateChanged(async _usr => {
+			await db
 				.collection('chats')
 				.where('users', 'array-contains', _usr.email)
 				.onSnapshot(async res => {
@@ -121,7 +260,6 @@ class Chat extends Component {
 						email: _usr.email,
 						chats: chats
 					});
-					console.log(this.state);
 				});
 		});
 	};
@@ -131,14 +269,39 @@ class Chat extends Component {
 			<StyledChat>
 				<div className="container">
 					<h1>Chat</h1>
-					<ChatList
-						history={this.props.history}
-						newChatBtnFn={this.newChatBtnClicked}
-						selectChatFn={this.selectChat}
-						chats={this.state.chats}
-						userEmail={this.state.email}
-						selectedChatIndex={this.state.selectedChat}
-					/>
+					<div className="chat-wrapper">
+						<div className="chat-left">
+							<ChatList
+								history={this.props.history}
+								newChatBtnFn={this.newChatBtnClicked}
+								selectChatFn={this.selectChat}
+								chats={this.state.chats}
+								userEmail={this.state.email}
+								selectedChatIndex={this.state.selectedChat}
+							/>
+						</div>
+						<div className="chat-right">
+							{this.state.newChatFormVisible ? null : (
+								<ChatView
+									user={this.state.email}
+									chat={this.state.chats[this.state.selectedChat]}
+								/>
+							)}
+							{this.state.selectedChat !== null &&
+							!this.state.newChatFormVisible ? (
+								<ChatTextBox
+									messageReadFn={this.messageRead}
+									submitMessageFn={this.submitMessage}
+								/>
+							) : null}
+						</div>
+						{this.state.newChatFormVisible ? (
+							<NewChat
+								goToChatFn={this.goToChat}
+								newChatSubmitFn={this.newChatSubmit}
+							/>
+						) : null}
+					</div>
 				</div>
 			</StyledChat>
 		);
