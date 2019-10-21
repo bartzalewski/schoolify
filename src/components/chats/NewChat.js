@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-const firebase = require('firebase');
+import firebase from '../../config/fbConfig';
 
 export default class NewChat extends Component {
 	constructor() {
@@ -69,7 +69,7 @@ export default class NewChat extends Component {
 		const exists = usersSnapshot.docs
 			.map(_doc => _doc.data().email)
 			.includes(this.state.username);
-		// this.setState({serverError: !exists})
+		this.setState({ serverError: !exists });
 		return exists;
 	};
 

@@ -40,7 +40,7 @@ const StyledReminders = styled.aside`
 		top: 0px;
 		width: 100%;
 		border: none;
-		margin: 60px 1rem 0px 1rem;
+		margin-top: 60px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

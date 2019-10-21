@@ -53,6 +53,7 @@ export default class ChatTextBox extends Component {
 			<StyledChatTextBox>
 				<input
 					type="text"
+					autoComplete="off"
 					id="chat-text-box"
 					className="text-field"
 					placeholder="Type your message..."

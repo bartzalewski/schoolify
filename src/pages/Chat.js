@@ -5,7 +5,7 @@ import ChatView from '../components/chats/ChatView';
 import ChatTextBox from '../components/chats/ChatTextBox';
 import NewChat from '../components/chats/NewChat';
 import { db } from '../config/fbConfig';
-const firebase = require('firebase');
+import firebase from '../config/fbConfig';
 
 const StyledChat = styled.section`
 	width: 50vw;
@@ -251,16 +251,20 @@ class Chat extends Component {
 
 	componentWillMount = () => {
 		firebase.auth().onAuthStateChanged(async _usr => {
-			await db
-				.collection('chats')
-				.where('users', 'array-contains', _usr.email)
-				.onSnapshot(async res => {
-					const chats = res.docs.map(_doc => _doc.data());
-					await this.setState({
-						email: _usr.email,
-						chats: chats
+			if (!_usr) {
+				this.props.history.push('/');
+			} else {
+				await db
+					.collection('chats')
+					.where('users', 'array-contains', _usr.email)
+					.onSnapshot(async res => {
+						const chats = res.docs.map(_doc => _doc.data());
+						await this.setState({
+							email: _usr.email,
+							chats: chats
+						});
 					});
-				});
+			}
 		});
 	};
 
