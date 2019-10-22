@@ -20,6 +20,10 @@ const StyledNavbar = styled.nav`
 
 		img {
 			box-shadow: 0 0 0 2pt #fe843f;
+
+			@media (max-width: 1359px) {
+				box-shadow: 0 0 0 1pt #fe843f;
+			}
 		}
 
 		&::before {
@@ -114,6 +118,7 @@ const StyledNavbar = styled.nav`
 
 			@media (max-width: 1359px) {
 				width: 60px;
+				height: 1px;
 			}
 
 			@media (max-width: 813px) {
@@ -126,6 +131,7 @@ const StyledNavbar = styled.nav`
 			height: 40px;
 			border-radius: 100px;
 			transition: 0.2s;
+			object-fit: contain;
 
 			@media (max-width: 1359px) {
 				width: 30px;
@@ -149,6 +155,10 @@ const StyledNavbar = styled.nav`
 			img {
 				box-shadow: 0 0 0 2pt #fe843f;
 				transition: 0.2s;
+
+				@media (max-width: 1359px) {
+					box-shadow: 0 0 0 1pt #fe843f;
+				}
 			}
 		}
 	}
@@ -231,7 +241,7 @@ export default function Navbar(props) {
 					</svg>
 				</NavLink>
 				<NavLink activeClassName="active" to="/profile" className="box avatar">
-					<img src={props.props.userAvatar} alt="your avatar" />
+					<img src={props.props.userAvatar} alt="" />
 				</NavLink>
 				<NavLink activeClassName="active" to="/lessons" className="box">
 					<svg

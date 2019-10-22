@@ -21,6 +21,7 @@ const StyledSchoolSummary = styled.div`
 		border-radius: 15px;
 		user-select: none;
 		position: absolute;
+		object-fit: cover;
 	}
 
 	.school-logo {

@@ -92,6 +92,7 @@ const StyledNews = styled.section`
 		height: 250px;
 		border-radius: 15px;
 		user-select: none;
+		object-fit: cover;
 
 		@media (max-width: 813px) {
 			height: 100px;

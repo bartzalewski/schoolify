@@ -178,8 +178,9 @@ class CreatePost extends Component {
 	};
 	handleUpload = () => {
 		const { postBackground } = this.state;
+		const imageName = `${postBackground.name + Math.round(Math.random() * 1000000000000)}`;
 		const uploadTask = storage
-			.ref(`images/feed/${postBackground.name}`)
+			.ref(`images/feed/${imageName}`)
 			.put(postBackground);
 		uploadTask.on(
 			'state_changed',
@@ -195,7 +196,7 @@ class CreatePost extends Component {
 			() => {
 				storage
 					.ref('images/feed')
-					.child(postBackground.name)
+					.child(imageName)
 					.getDownloadURL()
 					.then(postBackground => {
 						this.setState({ postBackground });

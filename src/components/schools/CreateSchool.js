@@ -149,8 +149,10 @@ class CreateSchool extends Component {
 	};
 	handleUploadSchoolLogo = () => {
 		const { schoolLogo } = this.state;
+		const imageName = `${schoolLogo.name +
+			Math.round(Math.random() * 1000000000000)}`;
 		const uploadTask = storage
-			.ref(`images/schools/logos/${schoolLogo.name}`)
+			.ref(`images/schools/logos/${imageName}`)
 			.put(schoolLogo);
 		uploadTask.on(
 			'state_changed',
@@ -166,7 +168,7 @@ class CreateSchool extends Component {
 			() => {
 				storage
 					.ref('images/schools/logos')
-					.child(schoolLogo.name)
+					.child(imageName)
 					.getDownloadURL()
 					.then(schoolLogo => {
 						this.setState({ schoolLogo });
@@ -187,8 +189,10 @@ class CreateSchool extends Component {
 	};
 	handleUploadSchoolBackground = () => {
 		const { schoolBackground } = this.state;
+		const imageName = `${schoolBackground.name +
+			Math.round(Math.random() * 1000000000000)}`;
 		const uploadTask = storage
-			.ref(`images/schools/backgrounds/${schoolBackground.name}`)
+			.ref(`images/schools/backgrounds/${imageName}`)
 			.put(schoolBackground);
 		uploadTask.on(
 			'state_changed',
@@ -204,7 +208,7 @@ class CreateSchool extends Component {
 			() => {
 				storage
 					.ref('images/schools/backgrounds')
-					.child(schoolBackground.name)
+					.child(imageName)
 					.getDownloadURL()
 					.then(schoolBackground => {
 						this.setState({ schoolBackground });

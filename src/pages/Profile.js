@@ -27,6 +27,7 @@ const StyledProfile = styled.section`
 			transition: 0.2s;
 			border-radius: 100px;
 			position: relative;
+			object-fit: contain;
 
 			&:hover {
 				transform: scale(1.05);
@@ -157,9 +158,9 @@ export default class Profile extends Component {
 	};
 	handleUpload = () => {
 		const { userAvatar } = this.state;
-		const uploadTask = storage
-			.ref(`images/users/${userAvatar.name}`)
-			.put(userAvatar);
+		const imageName = `${userAvatar.name +
+			Math.round(Math.random() * 1000000000000)}`;
+		const uploadTask = storage.ref(`images/users/${imageName}`).put(userAvatar);
 		uploadTask.on(
 			'state_changed',
 			snapshot => {
@@ -174,7 +175,7 @@ export default class Profile extends Component {
 			() => {
 				storage
 					.ref('images/users')
-					.child(userAvatar.name)
+					.child(imageName)
 					.getDownloadURL()
 					.then(url => {
 						this.setState({ url });
