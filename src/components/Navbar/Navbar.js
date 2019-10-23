@@ -141,12 +141,11 @@ const StyledNavbar = styled.nav`
 
 		@media (max-width: 1359px) {
 			width: 60px;
-			height: 100px;
+			height: 60px;
 		}
 
 		@media (max-width: 1124px) {
 			width: 30px;
-			height: 60px;
 		}
 	}
 

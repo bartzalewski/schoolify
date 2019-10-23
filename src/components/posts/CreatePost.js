@@ -138,7 +138,8 @@ class CreatePost extends Component {
 			schoolLogo: '',
 			content: '',
 			postBackground: null,
-			progress: 0
+			progress: 0,
+			authorEmail: this.props.auth.email
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleUpload = this.handleUpload.bind(this);
@@ -150,10 +151,6 @@ class CreatePost extends Component {
 		this.setState({
 			[e.target.id]: e.target.value
 		});
-		// this.setState({
-		// 	schoolName: { [e.target.id]: e.target.innerText },
-		// 	schoolLogo: { [e.target.id]: e.target.value }
-		// });
 	};
 	handleSelect = e => {
 		const schoolList = document.getElementById('schoolName');
@@ -178,7 +175,8 @@ class CreatePost extends Component {
 	};
 	handleUpload = () => {
 		const { postBackground } = this.state;
-		const imageName = `${postBackground.name + Math.round(Math.random() * 1000000000000)}`;
+		const imageName = `${postBackground.name +
+			Math.round(Math.random() * 1000000000000)}`;
 		const uploadTask = storage
 			.ref(`images/feed/${imageName}`)
 			.put(postBackground);
@@ -230,9 +228,8 @@ class CreatePost extends Component {
 	}
 	render() {
 		const { auth } = this.props;
+		console.log(this.props.auth);
 		const uploadPostButton = document.getElementById('upload-post-btn');
-		// console.log(`this is url: ${this.state.url || 'none'} `);
-		// console.log(this.state);
 		if (!auth.uid) return <Redirect to="/" />;
 		if (
 			this.state.postBackground !== null &&

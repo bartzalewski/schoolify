@@ -147,7 +147,9 @@ export default class Profile extends Component {
 		userAvatar: null,
 		url: '',
 		progress: 0,
-		active: false
+		active: false,
+		schoolName: '',
+		className: ''
 	};
 	handleChoose = e => {
 		if (e.target.files[0]) {

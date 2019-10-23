@@ -5,7 +5,6 @@ export const createPost = post => {
 			.collection('posts')
 			.add({
 				...post,
-				authorId: 12345,
 				createdAt: new Date()
 			})
 			.then(() => {
