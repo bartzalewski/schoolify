@@ -8,7 +8,7 @@ const StyledChatList = styled.div`
 		border-radius: 10px;
 		width: 95%;
 		display: flex;
-		justify-content: space-around;
+		justify-content: flex-start;
 		align-items: center;
 		padding: 5px 15px;
 		margin-top: 0.25rem;
@@ -38,6 +38,7 @@ const StyledChatList = styled.div`
 
 	.list-item-user {
 		font-weight: 600;
+		margin-left: 1rem;
 	}
 
 	.list-item-fragment {
@@ -60,6 +61,20 @@ const StyledChatList = styled.div`
 		&:hover {
 			transform: scale(1.05);
 			transition: 0.2s;
+		}
+	}
+
+	@media (max-width: 1359px) {
+		.list-item-user,
+		.list-item-avatar {
+			font-size: 0.8rem;
+		}
+		.list-item-avatar {
+			width: 30px;
+			height: 30px;
+		}
+		.btn {
+			font-size: 0.8rem;
 		}
 	}
 `;

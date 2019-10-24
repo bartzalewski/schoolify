@@ -66,6 +66,12 @@ const StyledChat = styled.section`
 		height: 89%;
 		margin-right: -50px;
 		padding-right: 33px;
+
+		div {
+			@media (max-width: 1359px) {
+				font-size: 0.8rem;
+			}
+		}
 	}
 
 	.user-sent {
@@ -106,6 +112,10 @@ const StyledChat = styled.section`
 
 	.chat-header {
 		text-align: center;
+
+		@media (max-width: 1359px) {
+			font-size: 0.8rem;
+		}
 	}
 
 	h1 {

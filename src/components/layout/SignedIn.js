@@ -21,6 +21,7 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { connect } from 'react-redux';
 import Navbar from '../../components/Navbar/Navbar';
 import Profile from '../../pages/Profile';
+import storage from 'local-storage-fallback';
 
 const DarkTheme = createGlobalStyle`
 	body, section, .school-list-page, .add-grades-page, .grades-summary-page, .zsz-page {
@@ -79,14 +80,28 @@ const StyledRightSide = styled.div`
 const StyledDesktop = styled.div``;
 
 class SignedIn extends Component {
-	state = {
-		theme: { mode: 'light' }
-	};
+	constructor() {
+		super();
+		this.state = {
+			theme: Object(this.getInitialTheme())
+		};
+		this.getInitialTheme = this.getInitialTheme.bind(this);
+	}
 	onChange = newName => {
 		this.setState({
 			theme: { mode: `${newName}` }
 		});
 	};
+	getInitialTheme = () => {
+		const savedTheme = storage.getItem('theme');
+		return savedTheme ? JSON.parse(savedTheme) : { mode: 'light' };
+	};
+	componentDidMount() {
+		storage.setItem('theme', JSON.stringify(this.state.theme));
+	}
+	componentDidUpdate() {
+		storage.setItem('theme', JSON.stringify(this.state.theme));
+	}
 	render() {
 		const theme = this.state.theme;
 		return (

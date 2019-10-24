@@ -60,6 +60,11 @@ const StyledSchoolSummary = styled.div`
 		transform: translateY(0);
 	}
 
+	.box:hover .school-logo {
+		opacity: 0.1;
+		transition: 0.2s;
+	}
+
 	.school-title {
 		transition: 0.2s;
 		transform: translateY(1em);
