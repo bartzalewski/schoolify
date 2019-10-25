@@ -3,19 +3,6 @@ import styled from 'styled-components';
 import moment from 'moment';
 
 const StyledNotification = styled.section`
-	width: 50vw;
-	background: #ececf0;
-
-	.container {
-		padding: 40px;
-	}
-
-	h1 {
-		font-size: 1.625rem;
-		font-weight: 600;
-		user-select: none;
-	}
-
 	ul {
 		list-style-type: none;
 		margin: 2rem 0;
@@ -46,30 +33,6 @@ const StyledNotification = styled.section`
 		color: #9b9b9b;
 	}
 
-	@media (max-width: 1359px) {
-		padding: 12.5px;
-
-		.container {
-			padding: 20px;
-		}
-	}
-
-	@media (max-width: 1124px) {
-		width: 80%;
-	}
-
-	@media (max-width: 813px) {
-		width: 100%;
-
-		.container {
-			padding: 10px;
-		}
-
-		h1 {
-			font-size: 1.2rem;
-		}
-	}
-
 	@media (max-width: 452px) {
 		.notification-user,
 		.notification-time,
@@ -82,7 +45,7 @@ const StyledNotification = styled.section`
 const ViewNotification = props => {
 	const { notifications } = props;
 	return (
-		<StyledNotification>
+		<StyledNotification className="site-container">
 			<div className="container">
 				<h1>Notifications</h1>
 				<ul>

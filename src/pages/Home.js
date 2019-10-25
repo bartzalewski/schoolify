@@ -68,6 +68,10 @@ const StyledHome = styled.div`
 		@media (max-width: 1600px) {
 			height: 40px;
 		}
+
+		@media (max-width: 1124px) {
+			background: #ececf0;
+		}
 	}
 
 	input#email:focus,
@@ -221,21 +225,48 @@ export default function Home() {
 		<StyledHome>
 			<StyledWrapperLeft>
 				<StyledHero>
-					<h1>
-						the <span>first</span> globalized electronic diary for schools.
-					</h1>
+					{window.innerWidth <= 1124 ? (
+						<>
+							<Logo className="home-logo" />
+							<div className="title">schoolify</div>
+							<h1>
+								the <span>first</span> globalized electronic diary for schools.
+							</h1>
+							<div className="home-container">
+								<img className="home-bg" src={homebg} alt="home background" />
+							</div>
+						</>
+					) : null}
+					{window.innerWidth > 1125 ? (
+						<h1>
+							the <span>first</span> globalized electronic diary for schools.
+						</h1>
+					) : null}
 				</StyledHero>
 				<StyledSign>
-					<SignUp />
-					<SignIn />
+					{window.innerWidth <= 1124 ? (
+						<>
+							<SignIn />
+							<SignUp />
+						</>
+					) : (
+						<>
+							<SignUp />
+							<SignIn />
+						</>
+					)}
 				</StyledSign>
 			</StyledWrapperLeft>
 			<StyledWrapperRight>
-				<Logo className="home-logo" />
-				<div className="title">schoolify</div>
-				<div className="home-container">
-					<img className="home-bg" src={homebg} alt="home background" />
-				</div>
+				{window.innerWidth > 1125 ? (
+					<>
+						<Logo className="home-logo" />
+						<div className="title">schoolify</div>
+						<div className="home-container">
+							<img className="home-bg" src={homebg} alt="home background" />
+						</div>
+					</>
+				) : null}
 			</StyledWrapperRight>
 		</StyledHome>
 	);

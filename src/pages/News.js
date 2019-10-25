@@ -11,10 +11,7 @@ import { Redirect } from 'react-router-dom';
 import SchoolList from '../components/schools/SchoolList';
 
 const StyledNews = styled.section`
-	width: 50vw;
 	height: fit-content;
-	background: #ececf0;
-	padding: 40px;
 
 	.schools-title {
 		font-size: 1.625rem;
@@ -59,7 +56,7 @@ const StyledNews = styled.section`
 		}
 	}
 
-	.container {
+	.newspage-schools-container {
 		width: 100%;
 		height: 250px;
 		display: flex;
@@ -237,7 +234,9 @@ const StyledNews = styled.section`
 	}
 
 	@media (max-width: 1359px) {
-		padding: 12.5px;
+		.container {
+			padding: 0 !important;
+		}
 
 		.schools-title {
 			padding-left: 20px;
@@ -249,7 +248,7 @@ const StyledNews = styled.section`
 			padding-top: 20px;
 		}
 
-		.container {
+		.newspage-schools-container {
 			padding: 0 20px;
 		}
 
@@ -266,27 +265,21 @@ const StyledNews = styled.section`
 		}
 	}
 
-	@media (max-width: 1124px) {
-		width: 80%;
-	}
-
 	@media (max-width: 813px) {
-		width: 100%;
-
 		.schools-title {
 			padding-left: 10px;
 			padding-top: 10px;
 			font-size: 1.2rem;
 		}
 
+		.newspage-schools-container {
+			padding: 0 10px;
+		}
+
 		.school-list {
 			padding-right: 10px;
 			padding-top: 10px;
 			font-size: 1rem;
-		}
-
-		.container {
-			padding: 10px;
 		}
 
 		.wrapper {
@@ -354,36 +347,37 @@ class News extends Component {
 	render() {
 		const { posts, auth, schools, profile } = this.props;
 		if (!auth.uid) return <Redirect to="/" />;
-		console.log(profile);
 		return (
-			<StyledNews>
-				<div className="home-wrapper">
-					<h1 className="schools-title">Browse schools</h1>
-					<Link to="/school-list" className="school-list">
-						See All
-					</Link>
-				</div>
+			<StyledNews className="site-container">
 				<div className="container">
-					<SchoolList schools={schools} />
-					<Link to="/add" className="box box-add">
-						<div className="box-wrapper">
-							<h1 className="add-title">Add your school!</h1>
-							<Add className="add" />
-						</div>
-					</Link>
-				</div>
-				<div className="wrapper">
-					<div className="add-post">
-						<Link to="/profile" className="profile-btn">
-							<img className="user-logo" src={profile.userAvatar} alt="" />
+					<div className="home-wrapper">
+						<h1 className="schools-title">Browse schools</h1>
+						<Link to="/school-list" className="school-list">
+							See All
 						</Link>
-						<Link to="/create" className="posts-btn">
-							Add a post
-						</Link>
-						<img className="user-logo" src={warning} alt="post info" />
 					</div>
+					<div className="newspage-schools-container">
+						<SchoolList schools={schools} />
+						<Link to="/add" className="box box-add">
+							<div className="box-wrapper">
+								<h1 className="add-title">Add your school!</h1>
+								<Add className="add" />
+							</div>
+						</Link>
+					</div>
+					<div className="wrapper">
+						<div className="add-post">
+							<Link to="/profile" className="profile-btn">
+								<img className="user-logo" src={profile.userAvatar} alt="" />
+							</Link>
+							<Link to="/create" className="posts-btn">
+								Add a post
+							</Link>
+							<img className="user-logo" src={warning} alt="post info" />
+						</div>
+					</div>
+					<PostList posts={posts} />
 				</div>
-				<PostList posts={posts} />
 			</StyledNews>
 		);
 	}

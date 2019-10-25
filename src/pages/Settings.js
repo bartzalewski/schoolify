@@ -6,19 +6,6 @@ import { signOut } from '../store/actions/authActions';
 import dark from '../images/dark.svg';
 
 const StyledSettings = styled.section`
-	width: 50vw;
-	background: #ececf0;
-
-	h1 {
-		font-size: 1.625rem;
-		font-weight: 600;
-		user-select: none;
-	}
-
-	.container {
-		padding: 40px;
-	}
-
 	.btn-toggle-theme {
 		font-size: 0.9rem !important;
 	}
@@ -84,30 +71,6 @@ const StyledSettings = styled.section`
 		width: fit-content;
 	}
 
-	@media (max-width: 1359px) {
-		padding: 12.5px;
-
-		.container {
-			padding: 20px;
-		}
-	}
-
-	@media (max-width: 1124px) {
-		width: 80%;
-
-		h1 {
-			font-size: 1.2rem;
-		}
-	}
-
-	@media (max-width: 813px) {
-		width: 100%;
-
-		.container {
-			padding: 10px;
-		}
-	}
-
 	@media (max-width: 452px) {
 		.btn-toggle-theme,
 		.left span {
@@ -118,7 +81,7 @@ const StyledSettings = styled.section`
 
 const Settings = props => {
 	return (
-		<StyledSettings>
+		<StyledSettings className="site-container">
 			<div className="container">
 				<h1>Settings</h1>
 				<div className="settings-wrapper">

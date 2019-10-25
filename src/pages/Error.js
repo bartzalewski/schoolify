@@ -2,19 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledError = styled.section`
-	width: 50vw;
-	background: #ececf0;
-
-	.container {
-		padding: 40px;
-	}
-
-	h1 {
-		font-size: 1.625rem;
-		font-weight: 600;
-		user-select: none;
-	}
-
 	.flex {
 		display: flex;
 		justify-content: center;
@@ -45,35 +32,11 @@ const StyledError = styled.section`
 			font-weight: bold;
 		}
 	}
-
-	@media (max-width: 1359px) {
-		padding: 12.5px;
-
-		.container {
-			padding: 20px;
-		}
-	}
-
-	@media (max-width: 1124px) {
-		width: 80%;
-	}
-
-	@media (max-width: 813px) {
-		width: 100%;
-
-		.container {
-			padding: 10px;
-		}
-
-		h1 {
-			font-size: 1.2rem;
-		}
-	}
 `;
 
 const Error = () => {
 	return (
-		<StyledError>
+		<StyledError className="site-container">
 			<div className="container">
 				<h1>404 not found</h1>
 				<div className="flex box-error-page">

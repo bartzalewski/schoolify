@@ -8,44 +8,37 @@ import { db } from '../config/fbConfig';
 import firebase from '../config/fbConfig';
 
 const StyledChat = styled.section`
-	width: 50vw;
-	background: #ececf0;
+	.wrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: 2rem;
 
-	.container {
-		padding: 40px;
-
-		.wrapper {
+		.box {
+			background: #fff;
+			border-radius: 15px;
 			display: flex;
-			justify-content: space-between;
+			flex-direction: column;
+			justify-content: center;
 			align-items: center;
-			margin-top: 2rem;
+			width: 14vw;
+			padding: 1rem;
+			transition: 0.2s;
 
-			.box {
-				background: #fff;
-				border-radius: 15px;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				width: 14vw;
-				padding: 1rem;
+			&:hover {
+				transform: scale(1.05);
 				transition: 0.2s;
+			}
 
-				&:hover {
-					transform: scale(1.05);
-					transition: 0.2s;
-				}
+			img {
+				width: 100%;
+				height: 20vh;
+			}
 
-				img {
-					width: 100%;
-					height: 20vh;
-				}
-
-				a {
-					text-decoration: none;
-					margin-top: 2rem;
-					color: inherit;
-				}
+			a {
+				text-decoration: none;
+				margin-top: 2rem;
+				color: inherit;
 			}
 		}
 	}
@@ -118,31 +111,17 @@ const StyledChat = styled.section`
 		}
 	}
 
-	h1 {
-		font-size: 1.625rem;
-		font-weight: 600;
-		user-select: none;
-	}
-
 	p {
 		margin-top: 2rem;
 	}
 
 	@media (max-width: 1359px) {
-		padding: 12.5px;
-
-		.container {
-			padding: 20px;
-		}
-
 		.chat-wrapper {
 			height: calc(100vh - 60px - 39px - 32.5px - 32px - 33px);
 		}
 	}
 
 	@media (max-width: 1124px) {
-		width: 80%;
-
 		.wrapper {
 			display: flex;
 			flex-direction: column;
@@ -151,18 +130,6 @@ const StyledChat = styled.section`
 				margin-top: 1rem;
 				width: 100% !important;
 			}
-		}
-	}
-
-	@media (max-width: 813px) {
-		width: 100%;
-
-		.container {
-			padding: 10px;
-		}
-
-		h1 {
-			font-size: 1.2rem;
 		}
 	}
 `;
@@ -279,9 +246,8 @@ class Chat extends Component {
 	};
 
 	render() {
-		console.log(this.props);
 		return (
-			<StyledChat>
+			<StyledChat className="site-container">
 				<div className="container">
 					<h1>Chat</h1>
 					<div className="chat-wrapper">

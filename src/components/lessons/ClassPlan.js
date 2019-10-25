@@ -2,42 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledClassPlan = styled.div`
-	width: 50vw;
-	background: #ececf0;
-
-	.container {
-		padding: 40px;
-	}
-
-	h1 {
-		font-size: 1.625rem;
-		font-weight: 600;
-	}
-
-	@media (max-width: 1359px) {
-		padding: 12.5px;
-
-		.container {
-			padding: 20px;
-		}
-	}
-
-	@media (max-width: 1124px) {
-		width: 80%;
-	}
-
-	@media (max-width: 813px) {
-		width: 100%;
-
-		.container {
-			padding: 10px;
-		}
-
-		h1 {
-			font-size: 1.2rem;
-		}
-	}
-
 	.tg {
 		border-collapse: collapse;
 		border-spacing: 0;
@@ -106,7 +70,7 @@ const StyledClassPlan = styled.div`
 
 export default function ClassPlan() {
 	return (
-		<StyledClassPlan className="zsz-page">
+		<StyledClassPlan className="zsz-page site-container">
 			<div className="container">
 				<h1>ZSZ im. Stanisława Staszica w Ząbkowicach Śląskich</h1>
 				<table className="tg">

@@ -8,15 +8,6 @@ import { compose } from 'redux';
 import { storage, db } from '../../config/fbConfig';
 
 const StyledCreatePost = styled.section`
-	width: 50vw;
-	background: #ececf0;
-
-	h1 {
-		font-size: 1.625rem;
-		font-weight: 600;
-		user-select: none;
-	}
-
 	#schoolName,
 	#content {
 		border-radius: 15px;
@@ -47,38 +38,6 @@ const StyledCreatePost = styled.section`
 		padding: 10px 15px;
 	}
 
-	.container {
-		padding: 40px;
-	}
-
-	.btn {
-		border-radius: 10px;
-		background: -webkit-linear-gradient(left, #fe843f, #fc5a37);
-		color: #fff;
-		font-weight: 600;
-		border: none;
-		height: 50px;
-		width: fit-content;
-		font-size: 1.125rem;
-		cursor: pointer;
-		padding: 10px 25px;
-		margin: 2rem 0;
-		position: relative;
-		transition: 0.2s;
-
-		&:hover {
-			transform: scale(1.05);
-			transition: 0.2s;
-		}
-	}
-
-	.btn-choose {
-		background: #fff;
-		font-weight: 400;
-		font-size: 0.9rem;
-		color: #293347;
-	}
-
 	.upload-container {
 		display: flex;
 		margin-top: -1.75rem;
@@ -88,29 +47,7 @@ const StyledCreatePost = styled.section`
 		margin-top: 2rem;
 	}
 
-	@media (max-width: 1359px) {
-		padding: 12.5px;
-
-		.container {
-			padding: 20px;
-		}
-	}
-
-	@media (max-width: 1124px) {
-		width: 80%;
-	}
-
 	@media (max-width: 813px) {
-		width: 100%;
-
-		.container {
-			padding: 10px;
-		}
-
-		h1 {
-			font-size: 1.2rem;
-		}
-
 		#schoolName,
 		#content {
 			font-size: 0.9rem;
@@ -233,7 +170,7 @@ class CreatePost extends Component {
 			uploadPostButton.style.visibility = 'visible';
 		}
 		return (
-			<StyledCreatePost>
+			<StyledCreatePost className="site-container">
 				<div className="container">
 					<form onSubmit={this.handleSubmit}>
 						<h1>Create new post</h1>

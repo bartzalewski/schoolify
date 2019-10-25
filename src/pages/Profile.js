@@ -3,13 +3,6 @@ import styled from 'styled-components';
 import { storage, db } from '../config/fbConfig';
 
 const StyledProfile = styled.section`
-	width: 50vw;
-	background: #ececf0;
-
-	.profile-wrapper {
-		padding: 40px;
-	}
-
 	.profile-container {
 		display: flex;
 		flex-direction: column;
@@ -95,48 +88,20 @@ const StyledProfile = styled.section`
 		margin-top: 1rem;
 	}
 
-	h1 {
-		font-size: 1.625rem;
-		font-weight: 600;
-		user-select: none;
-	}
-
-	@media (max-width: 1359px) {
-		padding: 12.5px;
-
-		.profile-wrapper {
-			padding: 20px;
-		}
-	}
-
-	@media (max-width: 1124px) {
-		width: 80%;
-	}
-
 	@media (max-width: 813px) {
-		width: 100%;
+		h2 {
+			font-size: 1.2rem !important;
+			margin: 0.5rem !important;
+		}
 
-		.profile-wrapper {
-			padding: 10px;
+		img {
+			width: 100px !important;
+			height: 100px !important;
+		}
 
-			h1 {
-				font-size: 1.2rem;
-			}
-
-			h2 {
-				font-size: 1.2rem;
-				margin: 0.5rem;
-			}
-
-			img {
-				width: 100px;
-				height: 100px;
-			}
-
-			.profile-bold,
-			.profile-normal {
-				font-size: 0.9rem;
-			}
+		.profile-bold,
+		.profile-normal {
+			font-size: 0.9rem;
 		}
 	}
 `;
@@ -208,8 +173,8 @@ export default class Profile extends Component {
 	};
 	render() {
 		return (
-			<StyledProfile>
-				<div className="profile-wrapper">
+			<StyledProfile className="site-container">
+				<div className="container">
 					<h1>Profile</h1>
 					<div className="profile-container">
 						<div className="avatar-container">

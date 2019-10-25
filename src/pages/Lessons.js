@@ -8,19 +8,6 @@ import { Link } from 'react-router-dom';
 import { db } from '../config/fbConfig';
 
 const StyledLessons = styled.section`
-	width: 50vw;
-	background: #ececf0;
-
-	h1 {
-		font-size: 1.625rem;
-		font-weight: 600;
-		user-select: none;
-	}
-
-	.container {
-		padding: 40px;
-	}
-
 	.lesson-box {
 		background: #fff;
 		padding: 15px 25px;
@@ -72,29 +59,9 @@ const StyledLessons = styled.section`
 		font-weight: 600;
 	}
 
-	@media (max-width: 1359px) {
-		padding: 12.5px;
-
-		.container {
-			padding: 20px;
-		}
-	}
-
-	@media (max-width: 1124px) {
-		width: 80%;
-	}
-
 	@media (max-width: 813px) {
-		width: 100%;
-
-		.container {
-			padding: 10px;
-		}
 		.school-name {
 			font-size: 0.9rem;
-		}
-		h1 {
-			font-size: 1.2rem;
 		}
 	}
 
@@ -134,7 +101,7 @@ class Lessons extends Component {
 	}
 	render() {
 		return (
-			<StyledLessons>
+			<StyledLessons className="site-container">
 				<div className="container">
 					<h1>Lessons</h1>
 					<div className="lesson-box">
