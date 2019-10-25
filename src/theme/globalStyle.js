@@ -36,8 +36,9 @@ const GlobalStyle = createGlobalStyle`
 
   input,
   button,
-  textarea {
+  textarea, select {
     font-family: 'Poppins';
+    outline: none;
   }
 
   input[placeholder],
@@ -53,10 +54,10 @@ const GlobalStyle = createGlobalStyle`
 
   .custom-file-input {
     color: transparent;
-    width: 143.91px;
+    width: 175px;
     height: 50px;
     transition: .2s;
-    border: 1px solid #d2d2d2;
+    border: none;
     border-radius: 10px;
   }
 
@@ -93,6 +94,24 @@ const GlobalStyle = createGlobalStyle`
   .custom-file-input:active::before {
 		background: white;
   }
+
+  .input-aside {
+		border-radius: 10px;
+		border: none;
+		width: 125px;
+		padding: 5px 10px !important;
+		text-align: center;
+		background: #ececf0;
+
+		::placeholder {
+			color: #293347;
+		}
+
+		@media (max-width: 1359px) {
+			padding: 2.5px 5px !important;
+			font-size: 0.8rem;
+		}
+	}
 
   @keyframes pulse {
     from {

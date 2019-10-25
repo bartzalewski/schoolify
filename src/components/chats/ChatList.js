@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const StyledChatList = styled.div`
 	.list-item {
 		display: flex;
-		background: #f2f2f2;
+		background: #ececf0;
 		border-radius: 10px;
 		width: 95%;
 		display: flex;
@@ -23,7 +23,7 @@ const StyledChatList = styled.div`
 	}
 
 	.list-item-selected {
-		background: #f2f2f2;
+		background: #ececf0;
 	}
 
 	.list-item-avatar {

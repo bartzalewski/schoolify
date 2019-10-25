@@ -24,21 +24,21 @@ import Profile from '../../pages/Profile';
 import storage from 'local-storage-fallback';
 
 const DarkTheme = createGlobalStyle`
-	body, section, .school-list-page, .add-grades-page, .grades-summary-page, .zsz-page {
+	body, section, .posts-btn, .school-list-page, .add-grades-page, .grades-summary-page, .zsz-page, .input-reminder, .input-reminder::placeholder, .input-homework, .input-homework::placeholder, .input-tests, .input-tests::placeholder, .list-item, .friend-sent, .user-sent, #chat-text-box {
 		background: ${props =>
 			props.theme.mode === 'dark' ? '#141414' : null} !important;
-		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)};
+		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 	}
 
-	aside, nav, .input-reminder, .input-reminder::placeholder, .input-homework, .input-homework::placeholder, .input-tests, .input-tests::placeholder, #schoolName, #schoolName::placeholder, #content, #content::placeholder, .custom-file-input::before, .btn-choose, .list-item, .friend-sent, .user-sent {
+	aside, nav, #schoolName, #schoolName::placeholder, #content, #content::placeholder, .custom-file-input::before, .btn-choose {
 		background: ${props =>
 			props.theme.mode === 'dark' ? '#1F1F1F' : null} !important;
 		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 	}
 
-	.posts-list, .add-post, .posts-btn, .lesson-box, .box-add, .notification-item, .add-grades-box, .box-error-page, .settings-box, .profile-container, .chat-wrapper {
+	.posts-list, .add-post, .lesson-box, .box-add, .notification-item, .add-grades-box, .box-error-page, .settings-box, .profile-container, .chat-wrapper {
 		background: ${props =>
-			props.theme.mode === 'dark' ? '#0a0a0a' : null} !important;
+			props.theme.mode === 'dark' ? '#1F1F1F' : null} !important;
 	}
 
 	.box, .upload-pic {
@@ -109,22 +109,32 @@ class SignedIn extends Component {
 				<>
 					<DarkTheme />
 					<StyledDesktop>
-						<Navbar props={this.props.profile} />
+						<Navbar profile={this.props.profile} />
 						<StyledWrapper>
 							<StyledLeftSide>
-								<Reminders />
-								{window.innerWidth <= 1124 ? <Homework /> : null}
-								{window.innerWidth <= 1124 ? <Tests /> : null}
+								<Reminders profile={this.props.profile} />
+								{window.innerWidth <= 1124 ? (
+									<Homework profile={this.props.profile} />
+								) : null}
+								{window.innerWidth <= 1124 ? (
+									<Tests profile={this.props.profile} />
+								) : null}
 								<Grades />
 							</StyledLeftSide>
 							<StyledHome>
 								<Switch>
-									<Route exact path="/" component={News} />
+									<Route
+										exact
+										path="/"
+										component={props => (
+											<News {...props} profile={this.props.profile} />
+										)}
+									/>
 									<Route path="/notifications" component={Notification} />
 									<Route
 										path="/profile"
 										component={props => (
-											<Profile {...props} props={this.props.profile} />
+											<Profile {...props} profile={this.props.profile} />
 										)}
 									></Route>
 									<Route path="/lessons" component={Lessons} />

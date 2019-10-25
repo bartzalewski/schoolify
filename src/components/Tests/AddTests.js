@@ -3,21 +3,7 @@ import styled from 'styled-components';
 
 const StyledAddTests = styled.div`
 	.input-tests {
-		border-radius: 10px;
-		border: 1px solid #d2d2d2;
 		width: 90px;
-		padding: 5px 10px;
-		text-align: center;
-
-		@media (max-width: 1359px) {
-			padding: 2.5px 5px;
-			font-size: 0.8rem;
-		}
-	}
-
-	.input-tests:focus {
-		outline: none;
-		border: 1px solid #fe843f;
 	}
 `;
 
@@ -43,7 +29,7 @@ export default class AddTests extends Component {
 				<form onSubmit={this.handleSubmit}>
 					<input
 						placeholder="Add a test"
-						className="input-tests"
+						className="input-aside input-tests"
 						type="text"
 						onChange={this.handleChange}
 						value={this.state.content}

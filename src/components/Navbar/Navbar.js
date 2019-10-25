@@ -204,7 +204,7 @@ export default function Navbar(props) {
 	return (
 		<StyledNavbar>
 			<div className="left">
-				<NavLink to="#">
+				<NavLink exact to="/">
 					<Logo className="schoolify-logo" />
 				</NavLink>
 				<p className="title">schoolify</p>
@@ -240,7 +240,7 @@ export default function Navbar(props) {
 					</svg>
 				</NavLink>
 				<NavLink activeClassName="active" to="/profile" className="box avatar">
-					<img src={props.props.userAvatar} alt="" />
+					<img src={props.profile.userAvatar} alt="" />
 				</NavLink>
 				<NavLink activeClassName="active" to="/lessons" className="box">
 					<svg

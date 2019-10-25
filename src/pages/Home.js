@@ -45,6 +45,42 @@ const StyledHome = styled.div`
 		padding: 100px;
 	}
 
+	.signup-title,
+	.signin-title {
+		font-size: 1.5rem;
+		font-weight: 600;
+		background: -webkit-linear-gradient(top, #fe843f, #fc5a37);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	input#email,
+	input#password,
+	input#firstName,
+	input#lastName {
+		width: 100%;
+		height: 50px;
+		font-size: 1.125rem;
+		border: none;
+		border-radius: 10px;
+
+		@media (max-width: 1600px) {
+			height: 40px;
+		}
+	}
+
+	input#email:focus,
+	input#password:focus,
+	input#firstName:focus,
+	input#lastName:focus {
+		outline: none;
+	}
+
+	input {
+		margin-top: 10px;
+	}
+
 	input,
 	button {
 		user-select: text;
@@ -65,67 +101,21 @@ const StyledHome = styled.div`
 		cursor: pointer;
 		padding: 10px 25px;
 		margin-top: 20px;
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.05);
+			transition: 0.2s;
+		}
 
 		@media (max-width: 1600px) {
 			padding: 0px 25px;
 		}
 	}
-`;
 
-const StyledWrapperLeft = styled.div`
-	width: 40vw;
-	height: 100vh;
-	background: #ececf0;
-	padding: 100px;
-	border-right: 1px solid #d2d2d2;
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
-
-	@media (max-width: 1600px) {
-		padding: 50px;
-	}
-
-	@media (max-width: 1124px) {
-		display: none;
-	}
-`;
-
-const StyledHero = styled.div`
-	height: fit-content;
-`;
-
-const StyledSign = styled.div`
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-end;
-	height: fit-content;
-	width: 100%;
-`;
-
-const StyledWrapperRight = styled.div`
-	width: 60vw;
-	height: 100vh;
-	background: #fff;
-	padding: 100px;
-	text-align: center;
-	z-index: 1;
-
-	@media (max-width: 1600px) {
-		padding: 50px;
-	}
-
-	@media (max-width: 1124px) {
-		display: none;
-	}
-`;
-
-const StyledMobile = styled.div`
-	display: none;
 	@media (max-width: 1124px) {
 		text-align: center;
 		padding: 50px;
-		display: block;
 		overflow-y: auto;
 		display: flex;
 		flex-direction: column;
@@ -136,8 +126,17 @@ const StyledMobile = styled.div`
 			margin-top: 5rem;
 		}
 
+		.home-logo {
+			width: 50px;
+			height: 50px;
+		}
+
 		.title {
 			font-size: 1.8rem;
+		}
+
+		.home-container {
+			padding: 0;
 		}
 
 		h1 {
@@ -158,9 +157,63 @@ const StyledMobile = styled.div`
 	}
 `;
 
-const StyledLogo = styled.div`
-	width: 50px;
-	height: 50px;
+const StyledWrapperLeft = styled.div`
+	width: 40vw;
+	height: 100vh;
+	background: #ececf0;
+	padding: 100px;
+	border-right: 1px solid #d2d2d2;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+
+	@media (max-width: 1600px) {
+		padding: 50px;
+	}
+
+	@media (max-width: 1124px) {
+		width: 100%;
+		background: white;
+		border: none;
+		height: fit-content;
+		padding: 0;
+	}
+`;
+
+const StyledHero = styled.div``;
+
+const StyledSign = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	height: fit-content;
+	width: 100%;
+
+	@media (max-width: 1124px) {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+`;
+
+const StyledWrapperRight = styled.div`
+	width: 60vw;
+	height: 100vh;
+	background: #fff;
+	padding: 100px;
+	text-align: center;
+	z-index: 1;
+
+	@media (max-width: 1600px) {
+		padding: 50px;
+	}
+
+	@media (max-width: 1124px) {
+		width: 100%;
+		z-index: 0;
+		padding: 0;
+	}
 `;
 
 export default function Home() {
@@ -178,24 +231,12 @@ export default function Home() {
 				</StyledSign>
 			</StyledWrapperLeft>
 			<StyledWrapperRight>
-				<Logo />
+				<Logo className="home-logo" />
 				<div className="title">schoolify</div>
 				<div className="home-container">
 					<img className="home-bg" src={homebg} alt="home background" />
 				</div>
 			</StyledWrapperRight>
-			<StyledMobile>
-				<StyledLogo>
-					<Logo />
-				</StyledLogo>
-				<div className="title">schoolify</div>
-				<h1>
-					the <span>first</span> globalized electronic diary for schools.
-				</h1>
-				<img className="home-bg" src={homebg} alt="home background" />
-				<SignIn />
-				<SignUp />
-			</StyledMobile>
 		</StyledHome>
 	);
 }

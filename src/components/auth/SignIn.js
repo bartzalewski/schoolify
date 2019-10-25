@@ -7,47 +7,6 @@ const StyledSignIn = styled.section`
 	width: 49%;
 	height: fit-content;
 
-	.signin-title {
-		font-size: 1.5rem;
-		font-weight: 600;
-		background: -webkit-linear-gradient(top, #fe843f, #fc5a37);
-		-webkit-background-clip: text;
-		background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
-
-	.btn {
-		transition: 0.2s;
-
-		&:hover {
-			transform: scale(1.05);
-			transition: 0.2s;
-		}
-	}
-
-	input#email,
-	input#password {
-		width: 100%;
-		height: 50px;
-		font-size: 1.125rem;
-		border: 1px solid #d2d2d2;
-		border-radius: 10px;
-
-		@media (max-width: 1600px) {
-			height: 40px;
-		}
-	}
-
-	input#email:focus,
-	input#password:focus {
-		outline: none;
-		border: 1px solid #fe843f;
-	}
-
-	input {
-		margin-top: 10px;
-	}
-
 	@media (max-width: 600px) {
 		width: 100%;
 	}

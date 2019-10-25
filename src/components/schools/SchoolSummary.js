@@ -68,8 +68,9 @@ const StyledSchoolSummary = styled.div`
 	.school-title {
 		transition: 0.2s;
 		transform: translateY(1em);
-		text-align: center;
+		text-align: justify;
 		user-select: none;
+		width: 80%;
 	}
 
 	@media (max-width: 813px) {

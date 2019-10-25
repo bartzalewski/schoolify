@@ -17,15 +17,10 @@ const StyledCreateSchool = styled.section`
 
 	#schoolName {
 		border-radius: 15px;
-		border: 1px solid #d2d2d2;
+		border: none;
 		width: 100%;
 		margin: 0.25rem 0;
 		font-size: inherit;
-	}
-
-	#schoolName:focus {
-		border: 1px solid #fe843f;
-		outline: none;
 	}
 
 	#upload-post-btn {
@@ -73,7 +68,6 @@ const StyledCreateSchool = styled.section`
 		font-weight: 400;
 		font-size: 0.9rem;
 		color: #293347;
-		border: 1px solid #d2d2d2;
 	}
 
 	.upload-wrapper {
@@ -272,7 +266,7 @@ class CreateSchool extends Component {
 							/>
 							<button
 								className="btn btn-choose"
-								style={{ margin: '0 0 0 1rem' }}
+								style={{ margin: '0 0 0 0.5rem' }}
 								onClick={this.handleUploadSchoolLogo}
 							>
 								Upload Scholo Logo
@@ -289,7 +283,7 @@ class CreateSchool extends Component {
 							/>
 							<button
 								className="btn btn-choose"
-								style={{ margin: '0 0 0 1rem' }}
+								style={{ margin: '0 0 0 0.5rem' }}
 								onClick={this.handleUploadSchoolBackground}
 							>
 								Upload School Background

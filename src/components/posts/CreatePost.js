@@ -20,7 +20,7 @@ const StyledCreatePost = styled.section`
 	#schoolName,
 	#content {
 		border-radius: 15px;
-		border: 1px solid #d2d2d2;
+		border: none;
 		width: 100%;
 		margin: 0.25rem 0;
 		font-size: inherit;
@@ -34,12 +34,6 @@ const StyledCreatePost = styled.section`
 
 	#content {
 		height: 10rem;
-	}
-
-	#schoolName:focus,
-	#content:focus {
-		border: 1px solid #fe843f;
-		outline: none;
 	}
 
 	#upload-post-btn {
@@ -83,7 +77,6 @@ const StyledCreatePost = styled.section`
 		font-weight: 400;
 		font-size: 0.9rem;
 		color: #293347;
-		border: 1px solid #d2d2d2;
 	}
 
 	.upload-container {
@@ -280,7 +273,7 @@ class CreatePost extends Component {
 						/>
 						<button
 							className="btn btn-choose"
-							style={{ margin: '0 0 0 1rem' }}
+							style={{ margin: '0 0 0 0.5rem' }}
 							onClick={this.handleUpload}
 						>
 							Upload an image

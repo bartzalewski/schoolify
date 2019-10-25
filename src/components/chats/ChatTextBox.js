@@ -11,12 +11,13 @@ const StyledChatTextBox = styled.div`
 	input {
 		width: 75%;
 		border-radius: 15px;
-		border: 1px solid #d2d2d2;
+		border: none;
+		background: #ececf0;
 	}
 
 	button {
-		border: 1px solid #d2d2d2;
-		background: #fff;
+		border: none;
+		background: #ececf0;
 		border-radius: 15px;
 		width: 20%;
 		cursor: pointer;

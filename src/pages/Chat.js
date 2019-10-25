@@ -75,7 +75,7 @@ const StyledChat = styled.section`
 	}
 
 	.user-sent {
-		background-color: #f2f2f2;
+		background-color: #ececf0;
 		float: right;
 		border-radius: 10px;
 		padding: 2.5px 10px;
@@ -85,7 +85,7 @@ const StyledChat = styled.section`
 	}
 
 	.friend-sent {
-		background-color: #f2f2f2;
+		background-color: #ececf0;
 		float: left;
 		border-radius: 10px;
 		padding: 2.5px 10px;
@@ -279,6 +279,7 @@ class Chat extends Component {
 	};
 
 	render() {
+		console.log(this.props);
 		return (
 			<StyledChat>
 				<div className="container">

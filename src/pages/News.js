@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Add } from '../images/add.svg';
-import info from '../images/info.svg';
 import warning from '../images/warning.svg';
 import PostList from '../components/posts/PostList';
 import { connect } from 'react-redux';
@@ -24,7 +23,7 @@ const StyledNews = styled.section`
 	}
 
 	.school-list {
-		font-size: 1.4375rem;
+		font-size: 1.2rem;
 		color: #fe843f;
 		font-weight: 400;
 		text-decoration: none;
@@ -40,6 +39,7 @@ const StyledNews = styled.section`
 	.home-wrapper {
 		display: flex;
 		justify-content: space-between;
+		align-items: flex-end;
 	}
 
 	.box {
@@ -149,13 +149,13 @@ const StyledNews = styled.section`
 	}
 
 	.posts-btn {
-		background: #f3f3f5;
-		border: 1px solid #d2d2d2;
+		background: #ececf0;
 		border-radius: 15px;
 		margin: 0;
 		height: 40px;
 		width: 70%;
 		font-size: 1.125rem;
+		font-weight: 600;
 		text-decoration: none;
 		color: inherit;
 		display: flex;
@@ -216,10 +216,24 @@ const StyledNews = styled.section`
 		margin-top: 1rem;
 	}
 
-	.user-logo {
+	.user-logo,
+	.profile-btn {
 		width: 40px;
 		height: 40px;
-		user-select: none;
+		border-radius: 100px;
+	}
+
+	.profile-btn {
+		transition: 0.2s;
+
+		&:hover {
+			transition: 0.2s;
+			box-shadow: 0 0 0 2pt #fe843f;
+
+			@media (max-width: 1359px) {
+				box-shadow: 0 0 0 1pt #fe843f;
+			}
+		}
 	}
 
 	@media (max-width: 1359px) {
@@ -268,7 +282,7 @@ const StyledNews = styled.section`
 		.school-list {
 			padding-right: 10px;
 			padding-top: 10px;
-			font-size: 1.2rem;
+			font-size: 1rem;
 		}
 
 		.container {
@@ -306,7 +320,8 @@ const StyledNews = styled.section`
 			height: 30px;
 		}
 
-		.user-logo {
+		.user-logo,
+		.profile-btn {
 			width: 30px;
 			height: 30px;
 		}
@@ -337,8 +352,9 @@ const StyledNews = styled.section`
 
 class News extends Component {
 	render() {
-		const { posts, auth, schools } = this.props;
+		const { posts, auth, schools, profile } = this.props;
 		if (!auth.uid) return <Redirect to="/" />;
+		console.log(profile);
 		return (
 			<StyledNews>
 				<div className="home-wrapper">
@@ -358,7 +374,9 @@ class News extends Component {
 				</div>
 				<div className="wrapper">
 					<div className="add-post">
-						<img className="user-logo" src={info} alt="post info" />
+						<Link to="/profile" className="profile-btn">
+							<img className="user-logo" src={profile.userAvatar} alt="" />
+						</Link>
 						<Link to="/create" className="posts-btn">
 							Add a post
 						</Link>

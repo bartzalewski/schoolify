@@ -30,7 +30,6 @@ const StyledProfile = styled.section`
 			object-fit: contain;
 
 			&:hover {
-				transform: scale(1.05);
 				transition: 0.2s;
 				box-shadow: 0 0 0 2pt #fe843f;
 			}
@@ -216,7 +215,7 @@ export default class Profile extends Component {
 						<div className="avatar-container">
 							<img
 								title="Your avatar"
-								src={this.props.props.userAvatar}
+								src={this.props.profile.userAvatar}
 								alt=""
 							/>
 							<svg
@@ -239,7 +238,7 @@ export default class Profile extends Component {
 								</button>
 							)}
 							<h2>
-								{this.props.props.firstName} {this.props.props.lastName}
+								{this.props.profile.firstName} {this.props.profile.lastName}
 							</h2>
 						</div>
 						<progress value={this.state.progress} max="100" />
@@ -252,12 +251,18 @@ export default class Profile extends Component {
 						<div className="profile-school">
 							<p className="profile-bold">School:</p>
 							<p className="profile-normal">
-								ZSZ im. Stanisława Staszica w Ząbkowicach Śląskich
+								{this.props.profile.schoolName
+									? this.props.profile.schoolName
+									: 'Your school'}
 							</p>
 						</div>
 						<div className="profile-class">
 							<p className="profile-bold">Class:</p>
-							<p className="profile-normal">4TI</p>
+							<p className="profile-normal">
+								{this.props.profile.className
+									? this.props.profile.className
+									: 'Your class'}
+							</p>
 						</div>
 					</div>
 				</div>

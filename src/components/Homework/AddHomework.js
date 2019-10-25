@@ -3,21 +3,7 @@ import styled from 'styled-components';
 
 const StyledAddHomework = styled.div`
 	.input-homework {
-		border-radius: 10px;
-		border: 1px solid #d2d2d2;
 		width: 135px;
-		padding: 5px 10px;
-		text-align: center;
-
-		@media (max-width: 1359px) {
-			padding: 2.5px 5px;
-			font-size: 0.8rem;
-		}
-	}
-
-	.input-homework:focus {
-		outline: none;
-		border: 1px solid #fe843f;
 	}
 `;
 
@@ -42,7 +28,7 @@ export default class AddHomework extends Component {
 			<StyledAddHomework>
 				<form onSubmit={this.handleSubmit}>
 					<input
-						className="input-homework"
+						className="input-aside input-homework"
 						placeholder="Add a homework"
 						type="text"
 						onChange={this.handleChange}
