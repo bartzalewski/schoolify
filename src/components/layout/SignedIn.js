@@ -24,15 +24,15 @@ import Profile from '../../pages/Profile';
 import storage from 'local-storage-fallback';
 
 const DarkTheme = createGlobalStyle`
-	body, section, .posts-btn, .school-list-page, .add-grades-page, .grades-summary-page, .zsz-page, .input-reminder, .input-reminder::placeholder, .input-homework, .input-homework::placeholder, .input-tests, .input-tests::placeholder, .list-item, .friend-sent, .user-sent, #chat-text-box {
+	aside, nav, #schoolName, #schoolName::placeholder, #content, #content::placeholder, .custom-file-input::before, .btn-choose, .list-item {
 		background: ${props =>
-			props.theme.mode === 'dark' ? '#141414' : null} !important;
+			props.theme.mode === 'dark' ? '#1F1F1F' : null} !important;
 		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 	}
 
-	aside, nav, #schoolName, #schoolName::placeholder, #content, #content::placeholder, .custom-file-input::before, .btn-choose {
+	body, section, .posts-btn, .school-list-page, .add-grades-page, .grades-summary-page, .zsz-page, .input-reminder, .input-reminder::placeholder, .input-homework, .input-homework::placeholder, .input-tests, .input-tests::placeholder, .list-item-selected, .friend-sent, .user-sent, #chat-text-box {
 		background: ${props =>
-			props.theme.mode === 'dark' ? '#1F1F1F' : null} !important;
+			props.theme.mode === 'dark' ? '#141414' : null} !important;
 		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 	}
 
@@ -41,7 +41,7 @@ const DarkTheme = createGlobalStyle`
 			props.theme.mode === 'dark' ? '#1F1F1F' : null} !important;
 	}
 
-	.box, .upload-pic {
+	.box, .upload-pic, .submit-message-icon {
 		fill: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 	}
 `;

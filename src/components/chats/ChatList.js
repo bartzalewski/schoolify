@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const StyledChatList = styled.div`
 	.list-item {
 		display: flex;
-		background: #ececf0;
+		background: white;
 		border-radius: 10px;
 		width: 95%;
 		display: flex;
@@ -104,7 +104,7 @@ export default class ChatList extends Component {
 								<div key={_index}>
 									<div
 										className={
-											this.props.selectChatIndex === _index
+											this.props.selectedChatIndex === _index
 												? 'list-item-selected list-item'
 												: 'list-item'
 										}

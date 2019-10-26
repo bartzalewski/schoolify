@@ -91,6 +91,7 @@ class Reminders extends Component {
 		if (window.innerWidth >= 1124) {
 			this.state.active = false;
 		}
+		console.log(this.props.profile);
 		return (
 			<StyledReminders>
 				<div className="container">

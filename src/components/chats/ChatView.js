@@ -26,7 +26,7 @@ export default class ChatView extends Component {
 					<div>
 						<div className="chat-header">
 							Your conversation with{' '}
-							{chat.users.filter(_usr => _usr !== user)[0]}
+							<span>{chat.users.filter(_usr => _usr !== user)[0]}</span>
 						</div>
 					</div>
 					<main id="chatview-container">

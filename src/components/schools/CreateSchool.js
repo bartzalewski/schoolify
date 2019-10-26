@@ -38,6 +38,18 @@ const StyledCreateSchool = styled.section`
 		margin-top: 2rem;
 	}
 
+	.school-logo-input {
+		&::before {
+			content: 'Choose logo';
+		}
+	}
+
+	.school-bg-input {
+		&::before {
+			content: 'Choose background';
+		}
+	}
+
 	@media (max-width: 813px) {
 		#schoolName {
 			font-size: 0.9rem;
@@ -193,7 +205,7 @@ class CreateSchool extends Component {
 					<div className="upload-wrapper">
 						<div className="upload-container">
 							<input
-								className="custom-file-input"
+								className="custom-file-input school-logo-input"
 								type="file"
 								onChange={this.handleChooseSchoolLogo}
 							/>
@@ -210,7 +222,7 @@ class CreateSchool extends Component {
 						<br />
 						<div className="upload-container">
 							<input
-								className="custom-file-input"
+								className="custom-file-input school-bg-input"
 								type="file"
 								onChange={this.handleChooseSchoolBackground}
 							/>

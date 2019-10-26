@@ -138,19 +138,20 @@ const StyledNews = styled.section`
 		background: #fff;
 		width: 90%;
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 		align-items: center;
-		height: 60px;
+		height: 70px;
 		border-radius: 15px;
 		margin-top: 3rem;
+		padding: 25px;
 	}
 
 	.posts-btn {
 		background: #ececf0;
 		border-radius: 15px;
 		margin: 0;
-		height: 40px;
-		width: 70%;
+		height: 50px;
+		width: 75%;
 		font-size: 1.125rem;
 		font-weight: 600;
 		text-decoration: none;
@@ -162,7 +163,7 @@ const StyledNews = styled.section`
 		transition: 0.2s;
 
 		&:hover {
-			transform: scale(1.05);
+			transform: scale(1.025);
 			transition: 0.2s;
 		}
 	}
@@ -215,8 +216,8 @@ const StyledNews = styled.section`
 
 	.user-logo,
 	.profile-btn {
-		width: 40px;
-		height: 40px;
+		width: 50px;
+		height: 50px;
 		border-radius: 100px;
 	}
 
@@ -262,6 +263,16 @@ const StyledNews = styled.section`
 
 		.posts-list {
 			margin-top: 1.5rem;
+		}
+
+		.posts-btn {
+			width: 70%;
+		}
+	}
+
+	@media (max-width: 1124px) {
+		.posts-btn {
+			width: 75%;
 		}
 	}
 
@@ -322,6 +333,10 @@ const StyledNews = styled.section`
 		.add-title {
 			font-size: 0.9rem;
 		}
+
+		.posts-btn {
+			height: 40px;
+		}
 	}
 
 	@media (max-width: 478px) {
@@ -336,6 +351,9 @@ const StyledNews = styled.section`
 		}
 		.posts-btn {
 			font-size: 0.9rem;
+			width: 70%;
+			height: 30px;
+			border-radius: 10px;
 		}
 		.add-title {
 			font-size: 0.75rem;

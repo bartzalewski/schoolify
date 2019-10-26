@@ -106,6 +106,10 @@ const StyledChat = styled.section`
 	.chat-header {
 		text-align: center;
 
+		span {
+			font-weight: 600;
+		}
+
 		@media (max-width: 1359px) {
 			font-size: 0.8rem;
 		}
@@ -185,6 +189,7 @@ class Chat extends Component {
 				_usr => _usr !== this.state.email
 			)[0]
 		);
+		console.log(docKey);
 		if (this.clickedChatWhereNotSender(chatIndex)) {
 			firebase
 				.firestore()

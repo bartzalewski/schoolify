@@ -11,6 +11,11 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Poppins';
   }
 
+  ::selection {
+    background: #FE843F;
+    color: white;
+  }
+
   body::-webkit-scrollbar {
     width: 0.5em;
   }
@@ -41,6 +46,11 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
   }
 
+  input:focus::placeholder,
+  textarea:focus::placeholder {
+    color: transparent !important;
+  }
+
   input[placeholder],
   textarea[placeholder] {
     padding: 10px;
@@ -56,7 +66,6 @@ const GlobalStyle = createGlobalStyle`
     color: transparent;
     width: 175px;
     height: 50px;
-    transition: .2s;
     border: none;
     border-radius: 10px;
   }
@@ -84,11 +93,6 @@ const GlobalStyle = createGlobalStyle`
 
   .custom-file-input:active {
     outline: 0;
-  }
-
-  .custom-file-input:hover {
-    transform: scale(1.05);
-    transition: .2s;
   }
 
   .custom-file-input:active::before {
@@ -177,6 +181,12 @@ const GlobalStyle = createGlobalStyle`
 		font-weight: 400;
 		font-size: 0.9rem;
 		color: #293347;
+    transition: none;
+
+		&:hover {
+			transform: none;
+			transition: none;
+		}
 	}
 
   @keyframes pulse {

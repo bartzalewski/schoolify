@@ -185,7 +185,7 @@ class CreatePost extends Component {
 						<div className="input-field">
 							<label htmlFor="content" />
 							<textarea
-								placeholder="Post Content"
+								placeholder="Type your post content here..."
 								id="content"
 								onChange={this.handleChange}
 							/>
