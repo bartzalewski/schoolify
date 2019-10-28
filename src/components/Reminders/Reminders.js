@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import RemindersList from './RemindersList';
-import AddReminder from './AddReminders';
+import { connect } from 'react-redux';
+import { db } from '../../config/fbConfig';
+import firebase from '../../config/fbConfig';
 
 const StyledReminders = styled.aside`
 	width: 25vw;
@@ -23,6 +24,29 @@ const StyledReminders = styled.aside`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+	}
+
+	.reminders-item {
+		background: #ff9800;
+		color: #fff;
+		border-radius: 10px;
+		padding: 5px 15px;
+		margin-top: 5px;
+		width: fit-content;
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.05);
+			transition: 0.2s;
+		}
+
+		@media (max-width: 1359px) {
+			padding: 2.5px 10px;
+		}
+
+		@media (max-width: 1124px) {
+			margin: 5px auto;
+		}
 	}
 
 	@media (max-width: 1359px) {
@@ -59,39 +83,80 @@ const StyledReminders = styled.aside`
 
 class Reminders extends Component {
 	state = {
-		todos: [
-			{ id: 1, content: 'use a planner' },
-			{ id: 2, content: 'get enough sleep' },
-			{ id: 3, content: 'get organized' },
-			{ id: 4, content: 'lay out your outfit before' }
-		],
+		content: '',
 		active: true
 	};
-	deleteTodo = id => {
-		const todos = this.state.todos.filter(todo => {
-			return todo.id !== id;
-		});
-		this.setState({
-			todos
+	handleChange = async e => {
+		await this.setState({
+			content: e.target.value
 		});
 	};
-	addTodo = todo => {
-		todo.id = Math.random();
-		let todos = [...this.state.todos, todo];
-		this.setState({
-			todos
-		});
+	addReminder = e => {
+		e.preventDefault();
+		db.collection('users')
+			.where('email', '==', this.props.auth.email)
+			.get()
+			.then(snap =>
+				snap.forEach(doc => {
+					const { reminders } = doc.data();
+					db.collection('users')
+						.doc(doc.id)
+						.update({
+							reminders: firebase.firestore.FieldValue.arrayUnion(
+								this.state.content
+							)
+						});
+					console.log(reminders);
+				})
+			);
+		document.getElementById('input-reminder').value = '';
+	};
+	removeReminder = e => {
+		e.preventDefault();
+		e.persist();
+		db.collection('users')
+			.where('email', '==', this.props.auth.email)
+			.get()
+			.then(snap =>
+				snap.forEach(doc => {
+					const { reminders } = doc.data();
+					db.collection('users')
+						.doc(doc.id)
+						.update({
+							reminders: firebase.firestore.FieldValue.arrayRemove(
+								e.target.innerText
+							)
+						});
+					console.log(reminders);
+				})
+			);
 	};
 	isHidden = () => {
 		this.setState({
 			active: !this.state.active
 		});
 	};
+	componentDidMount() {
+		db.collection('users')
+			.where('email', '==', this.props.auth.email)
+			.get()
+			.then(snap =>
+				snap.forEach(doc => {
+					const { reminders } = doc.data();
+					for (const element of reminders) {
+						const remindersList = document.getElementById('reminders-list');
+						const div = document.createElement('div');
+						div.classList.add('reminders-item');
+						remindersList.appendChild(div);
+						div.innerText = element;
+					}
+				})
+			);
+	}
 	render() {
 		if (window.innerWidth >= 1124) {
 			this.state.active = false;
 		}
-		console.log(this.props.profile);
 		return (
 			<StyledReminders>
 				<div className="container">
@@ -99,19 +164,28 @@ class Reminders extends Component {
 						Reminders
 					</h1>
 					{!this.state.active && (
-						<AddReminder active={this.state.active} addTodo={this.addTodo} />
+						<form onSubmit={this.addReminder}>
+							<input
+								id="input-reminder"
+								type="text"
+								placeholder="Add a reminder"
+								className="input-aside input-reminder"
+								active={this.state.active}
+								onChange={this.handleChange}
+							/>
+						</form>
 					)}
 				</div>
-				{!this.state.active && (
-					<RemindersList
-						active={this.state.active}
-						todos={this.state.todos}
-						deleteTodo={this.deleteTodo}
-					/>
-				)}
+				<div id="reminders-list" onClick={this.removeReminder}></div>
 			</StyledReminders>
 		);
 	}
 }
 
-export default Reminders;
+const mapStateToProps = state => {
+	return {
+		auth: state.firebase.auth
+	};
+};
+
+export default connect(mapStateToProps)(Reminders);

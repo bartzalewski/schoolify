@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import TestsList from './TestsList';
-import AddTests from './AddTests';
+import { connect } from 'react-redux';
+import { db } from '../../config/fbConfig';
+import firebase from '../../config/fbConfig';
 
 const StyledTests = styled.aside`
 	width: 25vw;
@@ -22,6 +23,33 @@ const StyledTests = styled.aside`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+	}
+
+	.input-tests {
+		width: 90px;
+	}
+
+	.tests-item {
+		background: #f44336;
+		color: #fff;
+		border-radius: 10px;
+		padding: 5px 15px;
+		margin-top: 5px;
+		width: fit-content;
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.05);
+			transition: 0.2s;
+		}
+
+		@media (max-width: 1359px) {
+			padding: 2.5px 10px;
+		}
+
+		@media (max-width: 1124px) {
+			margin: 5px auto;
+		}
 	}
 
 	@media (max-width: 1359px) {
@@ -53,34 +81,76 @@ const StyledTests = styled.aside`
 
 class Tests extends Component {
 	state = {
-		todos: [
-			{ id: 1, content: '01-09-2019 | Math | Geometry' },
-			{ id: 2, content: '02-09-2019 | Biology | Anatomy' },
-			{ id: 3, content: '03-09-2019 | Spanish | Thigs at home' },
-			{ id: 4, content: '04-09-2019 | English | Essay' }
-		],
+		content: '',
 		active: true
 	};
-	deleteTodo = id => {
-		const todos = this.state.todos.filter(todo => {
-			return todo.id !== id;
-		});
-		this.setState({
-			todos
+	handleChange = async e => {
+		await this.setState({
+			content: e.target.value
 		});
 	};
-	addTodo = todo => {
-		todo.id = Math.random();
-		let todos = [...this.state.todos, todo];
-		this.setState({
-			todos
-		});
+	addTest = e => {
+		e.preventDefault();
+		db.collection('users')
+			.where('email', '==', this.props.auth.email)
+			.get()
+			.then(snap =>
+				snap.forEach(doc => {
+					const { tests } = doc.data();
+					db.collection('users')
+						.doc(doc.id)
+						.update({
+							tests: firebase.firestore.FieldValue.arrayUnion(
+								this.state.content
+							)
+						});
+					console.log(tests);
+				})
+			);
+		document.getElementById('input-reminder').value = '';
+	};
+	removeTest = e => {
+		e.preventDefault();
+		e.persist();
+		db.collection('users')
+			.where('email', '==', this.props.auth.email)
+			.get()
+			.then(snap =>
+				snap.forEach(doc => {
+					const { tests } = doc.data();
+					db.collection('users')
+						.doc(doc.id)
+						.update({
+							tests: firebase.firestore.FieldValue.arrayRemove(
+								e.target.innerText
+							)
+						});
+					console.log(tests);
+				})
+			);
 	};
 	isHidden = () => {
 		this.setState({
 			active: !this.state.active
 		});
 	};
+	componentDidMount() {
+		db.collection('users')
+			.where('email', '==', this.props.auth.email)
+			.get()
+			.then(snap =>
+				snap.forEach(doc => {
+					const { tests } = doc.data();
+					for (const element of tests) {
+						const testsList = document.getElementById('tests-list');
+						const div = document.createElement('div');
+						div.classList.add('tests-item');
+						testsList.appendChild(div);
+						div.innerText = element;
+					}
+				})
+			);
+	}
 	render() {
 		if (window.innerWidth >= 1124) {
 			this.state.active = false;
@@ -91,14 +161,20 @@ class Tests extends Component {
 					<h1 onClick={this.isHidden} className="title">
 						Tests
 					</h1>
-					{!this.state.active && <AddTests addTodo={this.addTodo} />}
+					{!this.state.active && <form onSubmit={this.addTest}>
+						<input id="input-tests" type="text" placeholder="Add a test" className="input-aside input-tests" active={this.state.active} onChange={this.handleChange} />
+						</form>}
 				</div>
-				{!this.state.active && (
-					<TestsList todos={this.state.todos} deleteTodo={this.deleteTodo} />
-				)}
+				<div id="tests-list" onClick={this.removeTest}></div>
 			</StyledTests>
 		);
 	}
 }
 
-export default Tests;
+const mapStateToProps = state => {
+	return {
+		auth: state.firebase.auth
+	};
+};
+
+export default connect(mapStateToProps)(Tests);

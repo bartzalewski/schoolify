@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import HomeworkList from './HomeworkList';
-import AddHomework from './AddHomework';
+import { connect } from 'react-redux';
+import { db } from '../../config/fbConfig';
+import firebase from '../../config/fbConfig';
 
 const StyledHomework = styled.aside`
 	width: 25vw;
@@ -58,6 +59,20 @@ const StyledHomework = styled.aside`
 		margin: auto;
 	}
 
+	.input-homework {
+		width: 135px;
+	}
+	
+	.homework-item {
+		color: #fff;
+		border-radius: 10px;
+		padding: 5px 15px;
+
+		@media (max-width: 1359px) {
+			padding: 2.5px 10px;
+		}
+	}
+
 	@media (max-width: 1359px) {
 		top: 60px;
 		padding: 12.5px;
@@ -89,33 +104,76 @@ const StyledHomework = styled.aside`
 
 class Homework extends Component {
 	state = {
-		todos: [
-			{ id: 1, content: 'Math: ex.1, p.5' },
-			{ id: 2, content: 'English: ex.1, p.6' },
-			{ id: 3, content: 'Spanish: ex.1, p.3' }
-		],
+		content: '',
 		active: true
 	};
-	deleteTodo = id => {
-		const todos = this.state.todos.filter(todo => {
-			return todo.id !== id;
-		});
-		this.setState({
-			todos
+	handleChange = async e => {
+		await this.setState({
+			content: e.target.value
 		});
 	};
-	addTodo = todo => {
-		todo.id = Math.random();
-		let todos = [...this.state.todos, todo];
-		this.setState({
-			todos
-		});
+	addHomework = e => {
+		e.preventDefault();
+		db.collection('users')
+			.where('email', '==', this.props.auth.email)
+			.get()
+			.then(snap =>
+				snap.forEach(doc => {
+					const { homework } = doc.data();
+					db.collection('users')
+						.doc(doc.id)
+						.update({
+							homework: firebase.firestore.FieldValue.arrayUnion(
+								this.state.content
+							)
+						});
+					console.log(homework);
+				})
+			);
+		document.getElementById('input-homework').value = '';
+	};
+	removeHomework = e => {
+		e.preventDefault();
+		e.persist();
+		db.collection('users')
+			.where('email', '==', this.props.auth.email)
+			.get()
+			.then(snap =>
+				snap.forEach(doc => {
+					const { homework } = doc.data();
+					db.collection('users')
+						.doc(doc.id)
+						.update({
+							homework: firebase.firestore.FieldValue.arrayRemove(
+								e.target.innerText
+							)
+						});
+					console.log(homework);
+				})
+			);
 	};
 	isHidden = () => {
 		this.setState({
 			active: !this.state.active
 		});
 	};
+	componentDidMount() {
+		db.collection('users')
+			.where('email', '==', this.props.auth.email)
+			.get()
+			.then(snap =>
+				snap.forEach(doc => {
+					const { homework } = doc.data();
+					for (const element of homework) {
+						const homeworkList = document.getElementById('homework-list');
+						const div = document.createElement('div');
+						div.classList.add('homework-item');
+						homeworkList.appendChild(div);
+						div.innerText = element;
+					}
+				})
+			);
+	}
 	render() {
 		if (window.innerWidth >= 1124) {
 			this.state.active = false;
@@ -126,14 +184,22 @@ class Homework extends Component {
 					<h1 onClick={this.isHidden} className="title">
 						Homework
 					</h1>
-					{!this.state.active && <AddHomework addTodo={this.addTodo} />}
+					{!this.state.active && (
+						<form onSubmit={this.addHomework}>
+							<input id="input-homework" type="text" placeholder="Add a homework" className="input-aside input-homework" active={this.state.active} onChange={this.handleChange} />
+						</form>
+					)}
 				</div>
-				{!this.state.active && (
-					<HomeworkList todos={this.state.todos} deleteTodo={this.deleteTodo} />
-				)}
+				<div id="homework-list" className="homework-list" onClick={this.removeHomework}></div>
 			</StyledHomework>
 		);
 	}
 }
 
-export default Homework;
+const mapStateToProps = state => {
+	return {
+		auth: state.firebase.auth
+	};
+};
+
+export default connect(mapStateToProps)(Homework);

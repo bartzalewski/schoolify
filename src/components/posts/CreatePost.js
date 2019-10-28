@@ -158,7 +158,6 @@ class CreatePost extends Component {
 	}
 	render() {
 		const { auth } = this.props;
-		console.log(this.props.auth);
 		const uploadPostButton = document.getElementById('upload-post-btn');
 		if (!auth.uid) return <Redirect to="/" />;
 		if (
