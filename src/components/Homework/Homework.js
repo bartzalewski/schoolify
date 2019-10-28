@@ -62,7 +62,7 @@ const StyledHomework = styled.aside`
 	.input-homework {
 		width: 135px;
 	}
-	
+
 	.homework-item {
 		color: #fff;
 		border-radius: 10px;
@@ -186,11 +186,22 @@ class Homework extends Component {
 					</h1>
 					{!this.state.active && (
 						<form onSubmit={this.addHomework}>
-							<input id="input-homework" type="text" placeholder="Add a homework" className="input-aside input-homework" active={this.state.active} onChange={this.handleChange} />
+							<input
+								id="input-homework"
+								type="text"
+								placeholder="Add a homework"
+								className="input-aside input-homework"
+								active={this.state.active}
+								onChange={this.handleChange}
+							/>
 						</form>
 					)}
 				</div>
-				<div id="homework-list" className="homework-list" onClick={this.removeHomework}></div>
+				<div
+					id="homework-list"
+					className="homework-list"
+					onClick={this.removeHomework}
+				></div>
 			</StyledHomework>
 		);
 	}
