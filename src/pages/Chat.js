@@ -93,6 +93,8 @@ const StyledChat = styled.section`
 	.btn-chat-submit {
 		margin-top: 0.125rem;
 		font-size: 0.9rem;
+		background: #ececf0;
+		color: inherit;
 	}
 
 	.user-sent {
