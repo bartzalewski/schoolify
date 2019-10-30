@@ -43,7 +43,14 @@ export const signUp = newUser => {
 						firstName: newUser.firstName,
 						lastName: newUser.lastName,
 						userAvatar: newUser.userAvatar,
-						email: newUser.email
+						email: newUser.email,
+						homework: ['Math: ex.1, p.5', 'English: ex.1, p.6'],
+						reminders: [
+							'Get organized!',
+							'Do your homework!',
+							'Click me to remove me!'
+						],
+						tests: ['02-01-2020 | Math | Geometry']
 					});
 			})
 			.then(() => {

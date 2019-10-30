@@ -150,7 +150,9 @@ export default class ChatList extends Component {
 		} else {
 			return (
 				<div>
-					<button onClick={this.newChat}>New Message</button>
+					<button className="btn" onClick={this.newChat}>
+						New Message
+					</button>
 					<div className="list"></div>
 				</div>
 			);

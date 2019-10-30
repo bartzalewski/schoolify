@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { db } from '../../config/fbConfig';
 import firebase from '../../config/fbConfig';
+import HomeworkList from './HomeworkList';
 
 const StyledHomework = styled.aside`
 	width: 25vw;
@@ -105,7 +106,8 @@ const StyledHomework = styled.aside`
 class Homework extends Component {
 	state = {
 		content: '',
-		active: true
+		active: true,
+		homework: []
 	};
 	handleChange = async e => {
 		await this.setState({
@@ -127,7 +129,6 @@ class Homework extends Component {
 								this.state.content
 							)
 						});
-					console.log(homework);
 				})
 			);
 		document.getElementById('input-homework').value = '';
@@ -148,7 +149,6 @@ class Homework extends Component {
 								e.target.innerText
 							)
 						});
-					console.log(homework);
 				})
 			);
 	};
@@ -160,19 +160,15 @@ class Homework extends Component {
 	componentDidMount() {
 		db.collection('users')
 			.where('email', '==', this.props.auth.email)
-			.get()
-			.then(snap =>
-				snap.forEach(doc => {
-					const { homework } = doc.data();
-					for (const element of homework) {
-						const homeworkList = document.getElementById('homework-list');
-						const div = document.createElement('div');
-						div.classList.add('homework-item');
-						homeworkList.appendChild(div);
-						div.innerText = element;
-					}
-				})
-			);
+			.onSnapshot(snap => {
+				let changes = snap.docChanges();
+				changes.forEach(change => {
+					const { homework } = change.doc.data();
+					this.setState({
+						homework: homework
+					});
+				});
+			});
 	}
 	render() {
 		if (window.innerWidth >= 1124) {
@@ -197,11 +193,10 @@ class Homework extends Component {
 						</form>
 					)}
 				</div>
-				<div
-					id="homework-list"
-					className="homework-list"
-					onClick={this.removeHomework}
-				></div>
+				<HomeworkList
+					homework={this.state.homework}
+					removeHomework={this.removeHomework}
+				></HomeworkList>
 			</StyledHomework>
 		);
 	}

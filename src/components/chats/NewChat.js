@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import firebase from '../../config/fbConfig';
+
+const StyledNewChat = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+`;
 
 export default class NewChat extends Component {
 	constructor() {
@@ -75,18 +83,30 @@ export default class NewChat extends Component {
 
 	render() {
 		return (
-			<main>
-				<h5>Send a message!</h5>
+			<StyledNewChat>
+				<h3 className="btn new-chat-title">Send a message!</h3>
 				<form onSubmit={e => this.submitNewChat(e)}>
 					<label>
-						<input type="text" onChange={e => this.userTyping('username', e)} />
+						<input
+							id="chat-input-email"
+							type="text"
+							onChange={e => this.userTyping('username', e)}
+							placeholder="Your friend's email"
+						/>
 					</label>
 					<label>
-						<input type="text" onChange={e => this.userTyping('message', e)} />
+						<input
+							id="chat-input-msg"
+							type="text"
+							onChange={e => this.userTyping('message', e)}
+							placeholder="Your message"
+						/>
 					</label>
-					<button type="submit">Submit</button>
+					<button className="btn btn-chat-submit" type="submit">
+						Submit
+					</button>
 				</form>
-			</main>
+			</StyledNewChat>
 		);
 	}
 }

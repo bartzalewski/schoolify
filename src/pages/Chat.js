@@ -56,7 +56,7 @@ const StyledChat = styled.section`
 
 	#chatview-container {
 		overflow-y: scroll;
-		height: 89%;
+		height: 88%;
 		margin-right: -50px;
 		padding-right: 33px;
 
@@ -65,6 +65,31 @@ const StyledChat = styled.section`
 				font-size: 0.8rem;
 			}
 		}
+	}
+
+	#chat-input-email,
+	#chat-input-msg {
+		width: 100%;
+		font-size: 1rem;
+		border: none;
+		border-radius: 10px;
+		padding: 10px 15px;
+		margin: 0.125rem 0;
+	}
+
+	.new-chat-title {
+		text-align: center;
+		transform: none !important;
+		transition: none !important;
+		cursor: initial;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.btn-chat-submit {
+		margin-top: 0.125rem;
+		font-size: 0.9rem;
 	}
 
 	.user-sent {
@@ -122,6 +147,12 @@ const StyledChat = styled.section`
 	@media (max-width: 1359px) {
 		.chat-wrapper {
 			height: calc(100vh - 60px - 39px - 32.5px - 32px - 33px);
+		}
+		#chat-input-email,
+		#chat-input-msg,
+		.btn-chat-submit,
+		.new-chat-title {
+			font-size: 0.8rem;
 		}
 	}
 
@@ -280,13 +311,13 @@ class Chat extends Component {
 									submitMessageFn={this.submitMessage}
 								/>
 							) : null}
+							{this.state.newChatFormVisible ? (
+								<NewChat
+									goToChatFn={this.goToChat}
+									newChatSubmitFn={this.newChatSubmit}
+								/>
+							) : null}
 						</div>
-						{this.state.newChatFormVisible ? (
-							<NewChat
-								goToChatFn={this.goToChat}
-								newChatSubmitFn={this.newChatSubmit}
-							/>
-						) : null}
 					</div>
 				</div>
 			</StyledChat>

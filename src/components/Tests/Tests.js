@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { db } from '../../config/fbConfig';
 import firebase from '../../config/fbConfig';
+import TestsList from './TestsList';
 
 const StyledTests = styled.aside`
 	width: 25vw;
@@ -82,7 +83,8 @@ const StyledTests = styled.aside`
 class Tests extends Component {
 	state = {
 		content: '',
-		active: true
+		active: true,
+		tests: []
 	};
 	handleChange = async e => {
 		await this.setState({
@@ -96,7 +98,6 @@ class Tests extends Component {
 			.get()
 			.then(snap =>
 				snap.forEach(doc => {
-					const { tests } = doc.data();
 					db.collection('users')
 						.doc(doc.id)
 						.update({
@@ -104,10 +105,9 @@ class Tests extends Component {
 								this.state.content
 							)
 						});
-					console.log(tests);
 				})
 			);
-		document.getElementById('input-reminder').value = '';
+		document.getElementById('input-tests').value = '';
 	};
 	removeTest = e => {
 		e.preventDefault();
@@ -117,7 +117,6 @@ class Tests extends Component {
 			.get()
 			.then(snap =>
 				snap.forEach(doc => {
-					const { tests } = doc.data();
 					db.collection('users')
 						.doc(doc.id)
 						.update({
@@ -125,7 +124,6 @@ class Tests extends Component {
 								e.target.innerText
 							)
 						});
-					console.log(tests);
 				})
 			);
 	};
@@ -137,19 +135,15 @@ class Tests extends Component {
 	componentDidMount() {
 		db.collection('users')
 			.where('email', '==', this.props.auth.email)
-			.get()
-			.then(snap =>
-				snap.forEach(doc => {
-					const { tests } = doc.data();
-					for (const element of tests) {
-						const testsList = document.getElementById('tests-list');
-						const div = document.createElement('div');
-						div.classList.add('tests-item');
-						testsList.appendChild(div);
-						div.innerText = element;
-					}
-				})
-			);
+			.onSnapshot(snap => {
+				let changes = snap.docChanges();
+				changes.forEach(change => {
+					const { tests } = change.doc.data();
+					this.setState({
+						tests: tests
+					});
+				});
+			});
 	}
 	render() {
 		if (window.innerWidth >= 1124) {
@@ -174,7 +168,10 @@ class Tests extends Component {
 						</form>
 					)}
 				</div>
-				<div id="tests-list" onClick={this.removeTest}></div>
+				<TestsList
+					tests={this.state.tests}
+					removeTest={this.removeTest}
+				></TestsList>
 			</StyledTests>
 		);
 	}

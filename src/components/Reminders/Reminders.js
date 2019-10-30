@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { db } from '../../config/fbConfig';
 import firebase from '../../config/fbConfig';
+import RemindersList from './RemindersList';
 
 const StyledReminders = styled.aside`
 	width: 25vw;
@@ -84,7 +85,8 @@ const StyledReminders = styled.aside`
 class Reminders extends Component {
 	state = {
 		content: '',
-		active: true
+		active: true,
+		reminders: []
 	};
 	handleChange = async e => {
 		await this.setState({
@@ -98,7 +100,6 @@ class Reminders extends Component {
 			.get()
 			.then(snap =>
 				snap.forEach(doc => {
-					const { reminders } = doc.data();
 					db.collection('users')
 						.doc(doc.id)
 						.update({
@@ -106,7 +107,6 @@ class Reminders extends Component {
 								this.state.content
 							)
 						});
-					console.log(reminders);
 				})
 			);
 		document.getElementById('input-reminder').value = '';
@@ -119,7 +119,6 @@ class Reminders extends Component {
 			.get()
 			.then(snap =>
 				snap.forEach(doc => {
-					const { reminders } = doc.data();
 					db.collection('users')
 						.doc(doc.id)
 						.update({
@@ -127,7 +126,6 @@ class Reminders extends Component {
 								e.target.innerText
 							)
 						});
-					console.log(reminders);
 				})
 			);
 	};
@@ -139,19 +137,15 @@ class Reminders extends Component {
 	componentDidMount() {
 		db.collection('users')
 			.where('email', '==', this.props.auth.email)
-			.get()
-			.then(snap =>
-				snap.forEach(doc => {
-					const { reminders } = doc.data();
-					for (const element of reminders) {
-						const remindersList = document.getElementById('reminders-list');
-						const div = document.createElement('div');
-						div.classList.add('reminders-item');
-						remindersList.appendChild(div);
-						div.innerText = element;
-					}
-				})
-			);
+			.onSnapshot(snap => {
+				let changes = snap.docChanges();
+				changes.forEach(change => {
+					const { reminders } = change.doc.data();
+					this.setState({
+						reminders: reminders
+					});
+				});
+			});
 	}
 	render() {
 		if (window.innerWidth >= 1124) {
@@ -176,7 +170,10 @@ class Reminders extends Component {
 						</form>
 					)}
 				</div>
-				<div id="reminders-list" onClick={this.removeReminder}></div>
+				<RemindersList
+					reminders={this.state.reminders}
+					removeReminder={this.removeReminder}
+				></RemindersList>
 			</StyledReminders>
 		);
 	}
