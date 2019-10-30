@@ -75,6 +75,7 @@ const StyledChat = styled.section`
 		border-radius: 10px;
 		padding: 10px 15px;
 		margin: 0.125rem 0;
+		background: #ececf0;
 	}
 
 	.new-chat-title {
@@ -85,6 +86,8 @@ const StyledChat = styled.section`
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		background: #fff;
+		color: inherit;
 	}
 
 	.btn-chat-submit {
