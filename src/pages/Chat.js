@@ -225,7 +225,6 @@ class Chat extends Component {
 				_usr => _usr !== this.state.email
 			)[0]
 		);
-		console.log(docKey);
 		if (this.clickedChatWhereNotSender(chatIndex)) {
 			firebase
 				.firestore()

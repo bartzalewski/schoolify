@@ -6,6 +6,9 @@ import { Redirect } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { storage, db } from '../../config/fbConfig';
+import { moreWords } from '../filters/filters';
+const Filter = require('bad-words');
+const filter = new Filter();
 
 const StyledCreatePost = styled.section`
 	#schoolName,
@@ -93,6 +96,7 @@ class CreatePost extends Component {
 	};
 	handleSubmit = e => {
 		e.preventDefault();
+		this.state.content = filter.clean(this.state.content);
 		this.props.createPost(this.state);
 		this.props.history.push('/');
 	};
@@ -137,6 +141,7 @@ class CreatePost extends Component {
 		});
 	};
 	componentDidMount() {
+		filter.addWords(...moreWords);
 		db.collection('schools')
 			.get()
 			.then(snap =>

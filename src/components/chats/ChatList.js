@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { db } from '../../config/fbConfig';
+import firebase from '../../config/fbConfig';
+import { connect } from 'react-redux';
 
 const StyledChatList = styled.div`
 	.list-item {
@@ -79,7 +82,7 @@ const StyledChatList = styled.div`
 	}
 `;
 
-export default class ChatList extends Component {
+class ChatList extends Component {
 	newChat = () => {
 		this.props.newChatBtnFn();
 	};
@@ -92,6 +95,13 @@ export default class ChatList extends Component {
 		chat.messages[chat.messages.length - 1].sender === this.props.userEmail;
 
 	render() {
+		// db.collection('users')
+		// 	.get()
+		// 	.then(snap =>
+		// 		snap.forEach(doc => {
+		// 			console.log(doc.data().userAvatar);
+		// 		})
+		// 	);
 		if (this.props.chats.length > 0) {
 			return (
 				<StyledChatList>
@@ -110,7 +120,7 @@ export default class ChatList extends Component {
 										}
 										onClick={() => this.selectChat(_index)}
 									>
-										<div className="list-item-avatar">
+										<div id="list-item-avatar" className="list-item-avatar">
 											{
 												_chat.users
 													.filter(_user => _user !== this.props.userEmail)[0]
@@ -159,3 +169,11 @@ export default class ChatList extends Component {
 		}
 	}
 }
+
+const mapStateToProps = state => {
+	return {
+		auth: state.firebase.auth
+	};
+};
+
+export default connect(mapStateToProps)(ChatList);
