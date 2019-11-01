@@ -99,9 +99,17 @@ class ChatList extends Component {
 		// 	.get()
 		// 	.then(snap =>
 		// 		snap.forEach(doc => {
-		// 			console.log(doc.data().userAvatar);
+		// 			db.collection('users')
+		// 				.where('email', '==', this.props.auth.email)
+		// 				.onSnapshot(() => {
+		// 					document.getElementById(
+		// 						'list-item-avatar'
+		// 					).src = doc.data().userAvatar;
+		// 					console.log(doc.data().userAvatar);
+		// 				});
 		// 		})
 		// 	);
+		// console.log(this.props.chats);
 		if (this.props.chats.length > 0) {
 			return (
 				<StyledChatList>

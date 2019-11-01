@@ -32,7 +32,7 @@ exports.userJoined = functions.auth.user().onCreate(user => {
 			const newUser = doc.data();
 			const notification = {
 				content: 'just joined schoolify!',
-				user: `${newUser.firstName} ${newUser.lastName}`,
+				user: `${newUser.firstName.toString()} ${newUser.lastName.toString()}`,
 				time: admin.firestore.FieldValue.serverTimestamp()
 			};
 			return createNotification(notification);

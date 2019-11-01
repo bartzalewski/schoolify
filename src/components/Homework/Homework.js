@@ -121,7 +121,6 @@ class Homework extends Component {
 			.get()
 			.then(snap =>
 				snap.forEach(doc => {
-					const { homework } = doc.data();
 					db.collection('users')
 						.doc(doc.id)
 						.update({
@@ -141,7 +140,6 @@ class Homework extends Component {
 			.get()
 			.then(snap =>
 				snap.forEach(doc => {
-					const { homework } = doc.data();
 					db.collection('users')
 						.doc(doc.id)
 						.update({
@@ -180,23 +178,25 @@ class Homework extends Component {
 					<h1 onClick={this.isHidden} className="title">
 						Homework
 					</h1>
-					{!this.state.active && (
+					{!this.state.active ? (
 						<form onSubmit={this.addHomework}>
 							<input
 								id="input-homework"
 								type="text"
 								placeholder="Add a homework"
 								className="input-aside input-homework"
-								active={this.state.active}
+								autoComplete="off"
 								onChange={this.handleChange}
 							/>
 						</form>
-					)}
+					) : null}
 				</div>
-				<HomeworkList
-					homework={this.state.homework}
-					removeHomework={this.removeHomework}
-				></HomeworkList>
+				{!this.state.active ? (
+					<HomeworkList
+						homework={this.state.homework}
+						removeHomework={this.removeHomework}
+					></HomeworkList>
+				) : null}
 			</StyledHomework>
 		);
 	}

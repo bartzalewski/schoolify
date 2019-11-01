@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import { signUp } from '../../store/actions/authActions';
 import { connect } from 'react-redux';
 import avatar from '../../images/user.svg';
+import capitalize from 'capitalize-sentence';
+import { moreWords } from '../filters/filters';
+const Filter = require('bad-words');
+const filter = new Filter();
 
 const StyledSignUp = styled.div`
 	width: 49%;
@@ -25,15 +29,54 @@ class SignUp extends Component {
 		lastName: '',
 		userAvatar: `${avatar}`
 	};
+
+	moderateMessage = message => {
+		if (this.isShouting(message)) {
+			message = this.stopShouting(message);
+		}
+		return this.capitalizeFirstLetter(message);
+	};
+
+	capitalizeFirstLetter = str => str.charAt(0).toUpperCase() + str.slice(1);
+
+	isShouting = message => {
+		return (
+			message.replace(/[^A-Z]/g, '').length > message.length / 2 ||
+			message.replace(/[^!]/g, '').length >= 3
+		);
+	};
+
+	stopShouting = message => {
+		return capitalize(message.toLowerCase()).replace(/!+/g);
+	};
+
 	handleChange = e => {
 		this.setState({
 			[e.target.id]: e.target.value
 		});
 	};
+
 	handleSubmit = e => {
 		e.preventDefault();
-		this.props.signUp(this.state);
+		this.state.firstName = this.moderateMessage(this.state.firstName);
+		this.state.lastName = this.moderateMessage(this.state.lastName);
+		this.state.firstName = filter.clean(this.state.firstName);
+		this.state.lastName = filter.clean(this.state.lastName);
+		if (
+			this.state.firstName.includes('*') ||
+			this.state.lastName.includes('*')
+		) {
+			console.log(`Illegal characters used. Can't signup.`);
+			return null;
+		} else {
+			this.props.signUp(this.state);
+		}
 	};
+
+	componentDidMount = () => {
+		filter.addWords(...moreWords);
+	};
+
 	render() {
 		return (
 			<StyledSignUp>

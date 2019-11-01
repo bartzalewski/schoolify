@@ -157,23 +157,25 @@ class Reminders extends Component {
 					<h1 onClick={this.isHidden} className="title">
 						Reminders
 					</h1>
-					{!this.state.active && (
+					{!this.state.active ? (
 						<form onSubmit={this.addReminder}>
 							<input
 								id="input-reminder"
 								type="text"
 								placeholder="Add a reminder"
 								className="input-aside input-reminder"
-								active={this.state.active}
+								autoComplete="off"
 								onChange={this.handleChange}
 							/>
 						</form>
-					)}
+					) : null}
 				</div>
-				<RemindersList
-					reminders={this.state.reminders}
-					removeReminder={this.removeReminder}
-				></RemindersList>
+				{!this.state.active ? (
+					<RemindersList
+						reminders={this.state.reminders}
+						removeReminder={this.removeReminder}
+					></RemindersList>
+				) : null}
 			</StyledReminders>
 		);
 	}

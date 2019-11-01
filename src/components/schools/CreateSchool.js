@@ -184,9 +184,10 @@ class CreateSchool extends Component {
 						<div className="input-field">
 							<label htmlFor="schoolName" />
 							<input
-								placeholder="School Name"
-								type="text"
 								id="schoolName"
+								type="text"
+								placeholder="School Name"
+								autoComplete="off"
 								onChange={this.handleChange}
 							/>
 						</div>

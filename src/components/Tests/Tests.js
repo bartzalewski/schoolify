@@ -155,23 +155,25 @@ class Tests extends Component {
 					<h1 onClick={this.isHidden} className="title">
 						Tests
 					</h1>
-					{!this.state.active && (
+					{!this.state.active ? (
 						<form onSubmit={this.addTest}>
 							<input
 								id="input-tests"
 								type="text"
 								placeholder="Add a test"
 								className="input-aside input-tests"
-								active={this.state.active}
+								autoComplete="off"
 								onChange={this.handleChange}
 							/>
 						</form>
-					)}
+					) : null}
 				</div>
-				<TestsList
-					tests={this.state.tests}
-					removeTest={this.removeTest}
-				></TestsList>
+				{!this.state.active ? (
+					<TestsList
+						tests={this.state.tests}
+						removeTest={this.removeTest}
+					></TestsList>
+				) : null}
 			</StyledTests>
 		);
 	}

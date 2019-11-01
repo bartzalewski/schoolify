@@ -7,6 +7,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { storage, db } from '../../config/fbConfig';
 import { moreWords } from '../filters/filters';
+import capitalize from 'capitalize-sentence';
 const Filter = require('bad-words');
 const filter = new Filter();
 
@@ -97,6 +98,7 @@ class CreatePost extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		this.state.content = filter.clean(this.state.content);
+		this.state.content = capitalize(this.state.content);
 		this.props.createPost(this.state);
 		this.props.history.push('/');
 	};

@@ -90,6 +90,7 @@ export default class NewChat extends Component {
 						<input
 							id="chat-input-email"
 							type="text"
+							autoComplete="off"
 							onChange={e => this.userTyping('username', e)}
 							placeholder="Your friend's email"
 						/>
@@ -98,6 +99,7 @@ export default class NewChat extends Component {
 						<input
 							id="chat-input-msg"
 							type="text"
+							autoComplete="off"
 							onChange={e => this.userTyping('message', e)}
 							placeholder="Your message"
 						/>

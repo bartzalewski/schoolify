@@ -266,7 +266,7 @@ class Chat extends Component {
 		this.selectChat(this.state.chats.length - 1);
 	};
 
-	componentWillMount = () => {
+	componentDidMount = () => {
 		firebase.auth().onAuthStateChanged(async _usr => {
 			if (!_usr) {
 				this.props.history.push('/');
