@@ -3,6 +3,8 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+		"bad-words": "^3.0.3",
+		"capitalize-sentence": "^0.1.5",
 		"firebase": "^6.3.1",
 		"local-storage-fallback": "^4.1.1",
 		"moment": "^2.24.0",
