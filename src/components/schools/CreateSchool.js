@@ -163,13 +163,12 @@ class CreateSchool extends Component {
 		const { auth } = this.props;
 		const uploadPostButton = document.getElementById('upload-post-btn');
 		// console.log(`this is url: ${this.state.schoolLogo || 'none'} `);
-		console.log(this.state);
 		if (!auth.uid) return <Redirect to="/" />;
 		if (
-			this.state.schoolBackground !== File &&
+			typeof this.state.schoolBackground !== 'object' &&
 			this.state.schoolBackground !== null &&
-			this.state.schoolLogo !== File &&
-			this.state.schoolLogo !== null &&
+			this.state.schoolLogo !== Object &&
+			typeof this.state.schoolLogo !== 'object' &&
 			this.state.progress === 100 &&
 			this.state.schoolName !== ''
 		) {

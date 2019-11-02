@@ -50,8 +50,8 @@ class SignUp extends Component {
 		return capitalize(message.toLowerCase()).replace(/!+/g);
 	};
 
-	handleChange = e => {
-		this.setState({
+	handleChange = async e => {
+		await this.setState({
 			[e.target.id]: e.target.value
 		});
 	};

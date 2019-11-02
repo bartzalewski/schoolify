@@ -9,7 +9,7 @@ import { storage, db } from '../../config/fbConfig';
 import { moreWords } from '../filters/filters';
 import capitalize from 'capitalize-sentence';
 const Filter = require('bad-words');
-const filter = new Filter();
+const filter = new Filter({ list: moreWords });
 
 const StyledCreatePost = styled.section`
 	#schoolName,
@@ -81,8 +81,8 @@ class CreatePost extends Component {
 		this.handleChoose = this.handleChoose.bind(this);
 		this.handleSelect = this.handleSelect.bind(this);
 	}
-	handleChange = e => {
-		this.setState({
+	handleChange = async e => {
+		await this.setState({
 			[e.target.id]: e.target.value
 		});
 	};
@@ -99,8 +99,13 @@ class CreatePost extends Component {
 		e.preventDefault();
 		this.state.content = filter.clean(this.state.content);
 		this.state.content = capitalize(this.state.content);
-		this.props.createPost(this.state);
-		this.props.history.push('/');
+		if (this.state.content.includes('*')) {
+			console.log(`Illegal characters used. Can't post.`);
+			return null;
+		} else {
+			this.props.createPost(this.state);
+			this.props.history.push('/');
+		}
 	};
 	handleChoose = e => {
 		if (e.target.files[0]) {
@@ -143,7 +148,6 @@ class CreatePost extends Component {
 		});
 	};
 	componentDidMount() {
-		filter.addWords(...moreWords);
 		db.collection('schools')
 			.get()
 			.then(snap =>
@@ -168,6 +172,7 @@ class CreatePost extends Component {
 		const uploadPostButton = document.getElementById('upload-post-btn');
 		if (!auth.uid) return <Redirect to="/" />;
 		if (
+			this.state.schoolLogo !== '' &&
 			this.state.postBackground !== null &&
 			this.state.progress === 100 &&
 			this.state.content !== ''
@@ -182,10 +187,12 @@ class CreatePost extends Component {
 						<h1>Create new post</h1>
 						<div className="input-field">
 							<label htmlFor="schoolName" />
-							<select id="schoolName" onChange={this.handleSelect}>
-								<option disabled selected>
-									Select your school
-								</option>
+							<select
+								id="schoolName"
+								onChange={this.handleSelect}
+								defaultValue="Select your school"
+							>
+								<option disabled>Select your school</option>
 							</select>
 						</div>
 						<div className="input-field">
