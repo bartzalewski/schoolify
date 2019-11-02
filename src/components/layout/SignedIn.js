@@ -36,7 +36,7 @@ const DarkTheme = createGlobalStyle`
 		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 	}
 
-	.posts-list, .add-post, .lesson-box, .box-add, .notification-item, .add-grades-box, .box-error-page, .settings-box, .profile-container, .chat-wrapper {
+	.posts-list, .add-post, .lesson-box, .box-add, .notification-item, .add-grades-box, .box-error-page, .settings-box, .profile-container, .chat-wrapper, .new-class-plan {
 		background: ${props =>
 			props.theme.mode === 'dark' ? '#1F1F1F' : null} !important;
 	}

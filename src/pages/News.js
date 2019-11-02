@@ -369,7 +369,9 @@ class News extends Component {
 			<StyledNews className="site-container">
 				<div className="container">
 					<div className="home-wrapper">
-						<h1 className="schools-title">Browse schools</h1>
+						<h1 id="schools-title" className="schools-title">
+							Browse schools
+						</h1>
 						<Link to="/school-list" className="school-list">
 							See All
 						</Link>

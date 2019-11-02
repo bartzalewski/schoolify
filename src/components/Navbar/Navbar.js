@@ -210,7 +210,13 @@ export default function Navbar(props) {
 				<p className="title">schoolify</p>
 			</div>
 			<div className="center">
-				<NavLink exact activeClassName="active" to="/" className="box">
+				<NavLink
+					exact
+					activeClassName="active"
+					to="/"
+					className="box"
+					onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+				>
 					<svg
 						width="40"
 						height="40"

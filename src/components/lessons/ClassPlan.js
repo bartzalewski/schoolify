@@ -2,69 +2,70 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledClassPlan = styled.div`
-	.tg {
-		border-collapse: collapse;
-		border-spacing: 0;
-		border-color: #aabcfe;
-		width: 100%;
+	.new-class-plan {
+		background: #fff;
+		display: flex;
+		flex-direction: column;
+		font-size: 14px;
+		border-radius: 15px;
 		margin-top: 2rem;
+		border: 1px solid #ececf0;
 
-		@media (max-width: 813px) {
-			display: none;
+		.class-header {
+			background: linear-gradient(90deg, #fe843f 0%, #fc5a37 100%);
+			border-top-left-radius: 15px;
+			border-top-right-radius: 15px;
+			width: 100%;
+			font-weight: bold;
+			color: white;
+			height: 42px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
-	}
-	.tg td {
-		font-size: 0.875rem;
-		padding: 10px 5px;
-		border-style: solid;
-		border-width: 1px;
-		overflow: hidden;
-		word-break: normal;
-		border-color: #aabcfe;
-		color: #669;
-		background-color: #e8edff;
-	}
-	.tg th {
-		font-size: 0.875rem;
-		font-weight: bold;
-		padding: 10px 5px;
-		border-style: solid;
-		border-width: 1px;
-		overflow: hidden;
-		word-break: normal;
-		border-color: #aabcfe;
-		color: #039;
-		background-color: #b9c9fe;
-	}
-	.tg .tg-phtq {
-		background-color: #d2e4fc;
-		border-color: inherit;
-		text-align: left;
-		vertical-align: top;
-	}
-	.tg .tg-hmp3 {
-		background-color: #d2e4fc;
-		text-align: left;
-		vertical-align: top;
-	}
-	.tg .tg-baqh {
-		text-align: center;
-		vertical-align: top;
-	}
-	.tg .tg-l5at {
-		background-color: #d2e4fc;
-		border-color: inherit;
-		text-align: left;
-		vertical-align: top;
-	}
-	.tg .tg-0pky {
-		border-color: inherit;
-		text-align: left;
-		vertical-align: top;
-	}
-	.tg .tg-0lax {
-		text-align: left;
-		vertical-align: top;
+
+		.flex {
+			display: flex;
+			justify-content: space-between;
+
+			.class-number {
+				font-weight: 600;
+				width: 50% !important;
+			}
+
+			.class-subheader {
+				font-weight: 600;
+			}
+
+			.class-number,
+			.class-number,
+			.class-hours,
+			.class-first-day,
+			.class-second-day,
+			.class-third-day,
+			.class-fourth-day,
+			.class-fifth-day {
+				width: 100%;
+			}
+
+			.class-number-item,
+			.class-hours-item,
+			.class-first-day-item,
+			.class-second-day-item,
+			.class-third-day-item,
+			.class-fourth-day-item,
+			.class-fifth-day-item {
+				height: 42px;
+				border: 1px solid #ececf0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.class-fifth-day-item {
+				border-right: none;
+			}
+		}
 	}
 `;
 
@@ -73,94 +74,94 @@ export default function ClassPlan() {
 		<StyledClassPlan className="zsz-page site-container">
 			<div className="container">
 				<h1>ZSZ im. Stanisława Staszica w Ząbkowicach Śląskich</h1>
-				<table className="tg">
-					<tr>
-						<th className="tg-baqh" colspan="7">
-							4TI
-						</th>
-					</tr>
-					<tr>
-						<td className="tg-phtq">No</td>
-						<td className="tg-phtq">Hour</td>
-						<td className="tg-phtq">Monday</td>
-						<td className="tg-phtq">Tuesday</td>
-						<td className="tg-phtq">Wednesday</td>
-						<td className="tg-phtq">Thursday</td>
-						<td className="tg-hmp3">Friday</td>
-					</tr>
-					<tr>
-						<td className="tg-0pky">1</td>
-						<td className="tg-0pky">8:00-8:45</td>
-						<td className="tg-0pky">mat</td>
-						<td className="tg-0pky">j.ang</td>
-						<td className="tg-0pky">r_mat</td>
-						<td className="tg-0pky">witryny</td>
-						<td className="tg-0lax">witryny</td>
-					</tr>
-					<tr>
-						<td className="tg-phtq">2</td>
-						<td className="tg-phtq">8:50-9:35</td>
-						<td className="tg-phtq">mat</td>
-						<td className="tg-phtq">witryny</td>
-						<td className="tg-phtq">j.pol</td>
-						<td className="tg-phtq">witryny</td>
-						<td className="tg-hmp3">witryny</td>
-					</tr>
-					<tr>
-						<td className="tg-0pky">3</td>
-						<td className="tg-0pky">9:40-10:25</td>
-						<td className="tg-0pky">witryny</td>
-						<td className="tg-0pky">witryny</td>
-						<td className="tg-0pky">adm.baz.da</td>
-						<td className="tg-0pky">r_mat</td>
-						<td className="tg-0lax">j.pol</td>
-					</tr>
-					<tr>
-						<td className="tg-phtq">4</td>
-						<td className="tg-phtq">10:45-11:30</td>
-						<td className="tg-phtq">witryny</td>
-						<td className="tg-phtq">adm.baz.da</td>
-						<td className="tg-phtq">adm.baz.da</td>
-						<td className="tg-phtq">Rel</td>
-						<td className="tg-hmp3">j.ang</td>
-					</tr>
-					<tr>
-						<td className="tg-0pky">5</td>
-						<td className="tg-0pky">11:35-12:20</td>
-						<td className="tg-0pky">adm.baz.da</td>
-						<td className="tg-0pky">adm.baz.da</td>
-						<td className="tg-0pky">j.pol</td>
-						<td className="tg-0pky">wf</td>
-						<td className="tg-0lax">Z_W</td>
-					</tr>
-					<tr>
-						<td className="tg-l5at">6</td>
-						<td className="tg-phtq">12:25-13:10</td>
-						<td className="tg-phtq">prog.aplik</td>
-						<td className="tg-phtq">adm.baz.da</td>
-						<td className="tg-phtq">prog.aplik</td>
-						<td className="tg-phtq">wf</td>
-						<td className="tg-hmp3">prog.aplik</td>
-					</tr>
-					<tr>
-						<td className="tg-0lax">7</td>
-						<td className="tg-0lax">13:15-14:00</td>
-						<td className="tg-0lax">prog.aplik</td>
-						<td className="tg-0lax">j.niem</td>
-						<td className="tg-0lax">prog.aplik</td>
-						<td className="tg-0lax">prog.aplik</td>
-						<td className="tg-0lax" />
-					</tr>
-					<tr id="lol">
-						<td className="tg-phtq">8</td>
-						<td className="tg-phtq">14:05-14:50</td>
-						<td className="tg-phtq">prog.aplik</td>
-						<td className="tg-phtq">wf</td>
-						<td className="tg-phtq"></td>
-						<td className="tg-phtq">prog.aplik</td>
-						<td className="tg-phtq" />
-					</tr>
-				</table>
+				<div className="new-class-plan">
+					<div className="class-header">4TI</div>
+					<div className="flex">
+						<div className="class-number">
+							<div className="class-number-item class-subheader">No</div>
+							<div className="class-number-item">1</div>
+							<div className="class-number-item">2</div>
+							<div className="class-number-item">3</div>
+							<div className="class-number-item">4</div>
+							<div className="class-number-item">5</div>
+							<div className="class-number-item">6</div>
+							<div className="class-number-item">7</div>
+							<div className="class-number-item">8</div>
+						</div>
+						<div className="class-hours">
+							<div className="class-hours-item class-subheader">Hour</div>
+							<div className="class-hours-item">8:00-8:45</div>
+							<div className="class-hours-item">8:50-9:35</div>
+							<div className="class-hours-item">9:40-10:25</div>
+							<div className="class-hours-item">10:45-11:30</div>
+							<div className="class-hours-item">11:35-12:20</div>
+							<div className="class-hours-item">12:25-13:10</div>
+							<div className="class-hours-item">13:15-14:00</div>
+							<div className="class-hours-item">14:05-14:50</div>
+						</div>
+						<div className="class-first-day">
+							<div className="class-first-day-item class-subheader">Monday</div>
+							<div className="class-first-day-item">mat</div>
+							<div className="class-first-day-item">mat</div>
+							<div className="class-first-day-item">witryny</div>
+							<div className="class-first-day-item">witryny</div>
+							<div className="class-first-day-item">adm.baz.da</div>
+							<div className="class-first-day-item">prog.aplik</div>
+							<div className="class-first-day-item">prog.aplik</div>
+							<div className="class-first-day-item">prog.aplik</div>
+						</div>
+						<div className="class-second-day">
+							<div className="class-second-day-item class-subheader">
+								Tuesday
+							</div>
+							<div className="class-second-day-item">j.ang</div>
+							<div className="class-second-day-item">witryny</div>
+							<div className="class-second-day-item">witryny</div>
+							<div className="class-second-day-item">adm.baz.da</div>
+							<div className="class-second-day-item">adm.baz.da</div>
+							<div className="class-second-day-item">adm.baz.da</div>
+							<div className="class-second-day-item">j.niem</div>
+							<div className="class-second-day-item">wf</div>
+						</div>
+						<div className="class-third-day">
+							<div className="class-third-day-item class-subheader">
+								Wednesday
+							</div>
+							<div className="class-third-day-item">r_mat</div>
+							<div className="class-third-day-item">j.pol</div>
+							<div className="class-third-day-item">adm.baz.da</div>
+							<div className="class-third-day-item">adm.baz.da</div>
+							<div className="class-third-day-item">j.pol</div>
+							<div className="class-third-day-item">prog.aplik</div>
+							<div className="class-third-day-item">prog.aplik</div>
+							<div className="class-third-day-item">rel</div>
+						</div>
+						<div className="class-fourth-day">
+							<div className="class-fourth-day-item class-subheader">
+								Thursday
+							</div>
+							<div className="class-fourth-day-item">witryny</div>
+							<div className="class-fourth-day-item">witryny</div>
+							<div className="class-fourth-day-item">r_mat</div>
+							<div className="class-fourth-day-item">rel</div>
+							<div className="class-fourth-day-item">wf</div>
+							<div className="class-fourth-day-item">wf</div>
+							<div className="class-fourth-day-item">prog.aplik</div>
+							<div className="class-fourth-day-item">prog.aplik</div>
+						</div>
+						<div className="class-fifth-day">
+							<div className="class-fifth-day-item class-subheader">Friday</div>
+							<div className="class-fifth-day-item">witryny</div>
+							<div className="class-fifth-day-item">witryny</div>
+							<div className="class-fifth-day-item">j.pol</div>
+							<div className="class-fifth-day-item">j.ang</div>
+							<div className="class-fifth-day-item">Z_W</div>
+							<div className="class-fifth-day-item">prog.aplik</div>
+							<div className="class-fifth-day-item"></div>
+							<div className="class-fifth-day-item"></div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</StyledClassPlan>
 	);
