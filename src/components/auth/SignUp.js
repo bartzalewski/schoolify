@@ -78,6 +78,7 @@ class SignUp extends Component {
 	};
 
 	render() {
+		console.log(this.props);
 		return (
 			<StyledSignUp>
 				<form className="signup-form" onSubmit={this.handleSubmit}>

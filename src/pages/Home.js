@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as Logo } from '../images/logo.svg';
 import SignUp from '../components/auth/SignUp';
 import SignIn from '../components/auth/SignIn';
-import homebg from '../images/homebg.svg';
+import { NavLink } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import Gdpr from '../components/rules/Gdpr';
+import Homepage from '../components/rules/Homepage';
+import Credits from '../components/rules/Credits';
 
 const StyledHome = styled.div`
 	width: 100vw;
@@ -37,12 +40,16 @@ const StyledHome = styled.div`
 	}
 
 	.home-bg {
-		width: 100%;
+		margin-top: 4rem;
+		width: 50%;
 		user-select: none;
 	}
 
-	.home-container {
-		padding: 100px;
+	.active {
+		background: -webkit-linear-gradient(top, #fe843f, #fc5a37);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
 
 	.signup-title,
@@ -117,6 +124,60 @@ const StyledHome = styled.div`
 		}
 	}
 
+	.home-footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		border-top: 1px solid #d2d2d2;
+		width: 100%;
+		min-height: 50px;
+		max-height: 50px;
+		margin-top: 4rem;
+	}
+
+	.home-title {
+		background: -webkit-linear-gradient(top, #fe843f, #fc5a37);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		user-select: none;
+	}
+
+	.home-credits {
+		width: 25%;
+		display: flex;
+		justify-content: space-between;
+
+		a {
+			text-decoration: none;
+			color: #d2d2d2;
+			transition: 0.2s;
+
+			&:hover {
+				background: -webkit-linear-gradient(top, #fe843f, #fc5a37);
+				-webkit-background-clip: text;
+				background-clip: text;
+				-webkit-text-fill-color: transparent;
+				transition: 0.2s;
+			}
+
+			&::selection {
+				background: #fe843f;
+				color: white;
+				background-clip: initial;
+				-webkit-text-fill-color: initial;
+			}
+		}
+
+		@media (max-width: 1359px) {
+			width: 35%;
+		}
+
+		@media (max-width: 600px) {
+			width: 50%;
+		}
+	}
+
 	@media (max-width: 1124px) {
 		text-align: center;
 		padding: 50px;
@@ -137,10 +198,6 @@ const StyledHome = styled.div`
 
 		.title {
 			font-size: 1.8rem;
-		}
-
-		.home-container {
-			padding: 0;
 		}
 
 		h1 {
@@ -207,7 +264,11 @@ const StyledWrapperRight = styled.div`
 	background: #fff;
 	padding: 100px;
 	text-align: center;
+	overflow-y: scroll;
 	z-index: 1;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
 
 	@media (max-width: 1600px) {
 		padding: 50px;
@@ -226,16 +287,11 @@ export default function Home() {
 			<StyledWrapperLeft>
 				<StyledHero>
 					{window.innerWidth <= 1124 ? (
-						<>
-							<Logo className="home-logo" />
-							<div className="title">schoolify</div>
-							<h1>
-								the <span>first</span> globalized electronic diary for schools.
-							</h1>
-							<div className="home-container">
-								<img className="home-bg" src={homebg} alt="home background" />
-							</div>
-						</>
+						<Switch>
+							<Route exact path="/" component={Homepage}></Route>
+							<Route path="/gdpr" component={Gdpr}></Route>
+							<Route path="/credits" component={Credits}></Route>
+						</Switch>
 					) : null}
 					{window.innerWidth > 1125 ? (
 						<h1>
@@ -248,6 +304,20 @@ export default function Home() {
 						<>
 							<SignIn />
 							<SignUp />
+							<div className="home-footer">
+								<div className="home-title">schoolify &copy; 2019</div>
+								<div className="home-credits">
+									<NavLink activeClassName="active" exact to="/">
+										Home
+									</NavLink>
+									<NavLink activeClassName="active" to="/gdpr">
+										GDPR
+									</NavLink>
+									<NavLink activeClassName="active" to="/credits">
+										Credits
+									</NavLink>
+								</div>
+							</div>
 						</>
 					) : (
 						<>
@@ -260,10 +330,24 @@ export default function Home() {
 			<StyledWrapperRight>
 				{window.innerWidth > 1125 ? (
 					<>
-						<Logo className="home-logo" />
-						<div className="title">schoolify</div>
-						<div className="home-container">
-							<img className="home-bg" src={homebg} alt="home background" />
+						<Switch>
+							<Route exact path="/" component={Homepage}></Route>
+							<Route path="/gdpr" component={Gdpr}></Route>
+							<Route path="/credits" component={Credits}></Route>
+						</Switch>
+						<div className="home-footer">
+							<div className="home-title">schoolify &copy; 2019</div>
+							<div className="home-credits">
+								<NavLink activeClassName="active" exact to="/">
+									Home
+								</NavLink>
+								<NavLink activeClassName="active" to="/gdpr">
+									GDPR
+								</NavLink>
+								<NavLink activeClassName="active" to="/credits">
+									Credits
+								</NavLink>
+							</div>
 						</div>
 					</>
 				) : null}
