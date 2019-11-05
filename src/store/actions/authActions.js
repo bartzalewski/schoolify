@@ -44,6 +44,7 @@ export const signUp = newUser => {
 						lastName: newUser.lastName,
 						userAvatar: newUser.userAvatar,
 						email: newUser.email,
+						accountType: 'student',
 						homework: ['Math: ex.1, p.5', 'English: ex.1, p.6'],
 						reminders: [
 							'Get organized!',

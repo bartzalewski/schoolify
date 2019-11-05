@@ -9,6 +9,8 @@ import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import SchoolList from '../components/schools/SchoolList';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { db } from '../config/fbConfig';
 
 const StyledNews = styled.section`
 	height: fit-content;
@@ -59,13 +61,11 @@ const StyledNews = styled.section`
 	.newspage-schools-container {
 		width: 100%;
 		height: 250px;
-		display: flex;
-		justify-content: space-between;
 		margin-top: 2rem;
 
 		#school-list {
 			display: grid;
-			grid-template-columns: repeat(4, 1fr);
+			grid-template-columns: repeat(5, 1fr);
 			grid-gap: 5px;
 			margin-top: 0;
 			margin-right: 5px;
@@ -234,6 +234,27 @@ const StyledNews = styled.section`
 		}
 	}
 
+	.newspage-schools-container-teacher {
+		display: flex;
+		justify-content: space-between;
+		#school-list {
+			grid-template-columns: repeat(4, 1fr);
+			div {
+				&:nth-of-type(5) {
+					display: none !important;
+				}
+			}
+		}
+	}
+
+	.newspage-schools-container-student {
+		margin-bottom: 2.5rem;
+	}
+
+	#school-list-news {
+		display: none !important;
+	}
+
 	@media (max-width: 1359px) {
 		.container {
 			padding: 0 !important;
@@ -362,44 +383,80 @@ const StyledNews = styled.section`
 `;
 
 class News extends Component {
+	// componentDidUpdate = () => {
+	// 	const { posts } = this.props;
+	// 	console.log(posts.length);
+	// };
+	// fetchMoreData = () => {
+	// 	setTimeout(() => {
+	// 		//
+	// 	}, 1500);
+	// };
 	render() {
 		const { posts, auth, schools, profile } = this.props;
 		if (!auth.uid) return <Redirect to="/" />;
-		return (
-			<StyledNews className="site-container">
-				<div className="container">
-					<div className="home-wrapper">
-						<h1 id="schools-title" className="schools-title">
-							Browse schools
-						</h1>
-						<Link to="/school-list" className="school-list">
-							See All
-						</Link>
-					</div>
-					<div className="newspage-schools-container">
-						<SchoolList schools={schools} />
-						<Link to="/add" className="box box-add">
-							<div className="box-wrapper">
-								<h1 className="add-title">Add your school!</h1>
-								<Add className="add" />
-							</div>
-						</Link>
-					</div>
-					<div className="wrapper">
-						<div className="add-post">
-							<Link to="/profile" className="profile-btn">
-								<img className="user-logo" src={profile.userAvatar} alt="" />
+		if (profile.accountType === 'teacher') {
+			return (
+				<StyledNews className="site-container">
+					<div className="container">
+						<div className="home-wrapper">
+							<h1 id="schools-title" className="schools-title">
+								Browse schools
+							</h1>
+							<Link to="/school-list" className="school-list">
+								See All
 							</Link>
-							<Link to="/create" className="posts-btn">
-								Add a post
-							</Link>
-							<img className="user-logo" src={warning} alt="post info" />
 						</div>
+						<div className="newspage-schools-container newspage-schools-container-teacher">
+							<SchoolList id="school-list-news" schools={schools} />
+							<Link to="/add" className="box box-add">
+								<div className="box-wrapper">
+									<h1 className="add-title">Add your school!</h1>
+									<Add className="add" />
+								</div>
+							</Link>
+						</div>
+						<div className="wrapper">
+							<div className="add-post">
+								<Link to="/profile" className="profile-btn">
+									<img className="user-logo" src={profile.userAvatar} alt="" />
+								</Link>
+								<Link to="/create" className="posts-btn">
+									Add a post
+								</Link>
+								<img className="user-logo" src={warning} alt="post info" />
+							</div>
+						</div>
+						<PostList posts={posts} />
 					</div>
-					<PostList posts={posts} />
-				</div>
-			</StyledNews>
-		);
+				</StyledNews>
+			);
+		} else {
+			return (
+				<StyledNews className="site-container">
+					<div className="container">
+						<div className="home-wrapper">
+							<h1 id="schools-title" className="schools-title">
+								Browse schools
+							</h1>
+							<Link to="/school-list" className="school-list">
+								See All
+							</Link>
+						</div>
+						<div className="newspage-schools-container newspage-schools-container-student">
+							<SchoolList schools={schools} />
+						</div>
+						<InfiniteScroll
+							dataLength={posts}
+							hasMore={true}
+							loader={<h4>Loading...</h4>}
+						>
+							<PostList posts={posts} />
+						</InfiniteScroll>
+					</div>
+				</StyledNews>
+			);
+		}
 	}
 }
 
@@ -415,6 +472,6 @@ export default compose(
 	connect(mapStateToProps),
 	firestoreConnect([
 		{ collection: 'posts', orderBy: ['createdAt', 'desc'] },
-		{ collection: 'schools', limit: 4, orderBy: ['createdAt', 'desc'] }
+		{ collection: 'schools', limit: 5, orderBy: ['createdAt', 'desc'] }
 	])
 )(News);

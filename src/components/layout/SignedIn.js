@@ -104,69 +104,133 @@ class SignedIn extends Component {
 	}
 	render() {
 		const theme = this.state.theme;
-		return (
-			<ThemeProvider theme={theme}>
-				<>
-					<DarkTheme />
-					<StyledDesktop>
-						<Navbar profile={this.props.profile} />
-						<StyledWrapper>
-							<StyledLeftSide>
-								<Reminders profile={this.props.profile} />
-								{window.innerWidth <= 1124 ? (
-									<Homework profile={this.props.profile} />
-								) : null}
-								{window.innerWidth <= 1124 ? (
-									<Tests profile={this.props.profile} />
-								) : null}
-								<Grades />
-							</StyledLeftSide>
-							<StyledHome>
-								<Switch>
-									<Route
-										exact
-										path="/"
-										component={props => (
-											<News {...props} profile={this.props.profile} />
-										)}
-									/>
-									<Route path="/notifications" component={Notification} />
-									<Route
-										path="/profile"
-										component={props => (
-											<Profile {...props} profile={this.props.profile} />
-										)}
-									></Route>
-									<Route path="/lessons" component={Lessons} />
-									<Route path="/chat" component={Chat} />
-									<Route path="/create" component={CreatePost} />
-									<Route path="/add" component={CreateSchool} />
-									<Route path="/school-list" component={ViewSchools} />
-									<Route path="/add-grade" component={AddGrades} />
-									<Route path="/grade" component={GradesSummary} />
-									<Route path="/lessons-zsz" component={ClassPlan} />
-									<Route
-										path="/settings"
-										component={props => (
-											<Settings
-												{...props}
-												theme={theme}
-												onChange={this.onChange}
-											/>
-										)}
-									/>
-									<Route component={Error} />
-								</Switch>
-							</StyledHome>
-							<StyledRightSide>
-								{window.innerWidth > 1124 ? <Homework /> : null}
-								{window.innerWidth > 1124 ? <Tests /> : null}
-							</StyledRightSide>
-						</StyledWrapper>
-					</StyledDesktop>
-				</>
-			</ThemeProvider>
-		);
+		if (this.props.profile.accountType === 'teacher') {
+			return (
+				<ThemeProvider theme={theme}>
+					<>
+						<DarkTheme />
+						<StyledDesktop>
+							<Navbar profile={this.props.profile} />
+							<StyledWrapper>
+								<StyledLeftSide>
+									<Reminders profile={this.props.profile} />
+									{window.innerWidth <= 1124 ? (
+										<Homework profile={this.props.profile} />
+									) : null}
+									{window.innerWidth <= 1124 ? (
+										<Tests profile={this.props.profile} />
+									) : null}
+									<Grades />
+								</StyledLeftSide>
+								<StyledHome>
+									<Switch>
+										<Route
+											exact
+											path="/"
+											component={props => (
+												<News {...props} profile={this.props.profile} />
+											)}
+										/>
+										<Route path="/notifications" component={Notification} />
+										<Route
+											path="/profile"
+											component={props => (
+												<Profile {...props} profile={this.props.profile} />
+											)}
+										></Route>
+										<Route path="/lessons" component={Lessons} />
+										<Route path="/chat" component={Chat} />
+										<Route path="/create" component={CreatePost} />
+										<Route path="/add" component={CreateSchool} />
+										<Route path="/school-list" component={ViewSchools} />
+										<Route path="/add-grade" component={AddGrades} />
+										<Route path="/grade" component={GradesSummary} />
+										<Route path="/lessons-zsz" component={ClassPlan} />
+										<Route
+											path="/settings"
+											component={props => (
+												<Settings
+													{...props}
+													theme={theme}
+													onChange={this.onChange}
+												/>
+											)}
+										/>
+										<Route component={Error} />
+									</Switch>
+								</StyledHome>
+								<StyledRightSide>
+									{window.innerWidth > 1124 ? <Homework /> : null}
+									{window.innerWidth > 1124 ? <Tests /> : null}
+								</StyledRightSide>
+							</StyledWrapper>
+						</StyledDesktop>
+					</>
+				</ThemeProvider>
+			);
+		} else {
+			return (
+				<ThemeProvider theme={theme}>
+					<>
+						<DarkTheme />
+						<StyledDesktop>
+							<Navbar profile={this.props.profile} />
+							<StyledWrapper>
+								<StyledLeftSide>
+									<Reminders profile={this.props.profile} />
+									{window.innerWidth <= 1124 ? (
+										<Homework profile={this.props.profile} />
+									) : null}
+									{window.innerWidth <= 1124 ? (
+										<Tests profile={this.props.profile} />
+									) : null}
+									<Grades />
+								</StyledLeftSide>
+								<StyledHome>
+									<Switch>
+										<Route
+											exact
+											path="/"
+											component={props => (
+												<News {...props} profile={this.props.profile} />
+											)}
+										/>
+										<Route path="/notifications" component={Notification} />
+										<Route
+											path="/profile"
+											component={props => (
+												<Profile {...props} profile={this.props.profile} />
+											)}
+										></Route>
+										<Route path="/lessons" component={Lessons} />
+										<Route path="/chat" component={Chat} />
+										<Route path="/school-list" component={ViewSchools} />
+										<Route path="/add-grade" component={AddGrades} />
+										<Route path="/grade" component={GradesSummary} />
+										<Route path="/lessons-zsz" component={ClassPlan} />
+										<Route
+											path="/settings"
+											component={props => (
+												<Settings
+													{...props}
+													theme={theme}
+													onChange={this.onChange}
+												/>
+											)}
+										/>
+										<Route component={Error} />
+									</Switch>
+								</StyledHome>
+								<StyledRightSide>
+									{window.innerWidth > 1124 ? <Homework /> : null}
+									{window.innerWidth > 1124 ? <Tests /> : null}
+								</StyledRightSide>
+							</StyledWrapper>
+						</StyledDesktop>
+					</>
+				</ThemeProvider>
+			);
+		}
 	}
 }
 
