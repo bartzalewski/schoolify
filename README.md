@@ -2,7 +2,7 @@
 
 This is my first ReactJS project. It will contain things like school's news feed, list of grades, upcoming tests, homework and a lesson plan. Feel free to view my code.
 
-Link to the app: https://schoolify-167f2.web.app/
+Link to the app: https://schoolify.app/
 
 ## What kind of technologies did I use?
 
