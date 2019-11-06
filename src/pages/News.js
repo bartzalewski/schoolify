@@ -249,6 +249,18 @@ const StyledNews = styled.section`
 
 	.newspage-schools-container-student {
 		margin-bottom: 2.5rem;
+
+		@media (max-width: 1359px) {
+			margin-bottom: 0;
+		}
+	}
+
+	.newspage-teacher-container {
+		#post-list-item {
+			@media (max-width: 1359px) {
+				margin-top: -40px;
+			}
+		}
 	}
 
 	#school-list-news {
@@ -398,7 +410,7 @@ class News extends Component {
 		if (profile.accountType === 'teacher') {
 			return (
 				<StyledNews className="site-container">
-					<div className="container">
+					<div className="container newspage-teacher-container">
 						<div className="home-wrapper">
 							<h1 id="schools-title" className="schools-title">
 								Browse schools
