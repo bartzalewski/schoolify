@@ -100,7 +100,7 @@ class Grades extends Component {
 			this.state.active = false;
 		}
 		return (
-			<StyledGrades>
+			<StyledGrades className="aside-grades">
 				<div className="container">
 					<h1 onClick={this.isHidden} className="title">
 						Grades

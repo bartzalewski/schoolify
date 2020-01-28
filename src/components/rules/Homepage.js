@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as Logo } from '../../images/logo.svg';
+import logo from '../../images/logo.png';
 import homebg from '../../images/homebg.svg';
 
 const StyledHomepage = styled.div`
@@ -15,7 +15,7 @@ export default function Homepage() {
 		<StyledHomepage>
 			{window.innerWidth <= 1124 ? (
 				<>
-					<Logo className="home-logo" />
+					<img src={logo} className="home-logo" alt="schoolify logo" />
 					<div className="title">schoolify</div>
 					<h1>
 						the <span>first</span> globalized electronic diary for schools.
@@ -27,11 +27,14 @@ export default function Homepage() {
 			) : null}
 			{window.innerWidth > 1125 ? (
 				<>
-					<Logo className="home-logo" />
+					<img src={logo} className="home-logo" alt="schoolify logo" />
 					<div className="title">schoolify</div>
 					<div className="home-container">
 						<img className="home-bg" src={homebg} alt="home background" />
 					</div>
+					<h2>
+						What can you do in <span>schoolify?</span>
+					</h2>
 				</>
 			) : null}
 		</StyledHomepage>

@@ -30,7 +30,7 @@ const DarkTheme = createGlobalStyle`
 		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 	}
 
-	body, section, .posts-btn, .school-list-page, .add-grades-page, .grades-summary-page, .zsz-page, .input-reminder, .input-reminder::placeholder, .input-homework, .input-homework::placeholder, .input-tests, .input-tests::placeholder, .list-item-selected, .friend-sent, .user-sent, #chat-text-box, #chat-input-email, #chat-input-msg, .btn-chat-submit {
+	body, section, .posts-btn, .school-list-page, .add-grades-page, .grades-summary-page, .zsz-page, .input-reminder, .input-reminder::placeholder, .input-homework, .input-homework::placeholder, .input-tests, .input-tests::placeholder, .list-item-selected, .friend-sent, .user-sent, #chat-text-box, #chat-input-email, #chat-input-msg, .btn-chat-submit, .list-item:hover {
 		background: ${props =>
 			props.theme.mode === 'dark' ? '#141414' : null} !important;
 		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
@@ -44,6 +44,48 @@ const DarkTheme = createGlobalStyle`
 	.box, .upload-pic, .submit-message-icon {
 		fill: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 	}
+
+	.box {
+		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
+
+		svg {
+			fill: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)};
+		}
+	}
+
+	nav {
+		border-bottom: 1px solid ${props =>
+			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important
+	}
+
+	.aside-reminders {
+		border-right: 1px solid ${props =>
+			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important;
+		border-bottom: 1px solid ${props =>
+			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important;
+	}
+
+	.aside-grades {
+		border-right: 1px solid ${props =>
+			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important;
+	}
+
+	.aside-homework {
+		border-left: 1px solid ${props =>
+			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important;
+		border-bottom: 1px solid ${props =>
+			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important;
+	}
+
+	.aside-tests {
+		border-left: 1px solid ${props =>
+			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important;
+	}
+
+	/* .list-item:hover {
+		background: ${props =>
+			props.theme.mode === 'dark' ? '#141414' : null} !important;
+	} */
 `;
 
 const StyledWrapper = styled.div`

@@ -152,7 +152,7 @@ class Reminders extends Component {
 			this.state.active = false;
 		}
 		return (
-			<StyledReminders>
+			<StyledReminders className="aside-reminders">
 				<div className="container">
 					<h1 onClick={this.isHidden} className="title">
 						Reminders

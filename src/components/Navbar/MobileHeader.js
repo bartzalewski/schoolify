@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as Logo } from '../../images/logo.svg';
+import { ReactComponent as Logo } from '../../images/logo.png';
 
 const StyledMobileHeader = styled.div`
 	width: 100vw;
@@ -12,7 +12,8 @@ const StyledMobileHeader = styled.div`
 export default function MobileHeader() {
 	return (
 		<StyledMobileHeader>
-			<Logo />schoolify
+			<Logo />
+			schoolify
 		</StyledMobileHeader>
 	);
 }

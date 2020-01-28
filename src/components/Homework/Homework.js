@@ -173,7 +173,7 @@ class Homework extends Component {
 			this.state.active = false;
 		}
 		return (
-			<StyledHomework>
+			<StyledHomework className="aside-homework">
 				<div className="container">
 					<h1 onClick={this.isHidden} className="title">
 						Homework

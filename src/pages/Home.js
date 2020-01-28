@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import SignUp from '../components/auth/SignUp';
 import SignIn from '../components/auth/SignIn';
@@ -25,12 +25,23 @@ const StyledHome = styled.div`
 		}
 	}
 
+	h2 {
+		font-weight: 400;
+	}
+
 	span,
 	.title {
 		background: -webkit-linear-gradient(top, #fe843f, #fc5a37);
 		-webkit-background-clip: text;
 		background-clip: text;
 		-webkit-text-fill-color: transparent;
+	}
+
+	span::selection {
+		background: #fe843f;
+		color: white;
+		background-clip: border-box;
+		-webkit-text-fill-color: white;
 	}
 
 	.title {
@@ -122,6 +133,11 @@ const StyledHome = styled.div`
 		@media (max-width: 1600px) {
 			padding: 0px 25px;
 		}
+	}
+
+	.home-logo {
+		width: 60px;
+		height: 60px;
 	}
 
 	.home-footer {
@@ -281,29 +297,61 @@ const StyledWrapperRight = styled.div`
 	}
 `;
 
-export default function Home() {
-	return (
-		<StyledHome>
-			<StyledWrapperLeft>
-				<StyledHero>
-					{window.innerWidth <= 1124 ? (
-						<Switch>
-							<Route exact path="/" component={Homepage}></Route>
-							<Route path="/gdpr" component={Gdpr}></Route>
-							<Route path="/credits" component={Credits}></Route>
-						</Switch>
-					) : null}
+class Home extends Component {
+	render() {
+		return (
+			<StyledHome>
+				<StyledWrapperLeft>
+					<StyledHero>
+						{window.innerWidth <= 1124 ? (
+							<Switch>
+								<Route exact path="/" component={Homepage}></Route>
+								<Route path="/gdpr" component={Gdpr}></Route>
+								<Route path="/credits" component={Credits}></Route>
+							</Switch>
+						) : null}
+						{window.innerWidth > 1125 ? (
+							<h1>
+								the <span>first</span> globalized electronic diary for schools.
+							</h1>
+						) : null}
+					</StyledHero>
+					<StyledSign>
+						{window.innerWidth <= 1124 ? (
+							<>
+								<SignIn />
+								<SignUp />
+								<div className="home-footer">
+									<div className="home-title">schoolify &copy; 2019</div>
+									<div className="home-credits">
+										<NavLink activeClassName="active" exact to="/">
+											Home
+										</NavLink>
+										<NavLink activeClassName="active" to="/gdpr">
+											GDPR
+										</NavLink>
+										<NavLink activeClassName="active" to="/credits">
+											Credits
+										</NavLink>
+									</div>
+								</div>
+							</>
+						) : (
+							<>
+								<SignUp />
+								<SignIn />
+							</>
+						)}
+					</StyledSign>
+				</StyledWrapperLeft>
+				<StyledWrapperRight>
 					{window.innerWidth > 1125 ? (
-						<h1>
-							the <span>first</span> globalized electronic diary for schools.
-						</h1>
-					) : null}
-				</StyledHero>
-				<StyledSign>
-					{window.innerWidth <= 1124 ? (
 						<>
-							<SignIn />
-							<SignUp />
+							<Switch>
+								<Route exact path="/" component={Homepage}></Route>
+								<Route path="/gdpr" component={Gdpr}></Route>
+								<Route path="/credits" component={Credits}></Route>
+							</Switch>
 							<div className="home-footer">
 								<div className="home-title">schoolify &copy; 2019</div>
 								<div className="home-credits">
@@ -319,39 +367,11 @@ export default function Home() {
 								</div>
 							</div>
 						</>
-					) : (
-						<>
-							<SignUp />
-							<SignIn />
-						</>
-					)}
-				</StyledSign>
-			</StyledWrapperLeft>
-			<StyledWrapperRight>
-				{window.innerWidth > 1125 ? (
-					<>
-						<Switch>
-							<Route exact path="/" component={Homepage}></Route>
-							<Route path="/gdpr" component={Gdpr}></Route>
-							<Route path="/credits" component={Credits}></Route>
-						</Switch>
-						<div className="home-footer">
-							<div className="home-title">schoolify &copy; 2019</div>
-							<div className="home-credits">
-								<NavLink activeClassName="active" exact to="/">
-									Home
-								</NavLink>
-								<NavLink activeClassName="active" to="/gdpr">
-									GDPR
-								</NavLink>
-								<NavLink activeClassName="active" to="/credits">
-									Credits
-								</NavLink>
-							</div>
-						</div>
-					</>
-				) : null}
-			</StyledWrapperRight>
-		</StyledHome>
-	);
+					) : null}
+				</StyledWrapperRight>
+			</StyledHome>
+		);
+	}
 }
+
+export default Home;

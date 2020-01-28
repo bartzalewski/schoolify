@@ -26,7 +26,6 @@ const StyledChat = styled.section`
 			transition: 0.2s;
 
 			&:hover {
-				transform: scale(1.05);
 				transition: 0.2s;
 			}
 

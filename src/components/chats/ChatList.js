@@ -20,8 +20,8 @@ const StyledChatList = styled.div`
 		cursor: pointer;
 
 		&:hover {
-			transform: scale(1.05);
 			transition: 0.2s;
+			background: #ececf0;
 		}
 	}
 
@@ -62,8 +62,8 @@ const StyledChatList = styled.div`
 		transition: 0.2s;
 
 		&:hover {
-			transform: scale(1.05);
 			transition: 0.2s;
+			transform: none;
 		}
 	}
 

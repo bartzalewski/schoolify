@@ -150,7 +150,7 @@ class Tests extends Component {
 			this.state.active = false;
 		}
 		return (
-			<StyledTests>
+			<StyledTests className="aside-tests">
 				<div className="container">
 					<h1 onClick={this.isHidden} className="title">
 						Tests
