@@ -2,23 +2,32 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import SignUp from '../components/auth/SignUp';
 import SignIn from '../components/auth/SignIn';
-import { NavLink } from 'react-router-dom';
-import { Route, Switch } from 'react-router-dom';
-import Gdpr from '../components/rules/Gdpr';
-import Homepage from '../components/rules/Homepage';
-import Credits from '../components/rules/Credits';
+// import { NavLink } from 'react-router-dom';
+// import { Route, Switch } from 'react-router-dom';
+// import Gdpr from '../components/rules/Gdpr';
+// import Homepage from '../components/rules/Homepage';
+// import Credits from '../components/rules/Credits';
+import logo from '../images/logo.png';
 
 const StyledHome = styled.div`
 	width: 100vw;
-	height: 100vh;
+	height: 100%;
+	min-height: 100vh;
 	background: #fff;
 	display: flex;
 	overflow-y: hidden;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
 	h1 {
 		font-weight: 400;
 		font-size: 3rem;
 		user-select: none;
+		background: -webkit-linear-gradient(top, #fe843f, #fc5a37);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
 
 		@media (max-width: 1600px) {
 			font-size: 2.5rem;
@@ -27,40 +36,7 @@ const StyledHome = styled.div`
 
 	h2 {
 		font-weight: 400;
-	}
-
-	span,
-	.title {
-		background: -webkit-linear-gradient(top, #fe843f, #fc5a37);
-		-webkit-background-clip: text;
-		background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
-
-	span::selection {
-		background: #fe843f;
-		color: white;
-		background-clip: border-box;
-		-webkit-text-fill-color: white;
-	}
-
-	.title {
-		font-size: 2.25rem;
-		font-weight: 300;
-		user-select: none;
-	}
-
-	.home-bg {
-		margin-top: 4rem;
-		width: 50%;
-		user-select: none;
-	}
-
-	.active {
-		background: -webkit-linear-gradient(top, #fe843f, #fc5a37);
-		-webkit-background-clip: text;
-		background-clip: text;
-		-webkit-text-fill-color: transparent;
+		margin-bottom: 2rem;
 	}
 
 	.signup-title,
@@ -82,13 +58,10 @@ const StyledHome = styled.div`
 		font-size: 1.125rem;
 		border: none;
 		border-radius: 10px;
+		background: #ececf0;
 
 		@media (max-width: 1600px) {
 			height: 40px;
-		}
-
-		@media (max-width: 1124px) {
-			background: #ececf0;
 		}
 	}
 
@@ -135,90 +108,69 @@ const StyledHome = styled.div`
 		}
 	}
 
+	.title {
+		text-align: center;
+		margin-bottom: 2rem;
+		font-size: 2.25rem;
+		font-weight: 300;
+	}
+
 	.home-logo {
 		width: 60px;
 		height: 60px;
 	}
 
-	.home-footer {
+	.sign-container {
 		display: flex;
 		justify-content: space-between;
-		align-items: flex-end;
-		border-top: 1px solid #d2d2d2;
-		width: 100%;
-		min-height: 50px;
-		max-height: 50px;
-		margin-top: 4rem;
+		align-items: flex-start;
 	}
 
-	.home-title {
-		background: -webkit-linear-gradient(top, #fe843f, #fc5a37);
-		-webkit-background-clip: text;
-		background-clip: text;
-		-webkit-text-fill-color: transparent;
-		user-select: none;
-	}
+	.home-contact {
+		align-self: flex-start;
+		margin-top: 2rem;
+		color: inherit;
+		text-decoration: none;
+		transition: 0.2s;
+		position: relative;
 
-	.home-credits {
-		width: 25%;
-		display: flex;
-		justify-content: space-between;
+		&::before {
+			content: '';
+			width: 100%;
+			height: 1px;
+			background: #fe843f;
+			position: absolute;
+			bottom: 0;
+			transform: scaleX(0);
+			transition: 0.2s ease-in-out;
+		}
 
-		a {
-			text-decoration: none;
-			color: #d2d2d2;
+		&:hover {
+			color: #fe843f;
 			transition: 0.2s;
 
-			&:hover {
-				background: -webkit-linear-gradient(top, #fe843f, #fc5a37);
-				-webkit-background-clip: text;
-				background-clip: text;
-				-webkit-text-fill-color: transparent;
-				transition: 0.2s;
-			}
-
-			&::selection {
-				background: #fe843f;
-				color: white;
-				background-clip: initial;
-				-webkit-text-fill-color: initial;
+			&::before {
+				transform: scaleX(1) !important;
 			}
 		}
+	}
 
-		@media (max-width: 1359px) {
-			width: 35%;
-		}
-
-		@media (max-width: 600px) {
-			width: 50%;
-		}
+	.home-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		width: fit-content;
+		height: fit-content;
 	}
 
 	@media (max-width: 1124px) {
-		text-align: center;
-		padding: 50px;
-		overflow-y: auto;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-
-		.home-bg {
-			width: 50%;
-			margin-top: 5rem;
-		}
-
-		.home-logo {
-			width: 50px;
-			height: 50px;
-		}
-
 		.title {
 			font-size: 1.8rem;
 		}
 
 		h1 {
 			font-size: 2.3rem;
-			margin-top: 5rem;
 
 			@media (max-width: 600px) {
 				font-size: 2rem;
@@ -228,72 +180,12 @@ const StyledHome = styled.div`
 
 	@media (max-width: 600px) {
 		padding: 25px;
-		.home-bg {
-			width: 80%;
+
+		.sign-container {
+			flex-direction: column;
+			justify-content: flex-start;
+			width: 100%;
 		}
-	}
-`;
-
-const StyledWrapperLeft = styled.div`
-	width: 40vw;
-	height: 100vh;
-	background: #ececf0;
-	padding: 100px;
-	border-right: 1px solid #d2d2d2;
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
-
-	@media (max-width: 1600px) {
-		padding: 50px;
-	}
-
-	@media (max-width: 1124px) {
-		width: 100%;
-		background: white;
-		border: none;
-		height: fit-content;
-		padding: 0;
-	}
-`;
-
-const StyledHero = styled.div``;
-
-const StyledSign = styled.div`
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-end;
-	height: fit-content;
-	width: 100%;
-
-	@media (max-width: 1124px) {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-`;
-
-const StyledWrapperRight = styled.div`
-	width: 60vw;
-	height: 100vh;
-	background: #fff;
-	padding: 100px;
-	text-align: center;
-	overflow-y: scroll;
-	z-index: 1;
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
-
-	@media (max-width: 1600px) {
-		padding: 50px;
-	}
-
-	@media (max-width: 1124px) {
-		width: 100%;
-		z-index: 0;
-		padding: 0;
 	}
 `;
 
@@ -301,74 +193,18 @@ class Home extends Component {
 	render() {
 		return (
 			<StyledHome>
-				<StyledWrapperLeft>
-					<StyledHero>
-						{window.innerWidth <= 1124 ? (
-							<Switch>
-								<Route exact path="/" component={Homepage}></Route>
-								<Route path="/gdpr" component={Gdpr}></Route>
-								<Route path="/credits" component={Credits}></Route>
-							</Switch>
-						) : null}
-						{window.innerWidth > 1125 ? (
-							<h1>
-								the <span>first</span> globalized electronic diary for schools.
-							</h1>
-						) : null}
-					</StyledHero>
-					<StyledSign>
-						{window.innerWidth <= 1124 ? (
-							<>
-								<SignIn />
-								<SignUp />
-								<div className="home-footer">
-									<div className="home-title">schoolify &copy; 2019</div>
-									<div className="home-credits">
-										<NavLink activeClassName="active" exact to="/">
-											Home
-										</NavLink>
-										<NavLink activeClassName="active" to="/gdpr">
-											GDPR
-										</NavLink>
-										<NavLink activeClassName="active" to="/credits">
-											Credits
-										</NavLink>
-									</div>
-								</div>
-							</>
-						) : (
-							<>
-								<SignUp />
-								<SignIn />
-							</>
-						)}
-					</StyledSign>
-				</StyledWrapperLeft>
-				<StyledWrapperRight>
-					{window.innerWidth > 1125 ? (
-						<>
-							<Switch>
-								<Route exact path="/" component={Homepage}></Route>
-								<Route path="/gdpr" component={Gdpr}></Route>
-								<Route path="/credits" component={Credits}></Route>
-							</Switch>
-							<div className="home-footer">
-								<div className="home-title">schoolify &copy; 2019</div>
-								<div className="home-credits">
-									<NavLink activeClassName="active" exact to="/">
-										Home
-									</NavLink>
-									<NavLink activeClassName="active" to="/gdpr">
-										GDPR
-									</NavLink>
-									<NavLink activeClassName="active" to="/credits">
-										Credits
-									</NavLink>
-								</div>
-							</div>
-						</>
-					) : null}
-				</StyledWrapperRight>
+				<div className="home-container">
+					<img src={logo} className="home-logo" alt="schoolify logo" />
+					<h1 className="title">schoolify</h1>
+					<h2>Landing page in maintenance.</h2>
+					<div className="sign-container">
+						<SignUp />
+						<SignIn />
+					</div>
+					<a href="mailto:me@bartzalewski.com" className="home-contact">
+						Contact
+					</a>
+				</div>
 			</StyledHome>
 		);
 	}

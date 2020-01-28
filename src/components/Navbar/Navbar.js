@@ -129,12 +129,7 @@ const StyledNavbar = styled.nav`
 			transition: 0.2s ease-in-out;
 
 			@media (max-width: 1359px) {
-				width: 60px;
 				height: 1px;
-			}
-
-			@media (max-width: 813px) {
-				width: 30px;
 			}
 		}
 

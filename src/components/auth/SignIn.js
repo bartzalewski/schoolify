@@ -9,6 +9,7 @@ const StyledSignIn = styled.section`
 
 	@media (max-width: 600px) {
 		width: 100%;
+		margin-top: 1rem; /* DELETE IMMEDIATELY */
 	}
 `;
 
@@ -72,7 +73,4 @@ const mapDispatchToProps = dispatch => {
 	};
 };
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
