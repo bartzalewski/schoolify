@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import logo from '../../images/logo.png';
+import firebase from '../../config/fbConfig';
 
 const StyledNavbar = styled.nav`
 	display: flex;
@@ -276,7 +277,12 @@ export default function Navbar(props) {
 					to="/profile"
 					className="box nav-profile avatar"
 				>
-					<img src={props.profile.userAvatar} alt="" />
+					<img
+						src={
+							props.profile.userAvatar || firebase.auth().currentUser.photoURL
+						}
+						alt=""
+					/>
 					<span>Profile</span>
 				</NavLink>
 				<NavLink

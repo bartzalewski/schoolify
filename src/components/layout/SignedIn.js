@@ -82,6 +82,13 @@ const DarkTheme = createGlobalStyle`
 			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important;
 	}
 
+	@media (max-width: 1124px) {
+    .aside-reminders, .aside-homework, .aside-tests, .aside-grades {
+      border-bottom: 1px solid ${props =>
+				props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important;
+    }
+  }
+
 	/* .list-item:hover {
 		background: ${props =>
 			props.theme.mode === 'dark' ? '#141414' : null} !important;

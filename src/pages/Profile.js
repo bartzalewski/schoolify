@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { storage, db } from '../config/fbConfig';
+import firebase, { storage, db } from '../config/fbConfig';
 
 const StyledProfile = styled.section`
 	.profile-container {
@@ -180,7 +180,10 @@ export default class Profile extends Component {
 						<div className="avatar-container">
 							<img
 								title="Your avatar"
-								src={this.props.profile.userAvatar}
+								src={
+									this.props.profile.userAvatar ||
+									firebase.auth().currentUser.photoURL
+								}
 								alt=""
 							/>
 							<svg
@@ -203,7 +206,8 @@ export default class Profile extends Component {
 								</button>
 							)}
 							<h2>
-								{this.props.profile.firstName} {this.props.profile.lastName}
+								{this.props.profile.firstName} {this.props.profile.lastName}{' '}
+								{firebase.auth().currentUser.displayName}
 							</h2>
 						</div>
 						<progress value={this.state.progress} max="100" />

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authActions';
+import firebase from '../../config/fbConfig';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 const StyledSignIn = styled.section`
 	width: 49%;
@@ -16,7 +18,19 @@ const StyledSignIn = styled.section`
 class SignIn extends Component {
 	state = {
 		email: '',
-		password: ''
+		password: '',
+		isSignedIn: false
+	};
+	uiConfig = {
+		signInFlow: 'popup',
+		signInOptions: [
+			firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+			firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+			firebase.auth.EmailAuthProvider.PROVIDER_ID
+		],
+		callbacks: {
+			signInSuccess: () => false
+		}
 	};
 	handleChange = e => {
 		this.setState({
@@ -26,6 +40,13 @@ class SignIn extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		this.props.signIn(this.state);
+	};
+	componentDidMount = () => {
+		firebase.auth().onAuthStateChanged(user => {
+			this.setState({
+				isSignedIn: !!user
+			});
+		});
 	};
 	render() {
 		const { authError } = this.props;
@@ -54,6 +75,10 @@ class SignIn extends Component {
 					<div className="input-field">
 						<button className="btn">Login</button>
 						<div>{authError ? <p>{authError}</p> : null}</div>
+						<StyledFirebaseAuth
+							uiConfig={this.uiConfig}
+							firebaseAuth={firebase.auth()}
+						/>
 					</div>
 				</form>
 			</StyledSignIn>

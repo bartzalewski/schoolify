@@ -197,6 +197,14 @@ const GlobalStyle = createGlobalStyle`
       transform: scale(1.05);
     }
   }
+  
+  @media (max-width: 1124px) {
+    .aside-reminders, .aside-homework, .aside-tests, .aside-grades {
+      border-top: none !important;
+      border-right: none !important;
+      border-left: none !important;
+    }
+  }
 `;
 
 export default GlobalStyle;
