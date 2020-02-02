@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { createSchool } from '../../store/actions/schoolActions';
 import { Redirect } from 'react-router-dom';
 import { storage } from '../../config/fbConfig';
+import { moreWords } from '../filters/filters';
+const Filter = require('bad-words');
+const filter = new Filter({ list: moreWords });
 
 const StyledCreateSchool = styled.section`
 	#schoolName {
@@ -12,12 +15,21 @@ const StyledCreateSchool = styled.section`
 		width: 100%;
 		margin: 0.25rem 0;
 		font-size: inherit;
+
+		&:focus::placeholder {
+			color: transparent !important;
+		}
 	}
 
 	#upload-post-btn {
 		visibility: hidden;
 		position: absolute;
 		animation: pulse 0.5s infinite alternate;
+	}
+
+	#create-school-warn {
+		color: #f44336;
+		display: none;
 	}
 
 	input[placeholder],
@@ -76,8 +88,14 @@ class CreateSchool extends Component {
 	};
 	handleSubmit = e => {
 		e.preventDefault();
-		this.props.createSchool(this.state);
-		this.props.history.push('/school-list');
+		this.state.schoolName = filter.clean(this.state.schoolName);
+		if (this.state.schoolName.includes('*')) {
+			document.getElementById('create-school-warn').style.display = 'block';
+			return null;
+		} else {
+			this.props.createSchool(this.state);
+			this.props.history.push('/school-list');
+		}
 	};
 	handleChooseSchoolLogo = e => {
 		if (e.target.files[0]) {
@@ -234,6 +252,9 @@ class CreateSchool extends Component {
 								Upload School Background
 							</button>
 						</div>
+						<p id="create-school-warn">
+							You can't create school using swear words!
+						</p>
 					</div>
 				</div>
 			</StyledCreateSchool>
@@ -253,7 +274,4 @@ const mapDispatchToProps = dispatch => {
 	};
 };
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(CreateSchool);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateSchool);

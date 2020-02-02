@@ -37,6 +37,11 @@ const StyledCreatePost = styled.section`
 		animation: pulse 0.5s infinite alternate;
 	}
 
+	#upload-post-warn {
+		color: #f44336;
+		display: none;
+	}
+
 	input[placeholder],
 	textarea[placeholder] {
 		padding: 10px 15px;
@@ -100,7 +105,7 @@ class CreatePost extends Component {
 		this.state.content = filter.clean(this.state.content);
 		this.state.content = capitalize(this.state.content);
 		if (this.state.content.includes('*')) {
-			console.log(`Illegal characters used. Can't post.`);
+			document.getElementById('upload-post-warn').style.display = 'block';
 			return null;
 		} else {
 			this.props.createPost(this.state);
@@ -229,6 +234,7 @@ class CreatePost extends Component {
 							Upload an image
 						</button>
 					</div>
+					<p id="upload-post-warn">You can't post using swear words!</p>
 				</div>
 			</StyledCreatePost>
 		);
@@ -249,9 +255,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default compose(
-	connect(
-		mapStateToProps,
-		mapDispatchToProps
-	),
+	connect(mapStateToProps, mapDispatchToProps),
 	firestoreConnect([{ collection: 'schools', orderBy: ['createdAt', 'desc'] }])
 )(CreatePost);
