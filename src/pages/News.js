@@ -9,7 +9,6 @@ import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import SchoolList from '../components/schools/SchoolList';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import { db } from '../config/fbConfig';
 
 const StyledNews = styled.section`
@@ -458,13 +457,7 @@ class News extends Component {
 						<div className="newspage-schools-container newspage-schools-container-student">
 							<SchoolList schools={schools} />
 						</div>
-						<InfiniteScroll
-							dataLength={posts}
-							hasMore={true}
-							loader={<h4>Loading...</h4>}
-						>
-							<PostList posts={posts} />
-						</InfiniteScroll>
+						<PostList posts={posts} />
 					</div>
 				</StyledNews>
 			);
@@ -483,7 +476,7 @@ const mapStateToProps = state => {
 export default compose(
 	connect(mapStateToProps),
 	firestoreConnect([
-		{ collection: 'posts', orderBy: ['createdAt', 'desc'] },
+		{ collection: 'posts', limit: 20, orderBy: ['createdAt', 'desc'] },
 		{ collection: 'schools', limit: 5, orderBy: ['createdAt', 'desc'] }
 	])
 )(News);
