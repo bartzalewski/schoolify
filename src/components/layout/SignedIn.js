@@ -42,7 +42,7 @@ const DarkTheme = createGlobalStyle`
 	}
 
 	.box, .upload-pic, .submit-message-icon {
-		fill: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
+		fill: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)};
 	}
 
 	.box {
@@ -57,6 +57,17 @@ const DarkTheme = createGlobalStyle`
 		border-bottom: 1px solid ${props =>
 			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important
 	}
+
+	.new-class-plan, .class-number-item,
+			.class-hours-item,
+			.class-first-day-item,
+			.class-second-day-item,
+			.class-third-day-item,
+			.class-fourth-day-item,
+			.class-fifth-day-item {
+				border-color: ${props =>
+					props.theme.mode === 'dark' ? '#141414' : null} !important
+			}
 
 	.aside-reminders {
 		border-right: 1px solid ${props =>

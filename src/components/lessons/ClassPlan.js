@@ -37,6 +37,10 @@ const StyledClassPlan = styled.div`
 				font-weight: 600;
 			}
 
+			.class-border-bottom-none {
+				border-bottom: none !important;
+			}
+
 			.class-number,
 			.class-number,
 			.class-hours,
@@ -65,6 +69,10 @@ const StyledClassPlan = styled.div`
 			.class-fifth-day-item {
 				border-right: none;
 			}
+
+			.class-number-item {
+				border-left: none;
+			}
 		}
 	}
 `;
@@ -86,7 +94,9 @@ export default function ClassPlan() {
 							<div className="class-number-item">5</div>
 							<div className="class-number-item">6</div>
 							<div className="class-number-item">7</div>
-							<div className="class-number-item">8</div>
+							<div className="class-number-item class-border-bottom-none">
+								8
+							</div>
 						</div>
 						<div className="class-hours">
 							<div className="class-hours-item class-subheader">Hour</div>
@@ -97,7 +107,9 @@ export default function ClassPlan() {
 							<div className="class-hours-item">11:35-12:20</div>
 							<div className="class-hours-item">12:25-13:10</div>
 							<div className="class-hours-item">13:15-14:00</div>
-							<div className="class-hours-item">14:05-14:50</div>
+							<div className="class-hours-item class-border-bottom-none">
+								14:05-14:50
+							</div>
 						</div>
 						<div className="class-first-day">
 							<div className="class-first-day-item class-subheader">Monday</div>
@@ -108,7 +120,9 @@ export default function ClassPlan() {
 							<div className="class-first-day-item">adm.baz.da</div>
 							<div className="class-first-day-item">prog.aplik</div>
 							<div className="class-first-day-item">prog.aplik</div>
-							<div className="class-first-day-item">prog.aplik</div>
+							<div className="class-first-day-item class-border-bottom-none">
+								prog.aplik
+							</div>
 						</div>
 						<div className="class-second-day">
 							<div className="class-second-day-item class-subheader">
@@ -121,7 +135,9 @@ export default function ClassPlan() {
 							<div className="class-second-day-item">adm.baz.da</div>
 							<div className="class-second-day-item">adm.baz.da</div>
 							<div className="class-second-day-item">j.niem</div>
-							<div className="class-second-day-item">wf</div>
+							<div className="class-second-day-item class-border-bottom-none">
+								wf
+							</div>
 						</div>
 						<div className="class-third-day">
 							<div className="class-third-day-item class-subheader">
@@ -134,7 +150,9 @@ export default function ClassPlan() {
 							<div className="class-third-day-item">j.pol</div>
 							<div className="class-third-day-item">prog.aplik</div>
 							<div className="class-third-day-item">prog.aplik</div>
-							<div className="class-third-day-item">rel</div>
+							<div className="class-third-day-item class-border-bottom-none">
+								rel
+							</div>
 						</div>
 						<div className="class-fourth-day">
 							<div className="class-fourth-day-item class-subheader">
@@ -147,7 +165,9 @@ export default function ClassPlan() {
 							<div className="class-fourth-day-item">wf</div>
 							<div className="class-fourth-day-item">wf</div>
 							<div className="class-fourth-day-item">prog.aplik</div>
-							<div className="class-fourth-day-item">prog.aplik</div>
+							<div className="class-fourth-day-item class-border-bottom-none">
+								prog.aplik
+							</div>
 						</div>
 						<div className="class-fifth-day">
 							<div className="class-fifth-day-item class-subheader">Friday</div>
@@ -158,7 +178,7 @@ export default function ClassPlan() {
 							<div className="class-fifth-day-item">Z_W</div>
 							<div className="class-fifth-day-item">prog.aplik</div>
 							<div className="class-fifth-day-item"></div>
-							<div className="class-fifth-day-item"></div>
+							<div className="class-fifth-day-item class-border-bottom-none"></div>
 						</div>
 					</div>
 				</div>

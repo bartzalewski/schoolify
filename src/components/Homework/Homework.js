@@ -27,50 +27,30 @@ const StyledHomework = styled.aside`
 		align-items: center;
 	}
 
-	.homework-list {
-		background: #4caf50;
-		border-radius: 10px;
-		position: relative;
-		margin-top: 2rem;
-		transition: 0.2s;
-
-		&:hover {
-			transform: scale(1.025);
-			transition: 0.2s;
-		}
-
-		@media (max-width: 1124px) {
-			width: 50%;
-			margin: 2rem auto;
-		}
-	}
-
-	.homework-list::before {
-		content: 'TOMORROW';
-		width: fit-content;
-		height: fit-content;
-		background: #4caf50;
-		position: absolute;
-		color: #fff;
-		border-radius: 10px;
-		padding: 0 5px;
-		left: 0;
-		right: 0;
-		top: -17px;
-		margin: auto;
-	}
-
 	.input-homework {
 		width: 135px;
 	}
 
 	.homework-item {
+		background: #4caf50;
 		color: #fff;
 		border-radius: 10px;
 		padding: 5px 15px;
+		margin-top: 5px;
+		width: fit-content;
+		transition: 0.2s;
+
+		&:hover {
+			transform: scale(1.05);
+			transition: 0.2s;
+		}
 
 		@media (max-width: 1359px) {
 			padding: 2.5px 10px;
+		}
+
+		@media (max-width: 1124px) {
+			margin: 5px auto;
 		}
 	}
 
