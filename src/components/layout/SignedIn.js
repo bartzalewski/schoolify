@@ -13,7 +13,7 @@ import Chat from '../../pages/Chat';
 import CreatePost from '../../components/posts/CreatePost';
 import CreateSchool from '../../components/schools/CreateSchool';
 import ViewSchools from '../../components/schools/ViewSchools';
-import Settings from '../../pages/Settings';
+import More from '../../pages/More';
 import Error from '../../pages/Error';
 import GradesSummary from '../../components/Grades/GradesSummary';
 import ClassPlan from '../../components/lessons/ClassPlan';
@@ -22,6 +22,7 @@ import { connect } from 'react-redux';
 import Navbar from '../../components/Navbar/Navbar';
 import Profile from '../../pages/Profile';
 import storage from 'local-storage-fallback';
+import TeacherPanel from '../../pages/TeacherPanel';
 
 const DarkTheme = createGlobalStyle`
 	aside, nav, #schoolName, #schoolName::placeholder, #content, #content::placeholder, .custom-file-input::before, .btn-choose, .list-item, .new-chat-title {
@@ -206,12 +207,14 @@ class SignedIn extends Component {
 										<Route path="/add-grade" component={AddGrades} />
 										<Route path="/grade" component={GradesSummary} />
 										<Route path="/lessons-zsz" component={ClassPlan} />
+										<Route path="/panel" component={TeacherPanel} />
 										<Route
-											path="/settings"
+											path="/more"
 											component={props => (
-												<Settings
+												<More
 													{...props}
 													theme={theme}
+													profile={this.props.profile}
 													onChange={this.onChange}
 												/>
 											)}
@@ -269,11 +272,12 @@ class SignedIn extends Component {
 										<Route path="/grade" component={GradesSummary} />
 										<Route path="/lessons-zsz" component={ClassPlan} />
 										<Route
-											path="/settings"
+											path="/more"
 											component={props => (
-												<Settings
+												<More
 													{...props}
 													theme={theme}
+													profile={this.props.profile}
 													onChange={this.onChange}
 												/>
 											)}

@@ -8,11 +8,7 @@ const TeacherPanel = props => {
 		<StyledTeacherPanel className="site-container">
 			<div className="container">
 				<h1>Teacher Panel</h1>
-				<div className="settings-wrapper">
-					<div className="settings-box">
-						<p>Test</p>
-					</div>
-				</div>
+				<p>Test</p>
 			</div>
 		</StyledTeacherPanel>
 	);
