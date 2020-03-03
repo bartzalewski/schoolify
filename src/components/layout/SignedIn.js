@@ -25,7 +25,7 @@ import storage from 'local-storage-fallback';
 import TeacherPanel from '../../pages/TeacherPanel';
 
 const DarkTheme = createGlobalStyle`
-	aside, nav, #schoolName, #schoolName::placeholder, #content, #content::placeholder, .custom-file-input::before, .btn-choose, .list-item, .new-chat-title {
+	aside, nav, #schoolName, #schoolName::placeholder, #content, #content::placeholder, .custom-file-input::before, .btn-choose, .list-item, .new-chat-title, .teacher-panel-wrapper>.box {
 		background: ${props =>
 			props.theme.mode === 'dark' ? '#1F1F1F' : null} !important;
 		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
@@ -37,7 +37,7 @@ const DarkTheme = createGlobalStyle`
 		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 	}
 
-	.posts-list, .add-post, .lesson-box, .box-add, .notification-item, .add-grades-box, .box-error-page, .settings-box, .profile-container, .chat-wrapper, .new-class-plan {
+	.posts-list, .add-post, .lesson-box, .box-add, .notification-item, .add-grades-box, .box-error-page, .settings-box, .profile-container, .chat-wrapper, .new-class-plan, .grades-table {
 		background: ${props =>
 			props.theme.mode === 'dark' ? '#1F1F1F' : null} !important;
 	}
@@ -69,6 +69,13 @@ const DarkTheme = createGlobalStyle`
 				border-color: ${props =>
 					props.theme.mode === 'dark' ? '#141414' : null} !important
 			}
+	
+	.grades-table, .grades-number-item,
+			.grades-subject-item,
+			.grades-grades-item {
+		border-color: ${props =>
+			props.theme.mode === 'dark' ? '#141414' : null} !important
+	}
 
 	.aside-reminders {
 		border-right: 1px solid ${props =>
@@ -207,7 +214,12 @@ class SignedIn extends Component {
 										<Route path="/add-grade" component={AddGrades} />
 										<Route path="/grade" component={GradesSummary} />
 										<Route path="/lessons-zsz" component={ClassPlan} />
-										<Route path="/panel" component={TeacherPanel} />
+										<Route
+											path="/panel"
+											component={props => (
+												<TeacherPanel {...props} profile={this.props.profile} />
+											)}
+										></Route>
 										<Route
 											path="/more"
 											component={props => (
