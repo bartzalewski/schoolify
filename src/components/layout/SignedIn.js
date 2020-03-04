@@ -23,6 +23,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import Profile from '../../pages/Profile';
 import storage from 'local-storage-fallback';
 import TeacherPanel from '../../pages/TeacherPanel';
+import SchoolProfile from '../schools/SchoolProfile';
 
 const DarkTheme = createGlobalStyle`
 	aside, nav, #schoolName, #schoolName::placeholder, #content, #content::placeholder, .custom-file-input::before, .btn-choose, .list-item, .new-chat-title, .teacher-panel-wrapper>.box {
@@ -31,13 +32,13 @@ const DarkTheme = createGlobalStyle`
 		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 	}
 
-	body, section, .posts-btn, .school-list-page, .add-grades-page, .grades-summary-page, .zsz-page, .input-reminder, .input-reminder::placeholder, .input-homework, .input-homework::placeholder, .input-tests, .input-tests::placeholder, .list-item-selected, .friend-sent, .user-sent, #chat-text-box, #chat-input-email, #chat-input-msg, .btn-chat-submit, .list-item:hover {
+	body, section, .posts-btn, .school-list-page, .add-grades-page, .grades-summary-page, .zsz-page, .input-reminder, .input-reminder::placeholder, .input-homework, .input-homework::placeholder, .input-tests, .input-tests::placeholder, .list-item-selected, .friend-sent, .user-sent, #chat-text-box, #chat-input-email, #chat-input-msg, .btn-chat-submit, .list-item:hover, .school-profile-header {
 		background: ${props =>
 			props.theme.mode === 'dark' ? '#141414' : null} !important;
 		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 	}
 
-	.posts-list, .add-post, .lesson-box, .box-add, .notification-item, .add-grades-box, .box-error-page, .settings-box, .profile-container, .chat-wrapper, .new-class-plan, .grades-table {
+	.posts-list, .add-post, .lesson-box, .box-add, .notification-item, .add-grades-box, .box-error-page, .settings-box, .profile-container, .chat-wrapper, .new-class-plan, .grades-table, .school-profile-wrapper {
 		background: ${props =>
 			props.theme.mode === 'dark' ? '#1F1F1F' : null} !important;
 	}
@@ -214,6 +215,7 @@ class SignedIn extends Component {
 										<Route path="/add-grade" component={AddGrades} />
 										<Route path="/grade" component={GradesSummary} />
 										<Route path="/lessons-zsz" component={ClassPlan} />
+										<Route path="/school-profile" component={SchoolProfile} />
 										<Route
 											path="/panel"
 											component={props => (
@@ -283,6 +285,7 @@ class SignedIn extends Component {
 										<Route path="/add-grade" component={AddGrades} />
 										<Route path="/grade" component={GradesSummary} />
 										<Route path="/lessons-zsz" component={ClassPlan} />
+										<Route path="/school-profile" component={SchoolProfile} />
 										<Route
 											path="/more"
 											component={props => (
