@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import plans from '../images/plans.svg';
 import classes from '../images/classes.svg';
@@ -6,6 +6,7 @@ import grades from '../images/grades.svg';
 import school from '../images/school.svg';
 import posts from '../images/posts.svg';
 import { Link } from 'react-router-dom';
+import { db } from '../config/fbConfig';
 
 const StyledTeacherPanel = styled.section`
 	a {
@@ -62,55 +63,73 @@ const StyledTeacherPanel = styled.section`
 	}
 `;
 
-const TeacherPanel = props => {
-	const profile = props.profile;
-	return (
-		<StyledTeacherPanel className="site-container">
-			<div className="container">
-				<h1>Teacher Panel</h1>
-				<div className="teacher-panel-bio">
-					<p>
-						Your name:{' '}
-						<span className="teacher-panel-text">
-							{profile.firstName} {profile.lastName}
-						</span>
-					</p>
-					<p>
-						Your school:{' '}
-						<span className="teacher-panel-text">{profile.schoolName}</span>
-					</p>
-					<p>
-						Current lesson:{' '}
-						<span className="teacher-panel-text">
-							{profile.currentLesson ? profile.currentLesson : 'none'}
-						</span>
-					</p>
+class TeacherPanel extends Component {
+	state = {
+		schoolName: ''
+	};
+	render() {
+		const profile = this.props.profile;
+		db.collection('schools')
+			.where('schoolId', '==', `${this.props.profile.schoolId}`)
+			.get()
+			.then(snap =>
+				snap.forEach(doc => {
+					const schoolName = doc.data().schoolName;
+					this.setState({
+						schoolName: schoolName
+					});
+				})
+			);
+		return (
+			<StyledTeacherPanel className="site-container">
+				<div className="container">
+					<h1>Teacher Panel</h1>
+					<div className="teacher-panel-bio">
+						<p>
+							Your name:{' '}
+							<span className="teacher-panel-text">
+								{profile.firstName} {profile.lastName}
+							</span>
+						</p>
+						<p>
+							Your school:{' '}
+							<span className="teacher-panel-text">
+								{this.state.schoolName}
+							</span>
+						</p>
+						<p>
+							Current lesson:{' '}
+							<span className="teacher-panel-text">
+								{profile.currentLesson ? profile.currentLesson : 'none'}
+							</span>
+						</p>
+					</div>
+					<div className="teacher-panel-wrapper">
+						<Link to="/" className="box">
+							<img src={plans} alt="plans" />
+							<p>Plans</p>
+						</Link>
+						<Link to="/" className="box">
+							<img src={classes} alt="classes" />
+							<p>Classes</p>
+						</Link>
+						<Link to="/" className="box">
+							<img src={school} alt="school" />
+							<p>School</p>
+						</Link>
+						<Link to="/" className="box">
+							<img src={grades} alt="grades" />
+							<p>Grades</p>
+						</Link>
+						<Link to="/" className="box">
+							<img src={posts} alt="posts" />
+							<p>Posts</p>
+						</Link>
+					</div>
 				</div>
-				<div className="teacher-panel-wrapper">
-					<Link to="/" className="box">
-						<img src={plans} alt="plans" />
-						<p>Plans</p>
-					</Link>
-					<Link to="/" className="box">
-						<img src={classes} alt="classes" />
-						<p>Classes</p>
-					</Link>
-					<Link to="/" className="box">
-						<img src={school} alt="school" />
-						<p>School</p>
-					</Link>
-					<Link to="/" className="box">
-						<img src={grades} alt="grades" />
-						<p>Grades</p>
-					</Link>
-					<Link to="/" className="box">
-						<img src={posts} alt="posts" />
-						<p>Posts</p>
-					</Link>
-				</div>
-			</div>
-		</StyledTeacherPanel>
-	);
-};
+			</StyledTeacherPanel>
+		);
+	}
+}
 
 export default TeacherPanel;

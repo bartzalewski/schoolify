@@ -171,6 +171,30 @@ export default class Profile extends Component {
 			active: !this.state.active
 		});
 	};
+	componentDidMount = () => {
+		db.collection('schools')
+			.where('schoolId', '==', `${this.props.profile.schoolId}`)
+			.get()
+			.then(snap =>
+				snap.forEach(doc => {
+					const schoolName = doc.data().schoolName;
+					this.setState({
+						schoolName: schoolName
+					});
+				})
+			);
+		db.collection('classes')
+			.where('schoolId', '==', `${this.props.profile.schoolId}`)
+			.get()
+			.then(snap =>
+				snap.forEach(doc => {
+					const className = doc.data().className;
+					this.setState({
+						className: className
+					});
+				})
+			);
+	};
 	render() {
 		return (
 			<StyledProfile className="site-container">
@@ -220,17 +244,13 @@ export default class Profile extends Component {
 						<div className="profile-school">
 							<p className="profile-bold">School:</p>
 							<p className="profile-normal">
-								{this.props.profile.schoolName
-									? this.props.profile.schoolName
-									: 'Your school'}
+								{this.state.schoolName ? this.state.schoolName : 'Your school'}
 							</p>
 						</div>
 						<div className="profile-class">
 							<p className="profile-bold">Class:</p>
 							<p className="profile-normal">
-								{this.props.profile.className
-									? this.props.profile.className
-									: 'Your class'}
+								{this.state.className ? this.state.className : 'Your class'}
 							</p>
 						</div>
 					</div>
