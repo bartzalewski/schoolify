@@ -27,36 +27,36 @@ import SchoolProfile from '../schools/SchoolProfile';
 
 const DarkTheme = createGlobalStyle`
 	aside, nav, #schoolName, #schoolName::placeholder, #content, #content::placeholder, .custom-file-input::before, .btn-choose, .list-item, .new-chat-title, .teacher-panel-wrapper>.box {
-		background: ${props =>
+		background: ${(props) =>
 			props.theme.mode === 'dark' ? '#1F1F1F' : null} !important;
-		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
+		color: ${(props) => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 	}
 
 	body, section, .posts-btn, .school-list-page, .add-grades-page, .grades-summary-page, .zsz-page, .input-reminder, .input-reminder::placeholder, .input-homework, .input-homework::placeholder, .input-tests, .input-tests::placeholder, .list-item-selected, .friend-sent, .user-sent, #chat-text-box, #chat-input-email, #chat-input-msg, .btn-chat-submit, .list-item:hover, .school-profile-header {
-		background: ${props =>
+		background: ${(props) =>
 			props.theme.mode === 'dark' ? '#141414' : null} !important;
-		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
+		color: ${(props) => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 	}
 
 	.posts-list, .add-post, .lesson-box, .box-add, .notification-item, .add-grades-box, .box-error-page, .settings-box, .profile-container, .chat-wrapper, .new-class-plan, .grades-table, .school-profile-wrapper {
-		background: ${props =>
+		background: ${(props) =>
 			props.theme.mode === 'dark' ? '#1F1F1F' : null} !important;
 	}
 
 	.box, .upload-pic, .submit-message-icon {
-		fill: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)};
+		fill: ${(props) => (props.theme.mode === 'dark' ? '#EEE' : null)};
 	}
 
 	.box {
-		color: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
+		color: ${(props) => (props.theme.mode === 'dark' ? '#EEE' : null)} !important;
 
 		svg {
-			fill: ${props => (props.theme.mode === 'dark' ? '#EEE' : null)};
+			fill: ${(props) => (props.theme.mode === 'dark' ? '#EEE' : null)};
 		}
 	}
 
 	nav {
-		border-bottom: 1px solid ${props =>
+		border-bottom: 1px solid ${(props) =>
 			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important
 	}
 
@@ -67,52 +67,47 @@ const DarkTheme = createGlobalStyle`
 			.class-third-day-item,
 			.class-fourth-day-item,
 			.class-fifth-day-item {
-				border-color: ${props =>
+				border-color: ${(props) =>
 					props.theme.mode === 'dark' ? '#141414' : null} !important
 			}
 	
 	.grades-table, .grades-number-item,
 			.grades-subject-item,
 			.grades-grades-item {
-		border-color: ${props =>
+		border-color: ${(props) =>
 			props.theme.mode === 'dark' ? '#141414' : null} !important
 	}
 
 	.aside-reminders {
-		border-right: 1px solid ${props =>
+		border-right: 1px solid ${(props) =>
 			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important;
-		border-bottom: 1px solid ${props =>
+		border-bottom: 1px solid ${(props) =>
 			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important;
 	}
 
 	.aside-grades {
-		border-right: 1px solid ${props =>
+		border-right: 1px solid ${(props) =>
 			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important;
 	}
 
 	.aside-homework {
-		border-left: 1px solid ${props =>
+		border-left: 1px solid ${(props) =>
 			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important;
-		border-bottom: 1px solid ${props =>
+		border-bottom: 1px solid ${(props) =>
 			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important;
 	}
 
 	.aside-tests {
-		border-left: 1px solid ${props =>
+		border-left: 1px solid ${(props) =>
 			props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important;
 	}
 
 	@media (max-width: 1124px) {
     .aside-reminders, .aside-homework, .aside-tests, .aside-grades {
-      border-bottom: 1px solid ${props =>
+      border-bottom: 1px solid ${(props) =>
 				props.theme.mode === 'dark' ? '#000' : '#d2d2d2'} !important;
     }
   }
-
-	/* .list-item:hover {
-		background: ${props =>
-			props.theme.mode === 'dark' ? '#141414' : null} !important;
-	} */
 `;
 
 const StyledWrapper = styled.div`
@@ -152,13 +147,13 @@ class SignedIn extends Component {
 	constructor() {
 		super();
 		this.state = {
-			theme: Object(this.getInitialTheme())
+			theme: Object(this.getInitialTheme()),
 		};
 		this.getInitialTheme = this.getInitialTheme.bind(this);
 	}
-	onChange = newName => {
+	onChange = (newName) => {
 		this.setState({
-			theme: { mode: `${newName}` }
+			theme: { mode: `${newName}` },
 		});
 	};
 	getInitialTheme = () => {
@@ -196,14 +191,14 @@ class SignedIn extends Component {
 										<Route
 											exact
 											path="/"
-											component={props => (
+											component={(props) => (
 												<News {...props} profile={this.props.profile} />
 											)}
 										/>
 										<Route path="/notifications" component={Notification} />
 										<Route
 											path="/profile"
-											component={props => (
+											component={(props) => (
 												<Profile {...props} profile={this.props.profile} />
 											)}
 										></Route>
@@ -218,13 +213,13 @@ class SignedIn extends Component {
 										<Route path="/school-profile" component={SchoolProfile} />
 										<Route
 											path="/panel"
-											component={props => (
+											component={(props) => (
 												<TeacherPanel {...props} profile={this.props.profile} />
 											)}
 										></Route>
 										<Route
 											path="/more"
-											component={props => (
+											component={(props) => (
 												<More
 													{...props}
 													theme={theme}
@@ -268,14 +263,14 @@ class SignedIn extends Component {
 										<Route
 											exact
 											path="/"
-											component={props => (
+											component={(props) => (
 												<News {...props} profile={this.props.profile} />
 											)}
 										/>
 										<Route path="/notifications" component={Notification} />
 										<Route
 											path="/profile"
-											component={props => (
+											component={(props) => (
 												<Profile {...props} profile={this.props.profile} />
 											)}
 										></Route>
@@ -288,7 +283,7 @@ class SignedIn extends Component {
 										<Route path="/school-profile" component={SchoolProfile} />
 										<Route
 											path="/more"
-											component={props => (
+											component={(props) => (
 												<More
 													{...props}
 													theme={theme}
@@ -313,9 +308,9 @@ class SignedIn extends Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
-		theme: state.theme
+		theme: state.theme,
 	};
 };
 

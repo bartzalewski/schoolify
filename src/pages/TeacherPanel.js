@@ -20,7 +20,6 @@ const StyledTeacherPanel = styled.section`
 
 	.teacher-panel-wrapper {
 		display: grid;
-		/* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
 		grid-template-columns: repeat(5, 1fr);
 		grid-gap: 5px;
 	}
@@ -65,18 +64,18 @@ const StyledTeacherPanel = styled.section`
 
 class TeacherPanel extends Component {
 	state = {
-		schoolName: ''
+		schoolName: '',
 	};
 	render() {
 		const profile = this.props.profile;
 		db.collection('schools')
 			.where('schoolId', '==', `${this.props.profile.schoolId}`)
 			.get()
-			.then(snap =>
-				snap.forEach(doc => {
+			.then((snap) =>
+				snap.forEach((doc) => {
 					const schoolName = doc.data().schoolName;
 					this.setState({
-						schoolName: schoolName
+						schoolName: schoolName,
 					});
 				})
 			);

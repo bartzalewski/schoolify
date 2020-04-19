@@ -88,17 +88,21 @@ const StyledGrades = styled.aside`
 
 class Grades extends Component {
 	state = {
-		active: true
+		active: true,
 	};
 	isHidden = () => {
 		this.setState({
-			active: !this.state.active
+			active: !this.state.active,
 		});
 	};
-	render() {
+	componentDidMount = () => {
 		if (window.innerWidth >= 1124) {
-			this.state.active = false;
+			this.setState({
+				active: false,
+			});
 		}
+	};
+	render() {
 		return (
 			<StyledGrades className="aside-grades">
 				<div className="container">

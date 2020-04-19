@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { db } from '../../config/fbConfig';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -37,7 +36,6 @@ const StyledSchoolProfile = styled.section`
 
 class SchoolProfile extends Component {
 	render() {
-		console.log(this.props);
 		return (
 			<StyledSchoolProfile className="site-container">
 				<div className="container">
@@ -54,9 +52,9 @@ class SchoolProfile extends Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
-		schools: state.firestore.ordered.schools
+		schools: state.firestore.ordered.schools,
 	};
 };
 

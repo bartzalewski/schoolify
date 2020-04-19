@@ -5,7 +5,6 @@ import lologo from '../images/schools/logos/lo-zabk-logo.jpg';
 import sp3logo from '../images/schools/logos/sp3-zabk-logo.jpg';
 import p4logo from '../images/schools/logos/p4-zabk-logo.jpg';
 import { Link } from 'react-router-dom';
-import { db } from '../config/fbConfig';
 
 const StyledLessons = styled.section`
 	.lesson-box {
@@ -80,25 +79,6 @@ const StyledLessons = styled.section`
 `;
 
 class Lessons extends Component {
-	componentDidMount() {
-		db.collection('schools')
-			.get()
-			.then(snap =>
-				snap.forEach(doc => {
-					// const { schoolName, schoolLogo } = doc.data();
-					// console.log(schoolName, schoolLogo);
-					// const schoolNameLessons = document.getElementById('schoolName');
-					// const schoolLogoLessons = document.getElementById('schoolName');
-					// schoolList.appendChild(option);
-					// option.appendChild(p);
-					// option.appendChild(img);
-					// p.value = schoolName;
-					// p.innerText = schoolName;
-					// img.value = schoolLogo;
-					// option.value = [p.value, img.value];
-				})
-			);
-	}
 	render() {
 		return (
 			<StyledLessons className="site-container">

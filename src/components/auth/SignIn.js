@@ -10,7 +10,7 @@ const StyledSignIn = styled.section`
 
 	@media (max-width: 600px) {
 		width: 100%;
-		margin-top: 1rem; /* DELETE IMMEDIATELY */
+		margin-top: 1rem;
 	}
 `;
 
@@ -18,32 +18,32 @@ class SignIn extends Component {
 	state = {
 		email: '',
 		password: '',
-		isSignedIn: false
+		isSignedIn: false,
 	};
 	uiConfig = {
 		signInFlow: 'popup',
 		signInOptions: [
 			firebase.auth.GoogleAuthProvider.PROVIDER_ID,
 			firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-			firebase.auth.EmailAuthProvider.PROVIDER_ID
+			firebase.auth.EmailAuthProvider.PROVIDER_ID,
 		],
 		callbacks: {
-			signInSuccess: () => false
-		}
+			signInSuccess: () => false,
+		},
 	};
-	handleChange = e => {
+	handleChange = (e) => {
 		this.setState({
-			[e.target.id]: e.target.value
+			[e.target.id]: e.target.value,
 		});
 	};
-	handleSubmit = e => {
+	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.signIn(this.state);
 	};
 	componentDidMount = () => {
-		firebase.auth().onAuthStateChanged(user => {
+		firebase.auth().onAuthStateChanged((user) => {
 			this.setState({
-				isSignedIn: !!user
+				isSignedIn: !!user,
 			});
 		});
 	};
@@ -81,15 +81,15 @@ class SignIn extends Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
-		authError: state.auth.authError
+		authError: state.auth.authError,
 	};
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
 	return {
-		signIn: creds => dispatch(signIn(creds))
+		signIn: (creds) => dispatch(signIn(creds)),
 	};
 };
 

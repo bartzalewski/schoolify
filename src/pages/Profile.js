@@ -113,54 +113,47 @@ export default class Profile extends Component {
 		progress: 0,
 		active: false,
 		schoolName: '',
-		className: ''
+		className: '',
 	};
-	handleChoose = e => {
+	handleChoose = (e) => {
 		if (e.target.files[0]) {
 			const userAvatar = e.target.files[0];
 			this.setState(() => ({ userAvatar }));
 		}
-		console.log(this.state);
 	};
 	handleUpload = () => {
 		const { userAvatar } = this.state;
-		const imageName = `${userAvatar.name +
-			Math.round(Math.random() * 1000000000000)}`;
+		const imageName = `${
+			userAvatar.name + Math.round(Math.random() * 1000000000000)
+		}`;
 		const uploadTask = storage.ref(`images/users/${imageName}`).put(userAvatar);
 		uploadTask.on(
 			'state_changed',
-			snapshot => {
+			(snapshot) => {
 				const progress = Math.round(
 					(snapshot.bytesTransferred / snapshot.totalBytes) * 100
 				);
 				this.setState({ progress });
-			},
-			error => {
-				console.log(error);
 			},
 			() => {
 				storage
 					.ref('images/users')
 					.child(imageName)
 					.getDownloadURL()
-					.then(url => {
+					.then((url) => {
 						this.setState({ url });
 					});
 				db.collection('users')
 					.get()
-					.then(snap =>
-						snap.forEach(doc => {
+					.then((snap) =>
+						snap.forEach((doc) => {
 							db.collection('users')
 								.doc(doc.id)
 								.update({ userAvatar: this.state.url });
-							console.log(this.state.url);
 						})
 					);
 			}
 		);
-		uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-			console.log('File available at', downloadURL);
-		});
 	};
 	handleEditPicture = () => {
 		const fileInput = document.getElementById('imageInput');
@@ -168,29 +161,29 @@ export default class Profile extends Component {
 	};
 	isHidden = () => {
 		this.setState({
-			active: !this.state.active
+			active: !this.state.active,
 		});
 	};
 	componentDidMount = () => {
 		db.collection('schools')
 			.where('schoolId', '==', `${this.props.profile.schoolId}`)
 			.get()
-			.then(snap =>
-				snap.forEach(doc => {
+			.then((snap) =>
+				snap.forEach((doc) => {
 					const schoolName = doc.data().schoolName;
 					this.setState({
-						schoolName: schoolName
+						schoolName: schoolName,
 					});
 				})
 			);
 		db.collection('classes')
 			.where('schoolId', '==', `${this.props.profile.schoolId}`)
 			.get()
-			.then(snap =>
-				snap.forEach(doc => {
+			.then((snap) =>
+				snap.forEach((doc) => {
 					const className = doc.data().className;
 					this.setState({
-						className: className
+						className: className,
 					});
 				})
 			);

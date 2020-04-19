@@ -27,46 +27,45 @@ class SignUp extends Component {
 		password: '',
 		firstName: '',
 		lastName: '',
-		userAvatar: `${avatar}`
+		userAvatar: `${avatar}`,
 	};
 
-	moderateMessage = message => {
+	moderateMessage = (message) => {
 		if (this.isShouting(message)) {
 			message = this.stopShouting(message);
 		}
 		return this.capitalizeFirstLetter(message);
 	};
 
-	capitalizeFirstLetter = str => str.charAt(0).toUpperCase() + str.slice(1);
+	capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
-	isShouting = message => {
+	isShouting = (message) => {
 		return (
 			message.replace(/[^A-Z]/g, '').length > message.length / 2 ||
 			message.replace(/[^!]/g, '').length >= 3
 		);
 	};
 
-	stopShouting = message => {
+	stopShouting = (message) => {
 		return capitalize(message.toLowerCase()).replace(/!+/g);
 	};
 
-	handleChange = async e => {
+	handleChange = async (e) => {
 		await this.setState({
-			[e.target.id]: e.target.value
+			[e.target.id]: e.target.value,
 		});
 	};
 
-	handleSubmit = e => {
+	handleSubmit = (e) => {
 		e.preventDefault();
-		this.state.firstName = this.moderateMessage(this.state.firstName);
-		this.state.lastName = this.moderateMessage(this.state.lastName);
-		this.state.firstName = filter.clean(this.state.firstName);
-		this.state.lastName = filter.clean(this.state.lastName);
+		this.setState({
+			firstName: filter.clean(this.moderateMessage(this.state.firstName)),
+			lastName: filter.clean(this.moderateMessage(this.state.lastName)),
+		});
 		if (
 			this.state.firstName.includes('*') ||
 			this.state.lastName.includes('*')
 		) {
-			console.log(`Illegal characters used. Can't signup.`);
 			return null;
 		} else {
 			this.props.signUp(this.state);
@@ -78,7 +77,6 @@ class SignUp extends Component {
 	};
 
 	render() {
-		console.log(this.props);
 		return (
 			<StyledSignUp>
 				<form className="signup-form" onSubmit={this.handleSubmit}>
@@ -128,9 +126,9 @@ class SignUp extends Component {
 	}
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
 	return {
-		signUp: newUser => dispatch(signUp(newUser))
+		signUp: (newUser) => dispatch(signUp(newUser)),
 	};
 };
 

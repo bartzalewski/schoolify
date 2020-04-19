@@ -86,71 +86,73 @@ class Reminders extends Component {
 	state = {
 		content: '',
 		active: true,
-		reminders: []
+		reminders: [],
 	};
-	handleChange = async e => {
+	handleChange = async (e) => {
 		await this.setState({
-			content: e.target.value
+			content: e.target.value,
 		});
 	};
-	addReminder = e => {
+	addReminder = (e) => {
 		e.preventDefault();
 		db.collection('users')
 			.where('email', '==', this.props.auth.email)
 			.get()
-			.then(snap =>
-				snap.forEach(doc => {
+			.then((snap) =>
+				snap.forEach((doc) => {
 					db.collection('users')
 						.doc(doc.id)
 						.update({
 							reminders: firebase.firestore.FieldValue.arrayUnion(
 								this.state.content
-							)
+							),
 						});
 				})
 			);
 		document.getElementById('input-reminder').value = '';
 	};
-	removeReminder = e => {
+	removeReminder = (e) => {
 		e.preventDefault();
 		e.persist();
 		db.collection('users')
 			.where('email', '==', this.props.auth.email)
 			.get()
-			.then(snap =>
-				snap.forEach(doc => {
+			.then((snap) =>
+				snap.forEach((doc) => {
 					db.collection('users')
 						.doc(doc.id)
 						.update({
 							reminders: firebase.firestore.FieldValue.arrayRemove(
 								e.target.innerText
-							)
+							),
 						});
 				})
 			);
 	};
 	isHidden = () => {
 		this.setState({
-			active: !this.state.active
+			active: !this.state.active,
 		});
 	};
 	componentDidMount() {
 		db.collection('users')
 			.where('email', '==', this.props.auth.email)
-			.onSnapshot(snap => {
+			.onSnapshot((snap) => {
 				let changes = snap.docChanges();
-				changes.forEach(change => {
+				changes.forEach((change) => {
 					const { reminders } = change.doc.data();
 					this.setState({
-						reminders: reminders
+						reminders: reminders,
 					});
 				});
 			});
+		if (window.innerWidth >= 1124) {
+			this.setState({
+				active: false,
+			});
+		}
 	}
 	render() {
-		if (window.innerWidth >= 1124) {
-			this.state.active = false;
-		}
 		return (
 			<StyledReminders className="aside-reminders">
 				<div className="container">
@@ -181,9 +183,9 @@ class Reminders extends Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
-		auth: state.firebase.auth
+		auth: state.firebase.auth,
 	};
 };
 

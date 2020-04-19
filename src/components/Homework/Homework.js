@@ -87,71 +87,73 @@ class Homework extends Component {
 	state = {
 		content: '',
 		active: true,
-		homework: []
+		homework: [],
 	};
-	handleChange = async e => {
+	handleChange = async (e) => {
 		await this.setState({
-			content: e.target.value
+			content: e.target.value,
 		});
 	};
-	addHomework = e => {
+	addHomework = (e) => {
 		e.preventDefault();
 		db.collection('users')
 			.where('email', '==', this.props.auth.email)
 			.get()
-			.then(snap =>
-				snap.forEach(doc => {
+			.then((snap) =>
+				snap.forEach((doc) => {
 					db.collection('users')
 						.doc(doc.id)
 						.update({
 							homework: firebase.firestore.FieldValue.arrayUnion(
 								this.state.content
-							)
+							),
 						});
 				})
 			);
 		document.getElementById('input-homework').value = '';
 	};
-	removeHomework = e => {
+	removeHomework = (e) => {
 		e.preventDefault();
 		e.persist();
 		db.collection('users')
 			.where('email', '==', this.props.auth.email)
 			.get()
-			.then(snap =>
-				snap.forEach(doc => {
+			.then((snap) =>
+				snap.forEach((doc) => {
 					db.collection('users')
 						.doc(doc.id)
 						.update({
 							homework: firebase.firestore.FieldValue.arrayRemove(
 								e.target.innerText
-							)
+							),
 						});
 				})
 			);
 	};
 	isHidden = () => {
 		this.setState({
-			active: !this.state.active
+			active: !this.state.active,
 		});
 	};
 	componentDidMount() {
 		db.collection('users')
 			.where('email', '==', this.props.auth.email)
-			.onSnapshot(snap => {
+			.onSnapshot((snap) => {
 				let changes = snap.docChanges();
-				changes.forEach(change => {
+				changes.forEach((change) => {
 					const { homework } = change.doc.data();
 					this.setState({
-						homework: homework
+						homework: homework,
 					});
 				});
 			});
+		if (window.innerWidth >= 1124) {
+			this.setState({
+				active: false,
+			});
+		}
 	}
 	render() {
-		if (window.innerWidth >= 1124) {
-			this.state.active = false;
-		}
 		return (
 			<StyledHomework className="aside-homework">
 				<div className="container">
@@ -182,9 +184,9 @@ class Homework extends Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
-		auth: state.firebase.auth
+		auth: state.firebase.auth,
 	};
 };
 

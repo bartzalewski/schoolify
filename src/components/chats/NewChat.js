@@ -14,7 +14,7 @@ export default class NewChat extends Component {
 		super();
 		this.state = {
 			username: null,
-			message: null
+			message: null,
 		};
 	}
 
@@ -33,7 +33,7 @@ export default class NewChat extends Component {
 		}
 	};
 
-	submitNewChat = async e => {
+	submitNewChat = async (e) => {
 		e.preventDefault();
 		const userExists = await this.userExists();
 		if (userExists) {
@@ -45,7 +45,7 @@ export default class NewChat extends Component {
 	createChat = () => {
 		this.props.newChatSubmitFn({
 			sendTo: this.state.username,
-			message: this.state.message
+			message: this.state.message,
 		});
 	};
 
@@ -65,17 +65,13 @@ export default class NewChat extends Component {
 			.collection('chats')
 			.doc(docKey)
 			.get();
-		console.log(chat.exists);
 		return chat.exists;
 	};
 
 	userExists = async () => {
-		const usersSnapshot = await firebase
-			.firestore()
-			.collection('users')
-			.get();
+		const usersSnapshot = await firebase.firestore().collection('users').get();
 		const exists = usersSnapshot.docs
-			.map(_doc => _doc.data().email)
+			.map((_doc) => _doc.data().email)
 			.includes(this.state.username);
 		this.setState({ serverError: !exists });
 		return exists;
@@ -85,13 +81,13 @@ export default class NewChat extends Component {
 		return (
 			<StyledNewChat>
 				<h3 className="btn new-chat-title">Send a message!</h3>
-				<form onSubmit={e => this.submitNewChat(e)}>
+				<form onSubmit={(e) => this.submitNewChat(e)}>
 					<label>
 						<input
 							id="chat-input-email"
 							type="text"
 							autoComplete="off"
-							onChange={e => this.userTyping('username', e)}
+							onChange={(e) => this.userTyping('username', e)}
 							placeholder="Your friend's email"
 						/>
 					</label>
@@ -100,7 +96,7 @@ export default class NewChat extends Component {
 							id="chat-input-msg"
 							type="text"
 							autoComplete="off"
-							onChange={e => this.userTyping('message', e)}
+							onChange={(e) => this.userTyping('message', e)}
 							placeholder="Your message"
 						/>
 					</label>

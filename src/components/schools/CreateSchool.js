@@ -79,16 +79,19 @@ class CreateSchool extends Component {
 		schoolName: '',
 		schoolLogo: null,
 		schoolBackground: null,
-		progress: 0
+		progress: 0,
 	};
-	handleChange = e => {
-		this.setState({
-			[e.target.id]: e.target.value
+	handleChange = async (e) => {
+		await this.setState({
+			[e.target.id]: e.target.value,
 		});
+		console.log(this.state);
 	};
-	handleSubmit = e => {
+	handleSubmit = (e) => {
 		e.preventDefault();
-		this.state.schoolName = filter.clean(this.state.schoolName);
+		this.setState({
+			schoolName: filter.clean(this.state.schoolName),
+		});
 		if (this.state.schoolName.includes('*')) {
 			document.getElementById('create-school-warn').style.display = 'block';
 			return null;
@@ -97,90 +100,81 @@ class CreateSchool extends Component {
 			this.props.history.push('/school-list');
 		}
 	};
-	handleChooseSchoolLogo = e => {
+	handleChooseSchoolLogo = (e) => {
 		if (e.target.files[0]) {
 			const schoolLogo = e.target.files[0];
 			this.setState(() => ({ schoolLogo }));
 		}
-		console.log(this.state);
 	};
 	handleUploadSchoolLogo = () => {
 		const { schoolLogo } = this.state;
-		const imageName = `${schoolLogo.name +
-			Math.round(Math.random() * 1000000000000)}`;
+		const imageName = `${
+			schoolLogo.name + Math.round(Math.random() * 1000000000000)
+		}`;
 		const uploadTask = storage
 			.ref(`images/schools/logos/${imageName}`)
 			.put(schoolLogo);
 		uploadTask.on(
 			'state_changed',
-			snapshot => {
+			(snapshot) => {
 				const progress = Math.round(
 					(snapshot.bytesTransferred / snapshot.totalBytes) * 100
 				);
 				this.setState({ progress });
-			},
-			error => {
-				console.log(error);
 			},
 			() => {
 				storage
 					.ref('images/schools/logos')
 					.child(imageName)
 					.getDownloadURL()
-					.then(schoolLogo => {
+					.then((schoolLogo) => {
 						this.setState({ schoolLogo });
 					});
 			}
 		);
-		uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-			console.log('File available at', downloadURL);
+		uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
 			return downloadURL;
 		});
 	};
-	handleChooseSchoolBackground = e => {
+	handleChooseSchoolBackground = (e) => {
 		if (e.target.files[0]) {
 			const schoolBackground = e.target.files[0];
 			this.setState(() => ({ schoolBackground }));
 		}
-		console.log(this.state);
 	};
 	handleUploadSchoolBackground = () => {
 		const { schoolBackground } = this.state;
-		const imageName = `${schoolBackground.name +
-			Math.round(Math.random() * 1000000000000)}`;
+		const imageName = `${
+			schoolBackground.name + Math.round(Math.random() * 1000000000000)
+		}`;
 		const uploadTask = storage
 			.ref(`images/schools/backgrounds/${imageName}`)
 			.put(schoolBackground);
 		uploadTask.on(
 			'state_changed',
-			snapshot => {
+			(snapshot) => {
 				const progress = Math.round(
 					(snapshot.bytesTransferred / snapshot.totalBytes) * 100
 				);
 				this.setState({ progress });
-			},
-			error => {
-				console.log(error);
 			},
 			() => {
 				storage
 					.ref('images/schools/backgrounds')
 					.child(imageName)
 					.getDownloadURL()
-					.then(schoolBackground => {
+					.then((schoolBackground) => {
 						this.setState({ schoolBackground });
 					});
 			}
 		);
-		uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-			console.log('File available at', downloadURL);
+		uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
 			return downloadURL;
 		});
 	};
 	render() {
 		const { auth } = this.props;
 		const uploadPostButton = document.getElementById('upload-post-btn');
-		// console.log(`this is url: ${this.state.schoolLogo || 'none'} `);
 		if (!auth.uid) return <Redirect to="/" />;
 		if (
 			typeof this.state.schoolBackground !== 'object' &&
@@ -262,15 +256,15 @@ class CreateSchool extends Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
-		auth: state.firebase.auth
+		auth: state.firebase.auth,
 	};
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
 	return {
-		createSchool: school => dispatch(createSchool(school))
+		createSchool: (school) => dispatch(createSchool(school)),
 	};
 };
 

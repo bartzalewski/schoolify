@@ -9,7 +9,6 @@ import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import SchoolList from '../components/schools/SchoolList';
-import { db } from '../config/fbConfig';
 
 const StyledNews = styled.section`
 	height: fit-content;
@@ -394,15 +393,6 @@ const StyledNews = styled.section`
 `;
 
 class News extends Component {
-	// componentDidUpdate = () => {
-	// 	const { posts } = this.props;
-	// 	console.log(posts.length);
-	// };
-	// fetchMoreData = () => {
-	// 	setTimeout(() => {
-	// 		//
-	// 	}, 1500);
-	// };
 	render() {
 		const { posts, auth, schools, profile } = this.props;
 		if (!auth.uid) return <Redirect to="/" />;
@@ -465,11 +455,11 @@ class News extends Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		posts: state.firestore.ordered.posts,
 		auth: state.firebase.auth,
-		schools: state.firestore.ordered.schools
+		schools: state.firestore.ordered.schools,
 	};
 };
 
@@ -477,6 +467,6 @@ export default compose(
 	connect(mapStateToProps),
 	firestoreConnect([
 		{ collection: 'posts', limit: 20, orderBy: ['createdAt', 'desc'] },
-		{ collection: 'schools', limit: 5, orderBy: ['createdAt', 'desc'] }
+		{ collection: 'schools', limit: 5, orderBy: ['createdAt', 'desc'] },
 	])
 )(News);

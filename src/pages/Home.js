@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import SignUp from '../components/auth/SignUp';
 import SignIn from '../components/auth/SignIn';
-// import { NavLink } from 'react-router-dom';
-// import { Route, Switch } from 'react-router-dom';
-// import Gdpr from '../components/rules/Gdpr';
-// import Homepage from '../components/rules/Homepage';
-// import Credits from '../components/rules/Credits';
 import logo from '../images/logo.png';
 
 const StyledHome = styled.div`

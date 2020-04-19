@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { db } from '../../config/fbConfig';
-import firebase from '../../config/fbConfig';
 import { connect } from 'react-redux';
 
 const StyledChatList = styled.div`
@@ -87,29 +85,14 @@ class ChatList extends Component {
 		this.props.newChatBtnFn();
 	};
 
-	selectChat = index => {
+	selectChat = (index) => {
 		this.props.selectChatFn(index);
 	};
 
-	userIsSender = chat =>
+	userIsSender = (chat) =>
 		chat.messages[chat.messages.length - 1].sender === this.props.userEmail;
 
 	render() {
-		// db.collection('users')
-		// 	.get()
-		// 	.then(snap =>
-		// 		snap.forEach(doc => {
-		// 			db.collection('users')
-		// 				.where('email', '==', this.props.auth.email)
-		// 				.onSnapshot(() => {
-		// 					document.getElementById(
-		// 						'list-item-avatar'
-		// 					).src = doc.data().userAvatar;
-		// 					console.log(doc.data().userAvatar);
-		// 				});
-		// 		})
-		// 	);
-		// console.log(this.props.chats);
 		if (this.props.chats.length > 0) {
 			return (
 				<StyledChatList>
@@ -131,14 +114,14 @@ class ChatList extends Component {
 										<div id="list-item-avatar" className="list-item-avatar">
 											{
 												_chat.users
-													.filter(_user => _user !== this.props.userEmail)[0]
+													.filter((_user) => _user !== this.props.userEmail)[0]
 													.split('')[0]
 											}
 										</div>
 										<div className="list-item-user">
 											{
 												_chat.users.filter(
-													_user => _user !== this.props.userEmail
+													(_user) => _user !== this.props.userEmail
 												)[0]
 											}{' '}
 											{
@@ -178,9 +161,9 @@ class ChatList extends Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
-		auth: state.firebase.auth
+		auth: state.firebase.auth,
 	};
 };
 

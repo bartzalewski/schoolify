@@ -78,7 +78,7 @@ class CreatePost extends Component {
 			content: '',
 			postBackground: null,
 			progress: 0,
-			authorEmail: this.props.auth.email
+			authorEmail: this.props.auth.email,
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleUpload = this.handleUpload.bind(this);
@@ -86,24 +86,25 @@ class CreatePost extends Component {
 		this.handleChoose = this.handleChoose.bind(this);
 		this.handleSelect = this.handleSelect.bind(this);
 	}
-	handleChange = async e => {
+	handleChange = async (e) => {
 		await this.setState({
-			[e.target.id]: e.target.value
+			[e.target.id]: e.target.value,
 		});
 	};
-	handleSelect = e => {
+	handleSelect = () => {
 		const schoolList = document.getElementById('schoolName');
 		const value = schoolList.value;
 		const array = value.split(',');
 		this.setState({
 			schoolName: array[0],
-			schoolLogo: array[1]
+			schoolLogo: array[1],
 		});
 	};
-	handleSubmit = e => {
+	handleSubmit = (e) => {
 		e.preventDefault();
-		this.state.content = filter.clean(this.state.content);
-		this.state.content = capitalize(this.state.content);
+		this.setState({
+			content: capitalize(filter.clean(this.state.content)),
+		});
 		if (this.state.content.includes('*')) {
 			document.getElementById('upload-post-warn').style.display = 'block';
 			return null;
@@ -112,51 +113,47 @@ class CreatePost extends Component {
 			this.props.history.push('/');
 		}
 	};
-	handleChoose = e => {
+	handleChoose = (e) => {
 		if (e.target.files[0]) {
 			const postBackground = e.target.files[0];
 			this.setState(() => ({ postBackground }));
 		}
-		console.log(this.state);
 	};
 	handleUpload = () => {
 		const { postBackground } = this.state;
-		const imageName = `${postBackground.name +
-			Math.round(Math.random() * 1000000000000)}`;
+		const imageName = `${
+			postBackground.name + Math.round(Math.random() * 1000000000000)
+		}`;
 		const uploadTask = storage
 			.ref(`images/feed/${imageName}`)
 			.put(postBackground);
 		uploadTask.on(
 			'state_changed',
-			snapshot => {
+			(snapshot) => {
 				const progress = Math.round(
 					(snapshot.bytesTransferred / snapshot.totalBytes) * 100
 				);
 				this.setState({ progress });
-			},
-			error => {
-				console.log(error);
 			},
 			() => {
 				storage
 					.ref('images/feed')
 					.child(imageName)
 					.getDownloadURL()
-					.then(postBackground => {
+					.then((postBackground) => {
 						this.setState({ postBackground });
 					});
 			}
 		);
-		uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-			console.log('File available at', downloadURL);
+		uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
 			return downloadURL;
 		});
 	};
 	componentDidMount() {
 		db.collection('schools')
 			.get()
-			.then(snap =>
-				snap.forEach(doc => {
+			.then((snap) =>
+				snap.forEach((doc) => {
 					const { schoolName, schoolLogo } = doc.data();
 					const schoolList = document.getElementById('schoolName');
 					const option = document.createElement('option');
@@ -241,16 +238,16 @@ class CreatePost extends Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		auth: state.firebase.auth,
-		schools: state.firestore.ordered.schools
+		schools: state.firestore.ordered.schools,
 	};
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
 	return {
-		createPost: post => dispatch(createPost(post))
+		createPost: (post) => dispatch(createPost(post)),
 	};
 };
 
