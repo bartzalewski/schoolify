@@ -4,6 +4,8 @@ This is my first ReactJS project. It will contain things like school's news feed
 
 Link to the app: https://schoolify.app/
 
+<img alt="screenshot" src="https://i.imgur.com/VVxOC3B.jpg">
+
 ## What kind of technologies did I use?
 
 - React.js
