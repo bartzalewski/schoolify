@@ -135,6 +135,7 @@ class CreatePost extends Component {
 				);
 				this.setState({ progress });
 			},
+			(err) => console.log(err),
 			() => {
 				storage
 					.ref('images/feed')

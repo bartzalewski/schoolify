@@ -85,7 +85,6 @@ class CreateSchool extends Component {
 		await this.setState({
 			[e.target.id]: e.target.value,
 		});
-		console.log(this.state);
 	};
 	handleSubmit = (e) => {
 		e.preventDefault();
@@ -122,6 +121,7 @@ class CreateSchool extends Component {
 				);
 				this.setState({ progress });
 			},
+			(err) => console.log(err),
 			() => {
 				storage
 					.ref('images/schools/logos')
@@ -158,6 +158,7 @@ class CreateSchool extends Component {
 				);
 				this.setState({ progress });
 			},
+			(err) => console.log(err),
 			() => {
 				storage
 					.ref('images/schools/backgrounds')
