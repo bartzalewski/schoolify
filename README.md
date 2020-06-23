@@ -19,6 +19,6 @@ Link to the app: https://schoolify.app/
 2. `npm install`
 3. `npm start`
 
-### Check out my website!
+## Follow me!
 
-http://bartzalewski.com
+[Website](https://www.bartzalewski.com) • [Instagram](https://www.instagram.com/bart.code) • [YouTube](https://www.youtube.com/channel/UCwkU0-_RJbS16X5pbcW-tPQ)
