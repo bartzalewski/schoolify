@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledSchoolSummary = styled.div`
 	.box {
-		height: 250px;
+		height: 200px;
 		background-color: white;
 		border-radius: 15px;
 		transition: 0.2s;
@@ -17,7 +17,7 @@ const StyledSchoolSummary = styled.div`
 
 	.school-bg {
 		width: 100%;
-		height: 250px;
+		height: 200px;
 		border-radius: 15px;
 		user-select: none;
 		position: absolute;

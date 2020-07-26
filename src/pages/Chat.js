@@ -48,7 +48,7 @@ const StyledChat = styled.section`
 		padding: 25px;
 		border-radius: 15px;
 		display: flex;
-		height: calc(100vh - 100px - 39px - 32.5px - 32px - 48px);
+		max-height: calc(100vh - 100px - 39px - 32.5px - 32px - 48px);
 		position: relative;
 		overflow: hidden;
 	}
@@ -180,11 +180,11 @@ class Chat extends Component {
 			selectedChat: null,
 			newChatFormVisible: false,
 			email: null,
-			chats: []
+			chats: [],
 		};
 	}
 
-	selectChat = async chatIndex => {
+	selectChat = async (chatIndex) => {
 		await this.setState({ selectedChat: chatIndex, newChatFormVisible: false });
 		this.messageRead();
 	};
@@ -192,10 +192,10 @@ class Chat extends Component {
 	newChatBtnClicked = () =>
 		this.setState({ newChatFormVisible: true, selectedChat: null });
 
-	submitMessage = msg => {
+	submitMessage = (msg) => {
 		const docKey = this.buildDocKey(
 			this.state.chats[this.state.selectedChat].users.filter(
-				_usr => _usr !== this.state.email
+				(_usr) => _usr !== this.state.email
 			)[0]
 		);
 		db.collection('chats')
@@ -204,15 +204,15 @@ class Chat extends Component {
 				messages: firebase.firestore.FieldValue.arrayUnion({
 					sender: this.state.email,
 					message: msg,
-					timestamp: Date.now()
+					timestamp: Date.now(),
 				}),
-				receiverHasRead: false
+				receiverHasRead: false,
 			});
 	};
 
-	buildDocKey = friend => [this.state.email, friend].sort().join(':');
+	buildDocKey = (friend) => [this.state.email, friend].sort().join(':');
 
-	clickedChatWhereNotSender = chatIndex =>
+	clickedChatWhereNotSender = (chatIndex) =>
 		this.state.chats[chatIndex].messages[
 			this.state.chats[chatIndex].messages.length - 1
 		].sender !== this.state.email;
@@ -221,7 +221,7 @@ class Chat extends Component {
 		const chatIndex = this.state.selectedChat;
 		const docKey = this.buildDocKey(
 			this.state.chats[chatIndex].users.filter(
-				_usr => _usr !== this.state.email
+				(_usr) => _usr !== this.state.email
 			)[0]
 		);
 		if (this.clickedChatWhereNotSender(chatIndex)) {
@@ -235,15 +235,15 @@ class Chat extends Component {
 
 	goToChat = async (docKey, msg) => {
 		const usersInChat = docKey.split(':');
-		const chat = this.state.chats.find(_chat =>
-			usersInChat.every(_user => _chat.users.includes(_user))
+		const chat = this.state.chats.find((_chat) =>
+			usersInChat.every((_user) => _chat.users.includes(_user))
 		);
 		this.setState({ newChatFormVisible: false });
 		await this.selectChat(this.state.chats.indexOf(chat));
 		this.submitMessage(msg);
 	};
 
-	newChatSubmit = async chatObj => {
+	newChatSubmit = async (chatObj) => {
 		const docKey = this.buildDocKey(chatObj.sendTo);
 		await firebase
 			.firestore()
@@ -255,29 +255,29 @@ class Chat extends Component {
 				messages: [
 					{
 						message: chatObj.message,
-						sender: this.state.email
-					}
-				]
+						sender: this.state.email,
+					},
+				],
 			});
 		this.setState({
-			newChatFormVisible: false
+			newChatFormVisible: false,
 		});
 		this.selectChat(this.state.chats.length - 1);
 	};
 
 	componentDidMount = () => {
-		firebase.auth().onAuthStateChanged(async _usr => {
+		firebase.auth().onAuthStateChanged(async (_usr) => {
 			if (!_usr) {
 				this.props.history.push('/');
 			} else {
 				await db
 					.collection('chats')
 					.where('users', 'array-contains', _usr.email)
-					.onSnapshot(async res => {
-						const chats = res.docs.map(_doc => _doc.data());
+					.onSnapshot(async (res) => {
+						const chats = res.docs.map((_doc) => _doc.data());
 						await this.setState({
 							email: _usr.email,
-							chats: chats
+							chats: chats,
 						});
 					});
 			}

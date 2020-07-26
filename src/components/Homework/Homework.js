@@ -6,7 +6,7 @@ import firebase from '../../config/fbConfig';
 import HomeworkList from './HomeworkList';
 
 const StyledHomework = styled.aside`
-	width: 25vw;
+	width: 20vw;
 	height: calc(50% - 50px);
 	padding: 25px;
 	border-left: 1px solid #d2d2d2;
@@ -14,6 +14,7 @@ const StyledHomework = styled.aside`
 	position: fixed;
 	background: #fff;
 	top: 100px;
+	right: 0;
 
 	.title {
 		font-size: 2rem;
@@ -23,8 +24,7 @@ const StyledHomework = styled.aside`
 
 	.container {
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		flex-direction: column;
 	}
 
 	.input-homework {

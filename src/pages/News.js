@@ -41,7 +41,7 @@ const StyledNews = styled.section`
 
 	.box {
 		width: 19.5%;
-		height: 250px;
+		height: 200px;
 		background-color: white;
 		border-radius: 15px;
 		transition: 0.2s;
@@ -58,7 +58,7 @@ const StyledNews = styled.section`
 
 	.newspage-schools-container {
 		width: 100%;
-		height: 250px;
+		height: 200px;
 		margin-top: 2rem;
 
 		#school-list {
@@ -84,7 +84,7 @@ const StyledNews = styled.section`
 
 	.school-bg {
 		width: 100%;
-		height: 250px;
+		height: 200px;
 		border-radius: 15px;
 		user-select: none;
 		object-fit: cover;
@@ -134,7 +134,7 @@ const StyledNews = styled.section`
 	.add-post,
 	.posts-list {
 		background: #fff;
-		width: 90%;
+		width: 100%;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -253,14 +253,6 @@ const StyledNews = styled.section`
 		}
 	}
 
-	.newspage-teacher-container {
-		#post-list-item {
-			@media (max-width: 1359px) {
-				margin-top: -40px;
-			}
-		}
-	}
-
 	#school-list-news {
 		display: none !important;
 	}
@@ -271,21 +263,11 @@ const StyledNews = styled.section`
 		}
 
 		.schools-title {
-			padding-left: 20px;
 			padding-top: 20px;
 		}
 
 		.school-list {
-			padding-right: 20px;
 			padding-top: 20px;
-		}
-
-		.newspage-schools-container {
-			padding: 0 20px;
-		}
-
-		.wrapper {
-			padding: 20px;
 		}
 
 		.add-post {

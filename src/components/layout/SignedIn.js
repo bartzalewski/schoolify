@@ -112,6 +112,7 @@ const DarkTheme = createGlobalStyle`
 
 const StyledWrapper = styled.div`
 	display: flex;
+	justify-content: space-between;
 
 	@media (max-width: 1124px) {
 		display: block;
@@ -120,8 +121,7 @@ const StyledWrapper = styled.div`
 
 const StyledHome = styled.div`
 	position: relative;
-	left: 25vw;
-	top: 100px;
+	top: 125px;
 
 	@media (max-width: 1359px) {
 		top: 60px;
@@ -136,10 +136,7 @@ const StyledHome = styled.div`
 
 const StyledLeftSide = styled.div``;
 
-const StyledRightSide = styled.div`
-	position: fixed;
-	left: calc(100vw - 25vw);
-`;
+const StyledRightSide = styled.div``;
 
 const StyledDesktop = styled.div``;
 

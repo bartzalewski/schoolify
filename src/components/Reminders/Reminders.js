@@ -6,7 +6,7 @@ import firebase from '../../config/fbConfig';
 import RemindersList from './RemindersList';
 
 const StyledReminders = styled.aside`
-	width: 25vw;
+	width: 20vw;
 	height: calc(50% - 50px);
 	padding: 25px;
 	border-bottom: 1px solid #d2d2d2;
@@ -23,8 +23,7 @@ const StyledReminders = styled.aside`
 
 	.container {
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		flex-direction: column;
 	}
 
 	.reminders-item {

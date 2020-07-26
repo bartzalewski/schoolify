@@ -118,25 +118,13 @@ const GlobalStyle = createGlobalStyle`
 	}
 
   .site-container {
-    width: 50vw;
+    width: 680px;
     background: #ececf0;
-
-    .container {
-      padding: 40px;
-    }
 
     h1 {
       font-size: 1.625rem;
       font-weight: 600;
       user-select: none;
-    }
-
-    @media (max-width: 1359px) {
-      padding: 12.5px;
-
-      .container {
-        padding: 20px;
-      }
     }
 
     @media (max-width: 1124px) {

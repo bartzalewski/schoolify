@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import GradesList from './GradesList';
 
 const StyledGrades = styled.aside`
-	width: 25vw;
+	width: 20vw;
 	height: calc(50% - 50px);
 	padding: 25px;
 	border-right: 1px solid #d2d2d2;

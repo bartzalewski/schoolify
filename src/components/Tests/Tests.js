@@ -6,13 +6,14 @@ import firebase from '../../config/fbConfig';
 import TestsList from './TestsList';
 
 const StyledTests = styled.aside`
-	width: 25vw;
+	width: 20vw;
 	height: calc(50% - 50px);
 	padding: 25px;
 	border-left: 1px solid #d2d2d2;
 	background: #fff;
 	position: fixed;
 	bottom: 0;
+	right: 0;
 
 	.title {
 		font-size: 2rem;
@@ -22,8 +23,7 @@ const StyledTests = styled.aside`
 
 	.container {
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		flex-direction: column;
 	}
 
 	.input-tests {

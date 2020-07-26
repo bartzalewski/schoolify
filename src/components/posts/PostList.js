@@ -6,7 +6,6 @@ const StyledPostList = styled.div`
 	width: 100%;
 
 	@media (max-width: 1359px) {
-		padding: 20px;
 		margin-top: 0.5rem;
 	}
 
@@ -19,7 +18,7 @@ export default function PostList({ posts }) {
 	return (
 		<StyledPostList id="post-list-item">
 			{posts &&
-				posts.map(post => {
+				posts.map((post) => {
 					return <PostSummary post={post} key={post.id} />;
 				})}
 		</StyledPostList>

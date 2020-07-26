@@ -7,6 +7,7 @@ import firebase from '../../config/fbConfig';
 const StyledNavbar = styled.nav`
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	width: 100vw;
 	height: 100px;
 	border-bottom: 1px solid #d2d2d2;
@@ -58,13 +59,12 @@ const StyledNavbar = styled.nav`
 
 	.left,
 	.right {
-		width: 25vw;
+		width: 20vw;
 	}
 
 	.center {
-		width: 50vw;
+		width: 680px;
 		justify-content: space-between;
-		margin: 95px;
 
 		@media (max-width: 1124px) {
 			margin: 0;
