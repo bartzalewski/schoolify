@@ -1,6 +1,6 @@
 # schoolify - the first globalized electronic diary for schools
 
-This is my first ReactJS project. It will contain things like school's news feed, list of grades, upcoming tests, homework and a lesson plan. Feel free to view my code.
+This is my first ReactJS project. It will contain things like school's news feed, upcoming tests, homework and a lesson plan. Feel free to view my code.
 
 Link to the app: https://schoolify.app/
 

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,600,700&display=swap');
@@ -187,7 +187,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   @media (max-width: 1124px) {
-    .aside-reminders, .aside-homework, .aside-tests, .aside-grades {
+    .aside-reminders, .aside-homework, .aside-tests {
       border-top: none !important;
       border-right: none !important;
       border-left: none !important;
