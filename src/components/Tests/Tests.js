@@ -83,7 +83,6 @@ const StyledTests = styled.aside`
 class Tests extends Component {
   state = {
     content: "",
-    active: true,
     tests: [],
   };
   handleChange = async (e) => {
@@ -127,11 +126,6 @@ class Tests extends Component {
         })
       );
   };
-  isHidden = () => {
-    this.setState({
-      active: !this.state.active,
-    });
-  };
   componentDidMount() {
     db.collection("users")
       .where("email", "==", this.props.auth.email)
@@ -144,38 +138,27 @@ class Tests extends Component {
           });
         });
       });
-    if (window.innerWidth >= 1124) {
-      this.setState({
-        active: false,
-      });
-    }
   }
   render() {
     return (
       <StyledTests className="aside-tests">
         <div className="container">
-          <h1 onClick={this.isHidden} className="title">
-            Tests
-          </h1>
-          {!this.state.active ? (
-            <form onSubmit={this.addTest}>
-              <input
-                id="input-tests"
-                type="text"
-                placeholder="Add a test"
-                className="input-aside input-tests"
-                autoComplete="off"
-                onChange={this.handleChange}
-              />
-            </form>
-          ) : null}
+          <h1 className="title">Tests</h1>
+          <form onSubmit={this.addTest}>
+            <input
+              id="input-tests"
+              type="text"
+              placeholder="Add a test"
+              className="input-aside input-tests"
+              autoComplete="off"
+              onChange={this.handleChange}
+            />
+          </form>
         </div>
-        {!this.state.active ? (
-          <TestsList
-            tests={this.state.tests}
-            removeTest={this.removeTest}
-          ></TestsList>
-        ) : null}
+        <TestsList
+          tests={this.state.tests}
+          removeTest={this.removeTest}
+        ></TestsList>
       </StyledTests>
     );
   }

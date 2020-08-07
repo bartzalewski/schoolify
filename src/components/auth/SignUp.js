@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { signUp } from "../../store/actions/authActions";
 import { connect } from "react-redux";
@@ -21,110 +21,99 @@ const StyledSignUp = styled.div`
   }
 `;
 
-class SignUp extends Component {
-  state = {
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    userAvatar: `${avatar}`,
-  };
+const SignUp = (props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [userAvatar] = useState(`${avatar}`);
+  const state = { email, password, firstName, lastName, userAvatar };
 
-  moderateMessage = (message) => {
-    if (this.isShouting(message)) {
-      message = this.stopShouting(message);
+  const moderateMessage = (message) => {
+    if (isShouting(message)) {
+      message = stopShouting(message);
     }
-    return this.capitalizeFirstLetter(message);
+    return capitalizeFirstLetter(message);
   };
 
-  capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+  const capitalizeFirstLetter = (str) =>
+    str.charAt(0).toUpperCase() + str.slice(1);
 
-  isShouting = (message) => {
+  const isShouting = (message) => {
     return (
       message.replace(/[^A-Z]/g, "").length > message.length / 2 ||
       message.replace(/[^!]/g, "").length >= 3
     );
   };
 
-  stopShouting = (message) => {
+  const stopShouting = (message) => {
     return capitalize(message.toLowerCase()).replace(/!+/g);
   };
 
-  handleChange = async (e) => {
-    await this.setState({
-      [e.target.id]: e.target.value,
-    });
-  };
-
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({
-      firstName: filter.clean(this.moderateMessage(this.state.firstName)),
-      lastName: filter.clean(this.moderateMessage(this.state.lastName)),
-    });
-    if (
-      this.state.firstName.includes("*") ||
-      this.state.lastName.includes("*")
-    ) {
+
+    setFirstName(filter.clean(moderateMessage(firstName)));
+    setLastName(filter.clean(moderateMessage(lastName)));
+
+    if (firstName.includes("*") || lastName.includes("*")) {
       return null;
     } else {
-      this.props.signUp(this.state);
+      props.signUp(state);
     }
   };
 
-  componentDidMount = () => {
+  useEffect(() => {
     filter.addWords(...moreWords);
-  };
+  });
 
-  render() {
-    return (
-      <StyledSignUp>
-        <form className="signup-form" onSubmit={this.handleSubmit}>
-          <h1 className="signup-title">sign up</h1>
-          <div className="input-field">
-            <input
-              type="text"
-              id="firstName"
-              onChange={this.handleChange}
-              placeholder="First Name"
-              aria-label="firstName"
-            />
-          </div>
-          <div className="input-field">
-            <input
-              type="text"
-              id="lastName"
-              onChange={this.handleChange}
-              placeholder="Last Name"
-              aria-label="lastName"
-            />
-          </div>
-          <div className="input-field">
-            <input
-              type="email"
-              id="email"
-              onChange={this.handleChange}
-              placeholder="E-mail"
-              aria-label="email"
-            />
-          </div>
-          <div className="input-field">
-            <input
-              type="password"
-              id="password"
-              onChange={this.handleChange}
-              placeholder="Password"
-              aria-label="password"
-            />
-          </div>
-          <div className="input-field">
-            <button className="btn">Sign Up</button>
-          </div>
-        </form>
-      </StyledSignUp>
-    );
-  }
-}
+  return (
+    <StyledSignUp>
+      <form className="signup-form" onSubmit={handleSubmit}>
+        <h1 className="signup-title">sign up</h1>
+        <div className="input-field">
+          <input
+            type="text"
+            id="firstName"
+            onChange={(e) => setFirstName(e.target.value)}
+            placeholder="First Name"
+            aria-label="firstName"
+          />
+        </div>
+        <div className="input-field">
+          <input
+            type="text"
+            id="lastName"
+            onChange={(e) => setLastName(e.target.value)}
+            placeholder="Last Name"
+            aria-label="lastName"
+          />
+        </div>
+        <div className="input-field">
+          <input
+            type="email"
+            id="email"
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="E-mail"
+            aria-label="email"
+          />
+        </div>
+        <div className="input-field">
+          <input
+            type="password"
+            id="password"
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            aria-label="password"
+          />
+        </div>
+        <div className="input-field">
+          <button className="btn">Sign Up</button>
+        </div>
+      </form>
+    </StyledSignUp>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {

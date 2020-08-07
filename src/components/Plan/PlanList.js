@@ -1,19 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledRemindersList = styled.div``;
+const StyledPlanList = styled.div``;
 
-const RemindersList = ({ plan, removePlan }) => {
+const PlanList = ({ plan, removePlan }) => {
   const planList = plan.length ? (
-    plan.map((reminder) => {
+    plan.map((plan) => {
       return (
-        <StyledRemindersList
-          className="plan-item"
-          key={reminder}
-          onClick={removePlan}
-        >
-          {reminder}
-        </StyledRemindersList>
+        <StyledPlanList className="plan-item" key={plan} onClick={removePlan}>
+          {plan}
+        </StyledPlanList>
       );
     })
   ) : (
@@ -22,4 +18,4 @@ const RemindersList = ({ plan, removePlan }) => {
   return <div id="plan-list">{planList}</div>;
 };
 
-export default RemindersList;
+export default PlanList;

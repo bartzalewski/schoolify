@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Route, Switch } from "react-router-dom";
 import Reminders from "../../components/Reminders/Reminders";
+import Plan from "../../components/Plan/Plan";
 import Homework from "../../components/Homework/Homework";
 import Tests from "../../components/Tests/Tests";
 import News from "../../pages/News";
@@ -166,6 +167,7 @@ class SignedIn extends Component {
                   {window.innerWidth <= 1124 ? (
                     <Tests profile={this.props.profile} />
                   ) : null}
+                  <Plan profile={this.props.profile} />
                 </StyledLeftSide>
                 <StyledHome>
                   <Switch>

@@ -86,7 +86,6 @@ const StyledHomework = styled.aside`
 class Homework extends Component {
   state = {
     content: "",
-    active: true,
     homework: [],
   };
   handleChange = async (e) => {
@@ -130,11 +129,6 @@ class Homework extends Component {
         })
       );
   };
-  isHidden = () => {
-    this.setState({
-      active: !this.state.active,
-    });
-  };
   componentDidMount() {
     db.collection("users")
       .where("email", "==", this.props.auth.email)
@@ -147,38 +141,27 @@ class Homework extends Component {
           });
         });
       });
-    if (window.innerWidth >= 1124) {
-      this.setState({
-        active: false,
-      });
-    }
   }
   render() {
     return (
       <StyledHomework className="aside-homework">
         <div className="container">
-          <h1 onClick={this.isHidden} className="title">
-            Homework
-          </h1>
-          {!this.state.active ? (
-            <form onSubmit={this.addHomework}>
-              <input
-                id="input-homework"
-                type="text"
-                placeholder="Add a homework"
-                className="input-aside input-homework"
-                autoComplete="off"
-                onChange={this.handleChange}
-              />
-            </form>
-          ) : null}
+          <h1 className="title">Homework</h1>
+          <form onSubmit={this.addHomework}>
+            <input
+              id="input-homework"
+              type="text"
+              placeholder="Add a homework"
+              className="input-aside input-homework"
+              autoComplete="off"
+              onChange={this.handleChange}
+            />
+          </form>
         </div>
-        {!this.state.active ? (
-          <HomeworkList
-            homework={this.state.homework}
-            removeHomework={this.removeHomework}
-          ></HomeworkList>
-        ) : null}
+        <HomeworkList
+          homework={this.state.homework}
+          removeHomework={this.removeHomework}
+        ></HomeworkList>
       </StyledHomework>
     );
   }

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { db } from "../../config/fbConfig";
 import firebase from "../../config/fbConfig";
-import PlanList from "./PlansList";
+import PlanList from "./PlanList";
 
 const StyledPlan = styled.aside`
   width: 20vw;
@@ -84,7 +84,6 @@ const StyledPlan = styled.aside`
 class Plan extends Component {
   state = {
     content: "",
-    active: true,
     plan: [],
   };
   handleChange = async (e) => {
@@ -128,11 +127,6 @@ class Plan extends Component {
         })
       );
   };
-  isHidden = () => {
-    this.setState({
-      active: !this.state.active,
-    });
-  };
   componentDidMount() {
     db.collection("users")
       .where("email", "==", this.props.auth.email)
@@ -145,38 +139,27 @@ class Plan extends Component {
           });
         });
       });
-    if (window.innerWidth >= 1124) {
-      this.setState({
-        active: false,
-      });
-    }
   }
   render() {
     return (
       <StyledPlan className="aside-plan">
         <div className="container">
-          <h1 onClick={this.isHidden} className="title">
-            Plans
-          </h1>
-          {!this.state.active ? (
-            <form onSubmit={this.addPlan}>
-              <input
-                id="input-plan"
-                type="text"
-                placeholder="Add a plan"
-                className="input-aside input-plan"
-                autoComplete="off"
-                onChange={this.handleChange}
-              />
-            </form>
-          ) : null}
+          <h1 className="title">Plans</h1>
+          <form onSubmit={this.addPlan}>
+            <input
+              id="input-plan"
+              type="text"
+              placeholder="Add a plan"
+              className="input-aside input-plan"
+              autoComplete="off"
+              onChange={this.handleChange}
+            />
+          </form>
         </div>
-        {!this.state.active ? (
-          <PlanList
-            plan={this.state.plan}
-            removePlan={this.removePlan}
-          ></PlanList>
-        ) : null}
+        <PlanList
+          plan={this.state.plan}
+          removePlan={this.removePlan}
+        ></PlanList>
       </StyledPlan>
     );
   }

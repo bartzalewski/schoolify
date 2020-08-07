@@ -84,7 +84,6 @@ const StyledReminders = styled.aside`
 class Reminders extends Component {
   state = {
     content: "",
-    active: true,
     reminders: [],
   };
   handleChange = async (e) => {
@@ -128,11 +127,6 @@ class Reminders extends Component {
         })
       );
   };
-  isHidden = () => {
-    this.setState({
-      active: !this.state.active,
-    });
-  };
   componentDidMount() {
     db.collection("users")
       .where("email", "==", this.props.auth.email)
@@ -145,38 +139,27 @@ class Reminders extends Component {
           });
         });
       });
-    if (window.innerWidth >= 1124) {
-      this.setState({
-        active: false,
-      });
-    }
   }
   render() {
     return (
       <StyledReminders className="aside-reminders">
         <div className="container">
-          <h1 onClick={this.isHidden} className="title">
-            Reminders
-          </h1>
-          {!this.state.active ? (
-            <form onSubmit={this.addReminder}>
-              <input
-                id="input-reminder"
-                type="text"
-                placeholder="Add a reminder"
-                className="input-aside input-reminder"
-                autoComplete="off"
-                onChange={this.handleChange}
-              />
-            </form>
-          ) : null}
+          <h1 className="title">Reminders</h1>
+          <form onSubmit={this.addReminder}>
+            <input
+              id="input-reminder"
+              type="text"
+              placeholder="Add a reminder"
+              className="input-aside input-reminder"
+              autoComplete="off"
+              onChange={this.handleChange}
+            />
+          </form>
         </div>
-        {!this.state.active ? (
-          <RemindersList
-            reminders={this.state.reminders}
-            removeReminder={this.removeReminder}
-          ></RemindersList>
-        ) : null}
+        <RemindersList
+          reminders={this.state.reminders}
+          removeReminder={this.removeReminder}
+        ></RemindersList>
       </StyledReminders>
     );
   }
