@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import { ReactComponent as Add } from "../images/add.svg";
 import warning from "../images/warning.svg";
@@ -374,68 +374,66 @@ const StyledNews = styled.section`
   }
 `;
 
-class News extends Component {
-  render() {
-    const { posts, auth, schools, profile } = this.props;
-    if (!auth.uid) return <Redirect to="/" />;
-    if (profile.accountType === "teacher") {
-      return (
-        <StyledNews className="site-container">
-          <div className="container newspage-teacher-container">
-            <div className="home-wrapper">
-              <h1 id="schools-title" className="schools-title">
-                Browse schools
-              </h1>
-              <Link to="/school-list" className="school-list">
-                See All
-              </Link>
-            </div>
-            <div className="newspage-schools-container newspage-schools-container-teacher">
-              <SchoolList id="school-list-news" schools={schools} />
-              <Link to="/add" className="box box-add">
-                <div className="box-wrapper">
-                  <h1 className="add-title">Add your school!</h1>
-                  <Add className="add" />
-                </div>
-              </Link>
-            </div>
-            <div className="wrapper">
-              <div className="add-post">
-                <Link to="/profile" className="profile-btn">
-                  <img className="user-logo" src={profile.userAvatar} alt="" />
-                </Link>
-                <Link to="/create" className="posts-btn">
-                  Add a post
-                </Link>
-                <img className="user-logo" src={warning} alt="post info" />
+const News = (props) => {
+  const { posts, auth, schools, profile } = props;
+  if (!auth.uid) return <Redirect to="/" />;
+  if (profile.accountType === "teacher") {
+    return (
+      <StyledNews className="site-container">
+        <div className="container newspage-teacher-container">
+          <div className="home-wrapper">
+            <h1 id="schools-title" className="schools-title">
+              Browse schools
+            </h1>
+            <Link to="/school-list" className="school-list">
+              See All
+            </Link>
+          </div>
+          <div className="newspage-schools-container newspage-schools-container-teacher">
+            <SchoolList id="school-list-news" schools={schools} />
+            <Link to="/add" className="box box-add">
+              <div className="box-wrapper">
+                <h1 className="add-title">Add your school!</h1>
+                <Add className="add" />
               </div>
-            </div>
-            <PostList posts={posts} />
+            </Link>
           </div>
-        </StyledNews>
-      );
-    } else {
-      return (
-        <StyledNews className="site-container">
-          <div className="container">
-            <div className="home-wrapper">
-              <h1 id="schools-title" className="schools-title">
-                Browse schools
-              </h1>
-              <Link to="/school-list" className="school-list">
-                See All
+          <div className="wrapper">
+            <div className="add-post">
+              <Link to="/profile" className="profile-btn">
+                <img className="user-logo" src={profile.userAvatar} alt="" />
               </Link>
+              <Link to="/create" className="posts-btn">
+                Add a post
+              </Link>
+              <img className="user-logo" src={warning} alt="post info" />
             </div>
-            <div className="newspage-schools-container newspage-schools-container-student">
-              <SchoolList schools={schools} />
-            </div>
-            <PostList posts={posts} />
           </div>
-        </StyledNews>
-      );
-    }
+          <PostList posts={posts} />
+        </div>
+      </StyledNews>
+    );
+  } else {
+    return (
+      <StyledNews className="site-container">
+        <div className="container">
+          <div className="home-wrapper">
+            <h1 id="schools-title" className="schools-title">
+              Browse schools
+            </h1>
+            <Link to="/school-list" className="school-list">
+              See All
+            </Link>
+          </div>
+          <div className="newspage-schools-container newspage-schools-container-student">
+            <SchoolList schools={schools} />
+          </div>
+          <PostList posts={posts} />
+        </div>
+      </StyledNews>
+    );
   }
-}
+};
 
 const mapStateToProps = (state) => {
   return {

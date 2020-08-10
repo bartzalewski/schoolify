@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { db } from "../../config/fbConfig";
@@ -83,39 +83,32 @@ const StyledHomework = styled.aside`
   }
 `;
 
-class Homework extends Component {
-  state = {
-    content: "",
-    homework: [],
-  };
-  handleChange = async (e) => {
-    await this.setState({
-      content: e.target.value,
-    });
-  };
-  addHomework = (e) => {
+const Homework = (props) => {
+  const [content, setContent] = useState("");
+  const [homework, setHomework] = useState([]);
+
+  const addHomework = (e) => {
     e.preventDefault();
     db.collection("users")
-      .where("email", "==", this.props.auth.email)
+      .where("email", "==", props.auth.email)
       .get()
       .then((snap) =>
         snap.forEach((doc) => {
           db.collection("users")
             .doc(doc.id)
             .update({
-              homework: firebase.firestore.FieldValue.arrayUnion(
-                this.state.content
-              ),
+              homework: firebase.firestore.FieldValue.arrayUnion(content),
             });
         })
       );
     document.getElementById("input-homework").value = "";
   };
-  removeHomework = (e) => {
+
+  const removeHomework = (e) => {
     e.preventDefault();
     e.persist();
     db.collection("users")
-      .where("email", "==", this.props.auth.email)
+      .where("email", "==", props.auth.email)
       .get()
       .then((snap) =>
         snap.forEach((doc) => {
@@ -129,43 +122,41 @@ class Homework extends Component {
         })
       );
   };
-  componentDidMount() {
+
+  useEffect(() => {
     db.collection("users")
-      .where("email", "==", this.props.auth.email)
+      .where("email", "==", props.auth.email)
       .onSnapshot((snap) => {
         let changes = snap.docChanges();
         changes.forEach((change) => {
           const { homework } = change.doc.data();
-          this.setState({
-            homework: homework,
-          });
+          setHomework(homework);
         });
       });
-  }
-  render() {
-    return (
-      <StyledHomework className="aside-homework">
-        <div className="container">
-          <h1 className="title">Homework</h1>
-          <form onSubmit={this.addHomework}>
-            <input
-              id="input-homework"
-              type="text"
-              placeholder="Add a homework"
-              className="input-aside input-homework"
-              autoComplete="off"
-              onChange={this.handleChange}
-            />
-          </form>
-        </div>
-        <HomeworkList
-          homework={this.state.homework}
-          removeHomework={this.removeHomework}
-        ></HomeworkList>
-      </StyledHomework>
-    );
-  }
-}
+  });
+
+  return (
+    <StyledHomework className="aside-homework">
+      <div className="container">
+        <h1 className="title">Homework</h1>
+        <form onSubmit={addHomework}>
+          <input
+            id="input-homework"
+            type="text"
+            placeholder="Add a homework"
+            className="input-aside input-homework"
+            autoComplete="off"
+            onChange={(e) => setContent(e.target.value)}
+          />
+        </form>
+      </div>
+      <HomeworkList
+        homework={homework}
+        removeHomework={removeHomework}
+      ></HomeworkList>
+    </StyledHomework>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

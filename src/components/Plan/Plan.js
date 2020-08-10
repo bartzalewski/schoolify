@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { db } from "../../config/fbConfig";
@@ -81,39 +81,34 @@ const StyledPlan = styled.aside`
   }
 `;
 
-class Plan extends Component {
-  state = {
-    content: "",
-    plan: [],
-  };
-  handleChange = async (e) => {
-    await this.setState({
-      content: e.target.value,
-    });
-  };
-  addPlan = (e) => {
+const Plan = ({ auth }) => {
+  const [plan, setPlan] = useState([]);
+  const [content, setContent] = useState("");
+
+  const handleChange = async (e) => setContent(e.target.value);
+
+  const addPlan = (e) => {
     e.preventDefault();
     db.collection("users")
-      .where("email", "==", this.props.auth.email)
+      .where("email", "==", auth.email)
       .get()
       .then((snap) =>
         snap.forEach((doc) => {
           db.collection("users")
             .doc(doc.id)
             .update({
-              plan: firebase.firestore.FieldValue.arrayUnion(
-                this.state.content
-              ),
+              plan: firebase.firestore.FieldValue.arrayUnion(content),
             });
         })
       );
     document.getElementById("input-plan").value = "";
   };
-  removePlan = (e) => {
+
+  const removePlan = (e) => {
     e.preventDefault();
     e.persist();
     db.collection("users")
-      .where("email", "==", this.props.auth.email)
+      .where("email", "==", auth.email)
       .get()
       .then((snap) =>
         snap.forEach((doc) => {
@@ -127,43 +122,38 @@ class Plan extends Component {
         })
       );
   };
-  componentDidMount() {
+
+  useEffect(() => {
     db.collection("users")
-      .where("email", "==", this.props.auth.email)
+      .where("email", "==", auth.email)
       .onSnapshot((snap) => {
         let changes = snap.docChanges();
         changes.forEach((change) => {
           const { plan } = change.doc.data();
-          this.setState({
-            plan: plan,
-          });
+          setPlan(plan);
         });
       });
-  }
-  render() {
-    return (
-      <StyledPlan className="aside-plan">
-        <div className="container">
-          <h1 className="title">Plans</h1>
-          <form onSubmit={this.addPlan}>
-            <input
-              id="input-plan"
-              type="text"
-              placeholder="Add a plan"
-              className="input-aside input-plan"
-              autoComplete="off"
-              onChange={this.handleChange}
-            />
-          </form>
-        </div>
-        <PlanList
-          plan={this.state.plan}
-          removePlan={this.removePlan}
-        ></PlanList>
-      </StyledPlan>
-    );
-  }
-}
+  });
+
+  return (
+    <StyledPlan className="aside-plan">
+      <div className="container">
+        <h1 className="title">Plans</h1>
+        <form onSubmit={addPlan}>
+          <input
+            id="input-plan"
+            type="text"
+            placeholder="Add a plan"
+            className="input-aside input-plan"
+            autoComplete="off"
+            onChange={handleChange}
+          />
+        </form>
+      </div>
+      <PlanList plan={plan} removePlan={removePlan}></PlanList>
+    </StyledPlan>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

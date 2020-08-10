@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
@@ -80,86 +80,82 @@ const StyledChatList = styled.div`
   }
 `;
 
-class ChatList extends Component {
-  newChat = () => {
-    this.props.newChatBtnFn();
+const ChatList = (props) => {
+  const newChat = () => {
+    props.newChatBtnFn();
   };
 
-  selectChat = (index) => {
-    this.props.selectChatFn(index);
+  const selectChat = (index) => {
+    props.selectChatFn(index);
   };
 
-  userIsSender = (chat) =>
-    chat.messages[chat.messages.length - 1].sender === this.props.userEmail;
+  const userIsSender = (chat) =>
+    chat.messages[chat.messages.length - 1].sender === props.userEmail;
 
-  render() {
-    if (this.props.chats.length > 0) {
-      return (
-        <StyledChatList>
-          <button className="btn" onClick={this.newChat}>
-            New Message
-          </button>
-          <div className="list">
-            {this.props.chats.map((_chat, _index) => {
-              return (
-                <div key={_index}>
-                  <div
-                    className={
-                      this.props.selectedChatIndex === _index
-                        ? "list-item-selected list-item"
-                        : "list-item"
+  if (props.chats.length > 0) {
+    return (
+      <StyledChatList>
+        <button className="btn" onClick={newChat}>
+          New Message
+        </button>
+        <div className="list">
+          {props.chats.map((_chat, _index) => {
+            return (
+              <div key={_index}>
+                <div
+                  className={
+                    props.selectedChatIndex === _index
+                      ? "list-item-selected list-item"
+                      : "list-item"
+                  }
+                  onClick={() => selectChat(_index)}
+                >
+                  <div id="list-item-avatar" className="list-item-avatar">
+                    {
+                      _chat.users
+                        .filter((_user) => _user !== props.userEmail)[0]
+                        .split("")[0]
                     }
-                    onClick={() => this.selectChat(_index)}
-                  >
-                    <div id="list-item-avatar" className="list-item-avatar">
-                      {
-                        _chat.users
-                          .filter((_user) => _user !== this.props.userEmail)[0]
-                          .split("")[0]
-                      }
-                    </div>
-                    <div className="list-item-user">
-                      {
-                        _chat.users.filter(
-                          (_user) => _user !== this.props.userEmail
-                        )[0]
-                      }{" "}
-                      {
-                        <div className="list-item-fragment">
-                          <span>
-                            {_chat.messages[
-                              _chat.messages.length - 1
-                            ].message.substring(0, 30)}
-                          </span>
-                        </div>
-                      }
-                    </div>
-                    {_chat.receiverHasRead === false &&
-                    !this.userIsSender(_chat) ? (
-                      <div className="list-item-icon">
-                        <div className="notification-important"></div>
-                      </div>
-                    ) : null}
                   </div>
-                  <div className="divider"></div>
+                  <div className="list-item-user">
+                    {
+                      _chat.users.filter(
+                        (_user) => _user !== props.userEmail
+                      )[0]
+                    }{" "}
+                    {
+                      <div className="list-item-fragment">
+                        <span>
+                          {_chat.messages[
+                            _chat.messages.length - 1
+                          ].message.substring(0, 30)}
+                        </span>
+                      </div>
+                    }
+                  </div>
+                  {_chat.receiverHasRead === false && !userIsSender(_chat) ? (
+                    <div className="list-item-icon">
+                      <div className="notification-important"></div>
+                    </div>
+                  ) : null}
                 </div>
-              );
-            })}
-          </div>
-        </StyledChatList>
-      );
-    } else {
-      return (
-        <div>
-          <button className="btn" onClick={this.newChat}>
-            New Message
-          </button>
-          <div className="list"></div>
+              </div>
+            );
+          })}
         </div>
-      );
-    }
+      </StyledChatList>
+    );
+  } else {
+    return (
+      <div>
+        <button className="btn" onClick={newChat}>
+          New Message
+        </button>
+        <div className="list"></div>
+      </div>
+    );
   }
-}
+};
 
 const mapStateToProps = (state) => {
   return {
