@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import zszlogo from "../images/schools/logos/zsz-zabk-logo.gif";
 import lologo from "../images/schools/logos/lo-zabk-logo.jpg";
@@ -78,68 +78,66 @@ const StyledLessons = styled.section`
   }
 `;
 
-class Lessons extends Component {
-  render() {
-    return (
-      <StyledLessons className="site-container">
-        <div className="container">
-          <h1>Lessons</h1>
-          <div className="lesson-box">
-            <div className="left">
-              <img className="school-logo" src={zszlogo} alt="" />
-              <span className="school-name">
-                ZSZ im. Stanisława Staszica w Ząbkowicach Śląskich
-              </span>
-            </div>
-            <div className="right">
-              <Link to="/lessons-zsz">
-                <button>View plans</button>
-              </Link>
-            </div>
+const Lessons = () => {
+  return (
+    <StyledLessons className="site-container">
+      <div className="container">
+        <h1>Lessons</h1>
+        <div className="lesson-box">
+          <div className="left">
+            <img className="school-logo" src={zszlogo} alt="" />
+            <span className="school-name">
+              ZSZ im. Stanisława Staszica w Ząbkowicach Śląskich
+            </span>
           </div>
-          <div className="lesson-box">
-            <div className="left">
-              <img className="school-logo" src={sp3logo} alt="" />
-              <span className="school-name">
-                SP3 im. Mikołaja Kopernika w Ząbkowicach Śląskich
-              </span>
-            </div>
-            <div className="right">
-              <Link to="/lessons-sp3">
-                <button>View plans</button>
-              </Link>
-            </div>
-          </div>
-          <div className="lesson-box">
-            <div className="left">
-              <img className="school-logo" src={lologo} alt="" />
-              <span className="school-name">
-                LO im. Władysława Jagiełły w Ząbkowicach Śląskich
-              </span>
-            </div>
-            <div className="right">
-              <Link to="/lessons-lo">
-                <button>View plans</button>
-              </Link>
-            </div>
-          </div>
-          <div className="lesson-box">
-            <div className="left">
-              <img className="school-logo" src={p4logo} alt="" />
-              <span className="school-name">
-                Przedszkole Publiczne nr 4 w Ząbkowicach Śląskich
-              </span>
-            </div>
-            <div className="right">
-              <Link to="/lessons-p4">
-                <button>View plans</button>
-              </Link>
-            </div>
+          <div className="right">
+            <Link to="/lessons-zsz">
+              <button>View plans</button>
+            </Link>
           </div>
         </div>
-      </StyledLessons>
-    );
-  }
-}
+        <div className="lesson-box">
+          <div className="left">
+            <img className="school-logo" src={sp3logo} alt="" />
+            <span className="school-name">
+              SP3 im. Mikołaja Kopernika w Ząbkowicach Śląskich
+            </span>
+          </div>
+          <div className="right">
+            <Link to="/lessons-sp3">
+              <button>View plans</button>
+            </Link>
+          </div>
+        </div>
+        <div className="lesson-box">
+          <div className="left">
+            <img className="school-logo" src={lologo} alt="" />
+            <span className="school-name">
+              LO im. Władysława Jagiełły w Ząbkowicach Śląskich
+            </span>
+          </div>
+          <div className="right">
+            <Link to="/lessons-lo">
+              <button>View plans</button>
+            </Link>
+          </div>
+        </div>
+        <div className="lesson-box">
+          <div className="left">
+            <img className="school-logo" src={p4logo} alt="" />
+            <span className="school-name">
+              Przedszkole Publiczne nr 4 w Ząbkowicach Śląskich
+            </span>
+          </div>
+          <div className="right">
+            <Link to="/lessons-p4">
+              <button>View plans</button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </StyledLessons>
+  );
+};
 
 export default Lessons;

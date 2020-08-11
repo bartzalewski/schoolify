@@ -1,15 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import ViewNotification from "../pages/ViewNotification";
 
-class Notification extends Component {
-  render() {
-    const { notifications } = this.props;
-    return <ViewNotification notifications={notifications} />;
-  }
-}
+const Notification = (props) => {
+  const { notifications } = props;
+  return <ViewNotification notifications={notifications} />;
+};
 
 const mapStateToProps = (state) => {
   return {

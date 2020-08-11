@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import SignUp from "../components/auth/SignUp";
 import SignIn from "../components/auth/SignIn";
@@ -184,25 +184,23 @@ const StyledHome = styled.div`
   }
 `;
 
-class Home extends Component {
-  render() {
-    return (
-      <StyledHome>
-        <div className="home-container">
-          <img src={logo} className="home-logo" alt="schoolify logo" />
-          <h1 className="title">schoolify</h1>
-          <h2>Landing page in maintenance.</h2>
-          <div className="sign-container">
-            <SignUp />
-            <SignIn />
-          </div>
-          <a href="mailto:me@bartzalewski.com" className="home-contact">
-            Contact
-          </a>
+const Home = () => {
+  return (
+    <StyledHome>
+      <div className="home-container">
+        <img src={logo} className="home-logo" alt="schoolify logo" />
+        <h1 className="title">schoolify</h1>
+        <h2>Landing page in maintenance.</h2>
+        <div className="sign-container">
+          <SignUp />
+          <SignIn />
         </div>
-      </StyledHome>
-    );
-  }
-}
+        <a href="mailto:me@bartzalewski.com" className="home-contact">
+          Contact
+        </a>
+      </div>
+    </StyledHome>
+  );
+};
 
 export default Home;
