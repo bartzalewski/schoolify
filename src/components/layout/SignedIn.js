@@ -155,7 +155,7 @@ const SignedIn = ({ profile }) => {
                 <Homework profile={profile} />
               ) : null}
               {window.innerWidth <= 1124 ? <Tests profile={profile} /> : null}
-              <Plan profile={profile} />
+              {/* <Plan profile={profile} /> */}
             </StyledLeftSide>
             <StyledHome>
               <Switch>

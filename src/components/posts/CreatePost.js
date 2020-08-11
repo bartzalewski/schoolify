@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { createPost } from "../../store/actions/postActions";
@@ -69,58 +69,51 @@ const StyledCreatePost = styled.section`
   }
 `;
 
-class CreatePost extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      schoolName: "",
-      schoolLogo: "",
-      content: "",
-      postBackground: null,
-      progress: 0,
-      authorEmail: this.props.auth.email,
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleUpload = this.handleUpload.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChoose = this.handleChoose.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
-  }
-  handleChange = async (e) => {
-    await this.setState({
-      [e.target.id]: e.target.value,
-    });
+const CreatePost = (props) => {
+  const [schoolName, setSchoolName] = useState("");
+  const [schoolLogo, setSchoolLogo] = useState("");
+  const [content, setContent] = useState("");
+  const [postBackground, setPostBackground] = useState(null);
+  const [progress, setProgress] = useState(0);
+  const [authorEmail] = useState(props.auth.email);
+  const state = {
+    schoolName,
+    schoolLogo,
+    content,
+    postBackground,
+    progress,
+    authorEmail,
   };
-  handleSelect = () => {
+
+  const handleSelect = () => {
     const schoolList = document.getElementById("schoolName");
     const value = schoolList.value;
     const array = value.split(",");
-    this.setState({
-      schoolName: array[0],
-      schoolLogo: array[1],
-    });
+    setSchoolName(array[0]);
+    setSchoolLogo(array[1]);
   };
-  handleSubmit = (e) => {
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({
-      content: capitalize(filter.clean(this.state.content)),
-    });
-    if (this.state.content.includes("*")) {
+    setContent(capitalize(filter.clean(content)));
+
+    if (content.includes("*")) {
       document.getElementById("upload-post-warn").style.display = "block";
       return null;
     } else {
-      this.props.createPost(this.state);
-      this.props.history.push("/");
+      props.createPost(state);
+      props.history.push("/");
     }
   };
-  handleChoose = (e) => {
+
+  const handleChoose = (e) => {
     if (e.target.files[0]) {
       const postBackground = e.target.files[0];
-      this.setState(() => ({ postBackground }));
+      setPostBackground(postBackground);
     }
   };
-  handleUpload = () => {
-    const { postBackground } = this.state;
+
+  const handleUpload = () => {
     const imageName = `${
       postBackground.name + Math.round(Math.random() * 1000000000000)
     }`;
@@ -133,7 +126,7 @@ class CreatePost extends Component {
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        this.setState({ progress });
+        setProgress(progress);
       },
       (err) => console.log(err),
       () => {
@@ -142,7 +135,7 @@ class CreatePost extends Component {
           .child(imageName)
           .getDownloadURL()
           .then((postBackground) => {
-            this.setState({ postBackground });
+            setPostBackground(postBackground);
           });
       }
     );
@@ -150,7 +143,8 @@ class CreatePost extends Component {
       return downloadURL;
     });
   };
-  componentDidMount() {
+
+  useEffect(() => {
     db.collection("schools")
       .get()
       .then((snap) =>
@@ -169,75 +163,76 @@ class CreatePost extends Component {
           option.value = [p.value, img.value];
         })
       );
+  }, []);
+
+  const { auth } = props;
+  const uploadPostButton = document.getElementById("upload-post-btn");
+
+  if (!auth.uid) return <Redirect to="/" />;
+  if (
+    schoolLogo !== "" &&
+    postBackground !== null &&
+    progress === 100 &&
+    content !== ""
+  ) {
+    uploadPostButton.disabled = false;
+    uploadPostButton.style.visibility = "visible";
   }
-  render() {
-    const { auth } = this.props;
-    const uploadPostButton = document.getElementById("upload-post-btn");
-    if (!auth.uid) return <Redirect to="/" />;
-    if (
-      this.state.schoolLogo !== "" &&
-      this.state.postBackground !== null &&
-      this.state.progress === 100 &&
-      this.state.content !== ""
-    ) {
-      uploadPostButton.disabled = false;
-      uploadPostButton.style.visibility = "visible";
-    }
-    return (
-      <StyledCreatePost className="site-container">
-        <div className="container">
-          <form onSubmit={this.handleSubmit}>
-            <h1>Create new post</h1>
-            <div className="input-field">
-              <label htmlFor="schoolName" />
-              <select
-                id="schoolName"
-                onChange={this.handleSelect}
-                defaultValue="Select your school"
-              >
-                <option disabled>Select your school</option>
-              </select>
-            </div>
-            <div className="input-field">
-              <label htmlFor="content" />
-              <textarea
-                placeholder="Type your post content here..."
-                id="content"
-                onChange={this.handleChange}
-              />
-            </div>
-            <button
-              id="upload-post-btn"
-              disabled
-              className="btn"
-              style={{ margin: "5rem 0 0 0" }}
-              onClick={this.handleSubmit}
+
+  return (
+    <StyledCreatePost className="site-container">
+      <div className="container">
+        <form onSubmit={handleSubmit}>
+          <h1>Create new post</h1>
+          <div className="input-field">
+            <label htmlFor="schoolName" />
+            <select
+              id="schoolName"
+              onChange={handleSelect}
+              defaultValue="Select your school"
             >
-              Upload Post
-            </button>
-          </form>
-          <progress value={this.state.progress} max="100" />
-          <br />
-          <div className="upload-container">
-            <input
-              className="custom-file-input"
-              type="file"
-              onChange={this.handleChoose}
-            />
-            <button
-              className="btn btn-choose"
-              style={{ margin: "0 0 0 0.5rem" }}
-              onClick={this.handleUpload}
-            >
-              Upload an image
-            </button>
+              <option disabled>Select your school</option>
+            </select>
           </div>
-          <p id="upload-post-warn">You can't post using swear words!</p>
+          <div className="input-field">
+            <label htmlFor="content" />
+            <textarea
+              placeholder="Type your post content here..."
+              id="content"
+              onChange={(e) => setContent(e.target.value)}
+            />
+          </div>
+          <button
+            id="upload-post-btn"
+            disabled
+            className="btn"
+            style={{ margin: "5rem 0 0 0" }}
+            onClick={handleSubmit}
+          >
+            Upload Post
+          </button>
+        </form>
+        <progress value={progress} max="100" />
+        <br />
+        <div className="upload-container">
+          <input
+            className="custom-file-input"
+            type="file"
+            onChange={handleChoose}
+          />
+          <button
+            className="btn btn-choose"
+            style={{ margin: "0 0 0 0.5rem" }}
+            onClick={handleUpload}
+          >
+            Upload an image
+          </button>
         </div>
-      </StyledCreatePost>
-    );
-  }
-}
+        <p id="upload-post-warn">You can't post using swear words!</p>
+      </div>
+    </StyledCreatePost>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

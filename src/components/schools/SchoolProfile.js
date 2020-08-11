@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import { compose } from "redux";
 import { connect } from "react-redux";
@@ -34,23 +34,21 @@ const StyledSchoolProfile = styled.section`
   }
 `;
 
-class SchoolProfile extends Component {
-  render() {
-    return (
-      <StyledSchoolProfile className="site-container">
-        <div className="container">
-          <h1>School Profile</h1>
-          <section className="school-profile-wrapper" style={{}}>
-            <header className="school-profile-header">
-              <img src="" alt="school logo" />
-              <h2>LO im. Władysława Jagiełły w Ząbkowicach Śląskich</h2>
-            </header>
-          </section>
-        </div>
-      </StyledSchoolProfile>
-    );
-  }
-}
+const SchoolProfile = () => {
+  return (
+    <StyledSchoolProfile className="site-container">
+      <div className="container">
+        <h1>School Profile</h1>
+        <section className="school-profile-wrapper" style={{}}>
+          <header className="school-profile-header">
+            <img src="" alt="school logo" />
+            <h2>LO im. Władysława Jagiełły w Ząbkowicach Śląskich</h2>
+          </header>
+        </section>
+      </div>
+    </StyledSchoolProfile>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

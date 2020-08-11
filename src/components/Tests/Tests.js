@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { db } from "../../config/fbConfig";
@@ -80,39 +80,33 @@ const StyledTests = styled.aside`
   }
 `;
 
-class Tests extends Component {
-  state = {
-    content: "",
-    tests: [],
-  };
-  handleChange = async (e) => {
-    await this.setState({
-      content: e.target.value,
-    });
-  };
-  addTest = (e) => {
+const Tests = (props) => {
+  const [content, setContent] = useState("");
+  const [tests, setTests] = useState([]);
+  const { email } = props.auth;
+
+  const addTest = (e) => {
     e.preventDefault();
     db.collection("users")
-      .where("email", "==", this.props.auth.email)
+      .where("email", "==", email)
       .get()
       .then((snap) =>
         snap.forEach((doc) => {
           db.collection("users")
             .doc(doc.id)
             .update({
-              tests: firebase.firestore.FieldValue.arrayUnion(
-                this.state.content
-              ),
+              tests: firebase.firestore.FieldValue.arrayUnion(content),
             });
         })
       );
     document.getElementById("input-tests").value = "";
   };
-  removeTest = (e) => {
+
+  const removeTest = (e) => {
     e.preventDefault();
     e.persist();
     db.collection("users")
-      .where("email", "==", this.props.auth.email)
+      .where("email", "==", email)
       .get()
       .then((snap) =>
         snap.forEach((doc) => {
@@ -126,43 +120,38 @@ class Tests extends Component {
         })
       );
   };
-  componentDidMount() {
+
+  useEffect(() => {
     db.collection("users")
-      .where("email", "==", this.props.auth.email)
+      .where("email", "==", email)
       .onSnapshot((snap) => {
         let changes = snap.docChanges();
         changes.forEach((change) => {
           const { tests } = change.doc.data();
-          this.setState({
-            tests: tests,
-          });
+          setTests(tests);
         });
       });
-  }
-  render() {
-    return (
-      <StyledTests className="aside-tests">
-        <div className="container">
-          <h1 className="title">Tests</h1>
-          <form onSubmit={this.addTest}>
-            <input
-              id="input-tests"
-              type="text"
-              placeholder="Add a test"
-              className="input-aside input-tests"
-              autoComplete="off"
-              onChange={this.handleChange}
-            />
-          </form>
-        </div>
-        <TestsList
-          tests={this.state.tests}
-          removeTest={this.removeTest}
-        ></TestsList>
-      </StyledTests>
-    );
-  }
-}
+  }, [email]);
+
+  return (
+    <StyledTests className="aside-tests">
+      <div className="container">
+        <h1 className="title">Tests</h1>
+        <form onSubmit={addTest}>
+          <input
+            id="input-tests"
+            type="text"
+            placeholder="Add a test"
+            className="input-aside input-tests"
+            autoComplete="off"
+            onChange={(e) => setContent(e.target.value)}
+          />
+        </form>
+      </div>
+      <TestsList tests={tests} removeTest={removeTest}></TestsList>
+    </StyledTests>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

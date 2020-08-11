@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import SchoolList from "./SchoolList";
 import { connect } from "react-redux";
@@ -7,19 +7,17 @@ import { compose } from "redux";
 
 const StyledViewSchools = styled.div``;
 
-class ViewSchools extends Component {
-  render() {
-    const { schools } = this.props;
-    return (
-      <StyledViewSchools className="school-list-page site-container">
-        <div className="container">
-          <h1>School list</h1>
-          <SchoolList schools={schools} />
-        </div>
-      </StyledViewSchools>
-    );
-  }
-}
+const ViewSchools = (props) => {
+  const { schools } = props;
+  return (
+    <StyledViewSchools className="school-list-page site-container">
+      <div className="container">
+        <h1>School list</h1>
+        <SchoolList schools={schools} />
+      </div>
+    </StyledViewSchools>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

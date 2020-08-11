@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { db } from "../../config/fbConfig";
@@ -81,39 +81,32 @@ const StyledReminders = styled.aside`
   }
 `;
 
-class Reminders extends Component {
-  state = {
-    content: "",
-    reminders: [],
-  };
-  handleChange = async (e) => {
-    await this.setState({
-      content: e.target.value,
-    });
-  };
-  addReminder = (e) => {
+const Reminders = (props) => {
+  const [content, setContent] = useState("");
+  const [reminders, setReminders] = useState([]);
+  const { email } = props.auth;
+
+  const addReminder = (e) => {
     e.preventDefault();
     db.collection("users")
-      .where("email", "==", this.props.auth.email)
+      .where("email", "==", email)
       .get()
       .then((snap) =>
         snap.forEach((doc) => {
           db.collection("users")
             .doc(doc.id)
             .update({
-              reminders: firebase.firestore.FieldValue.arrayUnion(
-                this.state.content
-              ),
+              reminders: firebase.firestore.FieldValue.arrayUnion(content),
             });
         })
       );
     document.getElementById("input-reminder").value = "";
   };
-  removeReminder = (e) => {
+  const removeReminder = (e) => {
     e.preventDefault();
     e.persist();
     db.collection("users")
-      .where("email", "==", this.props.auth.email)
+      .where("email", "==", email)
       .get()
       .then((snap) =>
         snap.forEach((doc) => {
@@ -127,43 +120,41 @@ class Reminders extends Component {
         })
       );
   };
-  componentDidMount() {
+
+  useEffect(() => {
     db.collection("users")
-      .where("email", "==", this.props.auth.email)
+      .where("email", "==", email)
       .onSnapshot((snap) => {
         let changes = snap.docChanges();
         changes.forEach((change) => {
           const { reminders } = change.doc.data();
-          this.setState({
-            reminders: reminders,
-          });
+          setReminders(reminders);
         });
       });
-  }
-  render() {
-    return (
-      <StyledReminders className="aside-reminders">
-        <div className="container">
-          <h1 className="title">Reminders</h1>
-          <form onSubmit={this.addReminder}>
-            <input
-              id="input-reminder"
-              type="text"
-              placeholder="Add a reminder"
-              className="input-aside input-reminder"
-              autoComplete="off"
-              onChange={this.handleChange}
-            />
-          </form>
-        </div>
-        <RemindersList
-          reminders={this.state.reminders}
-          removeReminder={this.removeReminder}
-        ></RemindersList>
-      </StyledReminders>
-    );
-  }
-}
+  }, [email]);
+
+  return (
+    <StyledReminders className="aside-reminders">
+      <div className="container">
+        <h1 className="title">Reminders</h1>
+        <form onSubmit={addReminder}>
+          <input
+            id="input-reminder"
+            type="text"
+            placeholder="Add a reminder"
+            className="input-aside input-reminder"
+            autoComplete="off"
+            onChange={(e) => setContent(e.target.value)}
+          />
+        </form>
+      </div>
+      <RemindersList
+        reminders={reminders}
+        removeReminder={removeReminder}
+      ></RemindersList>
+    </StyledReminders>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

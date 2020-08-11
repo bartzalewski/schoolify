@@ -86,11 +86,12 @@ const StyledHomework = styled.aside`
 const Homework = (props) => {
   const [content, setContent] = useState("");
   const [homework, setHomework] = useState([]);
+  const { email } = props.auth;
 
   const addHomework = (e) => {
     e.preventDefault();
     db.collection("users")
-      .where("email", "==", props.auth.email)
+      .where("email", "==", email)
       .get()
       .then((snap) =>
         snap.forEach((doc) => {
@@ -108,7 +109,7 @@ const Homework = (props) => {
     e.preventDefault();
     e.persist();
     db.collection("users")
-      .where("email", "==", props.auth.email)
+      .where("email", "==", email)
       .get()
       .then((snap) =>
         snap.forEach((doc) => {
@@ -125,7 +126,7 @@ const Homework = (props) => {
 
   useEffect(() => {
     db.collection("users")
-      .where("email", "==", props.auth.email)
+      .where("email", "==", email)
       .onSnapshot((snap) => {
         let changes = snap.docChanges();
         changes.forEach((change) => {
@@ -133,7 +134,7 @@ const Homework = (props) => {
           setHomework(homework);
         });
       });
-  });
+  }, [email]);
 
   return (
     <StyledHomework className="aside-homework">

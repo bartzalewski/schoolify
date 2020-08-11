@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { createSchool } from "../../store/actions/schoolActions";
@@ -74,39 +74,34 @@ const StyledCreateSchool = styled.section`
   }
 `;
 
-class CreateSchool extends Component {
-  state = {
-    schoolName: "",
-    schoolLogo: null,
-    schoolBackground: null,
-    progress: 0,
-  };
-  handleChange = async (e) => {
-    await this.setState({
-      [e.target.id]: e.target.value,
-    });
-  };
-  handleSubmit = (e) => {
+const CreateSchool = (props) => {
+  const [schoolName, setSchoolName] = useState("");
+  const [schoolLogo, setSchoolLogo] = useState(null);
+  const [schoolBackground, setSchoolBackground] = useState(null);
+  const [progress, setProgress] = useState(0);
+  const state = { schoolName, schoolLogo, schoolBackground, progress };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({
-      schoolName: filter.clean(this.state.schoolName),
-    });
-    if (this.state.schoolName.includes("*")) {
+    setSchoolName(filter.clean(schoolName));
+
+    if (schoolName.includes("*")) {
       document.getElementById("create-school-warn").style.display = "block";
       return null;
     } else {
-      this.props.createSchool(this.state);
-      this.props.history.push("/school-list");
+      props.createSchool(state);
+      props.history.push("/school-list");
     }
   };
-  handleChooseSchoolLogo = (e) => {
+
+  const handleChooseSchoolLogo = (e) => {
     if (e.target.files[0]) {
       const schoolLogo = e.target.files[0];
-      this.setState(() => ({ schoolLogo }));
+      setSchoolLogo(schoolLogo);
     }
   };
-  handleUploadSchoolLogo = () => {
-    const { schoolLogo } = this.state;
+
+  const handleUploadSchoolLogo = () => {
     const imageName = `${
       schoolLogo.name + Math.round(Math.random() * 1000000000000)
     }`;
@@ -119,7 +114,7 @@ class CreateSchool extends Component {
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        this.setState({ progress });
+        setProgress(progress);
       },
       (err) => console.log(err),
       () => {
@@ -128,7 +123,7 @@ class CreateSchool extends Component {
           .child(imageName)
           .getDownloadURL()
           .then((schoolLogo) => {
-            this.setState({ schoolLogo });
+            setSchoolLogo(schoolLogo);
           });
       }
     );
@@ -136,14 +131,16 @@ class CreateSchool extends Component {
       return downloadURL;
     });
   };
-  handleChooseSchoolBackground = (e) => {
+
+  const handleChooseSchoolBackground = (e) => {
     if (e.target.files[0]) {
       const schoolBackground = e.target.files[0];
-      this.setState(() => ({ schoolBackground }));
+      setSchoolBackground(schoolBackground);
     }
   };
-  handleUploadSchoolBackground = () => {
-    const { schoolBackground } = this.state;
+
+  const handleUploadSchoolBackground = () => {
+    const { schoolBackground } = state;
     const imageName = `${
       schoolBackground.name + Math.round(Math.random() * 1000000000000)
     }`;
@@ -156,7 +153,7 @@ class CreateSchool extends Component {
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        this.setState({ progress });
+        setProgress(progress);
       },
       (err) => console.log(err),
       () => {
@@ -165,7 +162,7 @@ class CreateSchool extends Component {
           .child(imageName)
           .getDownloadURL()
           .then((schoolBackground) => {
-            this.setState({ schoolBackground });
+            setSchoolBackground(schoolBackground);
           });
       }
     );
@@ -173,89 +170,88 @@ class CreateSchool extends Component {
       return downloadURL;
     });
   };
-  render() {
-    const { auth } = this.props;
-    const uploadPostButton = document.getElementById("upload-post-btn");
-    if (!auth.uid) return <Redirect to="/" />;
-    if (
-      typeof this.state.schoolBackground !== "object" &&
-      this.state.schoolBackground !== null &&
-      this.state.schoolLogo !== Object &&
-      typeof this.state.schoolLogo !== "object" &&
-      this.state.progress === 100 &&
-      this.state.schoolName !== ""
-    ) {
-      uploadPostButton.disabled = false;
-      uploadPostButton.style.visibility = "visible";
-    }
-    return (
-      <StyledCreateSchool className="site-container">
-        <div className="container">
-          <form onSubmit={this.handleSubmit}>
-            <h1>Add a new school</h1>
-            <div className="input-field">
-              <label htmlFor="schoolName" />
-              <input
-                id="schoolName"
-                type="text"
-                placeholder="School Name"
-                autoComplete="off"
-                onChange={this.handleChange}
-              />
-            </div>
-            <button
-              id="upload-post-btn"
-              disabled
-              className="btn"
-              style={{ margin: "10rem 0 0 0" }}
-              onClick={this.handleSubmit}
-            >
-              Add School
-            </button>
-          </form>
-          <progress value={this.state.progress} max="100" />
-          <br />
-          <div className="upload-wrapper">
-            <div className="upload-container">
-              <input
-                className="custom-file-input school-logo-input"
-                type="file"
-                onChange={this.handleChooseSchoolLogo}
-              />
-              <button
-                className="btn btn-choose"
-                style={{ margin: "0 0 0 0.5rem" }}
-                onClick={this.handleUploadSchoolLogo}
-              >
-                Upload Scholo Logo
-              </button>
-            </div>
-            <br />
-            <progress value={this.state.progress} max="100" />
-            <br />
-            <div className="upload-container">
-              <input
-                className="custom-file-input school-bg-input"
-                type="file"
-                onChange={this.handleChooseSchoolBackground}
-              />
-              <button
-                className="btn btn-choose"
-                style={{ margin: "0 0 0 0.5rem" }}
-                onClick={this.handleUploadSchoolBackground}
-              >
-                Upload School Background
-              </button>
-            </div>
-            <p id="create-school-warn">
-              You can't create school using swear words!
-            </p>
-          </div>
-        </div>
-      </StyledCreateSchool>
-    );
+
+  const { auth } = props;
+  const uploadPostButton = document.getElementById("upload-post-btn");
+  if (!auth.uid) return <Redirect to="/" />;
+  if (
+    typeof state.schoolBackground !== "object" &&
+    state.schoolBackground !== null &&
+    state.schoolLogo !== Object &&
+    typeof state.schoolLogo !== "object" &&
+    state.progress === 100 &&
+    state.schoolName !== ""
+  ) {
+    uploadPostButton.disabled = false;
+    uploadPostButton.style.visibility = "visible";
   }
-}
+  return (
+    <StyledCreateSchool className="site-container">
+      <div className="container">
+        <form onSubmit={handleSubmit}>
+          <h1>Add a new school</h1>
+          <div className="input-field">
+            <label htmlFor="schoolName" />
+            <input
+              id="schoolName"
+              type="text"
+              placeholder="School Name"
+              autoComplete="off"
+              onChange={(e) => setSchoolName(e.target.value)}
+            />
+          </div>
+          <button
+            id="upload-post-btn"
+            disabled
+            className="btn"
+            style={{ margin: "10rem 0 0 0" }}
+            onClick={handleSubmit}
+          >
+            Add School
+          </button>
+        </form>
+        <progress value={state.progress} max="100" />
+        <br />
+        <div className="upload-wrapper">
+          <div className="upload-container">
+            <input
+              className="custom-file-input school-logo-input"
+              type="file"
+              onChange={handleChooseSchoolLogo}
+            />
+            <button
+              className="btn btn-choose"
+              style={{ margin: "0 0 0 0.5rem" }}
+              onClick={handleUploadSchoolLogo}
+            >
+              Upload Scholo Logo
+            </button>
+          </div>
+          <br />
+          <progress value={state.progress} max="100" />
+          <br />
+          <div className="upload-container">
+            <input
+              className="custom-file-input school-bg-input"
+              type="file"
+              onChange={handleChooseSchoolBackground}
+            />
+            <button
+              className="btn btn-choose"
+              style={{ margin: "0 0 0 0.5rem" }}
+              onClick={handleUploadSchoolBackground}
+            >
+              Upload School Background
+            </button>
+          </div>
+          <p id="create-school-warn">
+            You can't create school using swear words!
+          </p>
+        </div>
+      </div>
+    </StyledCreateSchool>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
